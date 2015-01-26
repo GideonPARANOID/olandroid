@@ -36,9 +36,7 @@ public class Renderer implements GLSurfaceView.Renderer {
    private final float[] mViewMatrix = new float[16];
    private final float[] mRotationMatrix = new float[16];
 
-   public Renderer(Context context) {
-      this.context = context;
-   }
+   private float viewX, viewY;
 
 
    public void onSurfaceCreated(GL10 unused, EGLConfig config) {
@@ -62,8 +60,8 @@ public class Renderer implements GLSurfaceView.Renderer {
       sceneGraph = new SceneGraph();
 
       // demo
-      sceneGraph.add(new Triangle(program, 0.5f));
-      sceneGraph.add(new Triangle(program, 1f));
+      //sceneGraph.add(new Triangle(program, 0.5f));
+      sceneGraph.add(new Cube(program, 1f));
    }
 
 
@@ -83,14 +81,23 @@ public class Renderer implements GLSurfaceView.Renderer {
       GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
       // set the camera position
-      Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+      Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -5, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
 
       // calculate the projection and view transformation
       Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
+
+      Matrix.setRotateM(mRotationMatrix, 0, viewY, 1f, 0f, 0f);
+
+      // view rotation is done by moving the origin before drawing anything
+      float[] rotationY = new float[16], rotationX = new float[16];
+
+      Matrix.rotateM(rotationY, 0, mMVPMatrix, 0, viewY, 1f, 0f, 0f);
+      Matrix.rotateM(rotationX, 0, rotationY, 0, viewX, 0f, 1f, 0f);
+
       // draw shapes
       for (Shape shape : sceneGraph) {
-         shape.draw( mMVPMatrix);
+         shape.draw(rotationX);
       }
    }
 
@@ -149,5 +156,26 @@ public class Renderer implements GLSurfaceView.Renderer {
          Log.e("Renderer", glOperation + ": glError " + error);
          throw new RuntimeException(glOperation + ": glError " + error);
       }
+   }
+
+
+   public float getViewX() {
+      return viewX;
+   }
+
+   public void setViewX(float viewX) {
+      this.viewX = viewX;
+   }
+
+   public float getViewY() {
+      return viewY;
+   }
+
+   public void setViewY(float viewY) {
+      this.viewY = viewY;
+   }
+
+   public Renderer(Context context) {
+      this.context = context;
    }
 }
