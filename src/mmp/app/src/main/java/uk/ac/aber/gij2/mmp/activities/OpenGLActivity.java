@@ -1,3 +1,8 @@
+/**
+ * @created 2015-01-26
+ * @author gideon mw jones.
+ */
+
 package uk.ac.aber.gij2.mmp.activities;
 
 import android.support.v7.app.ActionBarActivity;
@@ -7,6 +12,7 @@ import android.view.MenuItem;
 
 import uk.ac.aber.gij2.mmp.R;
 import uk.ac.aber.gij2.mmp.visualisation.SurfaceView;
+
 
 public class OpenGLActivity extends ActionBarActivity {
 

@@ -1,3 +1,8 @@
+/**
+ * @created 2015-01-25
+ * @author gideon mw jones.
+ */
+
 package uk.ac.aber.gij2.mmp.activities;
 
 import android.content.Intent;
@@ -8,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import uk.ac.aber.gij2.mmp.R;
+
 
 public class MainActivity extends ActionBarActivity {
 
