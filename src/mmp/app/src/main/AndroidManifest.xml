@@ -23,7 +23,5 @@
             android:value="uk.ac.aber.gij2.mmp.activities.MainActivity" />
       </activity>
 
-
    </application>
-
 </manifest>

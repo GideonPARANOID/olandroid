@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import uk.ac.aber.gij2.mmp.R;
 
@@ -31,11 +32,16 @@ public class MainActivity extends ActionBarActivity {
       switch (item.getItemId()) {
 
          case R.id.action_settings:
-
             return true;
 
          default:
             return super.onOptionsItemSelected(item);
       }
+   }
+
+
+   public void button_vis(View view) {
+      Intent intent = new Intent(this, OpenGLActivity.class);
+      startActivity(intent);
    }
 }

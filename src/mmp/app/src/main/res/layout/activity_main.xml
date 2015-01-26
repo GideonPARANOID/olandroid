@@ -36,6 +36,7 @@
       android:layout_height="wrap_content"
       android:text="@string/ma_button_vis"
       android:id="@+id/button"
-      android:layout_gravity="center_horizontal"/>
+      android:layout_gravity="center_horizontal"
+      android:onClick="button_vis" />
 </LinearLayout>
 
