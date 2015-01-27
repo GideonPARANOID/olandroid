@@ -48,4 +48,17 @@ public class OpenGLActivity extends ActionBarActivity {
             return super.onOptionsItemSelected(item);
       }
    }
+
+
+   @Override
+   protected void onResume() {
+      super.onResume();
+      surfaceView.onResume();
+   }
+
+   @Override
+   protected void onPause() {
+      super.onPause();
+      surfaceView.onPause();
+   }
 }

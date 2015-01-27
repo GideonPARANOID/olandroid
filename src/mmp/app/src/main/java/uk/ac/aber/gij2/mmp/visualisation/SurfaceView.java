@@ -23,7 +23,7 @@ public class SurfaceView extends GLSurfaceView {
 
       setEGLContextClientVersion(2);
       setRenderer(renderer);
-      setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+
    }
 
 
@@ -40,7 +40,7 @@ public class SurfaceView extends GLSurfaceView {
             //System.out.println("x: " + currentX + "|" + previousX + "  y: " + currentY + "|" + previousY + " delta:" + deltaX + "|" + deltaY );
 
             // inverting the movement on crossing the centre lines
-            if (currentY < getHeight() / 2) {
+            if (currentY > getHeight() / 2) {
                deltaX *= -1;
             }
 
@@ -51,7 +51,7 @@ public class SurfaceView extends GLSurfaceView {
             renderer.setViewX(renderer.getViewX() + deltaX);
             renderer.setViewY(renderer.getViewY() + deltaY);
 
-            requestRender();
+//            requestRender();
       }
 
       previousX = currentX;

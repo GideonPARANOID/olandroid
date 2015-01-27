@@ -27,7 +27,7 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    private int program;
 
-   private final float[] background = {0.0f, 0.0f, 0.0f, 1.0f};
+   private final float[] background = {1f, 1f, 1f, 1f};
 
    private SceneGraph sceneGraph;
 
@@ -61,9 +61,9 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       // demo
       //sceneGraph.add(new Triangle(program, 0.5f));
-      sceneGraph.add(new Cube(program, 1f));
+//      sceneGraph.add(new Cube(program, 1f));
+      sceneGraph.add(new Tile(program));
    }
-
 
    public void onSurfaceChanged(GL10 unused, int width, int height) {
       GLES20.glViewport(0, 0, width, height);

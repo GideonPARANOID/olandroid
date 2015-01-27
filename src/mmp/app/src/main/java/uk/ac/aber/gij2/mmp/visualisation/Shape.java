@@ -15,7 +15,8 @@ import java.nio.ShortBuffer;
 public abstract class Shape {
 
    private FloatBuffer vertexBuffer;
-   private ShortBuffer drawListBuffer;
+   private ShortBuffer drawOrderBuffer;
+
    private int program;
    private int mPositionHandle;
    private int mColorHandle;
@@ -38,20 +39,12 @@ public abstract class Shape {
    public void setup() {
 
       // initialize vertex byte buffer for shape coordinates, 4 bytes per float
-      ByteBuffer bb = ByteBuffer.allocateDirect(vertexCoords.length * 4);
-
-      bb.order(ByteOrder.nativeOrder());
-      vertexBuffer = bb.asFloatBuffer();
-      vertexBuffer.put(vertexCoords);
-      vertexBuffer.position(0);
+      vertexBuffer = ByteBuffer.allocateDirect(vertexCoords.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+      vertexBuffer.put(vertexCoords).position(0);
 
       // initialize byte buffer for the draw list, 2 bytes per short
-      ByteBuffer dlb = ByteBuffer.allocateDirect(drawOrder.length * 2);
-
-      dlb.order(ByteOrder.nativeOrder());
-      drawListBuffer = dlb.asShortBuffer();
-      drawListBuffer.put(drawOrder);
-      drawListBuffer.position(0);
+      drawOrderBuffer = ByteBuffer.allocateDirect(drawOrder.length * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
+      drawOrderBuffer.put(drawOrder).position(0);
 
       // getting references to the shader program
       mColorHandle = GLES20.glGetUniformLocation(program, "vColor");
@@ -65,31 +58,21 @@ public abstract class Shape {
       // Add program to OpenGL environment
       GLES20.glUseProgram(program);
 
-      // get handle to vertex shader's vPosition member
-
-
       // enabling a handle to the triangle vertices
       GLES20.glEnableVertexAttribArray(mPositionHandle);
 
       // preparing the triangle coordinate data
-      GLES20.glVertexAttribPointer(
-         mPositionHandle, 3,
-         GLES20.GL_FLOAT, false,
-         12, vertexBuffer); // 3 coordinates per vertex, 4 bytes per int
+      GLES20.glVertexAttribPointer(mPositionHandle, 3, GLES20.GL_FLOAT, false, 12, vertexBuffer);
 
-
-      // set color for drawing the triangle
+      // set color for drawing the shape
       GLES20.glUniform4fv(mColorHandle, 1, color, 0);
-
 
       // apply the projection and view transformation
       GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mvpMatrix, 0);
       Renderer.checkGlError("glUniformMatrix4fv");
 
       // eventually drawing
-         GLES20.glDrawElements(
-         GLES20.GL_TRIANGLES, drawOrder.length,
-         GLES20.GL_UNSIGNED_SHORT, drawListBuffer);
+      GLES20.glDrawElements(GLES20.GL_LINE_STRIP, drawOrder.length,GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
 
       // disabling vertex array
       GLES20.glDisableVertexAttribArray(mPositionHandle);

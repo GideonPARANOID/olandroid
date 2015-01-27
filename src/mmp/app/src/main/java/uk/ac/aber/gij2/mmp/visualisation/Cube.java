@@ -13,7 +13,7 @@ public class Cube extends Shape {
 
       size /= 2;
 
-       setVertexCoords(new float[]{
+      setVertexCoords(new float[]{
          -size, -size, size,
          size, -size, size,
          size, size, size,
@@ -47,7 +47,7 @@ public class Cube extends Shape {
       });
 
       setColor(new float[]{
-        0f, 1f, 1f, 0f
+        0f, 0f, 0f, 1f
       });
 
       setup();
