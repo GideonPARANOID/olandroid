@@ -23,7 +23,6 @@ public class SurfaceView extends GLSurfaceView {
 
       setEGLContextClientVersion(2);
       setRenderer(renderer);
-
    }
 
 
@@ -50,8 +49,6 @@ public class SurfaceView extends GLSurfaceView {
 
             renderer.setViewX(renderer.getViewX() + deltaX);
             renderer.setViewY(renderer.getViewY() + deltaY);
-
-//            requestRender();
       }
 
       previousX = currentX;

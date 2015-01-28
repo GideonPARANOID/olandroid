@@ -55,7 +55,6 @@ public abstract class Shape {
 
 
    public void draw(float[] mvpMatrix) {
-      // Add program to OpenGL environment
       GLES20.glUseProgram(program);
 
       // enabling a handle to the triangle vertices

@@ -22,6 +22,7 @@ import uk.ac.aber.gij2.mmp.R;
 
 
 public class Renderer implements GLSurfaceView.Renderer {
+   private static final String TAG = "Renderer";
 
    private static Context context;
 
@@ -29,12 +30,11 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    private final float[] background = {1f, 1f, 1f, 1f};
 
-   private SceneGraph sceneGraph;
+   private Scene scene;
 
    private final float[] mMVPMatrix = new float[16];
    private final float[] mProjectionMatrix = new float[16];
    private final float[] mViewMatrix = new float[16];
-   private final float[] mRotationMatrix = new float[16];
 
    private float viewX, viewY;
 
@@ -57,12 +57,8 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       GLES20.glClearColor(background[0], background[1], background[2], background[3]);
 
-      sceneGraph = new SceneGraph();
-
-      // demo
-      //sceneGraph.add(new Triangle(program, 0.5f));
-//      sceneGraph.add(new Cube(program, 1f));
-      sceneGraph.add(new Tile(program));
+      scene = new Scene();
+      scene.setup(program);
    }
 
    public void onSurfaceChanged(GL10 unused, int width, int height) {
@@ -71,7 +67,7 @@ public class Renderer implements GLSurfaceView.Renderer {
       float ratio = (float) width / height;
 
       // projection matrix is applied to object coordinates in the onDrawFrame() method
-      Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
+      Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1, 100);
    }
 
 
@@ -81,24 +77,23 @@ public class Renderer implements GLSurfaceView.Renderer {
       GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
       // set the camera position
-      Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -5, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+      Matrix.setLookAtM(mViewMatrix, 0,
+         0, 0, 1,      // eye point, ought to be zero, but then mMVP would be zero
+         0f, 0f, 0f,    // centre of view
+         0f, 1f, 0f);   // up
 
-      // calculate the projection and view transformation
-      Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
+      // shifting the perspective
+      float[] rotationY = new float[16], rotationX = new float[16], translation = new float[16];
 
-      Matrix.setRotateM(mRotationMatrix, 0, viewY, 1f, 0f, 0f);
-
-      // view rotation is done by moving the origin before drawing anything
-      float[] rotationY = new float[16], rotationX = new float[16];
-
-      Matrix.rotateM(rotationY, 0, mMVPMatrix, 0, viewY, 1f, 0f, 0f);
+      Matrix.translateM(translation, 0, mProjectionMatrix, 0, 0f, 0f, -4f);
+      Matrix.rotateM(rotationY, 0, translation, 0, viewY, 1f, 0f, 0f);
       Matrix.rotateM(rotationX, 0, rotationY, 0, viewX, 0f, 1f, 0f);
 
-      // draw shapes
-      for (Shape shape : sceneGraph) {
-         shape.draw(rotationX);
-      }
+      // calculate the projection and view transformation
+      Matrix.multiplyMM(mMVPMatrix, 0, rotationX, 0, mViewMatrix, 0);
+
+      scene.draw(mMVPMatrix);
    }
 
 
@@ -138,7 +133,7 @@ public class Renderer implements GLSurfaceView.Renderer {
          }
 
       } catch (Exception e) {
-         Log.d("error: reading shader", "could not read shader: " + e.getLocalizedMessage());
+         Log.d(TAG, "could not read shader: " + e.getLocalizedMessage());
       }
 
       return shaderCode;
@@ -153,7 +148,7 @@ public class Renderer implements GLSurfaceView.Renderer {
    public static void checkGlError(String glOperation) {
       int error;
       while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
-         Log.e("Renderer", glOperation + ": glError " + error);
+         Log.e(TAG, glOperation + ": glError " + error);
          throw new RuntimeException(glOperation + ": glError " + error);
       }
    }
