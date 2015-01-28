@@ -3,6 +3,7 @@
 A tool for visual modelling acrobatic aeroplane flight.
 
 ![Latest post on blog.gideonjon.es/category/computers](http://gideonjon.es/feedimg/image.php?url=http://blog.gideonjon.es/rss)
+
 (Blog link image courtesy of [Ben Brooks](https://github.com/bbrks/feedimg)).
 
 ## Useful links
