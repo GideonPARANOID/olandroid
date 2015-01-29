@@ -20,7 +20,7 @@ public class Scene {
 
       // demo
       sceneGraph.add(new Cube(program, 1f));
-      sceneGraph.add(new Component(program, Component.COMPONENT_PITCH_UP));
+      sceneGraph.add(new Component(program, Component.MAX, Component.ZERO, Component.ZERO));
    }
 
 
