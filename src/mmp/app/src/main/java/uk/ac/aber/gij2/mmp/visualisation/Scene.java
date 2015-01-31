@@ -6,6 +6,8 @@
 package uk.ac.aber.gij2.mmp.visualisation;
 
 
+import java.util.LinkedList;
+
 public class Scene {
 
    private SceneGraph sceneGraph;
@@ -20,25 +22,25 @@ public class Scene {
 
       // demo
 //      sceneGraph.add(new Cube(program, 1f));
-      sceneGraph.add(new Component(program, Component.MAX, Component.ZERO, Component.ZERO));
       sceneGraph.add(new Grid(program, 1, 10));
+
+      Component component1 = new Component(program, Component.MAX, Component.ZERO, Component.ZERO),
+         component2 = new Component(program, Component.MAX, Component.ZERO, Component.ZERO);
+
+
+      LinkedList temp = new LinkedList();
+      temp.add(component1);
+      temp.add(component2);
+
+      sceneGraph.add(new Manoeuvre(temp));
+
    }
 
 
    public void draw(float[] matrix) {
 
-      for (Shape shape : sceneGraph) {
-         shape.draw(matrix);
+      for (Drawable temp : sceneGraph) {
+         temp.draw(matrix);
       }
-
-/*
-      sceneGraph.get(0).draw(matrix);
-
-      float[] newMatrix = new float[16];
-
-      Matrix.translateM(newMatrix, 0, matrix, 0, .5f, 0f, .5f);
-
-
-      sceneGraph.get(1).draw(newMatrix);*/
    }
 }

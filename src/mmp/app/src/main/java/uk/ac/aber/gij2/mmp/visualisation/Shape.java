@@ -12,7 +12,7 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
-public abstract class Shape {
+public abstract class Shape implements Drawable {
 
    private FloatBuffer vertexBuffer;
    private ShortBuffer drawOrderBuffer;

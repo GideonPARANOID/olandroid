@@ -8,7 +8,7 @@ package uk.ac.aber.gij2.mmp.visualisation;
 
 import android.opengl.Matrix;
 
-public class Grid extends Shape {
+public class Grid extends Shape implements Drawable {
 
    private float gridSize, gridDimensions;
 

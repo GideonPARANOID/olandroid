@@ -6,7 +6,7 @@
 package uk.ac.aber.gij2.mmp.visualisation;
 
 
-public class Component extends Shape {
+public class Component extends Shape implements Drawable {
 
    // bounds for movement
    public static final int ZERO = 0,
@@ -17,6 +17,8 @@ public class Component extends Shape {
    private final double angle = Math.PI / 4d;
    private double length = 1;
    private  int pitch, yaw, roll;
+   private float[] matrix;
+
 
    /**
     *
@@ -38,6 +40,11 @@ public class Component extends Shape {
          z = pitch == ZERO && yaw == ZERO ? length : length * Math.cos(angle);
 
 
+      matrix = new float[16];
+/*      float[] temp = new float[16];
+      Matrix.rotateM(temp, 0, (float) angle, (float) (pitch * angle), (float) (yaw * angle), (float) (roll * angle));
+      Matrix.translateM(matrix, 0, temp, 0, 0f, 0f, (float) length);*/
+
       setVertexCoords(new float[]{
          0f, 0f, 0f,
          (float) x, (float) y, (float) z
@@ -52,8 +59,8 @@ public class Component extends Shape {
       });
 
       setup();
-   }
 
+   }
 
    public int getPitch() {
       return pitch;
