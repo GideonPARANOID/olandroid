@@ -6,6 +6,9 @@
 package uk.ac.aber.gij2.mmp.visualisation;
 
 
+import android.opengl.Matrix;
+
+
 public class Component extends Shape implements Drawable {
 
    // bounds for movement
@@ -14,14 +17,13 @@ public class Component extends Shape implements Drawable {
       MAX = 1;
 
 
-   private final double angle = Math.PI / 4d;
+   private final double angleRadians = Math.PI / 4d, angleDegrees = 45;
    private double length = 1;
-   private  int pitch, yaw, roll;
+   private int pitch, yaw, roll;
    private float[] matrix;
 
 
    /**
-    *
     * @param program - opengl program reference
     * @param pitch - vertical direction
     * @param yaw - horizontal direction
@@ -35,15 +37,17 @@ public class Component extends Shape implements Drawable {
       this.roll = roll;
 
       double directionAngle = Math.atan((double) pitch / (double) yaw),
-         x = length * Math.sin(angle) * length * Math.cos(directionAngle),
-         y = length * Math.sin(angle) * length * Math.sin(directionAngle),
-         z = pitch == ZERO && yaw == ZERO ? length : length * Math.cos(angle);
+         x = length * Math.sin(angleRadians) * length * Math.cos(directionAngle),
+         y = length * Math.sin(angleRadians) * length * Math.sin(directionAngle),
+         z = pitch == ZERO && yaw == ZERO ? length : length * Math.cos(angleRadians);
 
 
+      // building the matrix transform from the beginning of this component to the end
       matrix = new float[16];
-/*      float[] temp = new float[16];
-      Matrix.rotateM(temp, 0, (float) angle, (float) (pitch * angle), (float) (yaw * angle), (float) (roll * angle));
-      Matrix.translateM(matrix, 0, temp, 0, 0f, 0f, (float) length);*/
+      Matrix.setIdentityM(matrix, 0);
+      Matrix.rotateM(matrix, 0, (float) angleDegrees, (float) -pitch, (float) yaw, (float) roll);
+      Matrix.translateM(matrix, 0, 0f, 0f, (float) length);
+
 
       setVertexCoords(new float[]{
          0f, 0f, 0f,
@@ -62,6 +66,7 @@ public class Component extends Shape implements Drawable {
 
    }
 
+
    public int getPitch() {
       return pitch;
    }
@@ -76,5 +81,9 @@ public class Component extends Shape implements Drawable {
 
    public double getLength() {
       return length;
+   }
+
+   public float[] getMatrix() {
+      return matrix;
    }
 }
