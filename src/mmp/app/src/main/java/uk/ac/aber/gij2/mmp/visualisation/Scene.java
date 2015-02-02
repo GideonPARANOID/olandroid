@@ -21,12 +21,22 @@ public class Scene {
       // demo
       sceneGraph.add(new Grid(program, 1, 10));
 
-      Component component1 = new Component(program, Component.MAX, Component.ZERO, Component.ZERO),
-         component2 = new Component(program, Component.MIN, Component.ZERO, Component.ZERO),
-         component3 = new Component(program, Component.MIN, Component.MAX, Component.ZERO);
+      Component[] temp = new Component[] {
 
-      Component[] temp = new Component[]{
-         component1, component2, component3, component1, component1
+         new Component(program, -1, -1, 0),
+         new Component(program, 1,0, 0),
+         new Component((program), 0, 0, 0),
+         new Component((program), 0, 0, 0),
+         new Component(program, Component.MIN, Component.MIN, Component.ZERO),
+         new Component(program, Component.MIN, Component.ZERO, Component.ZERO),
+         new Component(program, Component.MAX, Component.ZERO, Component.ZERO),
+         new Component(program, Component.MAX, Component.ZERO, Component.ZERO),
+         new Component(program, Component.MAX, Component.ZERO, Component.ZERO),
+         new Component(program, Component.MAX, Component.ZERO, Component.ZERO),
+         new Component((program), 0, 0, 0),
+         new Component((program), 0, 0, 0),
+         new Component((program), 0, 0, 0),
+         new Component((program), 0, 0, 0),
       };
 
       sceneGraph.add(new Manoeuvre(temp));

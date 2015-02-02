@@ -16,9 +16,8 @@ public class Component extends Shape implements Drawable {
       MIN = -1,
       MAX = 1;
 
-
    private final double angleRadians = Math.PI / 4d, angleDegrees = 45;
-   private double length = 1;
+   private float length = 1;
    private int pitch, yaw, roll;
    private float[] matrix;
 
@@ -36,22 +35,32 @@ public class Component extends Shape implements Drawable {
       this.yaw = yaw;
       this.roll = roll;
 
-      double directionAngle = Math.atan((double) pitch / (double) yaw),
-         x = length * Math.sin(angleRadians) * length * Math.cos(directionAngle),
-         y = length * Math.sin(angleRadians) * length * Math.sin(directionAngle),
-         z = pitch == ZERO && yaw == ZERO ? length : length * Math.cos(angleRadians);
+      float x, y, z;
 
+      // continuing straight lines are a different case - much easier
+      if (pitch == ZERO && yaw == ZERO) {
+         x = 0f;
+         y = 0f;
+         z = length;
 
-      // building the matrix transform from the beginning of this component to the end
-      matrix = new float[16];
-      Matrix.setIdentityM(matrix, 0);
-      Matrix.rotateM(matrix, 0, (float) angleDegrees, (float) -pitch, (float) yaw, (float) roll);
-      Matrix.translateM(matrix, 0, 0f, 0f, (float) length);
+         // lines which shift direction
+      } else {
+         // calculating the angle at which the line shifts the direction from the pitch & yaw
+         double directionAngle = Math.atan((double) pitch / (double) yaw);
 
+         // the previous statement does not like dividing by minus one
+         if (yaw == MIN) {
+            directionAngle = Math.PI + directionAngle;
+         }
 
-      setVertexCoords(new float[]{
+         x = (float) (length * Math.sin(angleRadians) * length * Math.cos(directionAngle));
+         y = (float) (length * Math.sin(angleRadians) * length * Math.sin(directionAngle));
+         z = (float) (length * Math.cos(angleRadians));
+      }
+
+      setVertexCoords(new float[] {
          0f, 0f, 0f,
-         (float) x, (float) y, (float) z
+         x, y, z
       });
 
       setDrawOrder(new short[]{
@@ -62,8 +71,19 @@ public class Component extends Shape implements Drawable {
          .5f, .5f, .5f, 0f
       });
 
-      setup();
 
+      // building the matrix transform from the beginning of this component to the end
+      matrix = new float[16];
+      Matrix.setIdentityM(matrix, 0);
+
+      // if all values are zero, we get a matrix of NaNs, which corrupts the matrix stack
+      if (pitch != ZERO || yaw != ZERO || roll != ZERO) {
+         Matrix.rotateM(matrix, 0, (float) angleDegrees, (float) -pitch, (float) yaw, (float) roll);
+      }
+
+      Matrix.translateM(matrix, 0, 0f, 0f, (float) length);
+
+      setup();
    }
 
 
