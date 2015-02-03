@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manoeuvres>
+
+   <manoeuvre olan="o">
+      <component pitch="ZERO" roll="ZERO" yaw="ZERO"></component>
+      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
+      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
+      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
+      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
+      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
+      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
+      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
+      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
+      <component pitch="ZERO" roll="ZERO" yaw="ZERO"></component>
+   </manoeuvre>
+
+
+
+   <manoeuvre olan="+">
+      <component pitch="ZERO" roll="ZERO" yaw="ZERO"></component>
+      <component pitch="ZERO" roll="ZERO" yaw="ZERO"></component>
+   </manoeuvre>
+
+</manoeuvres>

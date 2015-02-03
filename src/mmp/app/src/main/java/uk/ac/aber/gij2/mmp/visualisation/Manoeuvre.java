@@ -13,9 +13,11 @@ public class Manoeuvre implements Drawable {
    private Component[] components;
    private float[][] matrices;
 
+   private String olan;
 
-   public Manoeuvre(Component[] components) {
+   public Manoeuvre(Component[] components, String olan) {
       this.components = components;
+      this.olan = olan;
    }
 
 
@@ -46,6 +48,11 @@ public class Manoeuvre implements Drawable {
       for (int i = 1; i < components.length; i++) {
          Matrix.multiplyMM(matrices[i], 0, matrices[i - 1], 0, components[i - 1].getMatrix(), 0);
       }
+   }
+
+
+   public String getOlan() {
+      return olan;
    }
 }
 

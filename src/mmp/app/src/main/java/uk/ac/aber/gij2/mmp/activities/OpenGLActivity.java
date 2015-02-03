@@ -5,8 +5,8 @@
 
 package uk.ac.aber.gij2.mmp.activities;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,11 +18,14 @@ public class OpenGLActivity extends ActionBarActivity {
 
    private SurfaceView surfaceView;
 
+
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
 
       surfaceView = new SurfaceView(this);
+
+//      ManoeuvreCatalogue manoeuvreCatalogue = new ManoeuvreCatalogue(this);
 
       setContentView(surfaceView);
    }

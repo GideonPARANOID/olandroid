@@ -21,6 +21,7 @@ public class Scene {
       // demo
       sceneGraph.add(new Grid(program, 1, 10));
 
+
       Component[] temp = new Component[] {
 
          new Component(program, -1, -1, 0),
@@ -39,8 +40,7 @@ public class Scene {
          new Component((program), 0, 0, 0),
       };
 
-      sceneGraph.add(new Manoeuvre(temp));
-
+      sceneGraph.add(new Manoeuvre(temp, "test"));
    }
 
 
