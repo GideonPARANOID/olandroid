@@ -5,7 +5,6 @@
 
 package uk.ac.aber.gij2.mmp.visualisation;
 
-
 import android.opengl.Matrix;
 
 
@@ -17,16 +16,14 @@ public class Component extends Shape implements Drawable {
       MAX = 1;
 
    private final double angleRadians = Math.PI / 4d, angleDegrees = 45;
-   private float length = 1;
    private float[] matrix;
-
 
    /**
     * @param pitch - vertical direction
     * @param yaw - horizontal direction
     * @param roll - //TODO implement
     */
-   public Component(int pitch, int yaw, int roll) {
+   public Component(int pitch, int yaw, int roll, float length) {
       super();
 
       float x, y, z;
@@ -47,8 +44,8 @@ public class Component extends Shape implements Drawable {
             directionAngle = Math.PI + directionAngle;
          }
 
-         x = (float) (length * Math.sin(angleRadians) * length * Math.cos(directionAngle));
-         y = (float) (length * Math.sin(angleRadians) * length * Math.sin(directionAngle));
+         x = (float) (length * Math.sin(angleRadians) * Math.cos(directionAngle));
+         y = (float) (length * Math.sin(angleRadians) * Math.sin(directionAngle));
          z = (float) (length * Math.cos(angleRadians));
       }
 

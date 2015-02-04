@@ -1,24 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manoeuvres>
 
+   <!-- single-line elements -->
+
+   <manoeuvre olan="d">
+      <variant type="">
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
+      </variant>
+   </manoeuvre>
+
+   <manoeuvre olan="v">
+      <variant type="">
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+      </variant>
+      <variant type="i">
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+      </variant>
+   </manoeuvre>
+
+   <manoeuvre olan="z">
+      <variant type="">
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+      </variant>
+      <variant type="i">
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.1" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+      </variant>
+
+   </manoeuvre>
+
+   <!-- loops -->
+
    <manoeuvre olan="o">
-      <component pitch="ZERO" roll="ZERO" yaw="ZERO"></component>
-      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
-      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
-      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
-      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
-      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
-      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
-      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
-      <component pitch="MAX" roll="ZERO" yaw="ZERO"></component>
-      <component pitch="ZERO" roll="ZERO" yaw="ZERO"></component>
+      <variant type="">
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+      </variant>
+      <variant type="i">
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+      </variant>
    </manoeuvre>
-
-
-
-   <manoeuvre olan="+">
-      <component pitch="ZERO" roll="ZERO" yaw="ZERO"></component>
-      <component pitch="ZERO" roll="ZERO" yaw="ZERO"></component>
-   </manoeuvre>
-
 </manoeuvres>

@@ -21,7 +21,7 @@
       </activity>
 
       <activity
-         android:name=".activities.OpenGLActivity"
+         android:name=".activities.VisualisationActivity"
          android:label="@string/oga_title" >
 
          <meta-data

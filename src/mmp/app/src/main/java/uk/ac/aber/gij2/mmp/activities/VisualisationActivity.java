@@ -14,7 +14,7 @@ import uk.ac.aber.gij2.mmp.R;
 import uk.ac.aber.gij2.mmp.visualisation.SurfaceView;
 
 
-public class OpenGLActivity extends ActionBarActivity {
+public class VisualisationActivity extends ActionBarActivity {
 
    private SurfaceView surfaceView;
 

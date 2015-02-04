@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
 
 
    public void button_vis(View view) {
-      Intent intent = new Intent(this, OpenGLActivity.class);
+      Intent intent = new Intent(this, VisualisationActivity.class);
       startActivity(intent);
    }
 }

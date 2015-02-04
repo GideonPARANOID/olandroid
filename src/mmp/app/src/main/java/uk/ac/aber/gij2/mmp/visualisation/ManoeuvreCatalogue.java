@@ -5,7 +5,6 @@
 
 package uk.ac.aber.gij2.mmp.visualisation;
 
-
 import android.content.Context;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -34,7 +33,7 @@ public class ManoeuvreCatalogue {
       try {
          XmlPullParser parser = context.getResources().getXml(R.xml.manoeurvre_catalogue);
 
-         // skipping over the first two element - declarations etc.
+         // skipping over the first two element - xml declarations & top level container.
          parser.next();
          parser.next();
 
@@ -47,12 +46,7 @@ public class ManoeuvreCatalogue {
 
             if (parser.getName().equals("manoeuvre")) {
 
-               String olan = parser.getAttributeValue(namespace, "olan");
-
-               ArrayList<Component> components = buildComponentsList(parser);
-
-               manoeuvres.put(olan, new Manoeuvre(
-                     components.toArray(new Component[components.size()]), olan));
+               buildVariantList(parser, parser.getAttributeValue(namespace, "olan"));
 
             } else {
                skip(parser);
@@ -60,22 +54,55 @@ public class ManoeuvreCatalogue {
          }
       } catch (XmlPullParserException | IOException exception) {
          System.err.println(exception.getMessage());
-
       }
    }
 
 
    /**
     * @param parser - the parsing application for the xml
+    * @param olan - the olan name of the top manoeuvre
+    * @throws XmlPullParserException
+    * @throws IOException
+    */
+   private void buildVariantList(XmlPullParser parser, String olan) throws XmlPullParserException, IOException {
+
+      parser.require(XmlPullParser.START_TAG, namespace, "manoeuvre");
+
+      while (parser.next() != XmlPullParser.END_TAG) {
+         if (parser.getEventType() != XmlPullParser.START_TAG) {
+            continue;
+         }
+
+         if (parser.getName().equals("variant")) {
+            String fullOLAN = parser.getAttributeValue(namespace, "type") + olan;
+
+            ArrayList<Component> components = buildComponentList(parser);
+
+            System.out.println(parser.getName() + "  " + fullOLAN);
+
+            manoeuvres.put(fullOLAN, new Manoeuvre(
+                  components.toArray(new Component[components.size()]), fullOLAN));
+
+         } else {
+            skip(parser);
+         }
+      }
+   }
+
+
+
+
+      /**
+    * @param parser - the parsing application for the xml
     * @return - a list of components parsed from the xml
     * @throws XmlPullParserException
     * @throws IOException
     */
-   private ArrayList<Component> buildComponentsList(XmlPullParser parser) throws XmlPullParserException, IOException {
+   private ArrayList<Component> buildComponentList(XmlPullParser parser) throws XmlPullParserException, IOException {
 
       ArrayList<Component> components = new ArrayList<>();
 
-      parser.require(XmlPullParser.START_TAG, namespace, "manoeuvre");
+      parser.require(XmlPullParser.START_TAG, namespace, "variant");
 
       while (parser.next() != XmlPullParser.END_TAG) {
          if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -87,9 +114,11 @@ public class ManoeuvreCatalogue {
             components.add(new Component(
                parseComponentStrength(parser.getAttributeValue(namespace, "pitch")),
                parseComponentStrength(parser.getAttributeValue(namespace, "yaw")),
-               parseComponentStrength(parser.getAttributeValue(namespace, "roll"))
+               parseComponentStrength(parser.getAttributeValue(namespace, "roll")),
+               Float.parseFloat(parser.getAttributeValue(namespace, "length"))
             ));
 
+            // skipping content
             skip(parser);
          }
       }

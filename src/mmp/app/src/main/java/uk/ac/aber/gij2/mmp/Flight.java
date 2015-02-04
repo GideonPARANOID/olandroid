@@ -22,4 +22,18 @@ public class Flight {
    public ArrayList<Manoeuvre> getManoeuvres() {
       return manoeuvres;
    }
+
+
+   /**
+    * @return - olan description of flight
+    */
+   public String getOLANDescription() {
+
+      String olanDescription = "";
+      for (Manoeuvre manoeuvre : manoeuvres) {
+         olanDescription += " " + manoeuvre.getOlan();
+      }
+
+      return olanDescription;
+   }
 }
