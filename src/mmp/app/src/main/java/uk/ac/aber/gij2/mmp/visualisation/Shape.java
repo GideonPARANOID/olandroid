@@ -17,7 +17,6 @@ public abstract class Shape implements Drawable {
    private FloatBuffer vertexBuffer;
    private ShortBuffer drawOrderBuffer;
 
-   private int program;
    private int mPositionHandle;
    private int mColorHandle;
    private int mMVPMatrixHandle;
@@ -26,11 +25,6 @@ public abstract class Shape implements Drawable {
    private short[] drawOrder;
 
    private float color[];
-
-
-   public Shape(int program) {
-      this.program = program;
-   }
 
 
    /**
@@ -47,15 +41,15 @@ public abstract class Shape implements Drawable {
       drawOrderBuffer.put(drawOrder).position(0);
 
       // getting references to the shader program
-      mColorHandle = GLES20.glGetUniformLocation(program, "vColor");
-      mPositionHandle = GLES20.glGetAttribLocation(program, "vPosition");
-      mMVPMatrixHandle = GLES20.glGetUniformLocation(program, "uMVPMatrix");
+      mColorHandle = GLES20.glGetUniformLocation(Renderer.program, "vColor");
+      mPositionHandle = GLES20.glGetAttribLocation(Renderer.program, "vPosition");
+      mMVPMatrixHandle = GLES20.glGetUniformLocation(Renderer.program, "uMVPMatrix");
       Renderer.checkGlError("glGetUniformLocation");
    }
 
 
    public void draw(float[] mvpMatrix) {
-      GLES20.glUseProgram(program);
+      GLES20.glUseProgram(Renderer.program);
 
       // enabling a handle to the triangle vertices
       GLES20.glEnableVertexAttribArray(mPositionHandle);

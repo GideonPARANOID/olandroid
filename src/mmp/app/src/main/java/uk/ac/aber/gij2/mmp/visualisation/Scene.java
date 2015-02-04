@@ -5,6 +5,8 @@
 
 package uk.ac.aber.gij2.mmp.visualisation;
 
+import uk.ac.aber.gij2.mmp.Flight;
+
 
 public class Scene {
 
@@ -16,34 +18,25 @@ public class Scene {
    }
 
 
-   public void setup(int program) {
-
-      // demo
-      sceneGraph.add(new Grid(program, 1, 10));
-
-
-      Component[] temp = new Component[] {
-
-         new Component(program, -1, -1, 0),
-         new Component(program, 1,0, 0),
-         new Component((program), 0, 0, 0),
-         new Component((program), 0, 0, 0),
-         new Component(program, Component.MIN, Component.MIN, Component.ZERO),
-         new Component(program, Component.MIN, Component.ZERO, Component.ZERO),
-         new Component(program, Component.MAX, Component.ZERO, Component.ZERO),
-         new Component(program, Component.MAX, Component.ZERO, Component.ZERO),
-         new Component(program, Component.MAX, Component.ZERO, Component.ZERO),
-         new Component(program, Component.MAX, Component.ZERO, Component.ZERO),
-         new Component((program), 0, 0, 0),
-         new Component((program), 0, 0, 0),
-         new Component((program), 0, 0, 0),
-         new Component((program), 0, 0, 0),
-      };
-
-      sceneGraph.add(new Manoeuvre(temp, "test"));
+   public void setup() {
+      sceneGraph.add(new Grid(1, 10));
    }
 
 
+   /**
+    * @param flight - the current flight
+    */
+   public void setFlight(Flight flight) {
+
+      for (Manoeuvre manoeuvre : flight.getManoeuvres()) {
+         sceneGraph.add(manoeuvre);
+      }
+   }
+
+   /**
+    * draws the current scene
+    * @param matrix - the initial matrix to start drawing from
+    */
    public void draw(float[] matrix) {
 
       for (Drawable temp : sceneGraph) {

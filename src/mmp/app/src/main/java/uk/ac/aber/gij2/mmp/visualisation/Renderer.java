@@ -18,20 +18,27 @@ import java.io.InputStreamReader;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import uk.ac.aber.gij2.mmp.Application;
 import uk.ac.aber.gij2.mmp.R;
 
 
 public class Renderer implements GLSurfaceView.Renderer {
    private static final String TAG = "Renderer";
 
-   private static Context context;
+   // will only ever be using one program
+   public static int program;
+   // view & scene building tools
    private final float[] background = {1f, 1f, 1f, 1f};
    private final float[] mMVPMatrix = new float[16];
    private final float[] mProjectionMatrix = new float[16];
    private final float[] mViewMatrix = new float[16];
-   private int program;
-   private Scene scene;
+   // for back referencing to the application
+   private Context context;
    private float viewX, viewY;
+
+
+   // content
+   private Scene scene;
 
 
    public Renderer(Context context) {
@@ -39,12 +46,24 @@ public class Renderer implements GLSurfaceView.Renderer {
    }
 
    /**
-    *
+    * utility method for debugging opengl calls, provide the name of the call just after making it
+    *    if the operation is not successful, the check throws an error
+    * @param glOperation - name of the opengl call to check.
+    */
+   public static void checkGlError(String glOperation) {
+      int error;
+      while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
+         Log.e(TAG, glOperation + ": glError " + error);
+         throw new RuntimeException(glOperation + ": glError " + error);
+      }
+   }
+
+   /**
     * @param type - GLES20.GL_VERTEX_SHADER or GLES20.GL_FRAGMENT_SHADER
     * @param shaderCode - string of glsl
     * @return - reference to the shader program
     */
-   public static int loadShader(int type, String shaderCode){
+   public int loadShader(int type, String shaderCode){
 
       int shader = GLES20.glCreateShader(type);
 
@@ -59,7 +78,7 @@ public class Renderer implements GLSurfaceView.Renderer {
     * @param resource - id for finding a resource file
     * @return - shader code string
     */
-   public static String loadShaderCode(int resource) {
+   public String loadShaderCode(int resource) {
       String shaderCode = "";
 
       try {
@@ -79,29 +98,16 @@ public class Renderer implements GLSurfaceView.Renderer {
       return shaderCode;
    }
 
-   /**
-    * utility method for debugging opengl calls, provide the name of the call just after making it
-    *    if the operation is not successful, the check throws an error
-    * @param glOperation - name of the opengl call to check.
-    */
-   public static void checkGlError(String glOperation) {
-      int error;
-      while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
-         Log.e(TAG, glOperation + ": glError " + error);
-         throw new RuntimeException(glOperation + ": glError " + error);
-      }
-   }
-
    public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 
       // shader loading & compilation
-      int vertexShader = Renderer.loadShader(
+      int vertexShader = loadShader(
          GLES20.GL_VERTEX_SHADER,
-         Renderer.loadShaderCode(R.raw.vertex));
+         loadShaderCode(R.raw.vertex));
 
-      int fragmentShader = Renderer.loadShader(
+      int fragmentShader = loadShader(
          GLES20.GL_FRAGMENT_SHADER,
-         Renderer.loadShaderCode(R.raw.fragment));
+         loadShaderCode(R.raw.fragment));
 
       program = GLES20.glCreateProgram();
       GLES20.glAttachShader(program, vertexShader);
@@ -110,9 +116,10 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       GLES20.glClearColor(background[0], background[1], background[2], background[3]);
 
-      scene = new Scene();
-      scene.setup(program);
+      ((Application) context.getApplicationContext()).setup();
+      scene = ((Application) context.getApplicationContext()).getScene();
    }
+
 
    public void onSurfaceChanged(GL10 unused, int width, int height) {
       GLES20.glViewport(0, 0, width, height);
@@ -122,6 +129,7 @@ public class Renderer implements GLSurfaceView.Renderer {
       // projection matrix is applied to object coordinates in the onDrawFrame() method
       Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1, 100);
    }
+
 
    public void onDrawFrame(GL10 unused) {
 
@@ -163,5 +171,9 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    public void setViewY(float viewY) {
       this.viewY = viewY;
+   }
+
+   public void setScene(Scene scene) {
+      this.scene = scene;
    }
 }

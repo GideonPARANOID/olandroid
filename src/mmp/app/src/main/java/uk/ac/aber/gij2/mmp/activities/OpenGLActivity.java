@@ -28,6 +28,11 @@ public class OpenGLActivity extends ActionBarActivity {
 //      ManoeuvreCatalogue manoeuvreCatalogue = new ManoeuvreCatalogue(this);
 
       setContentView(surfaceView);
+
+
+
+//      ((Application) getApplicationContext()).sayHi();
+
    }
 
 

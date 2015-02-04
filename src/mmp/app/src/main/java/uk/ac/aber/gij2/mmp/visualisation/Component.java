@@ -18,22 +18,16 @@ public class Component extends Shape implements Drawable {
 
    private final double angleRadians = Math.PI / 4d, angleDegrees = 45;
    private float length = 1;
-   private int pitch, yaw, roll;
    private float[] matrix;
 
 
    /**
-    * @param program - opengl program reference
     * @param pitch - vertical direction
     * @param yaw - horizontal direction
     * @param roll - //TODO implement
     */
-   public Component(int program, int pitch, int yaw, int roll) {
-      super(program);
-
-      this.pitch = pitch;
-      this.yaw = yaw;
-      this.roll = roll;
+   public Component(int pitch, int yaw, int roll) {
+      super();
 
       float x, y, z;
 
@@ -81,26 +75,9 @@ public class Component extends Shape implements Drawable {
          Matrix.rotateM(matrix, 0, (float) angleDegrees, (float) -pitch, (float) yaw, (float) roll);
       }
 
-      Matrix.translateM(matrix, 0, 0f, 0f, (float) length);
+      Matrix.translateM(matrix, 0, 0f, 0f, length);
 
       setup();
-   }
-
-
-   public int getPitch() {
-      return pitch;
-   }
-
-   public int getRoll() {
-      return roll;
-   }
-
-   public int getYaw() {
-      return yaw;
-   }
-
-   public double getLength() {
-      return length;
    }
 
    public float[] getMatrix() {

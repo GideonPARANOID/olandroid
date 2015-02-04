@@ -20,14 +20,13 @@ import uk.ac.aber.gij2.mmp.R;
 
 public class ManoeuvreCatalogue {
 
-
-   private String namespace = null;
-
-   private int program;
-
+   private final String namespace = null;
    private HashMap<String, Manoeuvre> manoeuvres;
 
 
+   /**
+    * @param context - the context relevant for getting the xml
+    */
    public ManoeuvreCatalogue(Context context) {
 
       manoeuvres = new HashMap<>();
@@ -35,6 +34,7 @@ public class ManoeuvreCatalogue {
       try {
          XmlPullParser parser = context.getResources().getXml(R.xml.manoeurvre_catalogue);
 
+         // skipping over the first two element - declarations etc.
          parser.next();
          parser.next();
 
@@ -49,17 +49,18 @@ public class ManoeuvreCatalogue {
 
                String olan = parser.getAttributeValue(namespace, "olan");
 
+               ArrayList<Component> components = buildComponentsList(parser);
+
                manoeuvres.put(olan, new Manoeuvre(
-                     (Component[]) buildComponentsList(parser).toArray(), olan));
+                     components.toArray(new Component[components.size()]), olan));
 
             } else {
                skip(parser);
             }
          }
-      } catch (XmlPullParserException exception) {
+      } catch (XmlPullParserException | IOException exception) {
          System.err.println(exception.getMessage());
-      } catch (IOException exception) {
-         System.err.println(exception.getMessage());
+
       }
    }
 
@@ -83,7 +84,7 @@ public class ManoeuvreCatalogue {
 
          if (parser.getName().equals("component")) {
 
-            components.add(new Component(program,
+            components.add(new Component(
                parseComponentStrength(parser.getAttributeValue(namespace, "pitch")),
                parseComponentStrength(parser.getAttributeValue(namespace, "yaw")),
                parseComponentStrength(parser.getAttributeValue(namespace, "roll"))

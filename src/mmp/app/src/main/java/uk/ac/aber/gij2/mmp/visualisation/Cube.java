@@ -8,8 +8,8 @@ package uk.ac.aber.gij2.mmp.visualisation;
 
 public class Cube extends Shape {
 
-   public Cube(int program, float size) {
-      super(program);
+   public Cube(float size) {
+      super();
 
       size /= 2;
 

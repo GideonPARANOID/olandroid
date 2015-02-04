@@ -14,13 +14,11 @@ public class Grid extends Shape implements Drawable {
 
 
    /**
-    *
-    * @param program - opengl program reference
     * @param gridSize - size of a unit of the grid
     * @param gridDimensions - dimensions of the whole grid in terms of grid units
     */
-   public Grid(int program, float gridSize, float gridDimensions) {
-      super(program);
+   public Grid(float gridSize, float gridDimensions) {
+      super();
 
       this.gridSize = gridSize;
       this.gridDimensions = gridDimensions;
