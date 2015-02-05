@@ -54,5 +54,14 @@ public class Manoeuvre implements Drawable {
    public String getOlan() {
       return olan;
    }
+
+
+   /**
+    * TODO: complete
+    * @return - the full matrix operation from the  beginning of the manoeuvre to the end
+    */
+   public float[] getFullMatrix() {
+      return new float[16];
+   }
 }
 
