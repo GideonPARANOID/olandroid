@@ -60,8 +60,13 @@ public class Manoeuvre implements Drawable {
     * TODO: complete
     * @return - the full matrix operation from the  beginning of the manoeuvre to the end
     */
-   public float[] getFullMatrix() {
-      return new float[16];
+   public float[] getMatrix() {
+
+      float[] blank = new float[16];
+      Matrix.setIdentityM(blank, 0);
+      buildMatricesList(blank);
+
+      return matrices[matrices.length - 1];
    }
 }
 

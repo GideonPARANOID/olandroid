@@ -7,10 +7,11 @@ package uk.ac.aber.gij2.mmp;
 
 import java.util.ArrayList;
 
+import uk.ac.aber.gij2.mmp.visualisation.Drawable;
 import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 
 
-public class Flight {
+public class Flight implements Drawable {
    private ArrayList<Manoeuvre> manoeuvres;
 
 
@@ -35,5 +36,15 @@ public class Flight {
       }
 
       return olanDescription;
+   }
+
+
+   public void draw(float[] initialMatrix) {
+
+      for (Manoeuvre manoeuvre : manoeuvres) {
+         manoeuvre.draw(initialMatrix);
+      }
+
+
    }
 }

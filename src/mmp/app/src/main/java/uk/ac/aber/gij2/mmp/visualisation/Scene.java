@@ -27,20 +27,19 @@ public class Scene {
     * @param flight - the current flight
     */
    public void setFlight(Flight flight) {
+      sceneGraph.add(flight);
 
-      for (Manoeuvre manoeuvre : flight.getManoeuvres()) {
-         sceneGraph.add(manoeuvre);
-      }
    }
 
    /**
     * draws the current scene
     * @param matrix - the initial matrix to start drawing from
     */
-   public void draw(float[] matrix) {
+   public void draw(float[] initialMatrix) {
+
 
       for (Drawable temp : sceneGraph) {
-         temp.draw(matrix);
+         temp.draw(initialMatrix);
       }
    }
 }

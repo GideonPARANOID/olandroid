@@ -5,7 +5,6 @@
 
 package uk.ac.aber.gij2.mmp;
 
-import uk.ac.aber.gij2.mmp.visualisation.ManoeuvreCatalogue;
 import uk.ac.aber.gij2.mmp.visualisation.Scene;
 
 

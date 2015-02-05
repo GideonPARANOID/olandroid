@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.visualisation;
+package uk.ac.aber.gij2.mmp;
 
 import android.content.Context;
 
@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import uk.ac.aber.gij2.mmp.R;
+import uk.ac.aber.gij2.mmp.visualisation.Component;
+import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 
 
 public class ManoeuvreCatalogue {
@@ -77,8 +79,6 @@ public class ManoeuvreCatalogue {
             String fullOLAN = parser.getAttributeValue(namespace, "type") + olan;
 
             ArrayList<Component> components = buildComponentList(parser);
-
-            System.out.println(parser.getName() + "  " + fullOLAN);
 
             manoeuvres.put(fullOLAN, new Manoeuvre(
                   components.toArray(new Component[components.size()]), fullOLAN));

@@ -8,7 +8,6 @@ package uk.ac.aber.gij2.mmp;
 import java.util.ArrayList;
 
 import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
-import uk.ac.aber.gij2.mmp.visualisation.ManoeuvreCatalogue;
 import uk.ac.aber.gij2.mmp.visualisation.Scene;
 
 
