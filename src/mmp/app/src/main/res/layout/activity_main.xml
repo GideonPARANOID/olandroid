@@ -11,8 +11,8 @@
    android:paddingBottom="@dimen/activity_vertical_margin"
 
    android:orientation="vertical"
-   android:layout_toRightOf="@+id/textView"
-   android:layout_toEndOf="@+id/textView"
+   android:layout_toRightOf="@+id/ma_intro_title"
+   android:layout_toEndOf="@+id/ma_intro_title"
    android:layout_alignParentTop="true">
 
    <TextView
@@ -20,7 +20,7 @@
       android:layout_height="wrap_content"
       android:textAppearance="?android:attr/textAppearanceLarge"
       android:text="@string/ma_intro_title"
-      android:id="@+id/textView"
+      android:id="@+id/ma_intro_title"
       android:layout_gravity="center_horizontal"/>
 
    <TextView
@@ -28,14 +28,22 @@
       android:layout_height="wrap_content"
       android:textAppearance="?android:attr/textAppearanceMedium"
       android:text="@string/ma_intro_text"
-      android:id="@+id/textView2"
+      android:id="@+id/ma_intro_text"
+      android:layout_gravity="center_horizontal"/>
+
+   <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+      android:text="@string/ma_intro_link"
+      android:id="@+id/ma_intro_link"
       android:layout_gravity="center_horizontal"/>
 
    <Button
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:text="@string/ma_button_vis"
-      android:id="@+id/button"
+      android:id="@+id/ma_button_vis"
       android:layout_gravity="center_horizontal"
       android:onClick="button_vis" />
 
