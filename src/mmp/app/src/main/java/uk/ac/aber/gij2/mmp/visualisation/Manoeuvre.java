@@ -40,12 +40,12 @@ public class Manoeuvre implements Drawable {
     */
    private void buildMatricesList(float[] initialMatrix) {
 
-      matrices = new float[components.length][16];
+      matrices = new float[components.length + 1][16];
 
       matrices[0] = initialMatrix;
 
       // each matrix is a multiplication of the last constructed one & the last drawn one
-      for (int i = 1; i < components.length; i++) {
+      for (int i = 1; i < components.length + 1; i++) {
          Matrix.multiplyMM(matrices[i], 0, matrices[i - 1], 0, components[i - 1].getMatrix(), 0);
       }
    }
@@ -57,11 +57,11 @@ public class Manoeuvre implements Drawable {
 
 
    /**
-    * TODO: complete
     * @return - the full matrix operation from the  beginning of the manoeuvre to the end
     */
    public float[] getMatrix() {
 
+      // assuming we're drawing from scratch
       float[] blank = new float[16];
       Matrix.setIdentityM(blank, 0);
       buildMatricesList(blank);
