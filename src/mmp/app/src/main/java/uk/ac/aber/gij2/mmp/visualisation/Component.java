@@ -15,6 +15,9 @@ public class Component extends Shape implements Drawable {
       MIN = -1,
       MAX = 1;
 
+   // how many sections to build the line in
+   private final int SECTIONS = 2;
+
    private final double angleRadians = Math.PI / 4d, angleDegrees = 45;
    private float[] matrix;
 
@@ -49,14 +52,23 @@ public class Component extends Shape implements Drawable {
          z = (float) (length * Math.cos(angleRadians));
       }
 
-      setVertexCoords(new float[] {
-         0f, 0f, 0f,
-         x, y, z
-      });
 
-      setDrawOrder(new short[]{
-         0, 1
-      });
+      // building sections
+      float[] sections = new float[(SECTIONS + 1) * 3];
+      short[] order = new short[SECTIONS + 1];
+
+      float step = 1f / (float) SECTIONS;
+
+      for (int i = 0; i <= SECTIONS ; i++) {
+         sections[i * 3] = x * step * i;
+         sections[(i * 3) + 1] = y * step * i;
+         sections[(i * 3) + 2] = z * step * i;
+
+         order[i] = (short) i;
+      }
+
+      setVertexCoords(sections);
+      setDrawOrder(order);
 
       setColor(new float[]{
          .5f, .5f, .5f, 0f
