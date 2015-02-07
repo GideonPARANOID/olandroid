@@ -16,10 +16,10 @@ public class Component extends Shape implements Drawable {
       MAX = 1;
 
    // how many sections to build the line in
-   private final int SECTIONS = 2;
+   private final int SECTIONS = 1;
 
    private final double angleRadians = Math.PI / 4d, angleDegrees = 45;
-   private float[] matrix;
+   private float[] points, matrix;
 
    /**
     * @param pitch - vertical direction
@@ -53,21 +53,21 @@ public class Component extends Shape implements Drawable {
       }
 
 
-      // building sections
-      float[] sections = new float[(SECTIONS + 1) * 3];
+      // building points
+      points = new float[(SECTIONS + 1) * 3];
       short[] order = new short[SECTIONS + 1];
 
       float step = 1f / (float) SECTIONS;
 
       for (int i = 0; i <= SECTIONS ; i++) {
-         sections[i * 3] = x * step * i;
-         sections[(i * 3) + 1] = y * step * i;
-         sections[(i * 3) + 2] = z * step * i;
+         points[i * 3] = x * step * i;
+         points[(i * 3) + 1] = y * step * i;
+         points[(i * 3) + 2] = z * step * i;
 
          order[i] = (short) i;
       }
 
-      setVertexCoords(sections);
+      setVertexCoords(points);
       setDrawOrder(order);
 
       setColor(new float[]{
@@ -91,5 +91,13 @@ public class Component extends Shape implements Drawable {
 
    public float[] getMatrix() {
       return matrix;
+   }
+
+   public float[] getPoints() {
+      return points;
+   }
+
+   public void setPoints(float[] points) {
+      this.points = points;
    }
 }

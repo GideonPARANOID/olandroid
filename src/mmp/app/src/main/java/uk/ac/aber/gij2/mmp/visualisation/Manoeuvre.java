@@ -7,6 +7,8 @@ package uk.ac.aber.gij2.mmp.visualisation;
 
 import android.opengl.Matrix;
 
+import java.util.Arrays;
+
 
 public class Manoeuvre implements Drawable {
 
@@ -30,6 +32,31 @@ public class Manoeuvre implements Drawable {
          components[i].draw(matrices[i]);
       }
    }
+
+
+   private void convertPoints(float initialMatrix) {
+
+
+
+
+      for (int i = 0; i < components.length; i++) {
+
+         float[] temp = components[i].getPoints();
+         float[] res = new float[temp.length];
+
+         for (int j = 0; j < temp.length; j += 3) {
+
+            Matrix.multiplyMV(res, i, matrices[i], 0, Arrays.copyOfRange(temp, i, i + 3), 0);
+
+
+         }
+
+      }
+
+
+   }
+
+
 
 
    /**
