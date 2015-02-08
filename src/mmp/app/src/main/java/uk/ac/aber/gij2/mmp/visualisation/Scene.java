@@ -5,16 +5,18 @@
 
 package uk.ac.aber.gij2.mmp.visualisation;
 
+import java.util.ArrayList;
+
 import uk.ac.aber.gij2.mmp.Flight;
 
 
 public class Scene {
 
-   private SceneGraph sceneGraph;
+   private ArrayList<Drawable> sceneGraph;
 
 
    public Scene() {
-      sceneGraph = new SceneGraph();
+      sceneGraph = new ArrayList();
    }
 
 
