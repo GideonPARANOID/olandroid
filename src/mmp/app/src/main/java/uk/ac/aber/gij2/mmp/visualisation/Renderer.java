@@ -23,19 +23,25 @@ import uk.ac.aber.gij2.mmp.R;
 
 
 public class Renderer implements GLSurfaceView.Renderer {
-   private static final String TAG = "Renderer";
+
+   public static final float[] COLOR_FRAME = new float[] {
+      .5f, .5f, .5f, 0f
+   }, COLOR_BACKGROUND = new float[] {
+      1f, 1f, 1f, 0f
+   };
+
 
    // will only ever be using one program
    public static int program;
+
    // view & scene building tools
-   private final float[] background = {1f, 1f, 1f, 1f};
    private final float[] mMVPMatrix = new float[16];
    private final float[] mProjectionMatrix = new float[16];
    private final float[] mViewMatrix = new float[16];
+
    // for back referencing to the application
    private Context context;
    private float viewX, viewY;
-
 
    // content
    private Scene scene;
@@ -45,58 +51,6 @@ public class Renderer implements GLSurfaceView.Renderer {
       this.context = context;
    }
 
-   /**
-    * utility method for debugging opengl calls, provide the name of the call just after making it
-    *    if the operation is not successful, the check throws an error
-    * @param glOperation - name of the opengl call to check.
-    */
-   public static void checkGlError(String glOperation) {
-      int error;
-      while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
-         Log.e(TAG, glOperation + ": glError " + error);
-         throw new RuntimeException(glOperation + ": glError " + error);
-      }
-   }
-
-   /**
-    * @param type - GLES20.GL_VERTEX_SHADER or GLES20.GL_FRAGMENT_SHADER
-    * @param shaderCode - string of glsl
-    * @return - reference to the shader program
-    */
-   public int loadShader(int type, String shaderCode){
-
-      int shader = GLES20.glCreateShader(type);
-
-      // add the source code to the shader and compile it
-      GLES20.glShaderSource(shader, shaderCode);
-      GLES20.glCompileShader(shader);
-
-      return shader;
-   }
-
-   /**
-    * @param resource - id for finding a resource file
-    * @return - shader code string
-    */
-   public String loadShaderCode(int resource) {
-      String shaderCode = "";
-
-      try {
-         InputStream inputStream = context.getResources().openRawResource(resource);
-         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-
-         String read = reader.readLine();
-         while (read != null) {
-            shaderCode += read + "\n";
-            read = reader.readLine();
-         }
-
-      } catch (Exception e) {
-         Log.d(TAG, "could not read shader: " + e.getLocalizedMessage());
-      }
-
-      return shaderCode;
-   }
 
    public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 
@@ -114,7 +68,10 @@ public class Renderer implements GLSurfaceView.Renderer {
       GLES20.glAttachShader(program, fragmentShader);
       GLES20.glLinkProgram(program);
 
-      GLES20.glClearColor(background[0], background[1], background[2], background[3]);
+      GLES20.glClearColor(COLOR_BACKGROUND[0],
+         COLOR_BACKGROUND[1],
+         COLOR_BACKGROUND[2],
+         COLOR_BACKGROUND[3]);
 
       ((Application) context.getApplicationContext()).setup();
       scene = ((Application) context.getApplicationContext()).getScene();
@@ -138,7 +95,7 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       // set the camera position
       Matrix.setLookAtM(mViewMatrix, 0,
-         0, 0, 0,      // eye point
+         0, 0, 0,       // eye point
          0f, 0f, 0f,    // centre of view
          0f, 1f, 0f);   // up
 
@@ -173,7 +130,59 @@ public class Renderer implements GLSurfaceView.Renderer {
       this.viewY = viewY;
    }
 
-   public void setScene(Scene scene) {
-      this.scene = scene;
+
+   /**
+    * utility method for debugging opengl calls, provide the name of the call just after making it
+    *    if the operation is not successful, the check throws an error
+    * @param glOperation - name of the opengl call to check.
+    */
+   public static void checkGlError(String glOperation) {
+      int error;
+      while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
+         Log.e("Renderer", glOperation + ": glError " + error);
+         throw new RuntimeException(glOperation + ": glError " + error);
+      }
+   }
+
+
+   /**
+    * @param type - GLES20.GL_VERTEX_SHADER or GLES20.GL_FRAGMENT_SHADER
+    * @param shaderCode - string of glsl
+    * @return - reference to the shader program
+    */
+   public int loadShader(int type, String shaderCode){
+
+      int shader = GLES20.glCreateShader(type);
+
+      // add the source code to the shader and compile it
+      GLES20.glShaderSource(shader, shaderCode);
+      GLES20.glCompileShader(shader);
+
+      return shader;
+   }
+
+
+   /**
+    * @param resource - id for finding a resource file
+    * @return - shader code string
+    */
+   public String loadShaderCode(int resource) {
+      String shaderCode = "";
+
+      try {
+         InputStream inputStream = context.getResources().openRawResource(resource);
+         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+         String read = reader.readLine();
+         while (read != null) {
+            shaderCode += read + "\n";
+            read = reader.readLine();
+         }
+
+      } catch (Exception e) {
+         Log.d("Renderer", "could not read shader: " + e.getLocalizedMessage());
+      }
+
+      return shaderCode;
    }
 }

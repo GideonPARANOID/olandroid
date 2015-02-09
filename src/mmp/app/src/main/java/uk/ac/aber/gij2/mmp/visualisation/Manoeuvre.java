@@ -63,12 +63,12 @@ public class Manoeuvre extends Shape implements Drawable {
 
             float[] newVertices = new float[4];
 
-            // multiplying the component's points by its cumulative matrix: x, y, z, w
+            // multiplying the component's points by its cumulative matrix
             Matrix.multiplyMV(newVertices, 0, matrices[i], 0, new float[] {
-               componentVertices[j],
-               componentVertices[j + 1],
-               componentVertices[j + 2],
-               1f
+               componentVertices[j],      // x
+               componentVertices[j + 1],  // y
+               componentVertices[j + 2],  // z
+               1f                         // w
             }, 0);
 
             // removing the w, which is one, so not really necessary, but this is maths so do it right
@@ -86,16 +86,13 @@ public class Manoeuvre extends Shape implements Drawable {
       }
 
       // building draw order
-      short[] order = new short[vertices.length / 3];
+      short[] drawOrder = new short[vertices.length / 3];
       for (short i = 0; i < vertices.length / 3; i++) {
-         order[i] = i;
+         drawOrder[i] = i;
       }
 
       super.setVertexCoords(vertices);
-      super.setDrawOrder(order);
-      super.setColor(new float[]{
-         .5f, .5f, .5f, 0f
-      });
+      super.setDrawOrder(drawOrder);
    }
 
 

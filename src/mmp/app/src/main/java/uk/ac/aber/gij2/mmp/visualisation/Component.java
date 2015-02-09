@@ -56,7 +56,7 @@ public class Component extends Shape implements Drawable {
 
       // building vertices
       vertices = new float[(SECTIONS + 1) * 3];
-      short[] order = new short[SECTIONS + 1];
+      short[] drawOrder = new short[SECTIONS + 1];
 
       float step = 1f / (float) SECTIONS;
 
@@ -65,16 +65,11 @@ public class Component extends Shape implements Drawable {
          vertices[(i * 3) + 1] = y * step * i;
          vertices[(i * 3) + 2] = z * step * i;
 
-         order[i] = (short) i;
+         drawOrder[i] = (short) i;
       }
 
       super.setVertexCoords(vertices);
-      super.setDrawOrder(order);
-
-      super.setColor(new float[]{
-         .5f, .5f, .5f, 0f
-      });
-
+      super.setDrawOrder(drawOrder);
 
       // building the matrix transform from the beginning of this component to the end
       matrix = new float[16];

@@ -27,8 +27,13 @@ public abstract class Shape implements Drawable {
    private float color[];
 
 
+   public Shape() {
+      color = Renderer.COLOR_FRAME;
+   }
+
+
    /**
-    * constructs buffers & makes references to shader program variables
+    * constructs buffers & makes references to shader program variables, needs vertex & draw orders set
     */
    public void setup() {
 
