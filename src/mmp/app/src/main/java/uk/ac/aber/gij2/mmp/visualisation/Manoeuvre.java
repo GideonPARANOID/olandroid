@@ -7,17 +7,21 @@ package uk.ac.aber.gij2.mmp.visualisation;
 
 import android.opengl.Matrix;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 
-public class Manoeuvre implements Drawable {
+public class Manoeuvre extends Shape implements Drawable {
 
    private Component[] components;
    private float[][] matrices;
-
+   private boolean matricesCalculated = false;
+   private float[] vertices;
    private String olan;
 
+
    public Manoeuvre(Component[] components, String olan) {
+      super();
+
       this.components = components;
       this.olan = olan;
    }
@@ -25,38 +29,74 @@ public class Manoeuvre implements Drawable {
 
    public void draw(float[] initialMatrix) {
 
-      // TODO: find a way of caching this perhaps
-      buildMatricesList(initialMatrix);
+      if (!matricesCalculated) {
+         calculateMatricesList(initialMatrix);
 
-      for (int i = 0; i < components.length; i++) {
+         matricesCalculated = true;
+      }
+
+      calculateVertices();
+
+      super.setup();
+      super.draw(initialMatrix);
+
+/*      for (int i = 0; i < components.length; i++) {
          components[i].draw(matrices[i]);
-      }
+      }*/
    }
 
 
-   private void convertPoints(float initialMatrix) {
+   /**
+    * builds a set of matrices summarising those of all its components
+    */
+   private void calculateVertices() {
 
+      ArrayList<Float> verticesComplete = new ArrayList<>();
 
-
-
+      // looping through all the vertices
       for (int i = 0; i < components.length; i++) {
 
-         float[] temp = components[i].getPoints();
-         float[] res = new float[temp.length];
+         float[] componentVertices = components[i].getVertices();
 
-         for (int j = 0; j < temp.length; j += 3) {
+         // looping through all the vertices in that component
+         for (int j = 0; j < componentVertices.length; j += 3) {
 
-            Matrix.multiplyMV(res, i, matrices[i], 0, Arrays.copyOfRange(temp, i, i + 3), 0);
+            float[] newVertices = new float[4];
 
+            // multiplying the component's points by its cumulative matrix: x, y, z, w
+            Matrix.multiplyMV(newVertices, 0, matrices[i], 0, new float[] {
+               componentVertices[j],
+               componentVertices[j + 1],
+               componentVertices[j + 2],
+               1f
+            }, 0);
 
+            // removing the w, which is one, so not really necessary, but this is maths so do it right
+            verticesComplete.add(newVertices[0] / newVertices[3]);
+            verticesComplete.add(newVertices[1] / newVertices[3]);
+            verticesComplete.add(newVertices[2] / newVertices[3]);
          }
-
       }
 
+      vertices = new float[verticesComplete.size()];
 
+      // converting list into array of primitives
+      for (int i = 0; i < vertices.length; i++) {
+         vertices[i] = verticesComplete.get(i);
+      }
+
+      // building draw order
+      short[] order = new short[vertices.length / 3];
+      for (short i = 0; i < vertices.length / 3; i++) {
+         order[i] = i;
+      }
+
+      super.setVertexCoords(vertices);
+      super.setDrawOrder(order);
+      super.setColor(new float[]{
+         .5f, .5f, .5f, 0f
+      });
    }
-
-
 
 
    /**
@@ -65,7 +105,7 @@ public class Manoeuvre implements Drawable {
     *    line to the end, components need to be drawn starting from the end of the last line
     * @param initialMatrix - the starting matrix
     */
-   private void buildMatricesList(float[] initialMatrix) {
+   private void calculateMatricesList(float[] initialMatrix) {
 
       matrices = new float[components.length + 1][16];
 
@@ -88,12 +128,11 @@ public class Manoeuvre implements Drawable {
     */
    public float[] getMatrix() {
 
-      // assuming we're drawing from scratch
+      // starting from scratch
       float[] blank = new float[16];
       Matrix.setIdentityM(blank, 0);
-      buildMatricesList(blank);
+      calculateMatricesList(blank);
 
       return matrices[matrices.length - 1];
    }
 }
-

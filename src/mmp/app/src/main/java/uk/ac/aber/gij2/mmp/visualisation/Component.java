@@ -13,13 +13,11 @@ public class Component extends Shape implements Drawable {
    // bounds for movement
    public static final int ZERO = 0,
       MIN = -1,
-      MAX = 1;
+      MAX = 1,
+      SECTIONS = 1;
 
-   // how many sections to build the line in
-   private final int SECTIONS = 1;
+   private float[] vertices, matrix;
 
-   private final double angleRadians = Math.PI / 4d, angleDegrees = 45;
-   private float[] points, matrix;
 
    /**
     * @param pitch - vertical direction
@@ -29,6 +27,9 @@ public class Component extends Shape implements Drawable {
    public Component(int pitch, int yaw, int roll, float length) {
       super();
 
+      // math library uses radians, but matrix library uses degrees
+      final double angleRadians = Math.PI / 4d, angleDegrees = 180 / 4d;
+
       float x, y, z;
 
       // continuing straight lines are a different case - much easier
@@ -37,8 +38,9 @@ public class Component extends Shape implements Drawable {
          y = 0f;
          z = length;
 
-         // lines which shift direction
+      // lines which shift direction
       } else {
+
          // calculating the angle at which the line shifts the direction from the pitch & yaw
          double directionAngle = Math.atan((double) pitch / (double) yaw);
 
@@ -52,25 +54,24 @@ public class Component extends Shape implements Drawable {
          z = (float) (length * Math.cos(angleRadians));
       }
 
-
-      // building points
-      points = new float[(SECTIONS + 1) * 3];
+      // building vertices
+      vertices = new float[(SECTIONS + 1) * 3];
       short[] order = new short[SECTIONS + 1];
 
       float step = 1f / (float) SECTIONS;
 
       for (int i = 0; i <= SECTIONS ; i++) {
-         points[i * 3] = x * step * i;
-         points[(i * 3) + 1] = y * step * i;
-         points[(i * 3) + 2] = z * step * i;
+         vertices[i * 3] = x * step * i;
+         vertices[(i * 3) + 1] = y * step * i;
+         vertices[(i * 3) + 2] = z * step * i;
 
          order[i] = (short) i;
       }
 
-      setVertexCoords(points);
-      setDrawOrder(order);
+      super.setVertexCoords(vertices);
+      super.setDrawOrder(order);
 
-      setColor(new float[]{
+      super.setColor(new float[]{
          .5f, .5f, .5f, 0f
       });
 
@@ -86,18 +87,14 @@ public class Component extends Shape implements Drawable {
 
       Matrix.translateM(matrix, 0, 0f, 0f, length);
 
-      setup();
+      super.setup();
    }
 
    public float[] getMatrix() {
       return matrix;
    }
 
-   public float[] getPoints() {
-      return points;
-   }
-
-   public void setPoints(float[] points) {
-      this.points = points;
+   public float[] getVertices() {
+      return vertices;
    }
 }
