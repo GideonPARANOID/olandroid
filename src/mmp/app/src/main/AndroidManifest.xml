@@ -12,10 +12,13 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/ma_title" >
+            android:label="@string/ma_title"
+            android:exported="true" >
         </activity>
+
         <activity
             android:name=".activities.VisualisationActivity"
             android:label="@string/oga_title" >
@@ -23,10 +26,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="uk.ac.aber.gij2.mmp.activities.MainActivity" />
         </activity>
+
         <activity
             android:name=".activities.BuildFlightActivity"
-            android:label="@string/title_activity_build_flight"
-            android:parentActivityName=".activities.MainActivity" >
+            android:label="@string/title_activity_build_flight">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="uk.ac.aber.gij2.mmp.activities.MainActivity" />

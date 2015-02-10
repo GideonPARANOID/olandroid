@@ -56,20 +56,15 @@ public class Component extends Shape implements Drawable {
 
       // building vertices
       vertices = new float[(SECTIONS + 1) * 3];
-      short[] drawOrder = new short[SECTIONS + 1];
-
       float step = 1f / (float) SECTIONS;
 
-      for (int i = 0; i <= SECTIONS ; i++) {
-         vertices[i * 3] = x * step * i;
-         vertices[(i * 3) + 1] = y * step * i;
-         vertices[(i * 3) + 2] = z * step * i;
-
-         drawOrder[i] = (short) i;
+      for (int currentStep = 0, i = 0; i < vertices.length; i += 3, currentStep++) {
+         vertices[i] = x * step * currentStep;
+         vertices[i + 1] = y * step * currentStep;
+         vertices[i + 2] = z * step * currentStep;
       }
 
-      super.setVertexCoords(vertices);
-      super.setDrawOrder(drawOrder);
+      super.setVertices(vertices);
 
       // building the matrix transform from the beginning of this component to the end
       matrix = new float[16];

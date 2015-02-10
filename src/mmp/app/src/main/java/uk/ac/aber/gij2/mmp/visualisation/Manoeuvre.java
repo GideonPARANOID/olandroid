@@ -14,7 +14,7 @@ public class Manoeuvre extends Shape implements Drawable {
 
    private Component[] components;
    private float[][] matrices;
-   private boolean matricesCalculated = false;
+   private boolean matricesCalculated = false, verticesCalculated = false;
    private float[] vertices;
    private String olan;
 
@@ -29,16 +29,20 @@ public class Manoeuvre extends Shape implements Drawable {
 
    public void draw(float[] initialMatrix) {
 
+      // setting up relies on an initial draw matrix, so have to do it in the draw loop
       if (!matricesCalculated) {
          calculateMatricesList(initialMatrix);
-
          matricesCalculated = true;
+
+      // vertices are volatile for some reason & need to done after matrices calculated
+      } else if (!verticesCalculated) {
+         calculateVertices();
+         super.setup();
+         verticesCalculated = true;
+
+      } else {
+         super.draw(initialMatrix);
       }
-
-      calculateVertices();
-
-      super.setup();
-      super.draw(initialMatrix);
 
 /*      for (int i = 0; i < components.length; i++) {
          components[i].draw(matrices[i]);
@@ -85,16 +89,8 @@ public class Manoeuvre extends Shape implements Drawable {
          vertices[i] = verticesComplete.get(i);
       }
 
-      // building draw order
-      short[] drawOrder = new short[vertices.length / 3];
-      for (short i = 0; i < vertices.length / 3; i++) {
-         drawOrder[i] = i;
-      }
-
-      super.setVertexCoords(vertices);
-      super.setDrawOrder(drawOrder);
+      super.setVertices(vertices);
    }
-
 
    /**
     * builds an array of matrices corresponding to the components, each relative the last component

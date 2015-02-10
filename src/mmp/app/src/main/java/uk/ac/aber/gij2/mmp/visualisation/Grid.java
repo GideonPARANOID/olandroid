@@ -24,8 +24,8 @@ public class Grid extends Shape implements Drawable {
       this.gridSize = gridSize;
       this.gridDimensions = gridDimensions;
 
-      setVertexCoords(new float[]{
-         0, 0,0,
+      setVertices(new float[]{
+         0, 0, 0,
          0, 0, gridSize,
          gridSize, 0, gridSize,
          gridSize, 0, 0

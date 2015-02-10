@@ -21,7 +21,7 @@ public abstract class Shape implements Drawable {
    private int mColorHandle;
    private int mMVPMatrixHandle;
 
-   private float[] vertexCoords;
+   private float[] vertices;
    private short[] drawOrder;
 
    private float color[];
@@ -37,9 +37,18 @@ public abstract class Shape implements Drawable {
     */
    public void setup() {
 
+      // assume the draw order if none is explicitly set
+      if (drawOrder == null) {
+         drawOrder = new short[vertices.length / 3];
+
+         for (int i = 0; i < drawOrder.length; i++) {
+            drawOrder[i] = (short) i;
+         }
+      }
+
       // initialize vertex byte buffer for shape coordinates, 4 bytes per float
-      vertexBuffer = ByteBuffer.allocateDirect(vertexCoords.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
-      vertexBuffer.put(vertexCoords).position(0);
+      vertexBuffer = ByteBuffer.allocateDirect(vertices.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+      vertexBuffer.put(vertices).position(0);
 
       // initialize byte buffer for the draw list, 2 bytes per short
       drawOrderBuffer = ByteBuffer.allocateDirect(drawOrder.length * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
@@ -82,8 +91,8 @@ public abstract class Shape implements Drawable {
       this.color = color;
    }
 
-   public void setVertexCoords(float[] vertexCoords) {
-      this.vertexCoords = vertexCoords;
+   public void setVertices(float[] vertices) {
+      this.vertices = vertices;
    }
 
    public void setDrawOrder(short[] drawOrder) {
