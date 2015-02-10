@@ -42,10 +42,10 @@
    <Button
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:text="@string/ma_button_vis"
-      android:id="@+id/ma_button_vis"
+      android:text="@string/ma_button_build"
+      android:id="@+id/ma_button_build"
       android:layout_gravity="center_horizontal"
-      android:onClick="button_vis" />
+      android:onClick="button_build" />
 
 </LinearLayout>
 

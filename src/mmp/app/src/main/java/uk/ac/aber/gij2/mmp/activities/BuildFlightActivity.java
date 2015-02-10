@@ -1,4 +1,4 @@
- /**
+/**
  * @created 2015-02-05
  * @author gideon mw jones.
  */
@@ -11,19 +11,49 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.List;
+
+import uk.ac.aber.gij2.mmp.Application;
 import uk.ac.aber.gij2.mmp.R;
 
 
 public class BuildFlightActivity extends ActionBarActivity {
-   public final static String OLAN_MESSAGE = "uk.ac.aber.gij2.mmp.activities.OLAN_MESSAGE";
 
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
+
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_build_flight);
+
+      final ListView listview = (ListView) findViewById(R.id.bfa_manoeuvre_list);
+
+//      final List<String> list = Arrays.asList(
+//         ((Application) getApplication()).getManoeuvres());
+
+
+      final List<String> list = Arrays.asList(new String[] { "test", "anothertest"});
+
+      final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+
+      listview.setAdapter(adapter);
+
+      listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+         @Override
+         public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+            final String item = (String) parent.getItemAtPosition(position);
+
+            System.out.println(item + " pressed");
+         }
+      });
    }
 
 
@@ -52,10 +82,13 @@ public class BuildFlightActivity extends ActionBarActivity {
    public void button_vis(View view) {
       Intent intent = new Intent(this, VisualisationActivity.class);
 
-      EditText editText = (EditText) findViewById(R.id.bfa_olan_string);
-      String message = editText.getText().toString();
-      intent.putExtra(OLAN_MESSAGE, message);
+      String olan = ((EditText) findViewById(R.id.bfa_olan_string)).getText().toString();
 
-      startActivity(intent);
+      if (((Application) getApplication()).buildFlightFromOLAN(olan)) {
+         startActivity(intent);
+
+      } else {
+         Toast.makeText(getApplication(), "Invalid OLAN", Toast.LENGTH_SHORT).show();
+      }
    }
 }

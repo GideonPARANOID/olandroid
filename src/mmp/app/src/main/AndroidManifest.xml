@@ -24,7 +24,7 @@
             android:label="@string/oga_title" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="uk.ac.aber.gij2.mmp.activities.MainActivity" />
+                android:value="uk.ac.aber.gij2.mmp.activities.BuildFlightActivity" />
         </activity>
 
         <activity

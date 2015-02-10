@@ -13,8 +13,8 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
-import uk.ac.aber.gij2.mmp.R;
 import uk.ac.aber.gij2.mmp.visualisation.Component;
 import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 
@@ -177,5 +177,18 @@ public class ManoeuvreCatalogue {
     */
    public Manoeuvre getManoeuvre(String key) {
       return manoeuvres.get(key);
+   }
+
+
+
+      public String[] buildManoeuvreList() {
+      String[] list = new String[manoeuvres.size()];
+
+      int i = 0;
+      for (Map.Entry<String, Manoeuvre> entry : manoeuvres.entrySet()) {
+         list[i++] = entry.getKey();
+      }
+
+      return list;
    }
 }

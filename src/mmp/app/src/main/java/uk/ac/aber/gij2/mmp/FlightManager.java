@@ -46,7 +46,7 @@ public class FlightManager {
    }
 
 
-   public Flight buildFlight(String flightDescription) {
+   public Flight buildFlight(String olan) {
       ArrayList<Manoeuvre> manoeuvres = new ArrayList<>();
 
       //TODO: implement
@@ -55,6 +55,9 @@ public class FlightManager {
    }
 
 
+   public boolean validOLAN(String olan) {
+      return true;
+   }
 
    public Scene getScene() {
       return scene;

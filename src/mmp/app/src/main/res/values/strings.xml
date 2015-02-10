@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MMP</string>
-    <string name="action_settings">Settings</string>
+   <string name="app_name">MMP</string>
+   <string name="action_settings">Settings</string>
 
-    <!-- MainActivity -->
-    <string name="ma_title">Home</string>
-    <string name="ma_intro_title">Welcome to MMP</string>
-    <string name="ma_intro_text">{PLACEHOLDER}</string>
-    <string name="ma_intro_link"><a href="http://github.com/gideonparanoid/mmp">Visit project on GitHub</a></string>
-    <string name="ma_button_vis">Visualisation</string>
+   <!-- MainActivity -->
+   <string name="ma_title">Home</string>
+   <string name="ma_intro_title">Welcome to MMP</string>
+   <string name="ma_intro_text">{PLACEHOLDER}</string>
+   <string name="ma_intro_link"><a href="http://github.com/gideonparanoid/mmp">Visit project on GitHub</a></string>
+   <string name="ma_button_build">Build flight</string>
 
    <!-- BuildFlightActivity -->
    <string name="bfa_intro_title">Enter an OLAN string</string>
    <string name="bfa_button_vis">Build flight</string>
    <string name="bfa_olan_string_hint">Enter an OLAN string</string>
 
-    <!-- VisualisationAcivity -->
-    <string name="oga_title">Visualisation</string>
-    <string name="title_activity_build_flight">BuildFlightActivity</string>
-    <string name="hello_world">Hello world!</string>
+   <!-- VisualisationActivity -->
+   <string name="oga_title">Visualisation</string>
+   <string name="title_activity_build_flight">BuildFlightActivity</string>
+   <string name="hello_world">Hello world!</string>
 
 </resources>

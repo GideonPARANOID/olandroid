@@ -51,8 +51,8 @@ public class MainActivity extends ActionBarActivity {
    }
 
 
-   public void button_vis(View view) {
-      Intent intent = new Intent(this, VisualisationActivity.class);
+   public void button_build(View view) {
+      Intent intent = new Intent(this, BuildFlightActivity.class);
       startActivity(intent);
    }
 }
