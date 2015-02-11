@@ -23,19 +23,14 @@ public class Flight implements Drawable {
    }
 
 
-   public ArrayList<Manoeuvre> getManoeuvres() {
-      return manoeuvres;
-   }
-
-
    /**
     * @return - olan description of flight
     */
-   public String getOLANDescription() {
+   public String getOLAN() {
 
       String olanDescription = "";
       for (Manoeuvre manoeuvre : manoeuvres) {
-         olanDescription += " " + manoeuvre.getOlan();
+         olanDescription += " " + manoeuvre.getOLAN();
       }
 
       return olanDescription;
@@ -67,12 +62,13 @@ public class Flight implements Drawable {
 
       // each matrix is a multiplication of the last constructed one & the last drawn one
       for (int i = 1; i < manoeuvres.size() + 1; i++) {
-         Matrix.multiplyMM(matrices[i], 0, matrices[i - 1], 0, manoeuvres.get(i - 1).getMatrix(), 0);
+         Matrix.multiplyMM(matrices[i], 0, matrices[i - 1], 0,
+            manoeuvres.get(i - 1).getCompleteMatrix(), 0);
       }
    }
 
 
-   public float[] getMatrix() {
+   public float[] getCompleteMatrix() {
       return new float[16];
    }
 }

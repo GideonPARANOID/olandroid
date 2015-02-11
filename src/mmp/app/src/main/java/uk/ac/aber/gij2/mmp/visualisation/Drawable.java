@@ -8,5 +8,9 @@ package uk.ac.aber.gij2.mmp.visualisation;
 
 public interface Drawable {
    public void draw(float[] matrix);
-   public float[] getMatrix();
+
+   /**
+    * @return - a matrix describing the transform from the beginning of the shape to the end
+    */
+   public float[] getCompleteMatrix();
 }

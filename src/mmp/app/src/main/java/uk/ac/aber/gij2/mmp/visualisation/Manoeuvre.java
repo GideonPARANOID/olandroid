@@ -7,90 +7,38 @@ package uk.ac.aber.gij2.mmp.visualisation;
 
 import android.opengl.Matrix;
 
-import java.util.ArrayList;
-
 
 public class Manoeuvre extends Shape implements Drawable {
 
    private Component[] components;
    private float[][] matrices;
-   private boolean matricesCalculated = false, verticesCalculated = false;
-   private float[] vertices;
-   private String olan;
+   private boolean matricesCalculated;
+   private String olan, name;
 
 
-   public Manoeuvre(Component[] components, String olan) {
+   public Manoeuvre(Component[] components, String olan, String name) {
       super();
 
       this.components = components;
       this.olan = olan;
+      this.name = name;
+
+      matricesCalculated = false;
    }
 
 
    public void draw(float[] initialMatrix) {
 
-      // setting up relies on an initial draw matrix, so have to do it in the draw loop
-      if (!matricesCalculated) {
-         calculateMatricesList(initialMatrix);
-         matricesCalculated = true;
+       // setting up relies on an initial draw matrix, so have to do it in the draw loop
+       if (!matricesCalculated) {
+          calculateMatrices(initialMatrix);
+       }
 
-      // vertices are volatile for some reason & need to done after matrices calculated
-      } else if (!verticesCalculated) {
-         calculateVertices();
-         super.setup();
-         verticesCalculated = true;
-
-      } else {
-         super.draw(initialMatrix);
-      }
-
-/*      for (int i = 0; i < components.length; i++) {
-         components[i].draw(matrices[i]);
-      }*/
-   }
-
-
-   /**
-    * builds a set of matrices summarising those of all its components
-    */
-   private void calculateVertices() {
-
-      ArrayList<Float> verticesComplete = new ArrayList<>();
-
-      // looping through all the vertices
       for (int i = 0; i < components.length; i++) {
-
-         float[] componentVertices = components[i].getVertices();
-
-         // looping through all the vertices in that component
-         for (int j = 0; j < componentVertices.length; j += 3) {
-
-            float[] newVertices = new float[4];
-
-            // multiplying the component's points by its cumulative matrix
-            Matrix.multiplyMV(newVertices, 0, matrices[i], 0, new float[] {
-               componentVertices[j],      // x
-               componentVertices[j + 1],  // y
-               componentVertices[j + 2],  // z
-               1f                         // w
-            }, 0);
-
-            // removing the w, which is one, so not really necessary, but this is maths so do it right
-            verticesComplete.add(newVertices[0] / newVertices[3]);
-            verticesComplete.add(newVertices[1] / newVertices[3]);
-            verticesComplete.add(newVertices[2] / newVertices[3]);
-         }
+         components[i].draw(matrices[i]);
       }
-
-      vertices = new float[verticesComplete.size()];
-
-      // converting list into array of primitives
-      for (int i = 0; i < vertices.length; i++) {
-         vertices[i] = verticesComplete.get(i);
-      }
-
-      super.setVertices(vertices);
    }
+
 
    /**
     * builds an array of matrices corresponding to the components, each relative the last component
@@ -98,7 +46,7 @@ public class Manoeuvre extends Shape implements Drawable {
     *    line to the end, components need to be drawn starting from the end of the last line
     * @param initialMatrix - the starting matrix
     */
-   private void calculateMatricesList(float[] initialMatrix) {
+   private void calculateMatrices(float[] initialMatrix) {
 
       matrices = new float[components.length + 1][16];
 
@@ -106,26 +54,34 @@ public class Manoeuvre extends Shape implements Drawable {
 
       // each matrix is a multiplication of the last constructed one & the last drawn one
       for (int i = 1; i < components.length + 1; i++) {
-         Matrix.multiplyMM(matrices[i], 0, matrices[i - 1], 0, components[i - 1].getMatrix(), 0);
+         Matrix.multiplyMM(matrices[i], 0, matrices[i - 1], 0,
+            components[i - 1].getCompleteMatrix(), 0);
       }
    }
-
-
-   public String getOlan() {
-      return olan;
-   }
-
 
    /**
     * @return - the full matrix operation from the  beginning of the manoeuvre to the end
     */
-   public float[] getMatrix() {
+   public float[] getCompleteMatrix() {
 
       // starting from scratch
       float[] blank = new float[16];
       Matrix.setIdentityM(blank, 0);
-      calculateMatricesList(blank);
+      calculateMatrices(blank);
 
       return matrices[matrices.length - 1];
+   }
+
+
+   public String toString() {
+      return olan + " - " + name;
+   }
+
+   public String getOLAN() {
+      return olan;
+   }
+
+   public String getName() {
+      return name;
    }
 }

@@ -17,10 +17,7 @@ public class Application extends android.app.Application {
    @Override
    public void onCreate() {
       flightManager = new FlightManager();
-   }
 
-
-   public void setup() {
       manoeuvreCatalogue = new ManoeuvreCatalogue(this);
       flightManager.setup(manoeuvreCatalogue);
    }

@@ -12,8 +12,8 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Hashtable;
+import java.util.Iterator;
 
 import uk.ac.aber.gij2.mmp.visualisation.Component;
 import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
@@ -21,16 +21,14 @@ import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 
 public class ManoeuvreCatalogue {
 
-   private final String namespace = null;
-   private HashMap<String, Manoeuvre> manoeuvres;
+   private Hashtable<String, Manoeuvre> manoeuvres;
 
 
    /**
     * @param context - the context relevant for getting the xml
     */
    public ManoeuvreCatalogue(Context context) {
-
-      manoeuvres = new HashMap<>();
+      manoeuvres = new Hashtable<>();
 
       try {
          XmlPullParser parser = context.getResources().getXml(R.xml.manoeurvre_catalogue);
@@ -42,16 +40,9 @@ public class ManoeuvreCatalogue {
          parser.require(XmlPullParser.START_TAG, null, "manoeuvres");
 
          while (parser.next() != XmlPullParser.END_TAG) {
-            if (parser.getEventType() != XmlPullParser.START_TAG) {
-               continue;
-            }
-
             if (parser.getName().equals("manoeuvre")) {
 
-               buildVariantList(parser, parser.getAttributeValue(namespace, "olan"));
-
-            } else {
-               skip(parser);
+               parseManoeuvreVariants(parser, parser.getAttributeValue(null, "olan"));
             }
          }
       } catch (XmlPullParserException | IOException exception) {
@@ -66,56 +57,46 @@ public class ManoeuvreCatalogue {
     * @throws XmlPullParserException
     * @throws IOException
     */
-   private void buildVariantList(XmlPullParser parser, String olan) throws XmlPullParserException, IOException {
+   private void parseManoeuvreVariants(XmlPullParser parser, String olan) throws
+      XmlPullParserException, IOException {
 
-      parser.require(XmlPullParser.START_TAG, namespace, "manoeuvre");
+      parser.require(XmlPullParser.START_TAG, null, "manoeuvre");
 
       while (parser.next() != XmlPullParser.END_TAG) {
-         if (parser.getEventType() != XmlPullParser.START_TAG) {
-            continue;
-         }
-
          if (parser.getName().equals("variant")) {
-            String fullOLAN = parser.getAttributeValue(namespace, "type") + olan;
 
-            ArrayList<Component> components = buildComponentList(parser);
+            // have to get these now before the parser moves onto the components
+            String fullOLAN = parser.getAttributeValue(null, "type") + olan,
+               name = parser.getAttributeValue(null, "name");
 
-            manoeuvres.put(fullOLAN, new Manoeuvre(
-                  components.toArray(new Component[components.size()]), fullOLAN));
-
-         } else {
-            skip(parser);
+            manoeuvres.put(fullOLAN, new Manoeuvre(parseManoeuvreComponents(parser),
+                  fullOLAN, name));
          }
       }
    }
 
 
-
-
-      /**
+   /**
     * @param parser - the parsing application for the xml
     * @return - a list of components parsed from the xml
     * @throws XmlPullParserException
     * @throws IOException
     */
-   private ArrayList<Component> buildComponentList(XmlPullParser parser) throws XmlPullParserException, IOException {
+   private Component[] parseManoeuvreComponents(XmlPullParser parser) throws XmlPullParserException,
+      IOException {
 
       ArrayList<Component> components = new ArrayList<>();
 
-      parser.require(XmlPullParser.START_TAG, namespace, "variant");
+      parser.require(XmlPullParser.START_TAG, null, "variant");
 
       while (parser.next() != XmlPullParser.END_TAG) {
-         if (parser.getEventType() != XmlPullParser.START_TAG) {
-            continue;
-         }
-
          if (parser.getName().equals("component")) {
 
             components.add(new Component(
-               parseComponentStrength(parser.getAttributeValue(namespace, "pitch")),
-               parseComponentStrength(parser.getAttributeValue(namespace, "yaw")),
-               parseComponentStrength(parser.getAttributeValue(namespace, "roll")),
-               Float.parseFloat(parser.getAttributeValue(namespace, "length"))
+               parseComponentStrength(parser.getAttributeValue(null, "pitch")),
+               parseComponentStrength(parser.getAttributeValue(null, "yaw")),
+               parseComponentStrength(parser.getAttributeValue(null, "roll")),
+               Float.parseFloat(parser.getAttributeValue(null, "length"))
             ));
 
             // skipping content
@@ -123,7 +104,7 @@ public class ManoeuvreCatalogue {
          }
       }
 
-      return components;
+      return components.toArray(new Component[components.size()]);
    }
 
 
@@ -146,7 +127,7 @@ public class ManoeuvreCatalogue {
 
 
    /**
-    * @param parser - - the parsing application for the xml
+    * @param parser - the parsing application for the xml
     * @throws XmlPullParserException
     * @throws IOException
     */
@@ -173,22 +154,27 @@ public class ManoeuvreCatalogue {
    /**
     * quering the manoeuvre catalogue
     * @param key - the olan key to look for
-    * @return - a manoeuvre
+    * @return - a manoeuvre with olan matchin the input
+    * @throws NullPointerException - might not be able to find the manoeuvre specified
     */
-   public Manoeuvre getManoeuvre(String key) {
+   public Manoeuvre getManoeuvre(String key) throws NullPointerException {
       return manoeuvres.get(key);
    }
 
 
+   /**
+    * builds a list of manoeuvre descriptions, showing what's available in the catalogue
+    * @return - an array of strings describing manoeuvres
+    */
+   public String[] buildManoeuvreList() {
+      ArrayList<String> manoeuvreDescriptions = new ArrayList<>();
 
-      public String[] buildManoeuvreList() {
-      String[] list = new String[manoeuvres.size()];
+      Iterator<String> i = manoeuvres.keySet().iterator();
+      while (i.hasNext()) {
 
-      int i = 0;
-      for (Map.Entry<String, Manoeuvre> entry : manoeuvres.entrySet()) {
-         list[i++] = entry.getKey();
+         manoeuvreDescriptions.add(manoeuvres.get(i.next()).toString());
       }
 
-      return list;
+      return manoeuvreDescriptions.toArray(new String[manoeuvreDescriptions.size()]);
    }
 }

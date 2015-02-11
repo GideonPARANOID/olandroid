@@ -73,7 +73,6 @@ public class Renderer implements GLSurfaceView.Renderer {
          COLOR_BACKGROUND[2],
          COLOR_BACKGROUND[3]);
 
-      ((Application) context.getApplicationContext()).setup();
       scene = ((Application) context.getApplicationContext()).getScene();
    }
 

@@ -35,11 +35,11 @@ public class BuildFlightActivity extends ActionBarActivity {
 
       final ListView listview = (ListView) findViewById(R.id.bfa_manoeuvre_list);
 
-//      final List<String> list = Arrays.asList(
-//         ((Application) getApplication()).getManoeuvres());
+      final List<String> list = Arrays.asList(
+         ((Application) getApplication()).getManoeuvres());
 
 
-      final List<String> list = Arrays.asList(new String[] { "test", "anothertest"});
+//      final List<String> list = Arrays.asList(new String[] { "test", "anothertest"});
 
       final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 

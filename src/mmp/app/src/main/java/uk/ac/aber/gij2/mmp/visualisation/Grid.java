@@ -39,7 +39,7 @@ public class Grid extends Shape implements Drawable {
          .5f, .5f, .5f, 0f
       });
 
-      setup();
+      setupDrawing();
    }
 
    @Override
@@ -59,7 +59,7 @@ public class Grid extends Shape implements Drawable {
       }
    }
 
-   public float[] getMatrix() {
+   public float[] getCompleteMatrix() {
       return matrix;
    }
 }

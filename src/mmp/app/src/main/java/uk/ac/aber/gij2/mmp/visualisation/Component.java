@@ -76,15 +76,9 @@ public class Component extends Shape implements Drawable {
       }
 
       Matrix.translateM(matrix, 0, 0f, 0f, length);
-
-      super.setup();
    }
 
-   public float[] getMatrix() {
+   public float[] getCompleteMatrix() {
       return matrix;
-   }
-
-   public float[] getVertices() {
-      return vertices;
    }
 }

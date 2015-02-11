@@ -36,8 +36,6 @@ public class SurfaceView extends GLSurfaceView {
 
             float deltaX = currentX - previousX, deltaY = currentY - previousY;
 
-            //System.out.println("x: " + currentX + "|" + previousX + "  y: " + currentY + "|" + previousY + " delta:" + deltaX + "|" + deltaY );
-
             // inverting the movement on crossing the centre lines
             if (currentY > getHeight() / 2) {
                deltaX *= -1;

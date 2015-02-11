@@ -25,17 +25,19 @@ public abstract class Shape implements Drawable {
    private short[] drawOrder;
 
    private float color[];
+   private boolean setup;
 
 
    public Shape() {
       color = Renderer.COLOR_FRAME;
+      setup = false;
    }
 
 
    /**
     * constructs buffers & makes references to shader program variables, needs vertex & draw orders set
     */
-   public void setup() {
+   public void setupDrawing() {
 
       // assume the draw order if none is explicitly set
       if (drawOrder == null) {
@@ -62,7 +64,16 @@ public abstract class Shape implements Drawable {
    }
 
 
+   /**
+    * draws the shape, will automatically setupDrawing
+    * @param mvpMatrix - model view projection matrix
+    */
    public void draw(float[] mvpMatrix) {
+
+      if (!setup) {
+         setupDrawing();
+      }
+
       GLES20.glUseProgram(Renderer.program);
 
       // enabling a handle to the triangle vertices
@@ -79,13 +90,11 @@ public abstract class Shape implements Drawable {
       Renderer.checkGlError("glUniformMatrix4fv");
 
       // eventually drawing
-      GLES20.glDrawElements(GLES20.GL_LINE_STRIP, drawOrder.length,GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+      GLES20.glDrawElements(GLES20.GL_LINE_STRIP, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
 
       // disabling vertex array
       GLES20.glDisableVertexAttribArray(mPositionHandle);
    }
-
-
 
    public void setColor(float[] color) {
       this.color = color;
