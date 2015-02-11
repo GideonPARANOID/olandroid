@@ -10,7 +10,6 @@ import uk.ac.aber.gij2.mmp.visualisation.Scene;
 
 public class Application extends android.app.Application {
 
-
    private FlightManager flightManager;
    private ManoeuvreCatalogue manoeuvreCatalogue;
 
@@ -22,10 +21,6 @@ public class Application extends android.app.Application {
       flightManager.setup(manoeuvreCatalogue);
    }
 
-
-   public Scene getScene() {
-      return flightManager.getScene();
-   }
 
    public boolean buildFlightFromOLAN(String olan) {
       boolean result = false;
@@ -40,7 +35,11 @@ public class Application extends android.app.Application {
    }
 
 
-   public String[] getManoeuvres() {
-      return manoeuvreCatalogue.buildManoeuvreList();
+   public Scene getScene() {
+      return flightManager.getScene();
+   }
+
+   public ManoeuvreCatalogue getManoeuvreCatalogue() {
+      return manoeuvreCatalogue;
    }
 }

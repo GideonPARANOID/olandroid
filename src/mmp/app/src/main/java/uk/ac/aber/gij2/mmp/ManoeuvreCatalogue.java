@@ -12,8 +12,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 import uk.ac.aber.gij2.mmp.visualisation.Component;
 import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
@@ -21,14 +20,15 @@ import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 
 public class ManoeuvreCatalogue {
 
-   private Hashtable<String, Manoeuvre> manoeuvres;
+   // we want a predictable iteration order
+   private LinkedHashMap<String, Manoeuvre> manoeuvres;
 
 
    /**
     * @param context - the context relevant for getting the xml
     */
    public ManoeuvreCatalogue(Context context) {
-      manoeuvres = new Hashtable<>();
+      manoeuvres = new LinkedHashMap<>();
 
       try {
          XmlPullParser parser = context.getResources().getXml(R.xml.manoeurvre_catalogue);
@@ -57,7 +57,7 @@ public class ManoeuvreCatalogue {
     * @throws XmlPullParserException
     * @throws IOException
     */
-   private void parseManoeuvreVariants(XmlPullParser parser, String olan) throws
+   protected void parseManoeuvreVariants(XmlPullParser parser, String olan) throws
       XmlPullParserException, IOException {
 
       parser.require(XmlPullParser.START_TAG, null, "manoeuvre");
@@ -82,7 +82,7 @@ public class ManoeuvreCatalogue {
     * @throws XmlPullParserException
     * @throws IOException
     */
-   private Component[] parseManoeuvreComponents(XmlPullParser parser) throws XmlPullParserException,
+   protected Component[] parseManoeuvreComponents(XmlPullParser parser) throws XmlPullParserException,
       IOException {
 
       ArrayList<Component> components = new ArrayList<>();
@@ -112,7 +112,7 @@ public class ManoeuvreCatalogue {
     * @param strength - the word to parse
     * @return - Component.MAX, Component.ZERO, Component.MIN
     */
-   private int parseComponentStrength(String strength) {
+   protected int parseComponentStrength(String strength) {
 
       switch (strength) {
          case "MAX":
@@ -131,7 +131,7 @@ public class ManoeuvreCatalogue {
     * @throws XmlPullParserException
     * @throws IOException
     */
-   private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
+   protected void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
 
       if (parser.getEventType() != XmlPullParser.START_TAG) {
          throw new IllegalStateException();
@@ -152,29 +152,21 @@ public class ManoeuvreCatalogue {
 
 
    /**
-    * quering the manoeuvre catalogue
+    * querying the manoeuvre catalogue
     * @param key - the olan key to look for
     * @return - a manoeuvre with olan matchin the input
     * @throws NullPointerException - might not be able to find the manoeuvre specified
     */
-   public Manoeuvre getManoeuvre(String key) throws NullPointerException {
+   public Manoeuvre get(String key) throws NullPointerException {
       return manoeuvres.get(key);
    }
 
 
    /**
-    * builds a list of manoeuvre descriptions, showing what's available in the catalogue
-    * @return - an array of strings describing manoeuvres
+    * @return - an array of olan figures available in this catalogue
     */
-   public String[] buildManoeuvreList() {
-      ArrayList<String> manoeuvreDescriptions = new ArrayList<>();
-
-      Iterator<String> i = manoeuvres.keySet().iterator();
-      while (i.hasNext()) {
-
-         manoeuvreDescriptions.add(manoeuvres.get(i.next()).toString());
-      }
-
-      return manoeuvreDescriptions.toArray(new String[manoeuvreDescriptions.size()]);
+   public String[] getOLANs() {
+      ArrayList<String> ids = new ArrayList<>(manoeuvres.keySet());
+      return ids.toArray(new String[ids.size()]);
    }
 }

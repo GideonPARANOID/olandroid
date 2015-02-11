@@ -22,23 +22,13 @@ public class VisualisationActivity extends ActionBarActivity {
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
-
       surfaceView = new SurfaceView(this);
-
-//      ManoeuvreCatalogue manoeuvreCatalogue = new ManoeuvreCatalogue(this);
-
       setContentView(surfaceView);
-
-
-
-//      ((Application) getApplicationContext()).sayHi();
-
    }
 
 
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
-      // Inflate the menu; this adds items to the action bar if it is present.
       getMenuInflater().inflate(R.menu.menu_open_gl, menu);
       return true;
    }

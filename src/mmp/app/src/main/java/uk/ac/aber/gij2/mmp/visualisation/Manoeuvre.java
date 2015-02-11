@@ -73,10 +73,6 @@ public class Manoeuvre extends Shape implements Drawable {
    }
 
 
-   public String toString() {
-      return olan + " - " + name;
-   }
-
    public String getOLAN() {
       return olan;
    }

@@ -12,13 +12,15 @@
    <string name="ma_button_build">Build flight</string>
 
    <!-- BuildFlightActivity -->
+   <string name="bfa_title">Build a flight</string>
    <string name="bfa_intro_title">Enter an OLAN string</string>
    <string name="bfa_button_vis">Build flight</string>
    <string name="bfa_olan_string_hint">Enter an OLAN string</string>
 
    <!-- VisualisationActivity -->
    <string name="oga_title">Visualisation</string>
-   <string name="title_activity_build_flight">BuildFlightActivity</string>
-   <string name="hello_world">Hello world!</string>
+
+
+   <string name="ol_button_add">Add</string>
 
 </resources>

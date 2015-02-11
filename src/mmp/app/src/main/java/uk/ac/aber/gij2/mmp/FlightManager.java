@@ -35,9 +35,9 @@ public class FlightManager {
 
       // demo
       ArrayList<Manoeuvre> manoeuvres = new ArrayList<>();
-      manoeuvres.add(manoeuvreCatalogue.getManoeuvre("v"));
-      manoeuvres.add(manoeuvreCatalogue.getManoeuvre("d"));
-//      manoeuvres.add(manoeuvreCatalogue.getManoeuvre("z"));
+      manoeuvres.add(manoeuvreCatalogue.get("v"));
+      manoeuvres.add(manoeuvreCatalogue.get("d"));
+//      manoeuvres.add(manoeuvreCatalogue.get("z"));
       Flight demo = new Flight(manoeuvres);
 
       flights.add(demo);
