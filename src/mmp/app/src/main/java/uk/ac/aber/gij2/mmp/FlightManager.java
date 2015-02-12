@@ -5,8 +5,6 @@
 
 package uk.ac.aber.gij2.mmp;
 
-import java.util.ArrayList;
-
 import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 import uk.ac.aber.gij2.mmp.visualisation.Scene;
 
@@ -15,51 +13,65 @@ public class FlightManager {
 
    private ManoeuvreCatalogue manoeuvreCatalogue;
    private Scene scene;
-   private ArrayList<Flight> flights;
+   private Flight currentFlight;
 
 
    public FlightManager() {
       scene = new Scene();
-      flights = new ArrayList<>();
    }
 
 
    /**
-    * sets up the flight manager
-    * @param manoeuvreCatalogue - the catalogue of available manoeuvres
+    * @param olan - a description of a flight
+    * @return - a flight defined by the olan string
     */
-   public void setup(ManoeuvreCatalogue manoeuvreCatalogue) {
-      this.manoeuvreCatalogue = manoeuvreCatalogue;
-
-      scene.setup();
-
-      // demo
-      ArrayList<Manoeuvre> manoeuvres = new ArrayList<>();
-      manoeuvres.add(manoeuvreCatalogue.get("v"));
-      manoeuvres.add(manoeuvreCatalogue.get("d"));
-//      manoeuvres.add(manoeuvreCatalogue.get("z"));
-      Flight demo = new Flight(manoeuvres);
-
-      flights.add(demo);
-
-      scene.setFlight(flights.get(0));
-   }
-
-
    public Flight buildFlight(String olan) {
-      ArrayList<Manoeuvre> manoeuvres = new ArrayList<>();
+      String[] figures = olan.toLowerCase().split(" ");
+      Manoeuvre[] manoeuvres = new Manoeuvre[figures.length];
 
-      //TODO: implement
+      for (int i = 0; i < figures.length; i++) {
+
+         manoeuvres[i] = manoeuvreCatalogue.get(figures[i]);
+      }
 
       return new Flight(manoeuvres);
    }
 
 
+   /**
+    * @param olan - a description of a flight
+    * @return - whether the olan is a valid description of a flight
+    */
    public boolean validOLAN(String olan) {
-      return true;
+      boolean result = true;
+
+      String[] figures = olan.toLowerCase().split(" ");
+
+      for (int i = 0; i < figures.length && result; i++) {
+         if (manoeuvreCatalogue.get(figures[i]) == null) {
+            result = false;
+         }
+      }
+
+      return result;
+   }
+
+
+   public void setCurrentFlight(Flight currentFlight) {
+      this.currentFlight = currentFlight;
+      scene.setFlight(currentFlight);
+   }
+
+   public void setManoeuvreCatalogue(ManoeuvreCatalogue manoeuvreCatalogue) {
+      this.manoeuvreCatalogue = manoeuvreCatalogue;
    }
 
    public Scene getScene() {
       return scene;
    }
+
+   public Flight getCurrentFlight() {
+      return currentFlight;
+   }
+
 }

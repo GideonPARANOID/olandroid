@@ -18,15 +18,19 @@ public class Application extends android.app.Application {
       flightManager = new FlightManager();
 
       manoeuvreCatalogue = new ManoeuvreCatalogue(this);
-      flightManager.setup(manoeuvreCatalogue);
+      flightManager.setManoeuvreCatalogue(manoeuvreCatalogue);
    }
 
 
-   public boolean buildFlightFromOLAN(String olan) {
+   /**
+    * @param olan - string olan description of a flight
+    * @return - whether the flight was successfully built from the olan
+    */
+   public boolean buildFlight(String olan) {
       boolean result = false;
 
       if (flightManager.validOLAN(olan)) {
-         flightManager.buildFlight(olan);
+         flightManager.setCurrentFlight(flightManager.buildFlight(olan));
 
          result = true;
       }

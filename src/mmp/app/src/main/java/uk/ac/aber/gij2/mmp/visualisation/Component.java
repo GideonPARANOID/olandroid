@@ -16,7 +16,7 @@ public class Component extends Shape implements Drawable {
       MAX = 1,
       SECTIONS = 1;
 
-   private float[] vertices, matrix;
+   private float[] matrix;
 
 
    /**
@@ -55,7 +55,7 @@ public class Component extends Shape implements Drawable {
       }
 
       // building vertices
-      vertices = new float[(SECTIONS + 1) * 3];
+      float[] vertices = new float[(SECTIONS + 1) * 3];
       float step = 1f / (float) SECTIONS;
 
       for (int currentStep = 0, i = 0; i < vertices.length; i += 3, currentStep++) {
@@ -77,6 +77,7 @@ public class Component extends Shape implements Drawable {
 
       Matrix.translateM(matrix, 0, 0f, 0f, length);
    }
+
 
    public float[] getCompleteMatrix() {
       return matrix;

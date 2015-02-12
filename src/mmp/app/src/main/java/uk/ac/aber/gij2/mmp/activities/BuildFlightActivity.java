@@ -5,8 +5,8 @@
 
 package uk.ac.aber.gij2.mmp.activities;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +20,7 @@ import uk.ac.aber.gij2.mmp.Application;
 import uk.ac.aber.gij2.mmp.R;
 
 
-public class BuildFlightActivity extends ActionBarActivity {
+public class BuildFlightActivity extends Activity {
 
    private EditText olanEntry;
 
@@ -73,7 +73,7 @@ public class BuildFlightActivity extends ActionBarActivity {
 
       String olan = olanEntry.getText().toString();
 
-      if (((Application) getApplication()).buildFlightFromOLAN(olan)) {
+      if (((Application) getApplication()).buildFlight(olan)) {
          startActivity(intent);
 
       } else {

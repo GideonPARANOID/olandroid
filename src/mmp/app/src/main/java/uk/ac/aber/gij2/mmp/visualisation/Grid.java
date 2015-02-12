@@ -11,7 +11,6 @@ import android.opengl.Matrix;
 public class Grid extends Shape implements Drawable {
 
    private float gridSize, gridDimensions;
-   private float[] matrix;
 
 
    /**
@@ -34,32 +33,32 @@ public class Grid extends Shape implements Drawable {
       setDrawOrder(new short[]{
          0, 1, 2, 3, 0
       });
-
-      setColor(new float[]{
-         .5f, .5f, .5f, 0f
-      });
-
-      setupDrawing();
    }
+
 
    @Override
    public void draw(float[] initialMatrix) {
-      this.matrix = initialMatrix;
+      if (!super.setup) {
+         setupDrawing();
+
+      }
 
       // using the original matrix, translates it around & drawing the grid unit
       for (float i = -gridDimensions; i < gridDimensions; i += gridSize) {
          for (float j = -gridDimensions; j < gridDimensions; j += gridSize) {
 
             float[] newMatrix = new float[16];
-            Matrix.translateM(newMatrix, 0, matrix, 0, i, 0f, j);
+            Matrix.translateM(newMatrix, 0, initialMatrix, 0, i, 0f, j);
 
             super.draw(newMatrix);
-
          }
       }
    }
 
+
    public float[] getCompleteMatrix() {
+      float[] matrix = new float[16];
+      Matrix.setIdentityM(matrix, 0);
       return matrix;
    }
 }

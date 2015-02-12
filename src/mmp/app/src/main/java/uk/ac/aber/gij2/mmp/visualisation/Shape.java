@@ -25,7 +25,7 @@ public abstract class Shape implements Drawable {
    private short[] drawOrder;
 
    private float color[];
-   private boolean setup;
+   protected boolean setup;
 
 
    public Shape() {
@@ -37,7 +37,7 @@ public abstract class Shape implements Drawable {
    /**
     * constructs buffers & makes references to shader program variables, needs vertex & draw orders set
     */
-   public void setupDrawing() {
+   protected void setupDrawing() {
 
       // assume the draw order if none is explicitly set
       if (drawOrder == null) {
@@ -61,6 +61,8 @@ public abstract class Shape implements Drawable {
       mPositionHandle = GLES20.glGetAttribLocation(Renderer.program, "vPosition");
       mMVPMatrixHandle = GLES20.glGetUniformLocation(Renderer.program, "uMVPMatrix");
       Renderer.checkGlError("glGetUniformLocation");
+
+      setup = true;
    }
 
 
@@ -96,15 +98,15 @@ public abstract class Shape implements Drawable {
       GLES20.glDisableVertexAttribArray(mPositionHandle);
    }
 
-   public void setColor(float[] color) {
+   protected void setColor(float[] color) {
       this.color = color;
    }
 
-   public void setVertices(float[] vertices) {
+   protected void setVertices(float[] vertices) {
       this.vertices = vertices;
    }
 
-   public void setDrawOrder(short[] drawOrder) {
+   protected void setDrawOrder(short[] drawOrder) {
       this.drawOrder = drawOrder;
    }
 }
