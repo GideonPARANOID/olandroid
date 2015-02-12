@@ -17,8 +17,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import uk.ac.aber.gij2.mmp.Application;
-import uk.ac.aber.gij2.mmp.ManoeuvreCatalogue;
-import uk.ac.aber.gij2.mmp.ManoeuvreCatalogueArrayAdapter;
 import uk.ac.aber.gij2.mmp.R;
 
 
@@ -34,15 +32,9 @@ public class BuildFlightActivity extends ActionBarActivity {
 
       olanEntry = (EditText) findViewById(R.id.bfa_olan_string);
 
-      ManoeuvreCatalogue manoeuvreCatalogue =
-         ((Application) getApplication()).getManoeuvreCatalogue();
-
-      final ManoeuvreCatalogueArrayAdapter adapter = new ManoeuvreCatalogueArrayAdapter(this,
-         manoeuvreCatalogue);
-
       final ListView listView = (ListView) findViewById(R.id.bfa_manoeuvre_list);
 
-      listView.setAdapter(adapter);
+      listView.setAdapter(((Application) getApplication()).getManoeuvreCatalogue());
       listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
          @Override

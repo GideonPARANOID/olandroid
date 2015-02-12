@@ -6,6 +6,11 @@
 package uk.ac.aber.gij2.mmp;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -18,37 +23,67 @@ import uk.ac.aber.gij2.mmp.visualisation.Component;
 import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 
 
-public class ManoeuvreCatalogue {
+public class ManoeuvreCatalogue extends ArrayAdapter<String> {
 
    // we want a predictable iteration order
    private LinkedHashMap<String, Manoeuvre> manoeuvres;
+   private Context context;
 
 
    /**
     * @param context - the context relevant for getting the xml
     */
    public ManoeuvreCatalogue(Context context) {
+      super(context, R.layout.list_olan);
+
+      this.context = context;
       manoeuvres = new LinkedHashMap<>();
 
       try {
-         XmlPullParser parser = context.getResources().getXml(R.xml.manoeurvre_catalogue);
+         parseManoeuvres();
 
-         // skipping over the first two element - xml declarations & top level container.
-         parser.next();
-         parser.next();
-
-         parser.require(XmlPullParser.START_TAG, null, "manoeuvres");
-
-         while (parser.next() != XmlPullParser.END_TAG) {
-            if (parser.getName().equals("manoeuvre")) {
-
-               parseManoeuvreVariants(parser, parser.getAttributeValue(null, "olan"));
-            }
-         }
       } catch (XmlPullParserException | IOException exception) {
          System.err.println(exception.getMessage());
       }
    }
+
+   @Override
+   public View getView(int position, View convertView, ViewGroup parent) {
+
+      View row = ((LayoutInflater) context.getSystemService(
+         Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_olan, parent, false);
+
+      String[] olans = getOLANs();
+
+      ((TextView) row.findViewById(R.id.ol_text_id)).setText(olans[position]);
+      ((TextView) row.findViewById(R.id.ol_text_name)).setText(get(olans[position]).getName());
+
+      return row;
+   }
+
+
+   /**
+    * parses the xml manoeuvre catalogue into the linked hash map
+    * @throws XmlPullParserException
+    * @throws IOException
+    */
+   protected void parseManoeuvres() throws XmlPullParserException, IOException {
+      XmlPullParser parser = context.getResources().getXml(R.xml.manoeurvre_catalogue);
+
+      // skipping over the first two element - xml declarations & top level container.
+      parser.next();
+      parser.next();
+
+      parser.require(XmlPullParser.START_TAG, null, "manoeuvres");
+
+      while (parser.next() != XmlPullParser.END_TAG) {
+         if (parser.getName().equals("manoeuvre")) {
+
+            parseManoeuvreVariants(parser, parser.getAttributeValue(null, "olan"));
+         }
+      }
+   }
+
 
 
    /**
@@ -69,8 +104,10 @@ public class ManoeuvreCatalogue {
             String fullOLAN = parser.getAttributeValue(null, "type") + olan,
                name = parser.getAttributeValue(null, "name");
 
-            manoeuvres.put(fullOLAN, new Manoeuvre(parseManoeuvreComponents(parser),
+            manoeuvres.put(fullOLAN, new Manoeuvre(parseVariantComponents(parser),
                   fullOLAN, name));
+
+            super.add("");
          }
       }
    }
@@ -82,7 +119,7 @@ public class ManoeuvreCatalogue {
     * @throws XmlPullParserException
     * @throws IOException
     */
-   protected Component[] parseManoeuvreComponents(XmlPullParser parser) throws XmlPullParserException,
+   protected Component[] parseVariantComponents(XmlPullParser parser) throws XmlPullParserException,
       IOException {
 
       ArrayList<Component> components = new ArrayList<>();
@@ -133,10 +170,6 @@ public class ManoeuvreCatalogue {
     */
    protected void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
 
-      if (parser.getEventType() != XmlPullParser.START_TAG) {
-         throw new IllegalStateException();
-      }
-
       int depth = 1;
       while (depth != 0) {
          switch (parser.next()) {
@@ -163,7 +196,7 @@ public class ManoeuvreCatalogue {
 
 
    /**
-    * @return - an array of olan figures available in this catalogue
+    * @return - an array of olan figures available in this catalogue, always in the same order
     */
    public String[] getOLANs() {
       ArrayList<String> ids = new ArrayList<>(manoeuvres.keySet());
