@@ -40,7 +40,9 @@ public class BuildFlightActivity extends Activity {
          @Override
          public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
-
+            // appending olan id to the end of the olan entry string& moving the cursor to the end
+            olanEntry.append(((Application) getApplication()).getManoeuvreCatalogue().get(
+                  position).getOLAN() + " ");
          }
       });
    }
@@ -71,13 +73,11 @@ public class BuildFlightActivity extends Activity {
    public void button_vis(View view) {
       Intent intent = new Intent(this, VisualisationActivity.class);
 
-      String olan = olanEntry.getText().toString();
-
-      if (((Application) getApplication()).buildFlight(olan)) {
+      if (((Application) getApplication()).buildFlight(olanEntry.getText().toString())) {
          startActivity(intent);
 
       } else {
-         Toast.makeText(getApplication(), "Invalid OLAN", Toast.LENGTH_SHORT).show();
+         Toast.makeText(getApplication(), R.string.bfa_toast_invalid, Toast.LENGTH_SHORT).show();
       }
    }
 }

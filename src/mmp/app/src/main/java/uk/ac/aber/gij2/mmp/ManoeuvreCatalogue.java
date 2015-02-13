@@ -55,7 +55,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
 
       String[] olans = getOLANs();
 
-      ((TextView) row.findViewById(R.id.ol_text_id)).setText(olans[position]);
+      ((TextView) row.findViewById(R.id.ol_text_olan)).setText(olans[position]);
       ((TextView) row.findViewById(R.id.ol_text_name)).setText(get(olans[position]).getName());
 
       return row;
@@ -185,13 +185,24 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
 
 
    /**
-    * querying the manoeuvre catalogue
+    * querying the manoeuvre catalogue with a key
     * @param key - the olan key to look for
     * @return - a manoeuvre with olan matchin the input
     * @throws NullPointerException - might not be able to find the manoeuvre specified
     */
    public Manoeuvre get(String key) throws NullPointerException {
       return manoeuvres.get(key);
+   }
+
+
+   /**
+    * querying the manoeuvre catalogue with an index, matching the order of getOLANs
+    * @param index - the olan index to retrieve
+    * @return - a manoeuvre with olan matchin the input
+    * @throws IndexOutOfBoundsException - might not be able to find the manoeuvre specified
+    */
+   public Manoeuvre get(int index) throws IndexOutOfBoundsException {
+      return manoeuvres.get(getOLANs()[index]);
    }
 
 
