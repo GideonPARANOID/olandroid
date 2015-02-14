@@ -45,7 +45,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
       // waiting for the new activity to show up
       BuildFlightActivity buildFlightActivity = (BuildFlightActivity)
-         monitor.waitForActivityWithTimeout(2000);
+         monitor.waitForActivityWithTimeout(1000);
       assertNotNull(buildFlightActivity);
 
       // checking we've really loaded properly - expected elements are there
