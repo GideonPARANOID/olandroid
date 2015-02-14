@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import uk.ac.aber.gij2.mmp.Application;
+import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.R;
 
 
@@ -34,14 +34,14 @@ public class BuildFlightActivity extends Activity {
 
       final ListView listView = (ListView) findViewById(R.id.bfa_manoeuvre_list);
 
-      listView.setAdapter(((Application) getApplication()).getManoeuvreCatalogue());
+      listView.setAdapter(((MMPApplication) getApplication()).getManoeuvreCatalogue());
       listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
          @Override
          public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
             // appending olan id to the end of the olan entry string& moving the cursor to the end
-            olanEntry.append(((Application) getApplication()).getManoeuvreCatalogue().get(
+            olanEntry.append(((MMPApplication) getApplication()).getManoeuvreCatalogue().get(
                   position).getOLAN() + " ");
          }
       });
@@ -73,7 +73,7 @@ public class BuildFlightActivity extends Activity {
    public void button_vis(View view) {
       Intent intent = new Intent(this, VisualisationActivity.class);
 
-      if (((Application) getApplication()).buildFlight(olanEntry.getText().toString())) {
+      if (((MMPApplication) getApplication()).buildFlight(olanEntry.getText().toString())) {
          startActivity(intent);
 
       } else {

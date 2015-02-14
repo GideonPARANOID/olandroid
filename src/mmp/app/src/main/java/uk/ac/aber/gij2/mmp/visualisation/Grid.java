@@ -5,12 +5,12 @@
 
 package uk.ac.aber.gij2.mmp.visualisation;
 
-
 import android.opengl.Matrix;
+
 
 public class Grid extends Shape implements Drawable {
 
-   private float gridSize, gridDimensions;
+   private final float gridSize, gridDimensions;
 
 
    /**
@@ -33,14 +33,17 @@ public class Grid extends Shape implements Drawable {
       setDrawOrder(new short[]{
          0, 1, 2, 3, 0
       });
+
+      setColour(new float[] {
+         .8f, .8f, .8f, 0f
+      });
    }
 
 
    @Override
    public void draw(float[] initialMatrix) {
-      if (!super.setup) {
+      if (!super.drawingSetup) {
          setupDrawing();
-
       }
 
       // using the original matrix, translates it around & drawing the grid unit

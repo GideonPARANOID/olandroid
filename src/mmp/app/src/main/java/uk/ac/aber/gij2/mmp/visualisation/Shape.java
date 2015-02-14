@@ -17,20 +17,18 @@ public abstract class Shape implements Drawable {
    private FloatBuffer vertexBuffer;
    private ShortBuffer drawOrderBuffer;
 
-   private int mPositionHandle;
-   private int mColorHandle;
-   private int mMVPMatrixHandle;
+   private int mPositionHandle, mColourHandle, mMVPMatrixHandle;
 
    private float[] vertices;
    private short[] drawOrder;
 
-   private float color[];
-   protected boolean setup;
+   private float[] colour;
+   protected boolean drawingSetup;
 
 
    public Shape() {
-      color = Renderer.COLOR_FRAME;
-      setup = false;
+      colour = Renderer.COLOUR_FRAME;
+      drawingSetup = false;
    }
 
 
@@ -57,12 +55,12 @@ public abstract class Shape implements Drawable {
       drawOrderBuffer.put(drawOrder).position(0);
 
       // getting references to the shader program
-      mColorHandle = GLES20.glGetUniformLocation(Renderer.program, "vColor");
+      mColourHandle = GLES20.glGetUniformLocation(Renderer.program, "vColour");
       mPositionHandle = GLES20.glGetAttribLocation(Renderer.program, "vPosition");
       mMVPMatrixHandle = GLES20.glGetUniformLocation(Renderer.program, "uMVPMatrix");
       Renderer.checkGlError("glGetUniformLocation");
 
-      setup = true;
+      drawingSetup = true;
    }
 
 
@@ -72,7 +70,7 @@ public abstract class Shape implements Drawable {
     */
    public void draw(float[] mvpMatrix) {
 
-      if (!setup) {
+      if (!drawingSetup) {
          setupDrawing();
       }
 
@@ -84,8 +82,8 @@ public abstract class Shape implements Drawable {
       // preparing the triangle coordinate data
       GLES20.glVertexAttribPointer(mPositionHandle, 3, GLES20.GL_FLOAT, false, 12, vertexBuffer);
 
-      // set color for drawing the shape
-      GLES20.glUniform4fv(mColorHandle, 1, color, 0);
+      // set colour for drawing the shape
+      GLES20.glUniform4fv(mColourHandle, 1, colour, 0);
 
       // apply the projection and view transformation
       GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mvpMatrix, 0);
@@ -98,8 +96,8 @@ public abstract class Shape implements Drawable {
       GLES20.glDisableVertexAttribArray(mPositionHandle);
    }
 
-   protected void setColor(float[] color) {
-      this.color = color;
+   protected void setColour(float[] colour) {
+      this.colour = colour;
    }
 
    protected void setVertices(float[] vertices) {

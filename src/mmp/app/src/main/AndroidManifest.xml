@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uk.ac.aber.gij2.mmp" >
+<manifest
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   package="uk.ac.aber.gij2.mmp">
 
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true" />
+   <uses-feature
+      android:glEsVersion="0x00020000"
+      android:required="true" />
 
    <uses-sdk
       android:targetSdkVersion="21"
       android:minSdkVersion="11"/>
 
-    <application
-        android:name=".Application"
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+   <application
+      android:name=".MMPApplication"
+      android:allowBackup="true"
+      android:icon="@drawable/ic_launcher"
+      android:label="@string/app_name"
+      android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".activities.MainActivity"
-            android:label="@string/ma_title"
-            android:exported="true">
-        </activity>
+      <activity
+         android:name=".activities.MainActivity"
+         android:label="@string/ma_title"
+         android:exported="true">
+      </activity>
 
-        <activity
-            android:name=".activities.VisualisationActivity"
-            android:label="@string/oga_title" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="uk.ac.aber.gij2.mmp.activities.BuildFlightActivity" />
-        </activity>
 
-        <activity
-            android:name=".activities.BuildFlightActivity"
-            android:label="@string/bfa_title">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="uk.ac.aber.gij2.mmp.activities.MainActivity" />
-        </activity>
-    </application>
+      <activity
+         android:name=".activities.BuildFlightActivity"
+         android:label="@string/bfa_title"
+         android:windowSoftInputMode="stateUnchanged">
+         <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="uk.ac.aber.gij2.mmp.activities.MainActivity" />
+      </activity>
 
+
+      <activity
+         android:name=".activities.VisualisationActivity"
+         android:label="@string/oga_title">
+         <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="uk.ac.aber.gij2.mmp.activities.BuildFlightActivity" />
+      </activity>
+   </application>
 </manifest>

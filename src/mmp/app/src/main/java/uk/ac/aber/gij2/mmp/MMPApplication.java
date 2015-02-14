@@ -8,7 +8,7 @@ package uk.ac.aber.gij2.mmp;
 import uk.ac.aber.gij2.mmp.visualisation.Scene;
 
 
-public class Application extends android.app.Application {
+public class MMPApplication extends android.app.Application {
 
    private FlightManager flightManager;
    private ManoeuvreCatalogue manoeuvreCatalogue;

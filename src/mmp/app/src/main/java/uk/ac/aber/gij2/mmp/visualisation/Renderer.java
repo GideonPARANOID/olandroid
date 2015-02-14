@@ -18,15 +18,16 @@ import java.io.InputStreamReader;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import uk.ac.aber.gij2.mmp.Application;
+import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.R;
 
 
 public class Renderer implements GLSurfaceView.Renderer {
 
-   public static final float[] COLOR_FRAME = new float[] {
-      .5f, .5f, .5f, 0f
-   }, COLOR_BACKGROUND = new float[] {
+   // default colours
+   public static final float[] COLOUR_FRAME = new float[] {
+      0f, 0f, 0f, 0f
+   }, COLOUR_BACKGROUND = new float[] {
       1f, 1f, 1f, 0f
    };
 
@@ -68,12 +69,12 @@ public class Renderer implements GLSurfaceView.Renderer {
       GLES20.glAttachShader(program, fragmentShader);
       GLES20.glLinkProgram(program);
 
-      GLES20.glClearColor(COLOR_BACKGROUND[0],
-         COLOR_BACKGROUND[1],
-         COLOR_BACKGROUND[2],
-         COLOR_BACKGROUND[3]);
+      GLES20.glClearColor(COLOUR_BACKGROUND[0],
+         COLOUR_BACKGROUND[1],
+         COLOUR_BACKGROUND[2],
+         COLOUR_BACKGROUND[3]);
 
-      scene = ((Application) context.getApplicationContext()).getScene();
+      scene = ((MMPApplication) context.getApplicationContext()).getScene();
    }
 
 

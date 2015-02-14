@@ -44,7 +44,7 @@ public class Component extends Shape implements Drawable {
          // calculating the angle at which the line shifts the direction from the pitch & yaw
          double directionAngle = Math.atan((double) pitch / (double) yaw);
 
-         // the previous statement does not like dividing by minus one
+         // does not like dividing by minus one, mathematically works but not programmatically
          if (yaw == MIN) {
             directionAngle = Math.PI + directionAngle;
          }
