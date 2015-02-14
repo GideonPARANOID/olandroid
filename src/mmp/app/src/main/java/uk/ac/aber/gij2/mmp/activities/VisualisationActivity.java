@@ -5,8 +5,8 @@
 
 package uk.ac.aber.gij2.mmp.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,7 +14,7 @@ import uk.ac.aber.gij2.mmp.R;
 import uk.ac.aber.gij2.mmp.visualisation.SurfaceView;
 
 
-public class VisualisationActivity extends Activity {
+public class VisualisationActivity extends ActionBarActivity {
 
    private SurfaceView surfaceView;
 

@@ -5,9 +5,9 @@
 
 package uk.ac.aber.gij2.mmp.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +17,7 @@ import android.widget.TextView;
 import uk.ac.aber.gij2.mmp.R;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {

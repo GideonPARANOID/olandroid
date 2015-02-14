@@ -5,9 +5,9 @@
 
 package uk.ac.aber.gij2.mmp.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +20,7 @@ import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.R;
 
 
-public class BuildFlightActivity extends Activity {
+public class BuildFlightActivity extends ActionBarActivity {
 
    private EditText olanEntry;
 
