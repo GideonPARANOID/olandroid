@@ -11,12 +11,10 @@ import android.opengl.Matrix;
 public class Component extends Shape implements Drawable {
 
    // bounds for movement
-   public static final int ZERO = 0,
-      MIN = -1,
-      MAX = 1,
-      SECTIONS = 1;
-
-   private float[] matrix;
+   public static final int ZERO = 0, MIN = -1, MAX = 1;
+   private final double angleRadians = Math.PI / 12d, angleDegrees = 180 / 12d;
+   private final int SECTIONS = 1;
+   private final float[] matrix;
 
 
    /**
@@ -26,9 +24,6 @@ public class Component extends Shape implements Drawable {
     */
    public Component(int pitch, int yaw, int roll, float length) {
       super();
-
-      // math library uses radians, but matrix library uses degrees
-      final double angleRadians = Math.PI / 4d, angleDegrees = 180 / 4d;
 
       float x, y, z;
 
@@ -57,6 +52,7 @@ public class Component extends Shape implements Drawable {
       // building vertices
       float[] vertices = new float[(SECTIONS + 1) * 3];
       float step = 1f / (float) SECTIONS;
+
 
       for (int currentStep = 0, i = 0; i < vertices.length; i += 3, currentStep++) {
          vertices[i] = x * step * currentStep;

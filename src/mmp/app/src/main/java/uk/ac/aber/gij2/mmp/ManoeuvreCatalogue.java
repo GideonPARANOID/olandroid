@@ -56,7 +56,10 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
       String[] olans = getOLANs();
 
       ((TextView) row.findViewById(R.id.ol_text_olan)).setText(olans[position]);
-      ((TextView) row.findViewById(R.id.ol_text_name)).setText(get(olans[position]).getName());
+
+      String name = get(olans[position]).getName();
+      ((TextView) row.findViewById(R.id.ol_text_name)).setText(name.substring(0, 1).toUpperCase()
+         + name.substring(1));
 
       return row;
    }
@@ -101,7 +104,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
          if (parser.getName().equals("variant")) {
 
             // have to get these now before the parser moves onto the components
-            String fullOLAN = parser.getAttributeValue(null, "type") + olan,
+            String fullOLAN = parser.getAttributeValue(null, "olanprefix") + olan,
                name = parser.getAttributeValue(null, "name");
 
             manoeuvres.put(fullOLAN, new Manoeuvre(parseVariantComponents(parser),

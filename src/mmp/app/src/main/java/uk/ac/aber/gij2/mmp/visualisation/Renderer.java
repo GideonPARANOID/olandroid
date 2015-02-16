@@ -83,7 +83,7 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       float ratio = (float) width / height;
 
-      // projection matrix is applied to object coordinates in the onDrawFrame() method
+      // projection matrix is applied to object coordinates in the draw method
       Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1, 100);
    }
 
@@ -104,7 +104,7 @@ public class Renderer implements GLSurfaceView.Renderer {
       // shifting the perspective
       float[] rotationY = new float[16], rotationX = new float[16], translation = new float[16];
 
-      Matrix.translateM(translation, 0, mProjectionMatrix, 0, 0f, 0f, -5f);
+      Matrix.translateM(translation, 0, mProjectionMatrix, 0, 0f, 0f, -20f);
       Matrix.rotateM(rotationY, 0, translation, 0, viewY, 1f, 0f, 0f);
       Matrix.rotateM(rotationX, 0, rotationY, 0, viewX, 0f, 1f, 0f);
 

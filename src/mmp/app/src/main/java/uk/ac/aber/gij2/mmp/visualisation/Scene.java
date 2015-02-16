@@ -17,7 +17,7 @@ public class Scene {
 
    public Scene() {
       sceneGraph = new ArrayList<>();
-      sceneGraph.add(new Grid(1, 10));
+      sceneGraph.add(new Grid(5, 10));
    }
 
 
@@ -26,7 +26,7 @@ public class Scene {
     */
    public void setFlight(Flight flight) {
       sceneGraph = new ArrayList<>();
-      sceneGraph.add(new Grid(1, 10));
+      sceneGraph.add(new Grid(5, 10));
       sceneGraph.add(flight);
    }
 

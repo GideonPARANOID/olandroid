@@ -59,6 +59,7 @@ public class Manoeuvre extends Shape implements Drawable {
       }
    }
 
+
    /**
     * @return - the full matrix operation from the  beginning of the manoeuvre to the end
     */

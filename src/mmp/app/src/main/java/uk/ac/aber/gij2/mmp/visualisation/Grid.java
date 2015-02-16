@@ -21,7 +21,7 @@ public class Grid extends Shape implements Drawable {
       super();
 
       this.gridSize = gridSize;
-      this.gridDimensions = gridDimensions;
+      this.gridDimensions = gridDimensions * gridSize;
 
       setVertices(new float[]{
          0, 0, 0,

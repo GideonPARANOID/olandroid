@@ -30,8 +30,9 @@ public class FlightManager {
       Manoeuvre[] manoeuvres = new Manoeuvre[figures.length];
 
       for (int i = 0; i < figures.length; i++) {
-
-         manoeuvres[i] = manoeuvreCatalogue.get(figures[i]);
+         if (!figures[i].equals("")) {
+            manoeuvres[i] = manoeuvreCatalogue.get(figures[i]);
+         }
       }
 
       return new Flight(manoeuvres);
@@ -48,8 +49,10 @@ public class FlightManager {
       String[] figures = olan.toLowerCase().split(" ");
 
       for (int i = 0; i < figures.length && result; i++) {
-         if (manoeuvreCatalogue.get(figures[i]) == null) {
-            result = false;
+         if (!figures[i].equals("")) {
+            if (manoeuvreCatalogue.get(figures[i]) == null) {
+               result = false;
+            }
          }
       }
 
