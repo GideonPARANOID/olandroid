@@ -60,7 +60,6 @@ public class BuildFlightActivity extends ActionBarActivity {
 
       // which option menu item got selected
       switch (item.getItemId()) {
-
          case R.id.action_settings:
             return true;
 
@@ -71,10 +70,9 @@ public class BuildFlightActivity extends ActionBarActivity {
 
 
    public void button_vis(View view) {
-      Intent intent = new Intent(this, VisualisationActivity.class);
 
       if (((MMPApplication) getApplication()).buildFlight(olanEntry.getText().toString())) {
-         startActivity(intent);
+         startActivity(new Intent(this, VisualisationActivity.class));
 
       } else {
          Toast.makeText(getApplication(), R.string.bfa_toast_invalid, Toast.LENGTH_SHORT).show();

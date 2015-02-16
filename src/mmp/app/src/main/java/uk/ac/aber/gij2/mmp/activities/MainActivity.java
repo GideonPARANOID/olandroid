@@ -41,7 +41,6 @@ public class MainActivity extends ActionBarActivity {
 
       // which option menu item got selected
       switch (item.getItemId()) {
-
          case R.id.action_settings:
             return true;
 
@@ -52,7 +51,6 @@ public class MainActivity extends ActionBarActivity {
 
 
    public void button_build(View view) {
-      Intent intent = new Intent(this, BuildFlightActivity.class);
-      startActivity(intent);
+      startActivity(new Intent(this, BuildFlightActivity.class));
    }
 }

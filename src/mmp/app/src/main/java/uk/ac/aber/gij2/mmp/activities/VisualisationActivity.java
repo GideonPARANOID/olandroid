@@ -33,13 +33,12 @@ public class VisualisationActivity extends ActionBarActivity {
       return true;
    }
 
+
    @Override
    public boolean onOptionsItemSelected(MenuItem item) {
       // which option menu item got selected
       switch (item.getItemId()) {
-
          case R.id.action_settings:
-
             return true;
 
          default:
@@ -53,6 +52,7 @@ public class VisualisationActivity extends ActionBarActivity {
       super.onResume();
       surfaceView.onResume();
    }
+
 
    @Override
    protected void onPause() {

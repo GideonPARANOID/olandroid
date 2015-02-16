@@ -4,5 +4,12 @@
 
 
       <item name="android:textColor">#111111</item>
+      <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
+   </style>
+
+
+   <style name="MyAnimation.Window" parent="@android:style/Animation.Dialog">
+      <item name="android:windowEnterAnimation">@anim/slide_in_left</item>
+      <item name="android:windowExitAnimation">@anim/slide_out_left</item>
    </style>
 </resources>
