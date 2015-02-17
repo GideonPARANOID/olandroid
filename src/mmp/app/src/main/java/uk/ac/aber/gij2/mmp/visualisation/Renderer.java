@@ -31,18 +31,16 @@ public class Renderer implements GLSurfaceView.Renderer {
       1f, 1f, 1f, 0f
    };
 
-
-   // will only ever be using one program
    public static int program;
 
    // view & scene building tools
-   private final float[] mMVPMatrix = new float[16];
-   private final float[] mProjectionMatrix = new float[16];
-   private final float[] mViewMatrix = new float[16];
+   private final float[] mMVPMatrix = new float[16],
+      mProjectionMatrix = new float[16],
+      mViewMatrix = new float[16];
 
    // for back referencing to the application
    private Context context;
-   private float viewX, viewY;
+   private float viewX, viewY, viewZoom = 1f;
 
    // content
    private Scene scene;
@@ -84,7 +82,7 @@ public class Renderer implements GLSurfaceView.Renderer {
       float ratio = (float) width / height;
 
       // projection matrix is applied to object coordinates in the draw method
-      Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1, 100);
+      Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1f, 1000f);
    }
 
 
@@ -104,7 +102,7 @@ public class Renderer implements GLSurfaceView.Renderer {
       // shifting the perspective
       float[] rotationY = new float[16], rotationX = new float[16], translation = new float[16];
 
-      Matrix.translateM(translation, 0, mProjectionMatrix, 0, 0f, 0f, -20f);
+      Matrix.translateM(translation, 0, mProjectionMatrix, 0, 0f, 0f, -20f * viewZoom);
       Matrix.rotateM(rotationY, 0, translation, 0, viewY, 1f, 0f, 0f);
       Matrix.rotateM(rotationX, 0, rotationY, 0, viewX, 0f, 1f, 0f);
 
@@ -113,6 +111,16 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       scene.draw(mMVPMatrix);
    }
+
+
+   /**
+    * scales the distance from the centre of the scene, cuts off at the bottom .2f
+    * @param factor - factor by which to modify the current scale
+    */
+   public void scaleViewZoom(float factor) {
+      viewZoom = viewZoom * factor < .2f ? .2f : viewZoom * factor;
+   }
+
 
    public float getViewX() {
       return viewX;
@@ -139,7 +147,7 @@ public class Renderer implements GLSurfaceView.Renderer {
    public static void checkGlError(String glOperation) {
       int error;
       while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
-         Log.e("Renderer", glOperation + ": glError " + error);
+         Log.e("renderer", glOperation + ": glError " + error);
          throw new RuntimeException(glOperation + ": glError " + error);
       }
    }
@@ -180,7 +188,7 @@ public class Renderer implements GLSurfaceView.Renderer {
          }
 
       } catch (Exception e) {
-         Log.d("Renderer", "could not read shader: " + e.getLocalizedMessage());
+         Log.d("renderer", "could not read shader: " + e.getLocalizedMessage());
       }
 
       return shaderCode;

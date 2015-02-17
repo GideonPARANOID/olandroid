@@ -12,7 +12,7 @@ public class Component extends Shape implements Drawable {
 
    // bounds for movement
    public static final int ZERO = 0, MIN = -1, MAX = 1;
-   private final double angleRadians = Math.PI / 12d, angleDegrees = 180 / 12d;
+   private final float ANGLE = 1f / 24f;
    private final int SECTIONS = 1;
    private final float[] matrix;
 
@@ -44,13 +44,14 @@ public class Component extends Shape implements Drawable {
             directionAngle = Math.PI + directionAngle;
          }
 
-         x = (float) (length * Math.sin(angleRadians) * Math.cos(directionAngle));
-         y = (float) (length * Math.sin(angleRadians) * Math.sin(directionAngle));
-         z = (float) (length * Math.cos(angleRadians));
+         double radians = Math.PI * 2 * ANGLE;
+         x = (float) (length * Math.sin(radians) * Math.cos(directionAngle));
+         y = (float) (length * Math.sin(radians) * Math.sin(directionAngle));
+         z = (float) (length * Math.cos(radians));
       }
 
       // building vertices
-      float[] vertices = new float[(SECTIONS + 1) * 3];
+/*      float[] vertices = new float[(SECTIONS + 1) * 3];
       float step = 1f / (float) SECTIONS;
 
 
@@ -58,7 +59,17 @@ public class Component extends Shape implements Drawable {
          vertices[i] = x * step * currentStep;
          vertices[i + 1] = y * step * currentStep;
          vertices[i + 2] = z * step * currentStep;
-      }
+      }*/
+
+      // temporary override
+      float[] vertices = new float[] {
+         0.5f, 0f, 0f,
+         -0.5f, 0f, 0f,
+         x - 0.5f, y, z,
+         x + 0.5f, y, z,
+         0.5f, 0f, 0f
+      };
+
 
       super.setVertices(vertices);
 
@@ -68,7 +79,7 @@ public class Component extends Shape implements Drawable {
 
       // if all values are zero, we get a matrix of NaNs, which corrupts the matrix stack
       if (pitch != ZERO || yaw != ZERO || roll != ZERO) {
-         Matrix.rotateM(matrix, 0, (float) angleDegrees, (float) -pitch, (float) yaw, (float) roll);
+         Matrix.rotateM(matrix, 0, 360f * ANGLE, (float) -pitch, (float) yaw, (float) roll);
       }
 
       Matrix.translateM(matrix, 0, 0f, 0f, length);

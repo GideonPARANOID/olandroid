@@ -62,7 +62,7 @@
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="MAx" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
       </variant>
    </manoeuvre>
