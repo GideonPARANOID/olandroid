@@ -136,8 +136,11 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
                parseComponentStrength(parser.getAttributeValue(null, "pitch")),
                parseComponentStrength(parser.getAttributeValue(null, "yaw")),
                parseComponentStrength(parser.getAttributeValue(null, "roll")),
-               Float.parseFloat(parser.getAttributeValue(null, "length"))
-            ));
+               Float.parseFloat(parser.getAttributeValue(null, "length")),
+               ((MMPApplication) context.getApplicationContext()).buildColourArray(
+                  R.color.vis_flight_front),
+               ((MMPApplication) context.getApplicationContext()).buildColourArray(
+                  R.color.vis_flight_back)));
 
             // skipping content
             skip(parser);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
    <string name="app_name">MMP</string>
    <string name="action_settings">Settings</string>
 
@@ -13,12 +12,10 @@
 
    <!-- BuildFlightActivity -->
    <string name="bfa_title">Build a flight</string>
-   <string name="bfa_intro_title">Enter an OLAN string</string>
    <string name="bfa_button_vis">Build flight</string>
    <string name="bfa_hint_olan">Enter an OLAN string</string>
    <string name="bfa_toast_invalid">Invalid OLAN</string>
 
    <!-- VisualisationActivity -->
    <string name="oga_title">Visualisation</string>
-
 </resources>

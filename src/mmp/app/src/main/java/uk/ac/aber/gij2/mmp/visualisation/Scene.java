@@ -5,19 +5,26 @@
 
 package uk.ac.aber.gij2.mmp.visualisation;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 import uk.ac.aber.gij2.mmp.Flight;
+import uk.ac.aber.gij2.mmp.MMPApplication;
+import uk.ac.aber.gij2.mmp.R;
 
 
 public class Scene {
 
    private ArrayList<Drawable> sceneGraph;
+   private Context context;
 
 
-   public Scene() {
+   public Scene(Context context) {
       sceneGraph = new ArrayList<>();
-      sceneGraph.add(new Grid(5, 10));
+      this.context = context;
+      sceneGraph.add(new Grid(5, 10,
+         ((MMPApplication) context.getApplicationContext()).buildColourArray(R.color.vis_grid)));
    }
 
 
@@ -26,7 +33,8 @@ public class Scene {
     */
    public void setFlight(Flight flight) {
       sceneGraph = new ArrayList<>();
-      sceneGraph.add(new Grid(5, 10));
+      sceneGraph.add(new Grid(5, 10,
+         ((MMPApplication) context.getApplicationContext()).buildColourArray(R.color.vis_grid)));
       sceneGraph.add(flight);
    }
 

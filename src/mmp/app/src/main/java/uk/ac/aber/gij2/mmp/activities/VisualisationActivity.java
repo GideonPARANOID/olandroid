@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
 import uk.ac.aber.gij2.mmp.R;
 import uk.ac.aber.gij2.mmp.visualisation.SurfaceView;
@@ -21,9 +22,14 @@ public class VisualisationActivity extends ActionBarActivity {
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
+      getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
       super.onCreate(savedInstanceState);
+
       surfaceView = new SurfaceView(this);
       setContentView(surfaceView);
+
+//      getSupportActionBar().setBackgroundDrawable(new ColorDrawable(R.color.maroonTransparent));
+//      getSupportActionBar().hide();
    }
 
 

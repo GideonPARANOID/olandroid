@@ -24,13 +24,6 @@ import uk.ac.aber.gij2.mmp.R;
 
 public class Renderer implements GLSurfaceView.Renderer {
 
-   // default colours
-   public static final float[] COLOUR_FRAME = new float[] {
-      0f, 0f, 0f, 0f
-   }, COLOUR_BACKGROUND = new float[] {
-      1f, 1f, 1f, 0f
-   };
-
    public static int program;
 
    // view & scene building tools
@@ -51,32 +44,34 @@ public class Renderer implements GLSurfaceView.Renderer {
    }
 
 
-   public void onSurfaceCreated(GL10 unused, EGLConfig config) {
+   public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 
       // shader loading & compilation
       int vertexShader = loadShader(
-         GLES20.GL_VERTEX_SHADER,
-         loadShaderCode(R.raw.vertex));
-
-      int fragmentShader = loadShader(
-         GLES20.GL_FRAGMENT_SHADER,
-         loadShaderCode(R.raw.fragment));
+            GLES20.GL_VERTEX_SHADER,
+            loadShaderCode(R.raw.vertex)),
+         fragmentShader = loadShader(
+            GLES20.GL_FRAGMENT_SHADER,
+            loadShaderCode(R.raw.fragment));
 
       program = GLES20.glCreateProgram();
       GLES20.glAttachShader(program, vertexShader);
       GLES20.glAttachShader(program, fragmentShader);
       GLES20.glLinkProgram(program);
 
-      GLES20.glClearColor(COLOUR_BACKGROUND[0],
-         COLOUR_BACKGROUND[1],
-         COLOUR_BACKGROUND[2],
-         COLOUR_BACKGROUND[3]);
+      float[] colour  = ((MMPApplication) context.getApplicationContext()).buildColourArray(
+         R.color.vis_background);
+
+      GLES20.glClearColor(colour[0], colour[1], colour[2], colour[3]);
+
+      GLES20.glEnable(GLES20.GL_CULL_FACE);
+      GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
       scene = ((MMPApplication) context.getApplicationContext()).getScene();
    }
 
 
-   public void onSurfaceChanged(GL10 unused, int width, int height) {
+   public void onSurfaceChanged(GL10 gl, int width, int height) {
       GLES20.glViewport(0, 0, width, height);
 
       float ratio = (float) width / height;
@@ -118,7 +113,7 @@ public class Renderer implements GLSurfaceView.Renderer {
     * @param factor - factor by which to modify the current scale
     */
    public void scaleViewZoom(float factor) {
-      viewZoom = viewZoom * factor < .2f ? .2f : viewZoom * factor;
+      viewZoom = viewZoom / factor < 0.2f ? 0.2f : viewZoom / factor;
    }
 
 

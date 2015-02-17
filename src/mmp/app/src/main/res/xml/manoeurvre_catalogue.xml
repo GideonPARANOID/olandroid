@@ -50,19 +50,19 @@
 
       <variant olanprefix="i" name="vertical down line">
          <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
-         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
+         <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="5" />
-         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
+         <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
       </variant>
    </manoeuvre>

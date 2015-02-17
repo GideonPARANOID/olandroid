@@ -5,6 +5,8 @@
 
 package uk.ac.aber.gij2.mmp;
 
+import android.graphics.Color;
+
 import uk.ac.aber.gij2.mmp.visualisation.Scene;
 
 
@@ -15,7 +17,7 @@ public class MMPApplication extends android.app.Application {
 
    @Override
    public void onCreate() {
-      flightManager = new FlightManager();
+      flightManager = new FlightManager(this);
 
       manoeuvreCatalogue = new ManoeuvreCatalogue(this);
       flightManager.setManoeuvreCatalogue(manoeuvreCatalogue);
@@ -45,5 +47,20 @@ public class MMPApplication extends android.app.Application {
 
    public ManoeuvreCatalogue getManoeuvreCatalogue() {
       return manoeuvreCatalogue;
+   }
+
+
+   /**
+    * @param id - resource id of a colour to use
+    * @return - array of floats depicting a colour
+    */
+   public float[] buildColourArray(int id) {
+      int colour = getResources().getColor(id);
+      return new float[]{
+         (float) Color.red(colour) / 256f,
+         (float) Color.green(colour) / 256f,
+         (float) Color.blue(colour) / 256f,
+         (float) Color.alpha(colour) / 256f
+      };
    }
 }

@@ -13,7 +13,6 @@ public class Component extends Shape implements Drawable {
    // bounds for movement
    public static final int ZERO = 0, MIN = -1, MAX = 1;
    private final float ANGLE = 1f / 24f;
-   private final int SECTIONS = 1;
    private final float[] matrix;
 
 
@@ -22,8 +21,13 @@ public class Component extends Shape implements Drawable {
     * @param yaw - horizontal direction
     * @param roll - //TODO implement
     */
-   public Component(int pitch, int yaw, int roll, float length) {
+   public Component(int pitch, int yaw, int roll, float length, float[] colourFront,
+      float[] colourBack) {
+
       super();
+
+      super.setColourFront(colourFront);
+      super.setColourBack(colourBack);
 
       float x, y, z;
 
@@ -50,28 +54,18 @@ public class Component extends Shape implements Drawable {
          z = (float) (length * Math.cos(radians));
       }
 
-      // building vertices
-/*      float[] vertices = new float[(SECTIONS + 1) * 3];
-      float step = 1f / (float) SECTIONS;
-
-
-      for (int currentStep = 0, i = 0; i < vertices.length; i += 3, currentStep++) {
-         vertices[i] = x * step * currentStep;
-         vertices[i + 1] = y * step * currentStep;
-         vertices[i + 2] = z * step * currentStep;
-      }*/
-
-      // temporary override
-      float[] vertices = new float[] {
+      super.setVertices(new float[] {
          0.5f, 0f, 0f,
          -0.5f, 0f, 0f,
          x - 0.5f, y, z,
          x + 0.5f, y, z,
          0.5f, 0f, 0f
-      };
+      });
 
-
-      super.setVertices(vertices);
+      super.setDrawOrder(new short[] {
+         0, 1, 2,
+         0, 2, 3
+      });
 
       // building the matrix transform from the beginning of this component to the end
       matrix = new float[16];

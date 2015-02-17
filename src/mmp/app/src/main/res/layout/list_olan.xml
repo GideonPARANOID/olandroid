@@ -12,10 +12,9 @@
       android:id="@+id/ol_text_olan"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_alignBaseline="@+id/button"
-      android:layout_alignBottom="@+id/button"
       android:layout_alignParentLeft="true"
       android:layout_alignParentStart="true"
+      android:width="25dp"
       style="@style/AppTheme"/>
 
    <TextView
@@ -29,7 +28,5 @@
       android:layout_toRightOf="@+id/ol_text_olan"
       android:layout_toEndOf="@+id/ol_text_olan"
       android:clickable="true"
-      style="@style/AppTheme"
-      />
-
+      style="@style/AppTheme" />
 </RelativeLayout>

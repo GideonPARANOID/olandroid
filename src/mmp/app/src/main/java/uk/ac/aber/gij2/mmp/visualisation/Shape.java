@@ -12,6 +12,7 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
+
 public abstract class Shape implements Drawable {
 
    private FloatBuffer vertexBuffer;
@@ -19,16 +20,18 @@ public abstract class Shape implements Drawable {
 
    private int mPositionHandle, mColourHandle, mMVPMatrixHandle;
 
-   private float[] vertices;
+   private float[] vertices, colourFront, colourBack;
    private short[] drawOrder;
 
-   private float[] colour;
+   // drawing options, whether things are setup & whether to fill draw or just draw lines
    protected boolean drawingSetup;
+   protected static int FILL = 0, LINES = 1;
+   private int drawMode;
 
 
    public Shape() {
-      colour = Renderer.COLOUR_FRAME;
       drawingSetup = false;
+      drawMode = FILL;
    }
 
 
@@ -46,11 +49,11 @@ public abstract class Shape implements Drawable {
          }
       }
 
-      // initialize vertex byte buffer for shape coordinates, 4 bytes per float
+      // initialise vertex byte buffer for shape coordinates, 4 bytes per float
       vertexBuffer = ByteBuffer.allocateDirect(vertices.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
       vertexBuffer.put(vertices).position(0);
 
-      // initialize byte buffer for the draw list, 2 bytes per short
+      // initialise byte buffer for the draw list, 2 bytes per short
       drawOrderBuffer = ByteBuffer.allocateDirect(drawOrder.length * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
       drawOrderBuffer.put(drawOrder).position(0);
 
@@ -58,6 +61,7 @@ public abstract class Shape implements Drawable {
       mColourHandle = GLES20.glGetUniformLocation(Renderer.program, "vColour");
       mPositionHandle = GLES20.glGetAttribLocation(Renderer.program, "vPosition");
       mMVPMatrixHandle = GLES20.glGetUniformLocation(Renderer.program, "uMVPMatrix");
+
       Renderer.checkGlError("glGetUniformLocation");
 
       drawingSetup = true;
@@ -82,23 +86,31 @@ public abstract class Shape implements Drawable {
       // preparing the triangle coordinate data
       GLES20.glVertexAttribPointer(mPositionHandle, 3, GLES20.GL_FLOAT, false, 12, vertexBuffer);
 
-      // set colour for drawing the shape
-      GLES20.glUniform4fv(mColourHandle, 1, colour, 0);
-
       // apply the projection and view transformation
       GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mvpMatrix, 0);
       Renderer.checkGlError("glUniformMatrix4fv");
 
-      // eventually drawing
-      GLES20.glDrawElements(GLES20.GL_LINE_STRIP, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+      if (drawMode == FILL) {
+         // painting the front (bottom)
+         GLES20.glCullFace(GLES20.GL_FRONT);
+         GLES20.glUniform4fv(mColourHandle, 1, colourFront, 0);
+         GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+
+         // painting the back (top)
+         GLES20.glCullFace(GLES20.GL_BACK);
+         GLES20.glUniform4fv(mColourHandle, 1, colourBack, 0);
+         GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+
+      } else {
+         GLES20.glUniform4fv(mColourHandle, 1, colourFront, 0);
+         GLES20.glDrawElements(GLES20.GL_LINE_STRIP, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+      }
+
 
       // disabling vertex array
       GLES20.glDisableVertexAttribArray(mPositionHandle);
    }
 
-   protected void setColour(float[] colour) {
-      this.colour = colour;
-   }
 
    protected void setVertices(float[] vertices) {
       this.vertices = vertices;
@@ -106,5 +118,18 @@ public abstract class Shape implements Drawable {
 
    protected void setDrawOrder(short[] drawOrder) {
       this.drawOrder = drawOrder;
+   }
+
+   public void setColourFront(float[] colourFront) {
+      this.colourFront = colourFront;
+      System.out.println(java.util.Arrays.toString(colourFront));
+   }
+
+   public void setColourBack(float[] colourBack) {
+      this.colourBack = colourBack;
+   }
+
+   public void setDrawMode(int drawMode) {
+      this.drawMode = drawMode;
    }
 }

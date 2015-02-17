@@ -17,26 +17,26 @@ public class Grid extends Shape implements Drawable {
     * @param gridSize - size of a unit of the grid
     * @param gridDimensions - dimensions of the whole grid in terms of grid units
     */
-   public Grid(float gridSize, float gridDimensions) {
+   public Grid(float gridSize, float gridDimensions, float[] colour) {
       super();
+
+      super.setColourFront(colour);
 
       this.gridSize = gridSize;
       this.gridDimensions = gridDimensions * gridSize;
 
-      setVertices(new float[]{
+      super.setVertices(new float[]{
          0, 0, 0,
          0, 0, gridSize,
          gridSize, 0, gridSize,
          gridSize, 0, 0
       });
 
-      setDrawOrder(new short[]{
+      super.setDrawOrder(new short[]{
          0, 1, 2, 3, 0
       });
 
-      setColour(new float[] {
-         .8f, .8f, .8f, 0f
-      });
+      super.setDrawMode(Shape.LINES);
    }
 
 

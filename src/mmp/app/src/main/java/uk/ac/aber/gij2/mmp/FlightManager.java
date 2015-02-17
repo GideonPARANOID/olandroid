@@ -5,6 +5,8 @@
 
 package uk.ac.aber.gij2.mmp;
 
+import android.content.Context;
+
 import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 import uk.ac.aber.gij2.mmp.visualisation.Scene;
 
@@ -16,8 +18,8 @@ public class FlightManager {
    private Flight currentFlight;
 
 
-   public FlightManager() {
-      scene = new Scene();
+   public FlightManager(Context context) {
+      scene = new Scene(context);
    }
 
 
