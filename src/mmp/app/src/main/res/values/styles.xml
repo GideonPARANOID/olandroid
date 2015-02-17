@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-
-      <item name="android:textColor">#111111</item>
+      <item name="colorPrimary">@color/maroon</item>
+      <item name="colorPrimaryDark">@color/black</item>
+      <item name="colorAccent">@color/navy</item>
+      <item name="android:textColor">@color/black</item>
       <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
    </style>
 

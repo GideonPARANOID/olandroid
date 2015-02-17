@@ -24,7 +24,6 @@
          android:exported="true">
       </activity>
 
-
       <activity
          android:name=".activities.BuildFlightActivity"
          android:label="@string/bfa_title"

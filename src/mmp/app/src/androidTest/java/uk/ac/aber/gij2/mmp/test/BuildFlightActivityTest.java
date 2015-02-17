@@ -40,7 +40,7 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
 
       // find a button & press it
       visualisationButton = (Button) buildFlightActvity.findViewById(R.id.bfa_button_vis);
-      olanString = (EditText) buildFlightActvity.findViewById(R.id.bfa_olan_string);
+      olanString = (EditText) buildFlightActvity.findViewById(R.id.bfa_edittext_olan);
 
       visualisationMonitor = getInstrumentation().addMonitor(
          VisualisationActivity.class.getName(), null, false);

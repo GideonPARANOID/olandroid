@@ -49,7 +49,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
       assertNotNull(buildFlightActivity);
 
       // checking we've really loaded properly - expected elements are there
-      EditText olanInput = (EditText) buildFlightActivity.findViewById(R.id.bfa_olan_string);
+      EditText olanInput = (EditText) buildFlightActivity.findViewById(R.id.bfa_edittext_olan);
 
       ViewAsserts.assertOnScreen(buildFlightActivity.getWindow().getDecorView(), olanInput);
 

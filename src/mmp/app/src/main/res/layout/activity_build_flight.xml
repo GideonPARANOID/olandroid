@@ -15,7 +15,6 @@
    android:layout_toEndOf="@+id/bfa_intro_title"
    android:layout_alignParentTop="true">
 
-
    <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -27,7 +26,7 @@
    <EditText
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/bfa_olan_string"
+      android:id="@+id/bfa_edittext_olan"
       android:layout_gravity="center_horizontal"
       android:hint="@string/bfa_hint_olan" />
 
@@ -44,6 +43,5 @@
       android:layout_height="wrap_content"
       android:id="@+id/bfa_manoeuvre_list"
       android:layout_gravity="center_horizontal"/>
-
 </LinearLayout>
 

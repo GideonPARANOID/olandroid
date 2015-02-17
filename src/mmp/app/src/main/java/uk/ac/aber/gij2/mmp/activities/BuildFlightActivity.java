@@ -30,7 +30,7 @@ public class BuildFlightActivity extends ActionBarActivity {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_build_flight);
 
-      olanEntry = (EditText) findViewById(R.id.bfa_olan_string);
+      olanEntry = (EditText) findViewById(R.id.bfa_edittext_olan);
 
       final ListView listView = (ListView) findViewById(R.id.bfa_manoeuvre_list);
 

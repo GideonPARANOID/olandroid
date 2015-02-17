@@ -26,13 +26,17 @@ public class FlightManager {
     * @return - a flight defined by the olan string
     */
    public Flight buildFlight(String olan) {
-      String[] figures = olan.toLowerCase().split(" ");
+
+      // leading spaces are a challenge, so get rid of them
+      if (olan.length() >= 1 && olan.substring(0, 1).equals(" ")) {
+         olan = olan.substring(1);
+      }
+
+      String[] figures = olan.trim().toLowerCase().split(" ");
       Manoeuvre[] manoeuvres = new Manoeuvre[figures.length];
 
       for (int i = 0; i < figures.length; i++) {
-         if (!figures[i].equals("")) {
-            manoeuvres[i] = manoeuvreCatalogue.get(figures[i]);
-         }
+         manoeuvres[i] = manoeuvreCatalogue.get(figures[i]);
       }
 
       return new Flight(manoeuvres);
@@ -46,13 +50,16 @@ public class FlightManager {
    public boolean validOLAN(String olan) {
       boolean result = true;
 
-      String[] figures = olan.toLowerCase().split(" ");
+      // leading spaces are a challenge, so get rid of them
+      if (olan.length() >= 1 && olan.substring(0, 1).equals(" ")) {
+         olan = olan.substring(1);
+      }
+
+      String[] figures = olan.trim().toLowerCase().split(" ");
 
       for (int i = 0; i < figures.length && result; i++) {
-         if (!figures[i].equals("")) {
-            if (manoeuvreCatalogue.get(figures[i]) == null) {
-               result = false;
-            }
+         if (manoeuvreCatalogue.get(figures[i]) == null) {
+            result = false;
          }
       }
 
