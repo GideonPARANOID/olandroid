@@ -27,13 +27,14 @@ public class Renderer implements GLSurfaceView.Renderer {
    public static int program;
 
    // view & scene building tools
-   private final float[] mMVPMatrix = new float[16],
-      mProjectionMatrix = new float[16],
-      mViewMatrix = new float[16];
+   private final float[] mMVPMatrix, mProjectionMatrix, mViewMatrix;
 
    // for back referencing to the application
    private Context context;
-   private float viewX, viewY, viewZoom = 1f;
+
+   // shifting around the view
+   private float viewX, viewY, viewZoom;
+   private float[] viewMatrix = new float[16];
 
    // content
    private Scene scene;
@@ -41,6 +42,16 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    public Renderer(Context context) {
       this.context = context;
+
+      mMVPMatrix = new float[16];
+      mProjectionMatrix = new float[16];
+      mViewMatrix = new float[16];
+
+      viewX = 45f;
+      viewY = 45f;
+      viewZoom = 1f;
+
+      refreshViewMatrix();
    }
 
 
@@ -67,7 +78,11 @@ public class Renderer implements GLSurfaceView.Renderer {
       GLES20.glEnable(GLES20.GL_CULL_FACE);
       GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
+      Matrix.setIdentityM(mViewMatrix, 0);
+
       scene = ((MMPApplication) context.getApplicationContext()).getScene();
+
+      refreshViewMatrix();
    }
 
 
@@ -78,6 +93,8 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       // projection matrix is applied to object coordinates in the draw method
       Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1f, 1000f);
+
+      refreshViewMatrix();
    }
 
 
@@ -86,36 +103,32 @@ public class Renderer implements GLSurfaceView.Renderer {
       // background
       GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
-      // set the camera position
-      Matrix.setLookAtM(mViewMatrix, 0,
-         0, 0, 0,       // eye point
-         0f, 0f, 0f,    // centre of view
-         0f, 1f, 0f);   // up
-
-      Matrix.setIdentityM(mViewMatrix, 0);
-
-      // shifting the perspective
-      float[] rotationY = new float[16], rotationX = new float[16], translation = new float[16];
-
-      Matrix.translateM(translation, 0, mProjectionMatrix, 0, 0f, 0f, -20f * viewZoom);
-      Matrix.rotateM(rotationY, 0, translation, 0, viewY, 1f, 0f, 0f);
-      Matrix.rotateM(rotationX, 0, rotationY, 0, viewX, 0f, 1f, 0f);
-
       // calculate the projection and view transformation
-      Matrix.multiplyMM(mMVPMatrix, 0, rotationX, 0, mViewMatrix, 0);
+      Matrix.multiplyMM(mMVPMatrix, 0, viewMatrix, 0, mViewMatrix, 0);
 
       scene.draw(mMVPMatrix);
    }
 
 
    /**
-    * scales the distance from the centre of the scene, cuts off at the bottom .2f
-    * @param factor - factor by which to modify the current scale
+    * refreshes the view matrix, showing where the camera is
     */
-   public void scaleViewZoom(float factor) {
-      viewZoom = viewZoom / factor < 0.2f ? 0.2f : viewZoom / factor;
+   public void refreshViewMatrix() {
+      float[] temp = new float[16];
+
+      Matrix.translateM(viewMatrix, 0, mProjectionMatrix, 0, 0f, 0f, -20f * viewZoom);
+      Matrix.rotateM(temp, 0, viewMatrix, 0, viewY, 1f, 0f, 0f);
+      Matrix.rotateM(viewMatrix, 0, temp, 0, viewX, 0f, 1f, 0f);
    }
 
+   public float getViewZoom() {
+      return viewZoom;
+   }
+
+   public void setViewZoom(float viewZoom) {
+      this.viewZoom = viewZoom;
+      refreshViewMatrix();
+   }
 
    public float getViewX() {
       return viewX;
@@ -123,6 +136,7 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    public void setViewX(float viewX) {
       this.viewX = viewX;
+      refreshViewMatrix();
    }
 
    public float getViewY() {
@@ -131,6 +145,7 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    public void setViewY(float viewY) {
       this.viewY = viewY;
+      refreshViewMatrix();
    }
 
 

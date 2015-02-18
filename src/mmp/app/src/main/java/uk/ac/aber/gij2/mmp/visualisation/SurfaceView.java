@@ -8,6 +8,7 @@ package uk.ac.aber.gij2.mmp.visualisation;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.support.annotation.NonNull;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 
@@ -20,8 +21,8 @@ public class SurfaceView extends GLSurfaceView {
    private ScaleGestureDetector scaleGestureDetector;
 
 
-   public SurfaceView(Context context) {
-      super(context);
+   public SurfaceView(Context context, AttributeSet attributes) {
+       super(context);
 
       renderer = new uk.ac.aber.gij2.mmp.visualisation.Renderer(context);
 
@@ -43,8 +44,12 @@ public class SurfaceView extends GLSurfaceView {
          @Override
          public boolean onScale(ScaleGestureDetector detector) {
 
-            // rough
-            renderer.scaleViewZoom(detector.getScaleFactor());
+            float factor = detector.getScaleFactor(), previousViewZoom = renderer.getViewZoom();
+
+            if (previousViewZoom / factor >= 0.2f) {
+               renderer.setViewZoom(previousViewZoom / ((factor * 0.1f) + 0.9f));
+            }
+
             return false;
          }
       });
@@ -72,14 +77,16 @@ public class SurfaceView extends GLSurfaceView {
                deltaY *= -1;
             }
 
-            renderer.setViewX(renderer.getViewX() + deltaX);
-            renderer.setViewY(renderer.getViewY() + deltaY);
-         }
+            renderer.setViewX(renderer.getViewX() + (deltaX * 0.5f));
 
+            float resultY = renderer.getViewY() + (deltaY * 0.5f);
+            if (resultY >= 0 && resultY <= 90) {
+               renderer.setViewY(resultY);
+            }
+         }
 
          previousX = currentX;
          previousY = currentY;
-
       }
 
       return true;
