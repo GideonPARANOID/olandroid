@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   <!-- argb -->
+   <!-- alpha red green blue -->
 
    <color name="app_primary">#ff800000</color>
    <color name="app_secondary">#ff000080</color>
 
+   <color name="vis_primary">#88800000</color>
    <color name="vis_background">#ffffffff</color>
    <color name="vis_grid">#ffbbbbbb</color>
    <color name="vis_flight_front">#ff186b00</color>
@@ -12,6 +13,4 @@
 
    <color name="black">#ff000000</color>
    <color name="white">#ffffffff</color>
-
-   <color name="maroonTransparent">#ff800000</color>
 </resources>

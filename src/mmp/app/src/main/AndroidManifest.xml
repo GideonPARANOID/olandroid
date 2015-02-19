@@ -28,19 +28,21 @@
       <activity
          android:name=".activities.BuildFlightActivity"
          android:label="@string/bfa_title"
-         android:windowSoftInputMode="stateUnchanged">
+         android:windowSoftInputMode="stateUnchanged"
+         android:parentActivityName=".activities.MainActivity">
          <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="uk.ac.aber.gij2.mmp.activities.MainActivity" />
+            android:value=".activities.MainActivity" />
       </activity>
-
 
       <activity
          android:name=".activities.VisualisationActivity"
-         android:label="@string/oga_title">
+         android:label="@string/oga_title"
+         android:parentActivityName=".activities.BuildFlightActivity"
+         android:theme="@style/VisualisationTheme">
          <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="uk.ac.aber.gij2.mmp.activities.BuildFlightActivity" />
+            android:value=".activities.BuildFlightActivity" />
       </activity>
    </application>
 </manifest>

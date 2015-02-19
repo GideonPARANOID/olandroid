@@ -12,8 +12,8 @@ public class Component extends Shape implements Drawable {
 
    // bounds for movement
    public static final int ZERO = 0, MIN = -1, MAX = 1;
-   private final float ANGLE = 1f / 24f;
-   private final float[] matrix;
+   private static final float ANGLE = 1f / 24f, WIDTH = 0.5f;
+   private final float[] matrix, vertices;
 
 
    /**
@@ -54,14 +54,15 @@ public class Component extends Shape implements Drawable {
          z = (float) (length * Math.cos(radians));
       }
 
-      super.setVertices(new float[] {
-         0.5f, 0f, 0f,
-         -0.5f, 0f, 0f,
-         x - 0.5f, y, z,
-         x + 0.5f, y, z,
-         0.5f, 0f, 0f
-      });
+      vertices = new float[] {
+         WIDTH, 0f, 0f,
+         -WIDTH, 0f, 0f,
+         x - WIDTH, y, z,
+         x + WIDTH, y, z,
+         WIDTH, 0f, 0f
+      };
 
+      super.setVertices(vertices);
       super.setDrawOrder(new short[] {
          0, 1, 2,
          0, 2, 3

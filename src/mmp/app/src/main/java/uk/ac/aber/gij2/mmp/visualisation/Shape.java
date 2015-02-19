@@ -49,6 +49,17 @@ public abstract class Shape implements Drawable {
          }
       }
 
+      buildBuffers();
+      getReferences();
+
+      drawingSetup = true;
+   }
+
+
+   /**
+    * constructs the buffers for drawing
+    */
+   protected void buildBuffers() {
       // initialise vertex byte buffer for shape coordinates, 4 bytes per float
       vertexBuffer = ByteBuffer.allocateDirect(vertices.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
       vertexBuffer.put(vertices).position(0);
@@ -56,17 +67,19 @@ public abstract class Shape implements Drawable {
       // initialise byte buffer for the draw list, 2 bytes per short
       drawOrderBuffer = ByteBuffer.allocateDirect(drawOrder.length * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
       drawOrderBuffer.put(drawOrder).position(0);
+   }
 
-      // getting references to the shader program
+
+   /**
+    * gets the necessary references to variables in the shader
+    */
+   protected void getReferences() {
       mColourHandle = GLES20.glGetUniformLocation(Renderer.program, "vColour");
       mPositionHandle = GLES20.glGetAttribLocation(Renderer.program, "vPosition");
       mMVPMatrixHandle = GLES20.glGetUniformLocation(Renderer.program, "uMVPMatrix");
 
       Renderer.checkGlError("glGetUniformLocation");
-
-      drawingSetup = true;
    }
-
 
    /**
     * draws the shape, will automatically setupDrawing
@@ -122,7 +135,6 @@ public abstract class Shape implements Drawable {
 
    public void setColourFront(float[] colourFront) {
       this.colourFront = colourFront;
-      System.out.println(java.util.Arrays.toString(colourFront));
    }
 
    public void setColourBack(float[] colourBack) {

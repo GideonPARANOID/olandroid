@@ -22,9 +22,6 @@ public class VisualisationActivity extends ActionBarActivity {
       getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_visualisation);
-
-//      getSupportActionBar().setBackgroundDrawable(new ColorDrawable(R.color.maroonTransparent));
-//      getSupportActionBar().hide();
    }
 
 
