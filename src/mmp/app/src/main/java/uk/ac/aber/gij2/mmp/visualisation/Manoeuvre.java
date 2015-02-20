@@ -29,10 +29,10 @@ public class Manoeuvre extends Shape implements Drawable {
 
    public void draw(float[] initialMatrix) {
 
-       // setting up relies on an initial draw matrix, so have to do it in the draw loop
-       if (!matricesCalculated) {
-          calculateMatrices(initialMatrix);
-       }
+      // setting up relies on an initial draw matrix, so have to do it in the draw loop
+      if (!matricesCalculated) {
+         calculateMatrices(initialMatrix);
+      }
 
       for (int i = 0; i < components.length; i++) {
          components[i].draw(matrices[i]);
@@ -42,8 +42,9 @@ public class Manoeuvre extends Shape implements Drawable {
 
    /**
     * builds an array of matrices corresponding to the components, each relative the last component
-    *    as each component is a line, its matrix defines the transform from the beginning of that
-    *    line to the end, components need to be drawn starting from the end of the last line
+    * as each component is a line, its matrix defines the transform from the beginning of that
+    * line to the end, components need to be drawn starting from the end of the last line
+    *
     * @param initialMatrix - the starting matrix
     */
    private void calculateMatrices(float[] initialMatrix) {
@@ -71,6 +72,49 @@ public class Manoeuvre extends Shape implements Drawable {
       calculateMatrices(blank);
 
       return matrices[matrices.length - 1];
+   }
+
+
+   /**
+    * modifies a manoeuvre's drawing, from none to partial to full, starting at the beginning
+    * @param progress - level of progress, between 0 & 1
+    */
+   public void animate(float progress) {
+
+      // if either fully drawn or fully not drawn
+      if (progress == 0f || progress == 1f) {
+         for (int i = 0; i < components.length; i++) {
+            components[i].animate(progress);
+         }
+
+      } else {
+         float midComponent = components.length * progress;
+         int midComponentMin = ((int) Math.floor(midComponent));
+
+         // full
+         for (int i = 0; i <= midComponentMin; i++) {
+            components[i].animate(1f);
+         }
+
+         // mid
+         components[midComponentMin].animate(midComponent - (float) midComponentMin);
+
+         // none
+         for (int i = midComponentMin + 1; i < components.length; i++) {
+            components[i].animate(0f);
+         }
+      }
+   }
+
+
+   public float getLength() {
+
+      float total = 0f;
+      for (int i = 0; i < components.length; i++) {
+         total += components[i].getLength();
+      }
+
+      return total;
    }
 
 

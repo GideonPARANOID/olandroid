@@ -14,6 +14,8 @@ public class MMPApplication extends android.app.Application {
 
    private FlightManager flightManager;
    private ManoeuvreCatalogue manoeuvreCatalogue;
+   private float animationProgress;
+
 
    @Override
    public void onCreate() {
@@ -21,6 +23,8 @@ public class MMPApplication extends android.app.Application {
 
       manoeuvreCatalogue = new ManoeuvreCatalogue(this);
       flightManager.setManoeuvreCatalogue(manoeuvreCatalogue);
+
+      animationProgress = 1;
    }
 
 
@@ -45,6 +49,7 @@ public class MMPApplication extends android.app.Application {
       return flightManager.getScene();
    }
 
+
    public ManoeuvreCatalogue getManoeuvreCatalogue() {
       return manoeuvreCatalogue;
    }
@@ -62,5 +67,17 @@ public class MMPApplication extends android.app.Application {
          (float) Color.blue(colour) / 256f,
          (float) Color.alpha(colour) / 256f
       };
+   }
+
+
+   public float getAnimationProgress() {
+      return animationProgress;
+   }
+
+
+   public void setAnimationProgress(float animationProgress) {
+      this.animationProgress = animationProgress;
+
+      flightManager.getCurrentFlight().animate(animationProgress);
    }
 }

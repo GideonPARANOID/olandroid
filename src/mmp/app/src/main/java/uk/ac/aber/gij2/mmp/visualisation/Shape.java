@@ -15,6 +15,9 @@ import java.nio.ShortBuffer;
 
 public abstract class Shape implements Drawable {
 
+
+   // TODO: consider stripping out the vertices/draworder arrays completely, leaving only buffers
+
    private FloatBuffer vertexBuffer;
    private ShortBuffer drawOrderBuffer;
 
@@ -29,6 +32,9 @@ public abstract class Shape implements Drawable {
    private int drawMode;
 
 
+   private boolean draw = true;
+
+
    public Shape() {
       drawingSetup = false;
       drawMode = FILL;
@@ -36,7 +42,8 @@ public abstract class Shape implements Drawable {
 
 
    /**
-    * constructs buffers & makes references to shader program variables, needs vertex & draw orders set
+    * constructs buffers & makes references to shader program variables, needs vertex & draw orders
+    *    set
     */
    protected void setupDrawing() {
 
@@ -49,37 +56,16 @@ public abstract class Shape implements Drawable {
          }
       }
 
-      buildBuffers();
-      getReferences();
-
-      drawingSetup = true;
-   }
-
-
-   /**
-    * constructs the buffers for drawing
-    */
-   protected void buildBuffers() {
-      // initialise vertex byte buffer for shape coordinates, 4 bytes per float
-      vertexBuffer = ByteBuffer.allocateDirect(vertices.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
-      vertexBuffer.put(vertices).position(0);
-
-      // initialise byte buffer for the draw list, 2 bytes per short
-      drawOrderBuffer = ByteBuffer.allocateDirect(drawOrder.length * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
-      drawOrderBuffer.put(drawOrder).position(0);
-   }
-
-
-   /**
-    * gets the necessary references to variables in the shader
-    */
-   protected void getReferences() {
+      // gets the necessary references to variables in the shader
       mColourHandle = GLES20.glGetUniformLocation(Renderer.program, "vColour");
       mPositionHandle = GLES20.glGetAttribLocation(Renderer.program, "vPosition");
       mMVPMatrixHandle = GLES20.glGetUniformLocation(Renderer.program, "uMVPMatrix");
 
       Renderer.checkGlError("glGetUniformLocation");
+
+      drawingSetup = true;
    }
+
 
    /**
     * draws the shape, will automatically setupDrawing
@@ -91,46 +77,69 @@ public abstract class Shape implements Drawable {
          setupDrawing();
       }
 
-      GLES20.glUseProgram(Renderer.program);
+      if (draw) {
+         GLES20.glUseProgram(Renderer.program);
 
-      // enabling a handle to the triangle vertices
-      GLES20.glEnableVertexAttribArray(mPositionHandle);
+         // enabling a handle to the triangle vertices
+         GLES20.glEnableVertexAttribArray(mPositionHandle);
 
-      // preparing the triangle coordinate data
-      GLES20.glVertexAttribPointer(mPositionHandle, 3, GLES20.GL_FLOAT, false, 12, vertexBuffer);
+         // preparing the triangle coordinate data
+         GLES20.glVertexAttribPointer(mPositionHandle, 3, GLES20.GL_FLOAT, false, 12, vertexBuffer);
 
-      // apply the projection and view transformation
-      GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mvpMatrix, 0);
-      Renderer.checkGlError("glUniformMatrix4fv");
+         // apply the projection and view transformation
+         GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mvpMatrix, 0);
+         Renderer.checkGlError("glUniformMatrix4fv");
 
-      if (drawMode == FILL) {
-         // painting the front (bottom)
-         GLES20.glCullFace(GLES20.GL_FRONT);
-         GLES20.glUniform4fv(mColourHandle, 1, colourFront, 0);
-         GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+         if (drawMode == FILL) {
+            // painting the front (bottom)
+            GLES20.glCullFace(GLES20.GL_FRONT);
+            GLES20.glUniform4fv(mColourHandle, 1, colourFront, 0);
+            GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
 
-         // painting the back (top)
-         GLES20.glCullFace(GLES20.GL_BACK);
-         GLES20.glUniform4fv(mColourHandle, 1, colourBack, 0);
-         GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+            // painting the back (top)
+            GLES20.glCullFace(GLES20.GL_BACK);
+            GLES20.glUniform4fv(mColourHandle, 1, colourBack, 0);
+            GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+
+         } else {
+            GLES20.glUniform4fv(mColourHandle, 1, colourFront, 0);
+            GLES20.glDrawElements(GLES20.GL_LINE_STRIP, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+         }
+
+         // disabling vertex array
+         GLES20.glDisableVertexAttribArray(mPositionHandle);
+      }
+   }
+
+
+   /**
+    * @param vertices - vertices of the shape
+    */
+   protected void buildVertices(float[] vertices) {
+      if (vertices == null) {
+         draw = false;
 
       } else {
-         GLES20.glUniform4fv(mColourHandle, 1, colourFront, 0);
-         GLES20.glDrawElements(GLES20.GL_LINE_STRIP, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+         draw = true;
+
+         this.vertices = vertices;
+
+         // initialise vertex byte buffer for shape coordinates, 4 bytes per float
+         vertexBuffer = ByteBuffer.allocateDirect(vertices.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
+         vertexBuffer.put(vertices).position(0);
       }
-
-
-      // disabling vertex array
-      GLES20.glDisableVertexAttribArray(mPositionHandle);
    }
 
 
-   protected void setVertices(float[] vertices) {
-      this.vertices = vertices;
-   }
-
-   protected void setDrawOrder(short[] drawOrder) {
+   /**
+    * @param drawOrder - order of drawing of the shape
+    */
+   protected void buildDrawOrder(short[] drawOrder) {
       this.drawOrder = drawOrder;
+
+      // initialise byte buffer for the draw list, 2 bytes per short
+      drawOrderBuffer = ByteBuffer.allocateDirect(drawOrder.length * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
+      drawOrderBuffer.put(drawOrder).position(0);
    }
 
    public void setColourFront(float[] colourFront) {

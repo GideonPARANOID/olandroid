@@ -49,4 +49,11 @@ public class Scene {
          item.draw(initialMatrix);
       }
    }
+
+
+   public void animate(float completion) {
+
+      // flight is always at index 1, TODO: refine
+      ((Flight) sceneGraph.get(1)).animate(completion);
+   }
 }

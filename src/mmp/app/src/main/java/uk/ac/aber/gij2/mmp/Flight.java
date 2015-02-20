@@ -26,18 +26,18 @@ public class Flight implements Drawable {
     */
    public String getOLAN() {
 
-      String olanDescription = "";
+      String olan = "";
       for (Manoeuvre manoeuvre : manoeuvres) {
-         olanDescription += " " + manoeuvre.getOLAN();
+         olan += " " + manoeuvre.getOLAN();
       }
 
-      return olanDescription;
+      return olan;
    }
 
 
    public void draw(float[] initialMatrix) {
 
-      buildMatricesList(initialMatrix);
+      calculateMatrices(initialMatrix);
 
        for (int i = 0; i < manoeuvres.length; i++) {
          manoeuvres[i].draw(matrices[i]);
@@ -52,10 +52,9 @@ public class Flight implements Drawable {
     *    line to the end, components need to be drawn starting from the end of the last line
     * @param initialMatrix - the starting matrix
     */
-   private void buildMatricesList(float[] initialMatrix) {
+   private void calculateMatrices(float[] initialMatrix) {
 
       matrices = new float[manoeuvres.length + 1][16];
-
       matrices[0] = initialMatrix;
 
       // each matrix is a multiplication of the last constructed one & the last drawn one
@@ -66,8 +65,57 @@ public class Flight implements Drawable {
    }
 
 
-   // TODO: implement
    public float[] getCompleteMatrix() {
+
+      // starting from scratch
+      float[] blank = new float[16];
+      Matrix.setIdentityM(blank, 0);
+      calculateMatrices(blank);
+
       return new float[16];
+   }
+
+
+   /**
+    * modifies a flight's drawing, from none to partial to full, starting at the beginning
+    * @param progress - level of progress, between 0 & 1
+    */
+   public void animate(float progress) {
+
+      // if either fully drawn or fully not drawn
+      if (progress == 0f || progress == 1f) {
+         for (int i = 0; i < manoeuvres.length; i++) {
+            manoeuvres[i].animate(progress);
+         }
+
+      } else {
+         float midManoeuvre = manoeuvres.length * progress;
+         int midManoeuvreMin = ((int) Math.floor(midManoeuvre));
+
+         // full
+         for (int i = 0; i <= midManoeuvreMin; i++) {
+            manoeuvres[i].animate(1f);
+            System.out.println(i + " full");
+         }
+
+         // mid
+         manoeuvres[midManoeuvreMin].animate(midManoeuvre - (float) midManoeuvreMin);
+
+         // none
+         for (int i = midManoeuvreMin + 1; i < manoeuvres.length; i++) {
+            manoeuvres[i].animate(0f);
+         }
+      }
+   }
+
+
+   public float getLength() {
+      float total = 0;
+
+      for (int i = 0; i < manoeuvres.length; i++) {
+         total += manoeuvres[i].getLength();
+      }
+
+      return total;
    }
 }

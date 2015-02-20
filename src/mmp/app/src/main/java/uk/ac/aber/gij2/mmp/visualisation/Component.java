@@ -14,6 +14,7 @@ public class Component extends Shape implements Drawable {
    public static final int ZERO = 0, MIN = -1, MAX = 1;
    private static final float ANGLE = 1f / 24f, WIDTH = 0.5f;
    private final float[] matrix, vertices;
+   private float length;
 
 
    /**
@@ -28,6 +29,8 @@ public class Component extends Shape implements Drawable {
 
       super.setColourFront(colourFront);
       super.setColourBack(colourBack);
+
+      this.length = length;
 
       float x, y, z;
 
@@ -62,8 +65,8 @@ public class Component extends Shape implements Drawable {
          WIDTH, 0f, 0f
       };
 
-      super.setVertices(vertices);
-      super.setDrawOrder(new short[] {
+      super.buildVertices(vertices);
+      super.buildDrawOrder(new short[]{
          0, 1, 2,
          0, 2, 3
       });
@@ -83,5 +86,21 @@ public class Component extends Shape implements Drawable {
 
    public float[] getCompleteMatrix() {
       return matrix;
+   }
+
+
+   /**
+    * modifies a component's drawing, from none to full, starting at the beginning
+    * @param progress - level of progress, between 0 & 1
+    */
+   public void animate(float progress) {
+
+      // TODO: refine
+      super.buildVertices(progress == 0f ? null : vertices);
+   }
+
+
+   public float getLength() {
+      return length;
    }
 }

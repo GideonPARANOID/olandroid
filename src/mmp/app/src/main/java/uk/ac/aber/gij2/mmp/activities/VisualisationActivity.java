@@ -9,19 +9,26 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
+import android.widget.SeekBar;
 
+import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.R;
 
 
-public class VisualisationActivity extends ActionBarActivity {
-
+public class VisualisationActivity extends ActionBarActivity implements SeekBar.OnSeekBarChangeListener {
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
-      getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_visualisation);
+
+      SeekBar animationSeek = ((SeekBar) findViewById(R.id.va_seek));
+
+      // resetting animation & seek
+      ((MMPApplication) getApplication()).setAnimationProgress(1f);
+      animationSeek.setProgress(100);
+
+      animationSeek.setOnSeekBarChangeListener(this);
    }
 
 
@@ -42,5 +49,18 @@ public class VisualisationActivity extends ActionBarActivity {
          default:
             return super.onOptionsItemSelected(item);
       }
+   }
+
+
+   public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+      ((MMPApplication) getApplication()).setAnimationProgress((float) progress / 100f);
+   }
+
+
+   public void onStopTrackingTouch(SeekBar seekBar) {
+   }
+
+
+   public void onStartTrackingTouch(SeekBar seekBar) {
    }
 }
