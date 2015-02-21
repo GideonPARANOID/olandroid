@@ -27,6 +27,16 @@ public class Manoeuvre extends Shape implements Drawable {
    }
 
 
+   public static Manoeuvre getNewInstance(Manoeuvre manoeuvre) {
+      return new Manoeuvre(manoeuvre.getComponents(), manoeuvre.getOLAN(), manoeuvre.getName());
+   }
+
+
+   public Component[] getComponents() {
+      return components;
+   }
+
+
    public void draw(float[] initialMatrix) {
 
       // setting up relies on an initial draw matrix, so have to do it in the draw loop

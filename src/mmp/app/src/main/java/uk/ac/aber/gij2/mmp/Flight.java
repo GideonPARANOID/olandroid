@@ -95,7 +95,6 @@ public class Flight implements Drawable {
          // full
          for (int i = 0; i <= midManoeuvreMin; i++) {
             manoeuvres[i].animate(1f);
-            System.out.println(i + " full");
          }
 
          // mid

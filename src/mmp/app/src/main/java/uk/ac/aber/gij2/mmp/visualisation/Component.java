@@ -95,8 +95,24 @@ public class Component extends Shape implements Drawable {
     */
    public void animate(float progress) {
 
-      // TODO: refine
-      super.buildVertices(progress == 0f ? null : vertices);
+      if (progress == 0f) {
+         super.buildVertices(null);
+
+      } else if (progress == 1f) {
+         super.buildVertices(vertices);
+
+      } else {
+         float[] temp = new float[vertices.length];
+
+         System.arraycopy(vertices, 0, temp, 0, vertices.length);
+
+         // TODO: refine
+         // extending the z distance
+         temp[8] = vertices[8] * .5f;
+         temp[11] = vertices[11] * .5f;
+
+         super.buildVertices(temp);
+      }
    }
 
 

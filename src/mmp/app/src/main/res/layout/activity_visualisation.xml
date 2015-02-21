@@ -5,10 +5,10 @@
 
    android:layout_width="match_parent"
    android:layout_height="match_parent"
-   android:paddingLeft="@dimen/activity_visualisation_margin_horizontal"
-   android:paddingRight="@dimen/activity_visualisation_margin_horizontal"
-   android:paddingTop="@dimen/activity_visualisation_margin_vertical"
-   android:paddingBottom="@dimen/activity_visualisation_margin_vertical">
+   android:paddingLeft="@dimen/activity_visualisation_full_padding_horizontal"
+   android:paddingRight="@dimen/activity_visualisation_full_padding_horizontal"
+   android:paddingTop="@dimen/activity_visualisation_full_padding_vertical"
+   android:paddingBottom="@dimen/activity_visualisation_full_padding_vertical">
 
    <uk.ac.aber.gij2.mmp.visualisation.SurfaceView
       android:layout_width="match_parent"
@@ -20,6 +20,10 @@
       android:layout_height="wrap_content"
       android:id="@+id/va_seek"
       android:layout_alignParentBottom="true"
-      android:layout_centerHorizontal="true"/>
+      android:layout_centerHorizontal="true"
+      android:paddingLeft="@dimen/activity_visualisation_interface_padding_horizontal"
+      android:paddingRight="@dimen/activity_visualisation_interface_padding_horizontal"
+      android:paddingTop="@dimen/activity_visualisation_interface_padding_vertical"
+      android:paddingBottom="@dimen/activity_visualisation_interface_padding_vertical"/>
 
 </RelativeLayout>

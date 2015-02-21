@@ -193,7 +193,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
    /**
     * querying the manoeuvre catalogue with a key
     * @param key - the olan key to look for
-    * @return - a manoeuvre with olan matchin the input
+    * @return - a manoeuvre with olan matching the input
     * @throws NullPointerException - might not be able to find the manoeuvre specified
     */
    public Manoeuvre get(String key) throws NullPointerException {

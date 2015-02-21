@@ -38,7 +38,7 @@ public class FlightManager {
       Manoeuvre[] manoeuvres = new Manoeuvre[figures.length];
 
       for (int i = 0; i < figures.length; i++) {
-         manoeuvres[i] = manoeuvreCatalogue.get(figures[i]);
+         manoeuvres[i] = Manoeuvre.getNewInstance(manoeuvreCatalogue.get(figures[i]));
       }
 
       return new Flight(manoeuvres);
