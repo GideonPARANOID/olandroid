@@ -1,4 +1,3 @@
-#version 120
 // this matrix member variable provides a hook to manipulate
 // the coordinates of the objects that use this vertex shader
 
