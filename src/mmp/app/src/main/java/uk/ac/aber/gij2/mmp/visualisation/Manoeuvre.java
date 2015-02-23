@@ -27,13 +27,25 @@ public class Manoeuvre extends Shape implements Drawable {
    }
 
 
-   public static Manoeuvre getNewInstance(Manoeuvre manoeuvre) {
-      return new Manoeuvre(manoeuvre.getComponents(), manoeuvre.getOLAN(), manoeuvre.getName());
-   }
+   /**
+    * copy constructor
+    * @param manoeuvre - instance of manoeuvre to copy
+    */
+   public Manoeuvre(Manoeuvre manoeuvre) {
+      super();
 
+      // need to copy components, to prevent duplicate manoeuvres from sharing animations
+      Component[] oldComponents = manoeuvre.components,
+         components = new Component[oldComponents.length];
 
-   public Component[] getComponents() {
-      return components;
+      for (int i = 0; i < components.length; i++) {
+         components[i] = new Component(oldComponents[i]);
+      }
+
+      this.olan = manoeuvre.olan;
+      this.name = manoeuvre.name;
+
+      matricesCalculated = false;
    }
 
 

@@ -13,8 +13,10 @@ public class Component extends Shape implements Drawable {
    // bounds for movement
    public static final int ZERO = 0, MIN = -1, MAX = 1;
    private static final float ANGLE = 1f / 24f, WIDTH = 0.5f;
-   private final float[] matrix, vertices;
+
+   private int pitch, yaw, roll;
    private float length;
+   private final float[] matrix, vertices, colourFront, colourBack;
 
 
    /**
@@ -26,6 +28,12 @@ public class Component extends Shape implements Drawable {
       float[] colourBack) {
 
       super();
+
+      this.pitch = pitch;
+      this.yaw = yaw;
+      this.roll = roll;
+      this.colourFront = colourFront;
+      this.colourBack = colourBack;
 
       super.setColourFront(colourFront);
       super.setColourBack(colourBack);
@@ -81,6 +89,16 @@ public class Component extends Shape implements Drawable {
       }
 
       Matrix.translateM(matrix, 0, 0f, 0f, length);
+   }
+
+
+   /**
+    * copy constructor
+    * @param component - instance of component to copy
+    */
+   public Component(Component component) {
+      this(component.pitch, component.yaw, component.roll, component.length, component.colourFront,
+         component.colourBack);
    }
 
 
