@@ -120,16 +120,16 @@ public class Component extends Shape implements Drawable {
          super.buildVertices(vertices);
 
       } else {
-         float[] temp = new float[vertices.length];
+         float[] newVertices = new float[vertices.length];
 
-         System.arraycopy(vertices, 0, temp, 0, vertices.length);
+         System.arraycopy(vertices, 0, newVertices, 0, vertices.length);
 
          // TODO: refine
          // extending the z distance
-         temp[8] = vertices[8] * .5f;
-         temp[11] = vertices[11] * .5f;
+         newVertices[8] *= progress;
+         newVertices[11] *= progress;
 
-         super.buildVertices(temp);
+         super.buildVertices(newVertices);
       }
    }
 

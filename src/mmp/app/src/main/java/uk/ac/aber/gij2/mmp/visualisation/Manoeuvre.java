@@ -9,11 +9,11 @@ import android.opengl.Matrix;
 
 
 public class Manoeuvre extends Shape implements Drawable {
-
    private Component[] components;
    private float[][] matrices;
-   private boolean matricesCalculated;
+   private float[] componentsCumulativeLength;
    private String olan, name;
+   private boolean matricesCalculated;
 
 
    public Manoeuvre(Component[] components, String olan, String name) {
@@ -22,6 +22,8 @@ public class Manoeuvre extends Shape implements Drawable {
       this.components = components;
       this.olan = olan;
       this.name = name;
+
+      buildComponentsCumulativeLength();
 
       matricesCalculated = false;
    }
@@ -44,6 +46,8 @@ public class Manoeuvre extends Shape implements Drawable {
 
       this.olan = manoeuvre.olan;
       this.name = manoeuvre.name;
+
+      buildComponentsCumulativeLength();
 
       matricesCalculated = false;
    }
@@ -98,7 +102,8 @@ public class Manoeuvre extends Shape implements Drawable {
 
 
    /**
-    * modifies a manoeuvre's drawing, from none to partial to full, starting at the beginning
+    * modifies a manoeuvre's drawing, from none to partial to full, starting at the beginning,
+    *    taking into account the length of components
     * @param progress - level of progress, between 0 & 1
     */
    public void animate(float progress) {
@@ -110,30 +115,45 @@ public class Manoeuvre extends Shape implements Drawable {
          }
 
       } else {
-         float midComponent = components.length * progress;
-         int midComponentMin = ((int) Math.floor(midComponent));
+         // getting progress to be in the context of the flight length in components
+         progress *= getLength();
 
-         for (int i = 0; i <= midComponentMin; i++) {
-            components[i].animate(1f);
+         int current = 0;
+
+         while (current < components.length && componentsCumulativeLength[current] < progress) {
+            components[current++].animate(1f);
          }
 
-         components[midComponentMin].animate(midComponent - (float) midComponentMin);
+         // scaling across the cumulative middle
+         components[current].animate(1 -
+            ((componentsCumulativeLength[current] - progress) / components[current].getLength()));
 
-         for (int i = midComponentMin + 1; i < components.length; i++) {
-            components[i].animate(0f);
+         current++;
+
+         while (current < components.length) {
+            components[current++].animate(0f);
          }
       }
    }
 
 
-   public float getLength() {
+   /**
+    * builds the list of cumulative lengths of components
+    */
+   public void buildComponentsCumulativeLength() {
 
-      float total = 0f;
-      for (int i = 0; i < components.length; i++) {
-         total += components[i].getLength();
+      componentsCumulativeLength = new float[components.length];
+      componentsCumulativeLength[0] = components[0].getLength();
+
+      for (int i = 1; i < components.length; i++) {
+         componentsCumulativeLength[i] = componentsCumulativeLength[i - 1] +
+            components[i].getLength();
       }
+   }
 
-      return total;
+
+   public float getLength() {
+      return componentsCumulativeLength[componentsCumulativeLength.length - 1];
    }
 
 

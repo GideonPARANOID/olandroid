@@ -14,10 +14,13 @@ import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 public class Flight implements Drawable {
    private Manoeuvre[] manoeuvres;
    private float[][] matrices;
+   private float[] manoeuvresCumulativeLength;
 
 
    public Flight(Manoeuvre[] manoeuvres) {
       this.manoeuvres = manoeuvres;
+
+      buildManoeuvresCumulativeLength();
    }
 
 
@@ -77,7 +80,8 @@ public class Flight implements Drawable {
 
 
    /**
-    * modifies a flight's drawing, from none to partial to full, starting at the beginning
+    * modifies a flight's drawing, from none to partial to full, starting at the beginning, taking
+    *    into account the lengths of manoeuvres
     * @param progress - level of progress, between 0 & 1
     */
    public void animate(float progress) {
@@ -89,29 +93,44 @@ public class Flight implements Drawable {
          }
 
       } else {
-         float midManoeuvre = manoeuvres.length * progress;
-         int midManoeuvreMin = ((int) Math.floor(midManoeuvre));
+         // getting progress to be in the context of the flight length in manoeuvres
+         progress *= getLength();
 
-         for (int i = 0; i <= midManoeuvreMin; i++) {
-            manoeuvres[i].animate(1f);
+         int current = 0;
+
+         while (current < manoeuvres.length && manoeuvresCumulativeLength[current] < progress) {
+            manoeuvres[current++].animate(1f);
          }
 
-         manoeuvres[midManoeuvreMin].animate(midManoeuvre - (float) midManoeuvreMin);
+         // scaling across the cumulative middle
+         manoeuvres[current].animate(1 -
+            ((manoeuvresCumulativeLength[current] - progress) / manoeuvres[current].getLength()));
 
-         for (int i = midManoeuvreMin + 1; i < manoeuvres.length; i++) {
-            manoeuvres[i].animate(0f);
+         current++;
+
+         while (current < manoeuvres.length) {
+            manoeuvres[current++].animate(0f);
          }
       }
    }
 
 
-   public float getLength() {
+   /**
+    * builds the list of cumulative lengths of components
+    */
+   public void buildManoeuvresCumulativeLength() {
 
-      float total = 0f;
-      for (int i = 0; i < manoeuvres.length; i++) {
-         total += manoeuvres[i].getLength();
+      manoeuvresCumulativeLength = new float[manoeuvres.length];
+      manoeuvresCumulativeLength[0] = manoeuvres[0].getLength();
+
+      for (int i = 1; i < manoeuvres.length; i++) {
+         manoeuvresCumulativeLength[i] = manoeuvresCumulativeLength[i - 1] +
+            manoeuvres[i].getLength();
       }
+   }
 
-      return total;
+
+   public float getLength() {
+      return manoeuvresCumulativeLength[manoeuvresCumulativeLength.length - 1];
    }
 }
