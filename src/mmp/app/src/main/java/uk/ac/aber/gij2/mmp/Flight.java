@@ -92,15 +92,12 @@ public class Flight implements Drawable {
          float midManoeuvre = manoeuvres.length * progress;
          int midManoeuvreMin = ((int) Math.floor(midManoeuvre));
 
-         // full
          for (int i = 0; i <= midManoeuvreMin; i++) {
             manoeuvres[i].animate(1f);
          }
 
-         // mid
          manoeuvres[midManoeuvreMin].animate(midManoeuvre - (float) midManoeuvreMin);
 
-         // none
          for (int i = midManoeuvreMin + 1; i < manoeuvres.length; i++) {
             manoeuvres[i].animate(0f);
          }
@@ -109,8 +106,8 @@ public class Flight implements Drawable {
 
 
    public float getLength() {
-      float total = 0;
 
+      float total = 0f;
       for (int i = 0; i < manoeuvres.length; i++) {
          total += manoeuvres[i].getLength();
       }

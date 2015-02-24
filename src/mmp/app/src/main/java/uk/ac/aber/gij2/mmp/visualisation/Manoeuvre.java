@@ -35,8 +35,8 @@ public class Manoeuvre extends Shape implements Drawable {
       super();
 
       // need to copy components, to prevent duplicate manoeuvres from sharing animations
-      Component[] oldComponents = manoeuvre.components,
-         components = new Component[oldComponents.length];
+      Component[] oldComponents = manoeuvre.components;
+      components = new Component[oldComponents.length];
 
       for (int i = 0; i < components.length; i++) {
          components[i] = new Component(oldComponents[i]);
@@ -113,15 +113,12 @@ public class Manoeuvre extends Shape implements Drawable {
          float midComponent = components.length * progress;
          int midComponentMin = ((int) Math.floor(midComponent));
 
-         // full
          for (int i = 0; i <= midComponentMin; i++) {
             components[i].animate(1f);
          }
 
-         // mid
          components[midComponentMin].animate(midComponent - (float) midComponentMin);
 
-         // none
          for (int i = midComponentMin + 1; i < components.length; i++) {
             components[i].animate(0f);
          }
