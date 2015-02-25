@@ -1,6 +1,6 @@
 # MMP
 
-A tool for visual modelling acrobatic aeroplane flight.
+A tool for visual modelling acrobatic aeroplane flight. See the [development diary](https://github.com/GideonPARANOID/mmp/wiki) & [demos](https://www.youtube.com/playlist?list=PLFyZMqjrwPwacU4OqQyIyKR6jJGp6z2Kw).
 
 ## Useful links
 
