@@ -45,7 +45,6 @@ public class Flight implements Drawable {
        for (int i = 0; i < manoeuvres.length; i++) {
          manoeuvres[i].draw(matrices[i]);
       }
-
    }
 
 

@@ -20,9 +20,12 @@ public class Component extends Shape implements Drawable {
 
 
    /**
-    * @param pitch - vertical direction
-    * @param yaw - horizontal direction
-    * @param roll - //TODO implement
+    * @param pitch - vertical amount
+    * @param yaw - horizontal amount
+    * @param roll - roll amount
+    * @param length - length of the component
+    * @param colourFront - argb colour for the front of the component
+    * @param colourBack - argb colour for the back of the component
     */
    public Component(int pitch, int yaw, int roll, float length, float[] colourFront,
       float[] colourBack) {

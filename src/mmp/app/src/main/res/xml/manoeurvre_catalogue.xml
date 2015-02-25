@@ -347,6 +347,30 @@
       </variant>
    </manoeuvre>
 
+   <manoeuvre olan="a">
+      <variant olanprefix="" name="split-a">
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
+
+         <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
+
+         <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
+
+         <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
+
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+      </variant>
+   </manoeuvre>
+
+
    <!-- loops -->
 
    <manoeuvre olan="o">
