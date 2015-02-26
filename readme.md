@@ -2,6 +2,8 @@
 
 A tool for visual modelling acrobatic aeroplane flight. See the [development diary](https://github.com/GideonPARANOID/mmp/wiki) & [demos](https://www.youtube.com/playlist?list=PLFyZMqjrwPwacU4OqQyIyKR6jJGp6z2Kw).
 
+[Google+ beta testing group](https://plus.google.com/communities/111527779897334123267).
+
 ## Useful links
 
 * [Aresti catalogue](https://en.wikipedia.org/wiki/Aresti_Catalog).
