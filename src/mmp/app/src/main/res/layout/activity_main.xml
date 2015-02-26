@@ -3,49 +3,52 @@
    xmlns:tools="http://schemas.android.com/tools"
    tools:context="uk.ac.aber.gij2.mmp.activities.MainActivity"
 
+   android:orientation="vertical"
+   android:paddingLeft="@dimen/a_margin_horizontal"
+   android:paddingRight="@dimen/a_margin_horizontal"
+   android:paddingTop="@dimen/a_margin_vertical"
+   android:paddingBottom="@dimen/a_margin_vertical"
+
    android:layout_width="match_parent"
    android:layout_height="match_parent"
-   android:paddingLeft="@dimen/activity_margin_horizontal"
-   android:paddingRight="@dimen/activity_margin_horizontal"
-   android:paddingTop="@dimen/activity_margin_vertical"
-   android:paddingBottom="@dimen/activity_margin_vertical"
-
-   android:orientation="vertical"
    android:layout_toRightOf="@+id/ma_intro_title"
    android:layout_toEndOf="@+id/ma_intro_title"
    android:layout_alignParentTop="true">
 
    <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textAppearance="?android:attr/textAppearanceLarge"
-      android:text="@string/ma_intro_title"
       android:id="@+id/ma_intro_title"
+      android:text="@string/ma_intro_title"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
       android:layout_gravity="center_horizontal"/>
 
    <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textAppearance="?android:attr/textAppearanceMedium"
-      android:text="@string/ma_intro_text"
       android:id="@+id/ma_intro_text"
+      android:text="@string/ma_intro_text"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
       android:layout_gravity="center_horizontal"/>
 
    <TextView
+      android:id="@+id/ma_intro_link"
+      android:text="@string/ma_intro_link"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:textAppearance="?android:attr/textAppearanceMedium"
-      android:text="@string/ma_intro_link"
-      android:id="@+id/ma_intro_link"
       android:layout_gravity="center_horizontal"/>
 
    <Button
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/ma_button_build"
       android:id="@+id/ma_button_build"
-      android:layout_gravity="center_horizontal"
-      android:onClick="button_build" />
+      android:text="@string/ma_button_build"
+      android:onClick="button_build"
 
+      android:layout_gravity="center_horizontal"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content" />
 </LinearLayout>
 

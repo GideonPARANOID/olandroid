@@ -37,7 +37,7 @@
 
       <activity
          android:name=".activities.VisualisationActivity"
-         android:label="@string/oga_title"
+         android:label="@string/va_title"
          android:parentActivityName=".activities.BuildFlightActivity"
          android:theme="@style/VisualisationTheme">
          <meta-data

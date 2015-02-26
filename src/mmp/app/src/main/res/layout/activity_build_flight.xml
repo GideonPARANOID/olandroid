@@ -3,37 +3,39 @@
    xmlns:tools="http://schemas.android.com/tools"
    tools:context="uk.ac.aber.gij2.mmp.activities.MainActivity"
 
+   android:orientation="vertical"
+   android:paddingLeft="@dimen/a_margin_horizontal"
+   android:paddingRight="@dimen/a_margin_horizontal"
+   android:paddingTop="@dimen/a_margin_vertical"
+   android:paddingBottom="@dimen/a_margin_vertical"
+
    android:layout_width="match_parent"
    android:layout_height="match_parent"
-   android:paddingLeft="@dimen/activity_margin_horizontal"
-   android:paddingRight="@dimen/activity_margin_horizontal"
-   android:paddingTop="@dimen/activity_margin_vertical"
-   android:paddingBottom="@dimen/activity_margin_vertical"
-
-   android:orientation="vertical"
    android:layout_toRightOf="@+id/bfa_intro_title"
    android:layout_toEndOf="@+id/bfa_intro_title"
    android:layout_alignParentTop="true">
 
    <EditText
+      android:id="@+id/bfa_edittext_olan"
+      android:hint="@string/bfa_hint_olan"
+
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/bfa_edittext_olan"
-      android:layout_gravity="center_horizontal"
-      android:hint="@string/bfa_hint_olan" />
+      android:layout_gravity="center_horizontal" />
 
    <Button
+      android:id="@+id/bfa_button_vis"
+      android:text="@string/bfa_button_vis"
+      android:onClick="button_vis"
+
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:text="@string/bfa_button_vis"
-      android:id="@+id/bfa_button_vis"
-      android:layout_gravity="center_horizontal"
-      android:onClick="button_vis" />
+      android:layout_gravity="center_horizontal" />
 
    <ListView
+      android:id="@+id/bfa_manoeuvre_list"
+
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/bfa_manoeuvre_list"
       android:layout_gravity="center_horizontal"/>
 </LinearLayout>
-

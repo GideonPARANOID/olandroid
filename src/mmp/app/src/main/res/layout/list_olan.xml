@@ -1,32 +1,39 @@
 <RelativeLayout
    xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   tools:context="uk.ac.aber.gij2.mmp.activities.MainActivity"
+
+   android:orientation="vertical"
+   android:paddingLeft="@dimen/a_margin_horizontal"
+   android:paddingRight="@dimen/a_margin_horizontal"
+   android:paddingTop="@dimen/a_margin_vertical"
+   android:paddingBottom="@dimen/a_margin_vertical"
+
    android:layout_width="match_parent"
-   android:layout_height="match_parent"
-   android:paddingLeft="@dimen/activity_margin_horizontal"
-   android:paddingRight="@dimen/activity_margin_horizontal"
-   android:paddingTop="@dimen/activity_margin_vertical"
-   android:paddingBottom="@dimen/activity_margin_vertical"
-   android:orientation="vertical" >
+   android:layout_height="match_parent">
 
    <TextView
       android:id="@+id/ol_text_olan"
-      android:layout_width="wrap_content"
+
+      style="@style/AppTheme"
+
+      android:layout_width="25dp"
       android:layout_height="wrap_content"
       android:layout_alignParentLeft="true"
-      android:layout_alignParentStart="true"
-      android:width="25dp"
-      style="@style/AppTheme" />
+      android:layout_alignParentStart="true" />
 
    <TextView
+      android:id="@+id/ol_text_name"
+      android:clickable="true"
+
+      style="@style/AppTheme"
+
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:id="@+id/ol_text_name"
       android:layout_marginLeft="25dp"
       android:layout_marginStart="25dp"
       android:layout_alignBaseline="@+id/ol_text_olan"
       android:layout_alignBottom="@+id/ol_text_olan"
       android:layout_toRightOf="@+id/ol_text_olan"
-      android:layout_toEndOf="@+id/ol_text_olan"
-      android:clickable="true"
-      style="@style/AppTheme" />
+      android:layout_toEndOf="@+id/ol_text_olan" />
 </RelativeLayout>

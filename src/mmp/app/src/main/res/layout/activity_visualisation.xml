@@ -3,27 +3,54 @@
    xmlns:tools="http://schemas.android.com/tools"
    tools:context="uk.ac.aber.gij2.mmp.activities.VisualisationActivity"
 
+   android:paddingLeft="@dimen/va_full_padding_horizontal"
+   android:paddingRight="@dimen/va_full_padding_horizontal"
+   android:paddingTop="@dimen/va_full_padding_vertical"
+   android:paddingBottom="@dimen/va_full_padding_vertical"
+
    android:layout_width="match_parent"
-   android:layout_height="match_parent"
-   android:paddingLeft="@dimen/activity_visualisation_full_padding_horizontal"
-   android:paddingRight="@dimen/activity_visualisation_full_padding_horizontal"
-   android:paddingTop="@dimen/activity_visualisation_full_padding_vertical"
-   android:paddingBottom="@dimen/activity_visualisation_full_padding_vertical">
+   android:layout_height="match_parent">
 
    <uk.ac.aber.gij2.mmp.visualisation.SurfaceView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:id="@+id/va_visualisation"/>
+      android:id="@+id/va_visualisation"
 
-   <SeekBar
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/va_seek"
+      android:layout_height="match_parent" />
+
+   <LinearLayout
+      android:weightSum="100"
+
+      android:paddingLeft="@dimen/va_interface_padding_horizontal"
+      android:paddingRight="@dimen/va_interface_padding_horizontal"
+      android:paddingTop="@dimen/va_interface_padding_vertical"
+      android:paddingBottom="@dimen/va_interface_padding_vertical"
+
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/va_interface_height"
       android:layout_alignParentBottom="true"
-      android:layout_centerHorizontal="true"
-      android:paddingLeft="@dimen/activity_visualisation_interface_padding_horizontal"
-      android:paddingRight="@dimen/activity_visualisation_interface_padding_horizontal"
-      android:paddingTop="@dimen/activity_visualisation_interface_padding_vertical"
-      android:paddingBottom="@dimen/activity_visualisation_interface_padding_vertical"/>
+      android:layout_centerHorizontal="true">
 
+      <SeekBar
+         android:id="@+id/va_seek"
+
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_weight="30"
+         android:layout_alignParentTop="true"
+         android:layout_toLeftOf="@+id/va_play" />
+
+      <CheckBox
+         android:id="@+id/checkBox"
+         android:text="@string/va_play"
+         android:checked="false"
+
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_weight="70"
+         android:layout_toRightOf="@+id/va_seek"
+         android:layout_alignBottom="@+id/va_seek"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentEnd="true"/>
+
+   </LinearLayout>
 </RelativeLayout>

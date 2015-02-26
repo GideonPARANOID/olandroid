@@ -17,5 +17,7 @@
    <string name="bfa_toast_invalid">Invalid OLAN</string>
 
    <!-- VisualisationActivity -->
-   <string name="oga_title">Visualisation</string>
+   <string name="va_title">Visualisation</string>
+   <string name="va_play">Play</string>
+   <string name="va_stop">Stop</string>
 </resources>
