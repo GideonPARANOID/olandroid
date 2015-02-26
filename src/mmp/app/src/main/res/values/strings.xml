@@ -8,7 +8,7 @@
    <string name="ma_intro_title">Welcome to MMP</string>
    <string name="ma_intro_text">{PLACEHOLDER}</string>
    <string name="ma_intro_link"><a href="http://github.com/gideonparanoid/mmp">Visit project on GitHub</a></string>
-   <string name="ma_button_build">Build flight</string>
+   <string name="ma_button_build">Start building a flight</string>
 
    <!-- BuildFlightActivity -->
    <string name="bfa_title">Build a flight</string>

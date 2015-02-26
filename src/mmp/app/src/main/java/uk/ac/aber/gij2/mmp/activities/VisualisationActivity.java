@@ -9,13 +9,19 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 
 import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.R;
 
 
-public class VisualisationActivity extends ActionBarActivity implements SeekBar.OnSeekBarChangeListener {
+public class VisualisationActivity extends ActionBarActivity implements
+   SeekBar.OnSeekBarChangeListener {
+
+   private Button animationPlay;
+
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,8 @@ public class VisualisationActivity extends ActionBarActivity implements SeekBar.
       animationSeek.setProgress(100);
 
       animationSeek.setOnSeekBarChangeListener(this);
+
+      animationPlay = ((Button) findViewById(R.id.va_play));
    }
 
 
@@ -52,15 +60,30 @@ public class VisualisationActivity extends ActionBarActivity implements SeekBar.
    }
 
 
+   // seekbar
+   @Override
    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
       ((MMPApplication) getApplication()).setAnimationProgress((float) progress / 100f);
    }
 
 
-   public void onStopTrackingTouch(SeekBar seekBar) {
-   }
+   // seekbar
+   @Override
+   public void onStopTrackingTouch(SeekBar seekBar) {}
 
 
-   public void onStartTrackingTouch(SeekBar seekBar) {
+   // seekbar
+   @Override
+   public void onStartTrackingTouch(SeekBar seekBar) {}
+
+
+   /**
+    * listener on the play/pause button
+    * @param view - view element source
+    */
+   public void button_play(View view) {
+      boolean playing = animationPlay.getText().equals(R.string.va_play);
+
+      animationPlay.setText(playing ? R.string.va_stop : R.string.va_play);
    }
 }

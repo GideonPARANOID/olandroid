@@ -20,7 +20,8 @@ import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.R;
 
 
-public class BuildFlightActivity extends ActionBarActivity {
+public class BuildFlightActivity extends ActionBarActivity implements
+   AdapterView.OnItemClickListener {
 
    private EditText olanEntry;
 
@@ -35,16 +36,7 @@ public class BuildFlightActivity extends ActionBarActivity {
       final ListView listView = (ListView) findViewById(R.id.bfa_manoeuvre_list);
 
       listView.setAdapter(((MMPApplication) getApplication()).getManoeuvreCatalogue());
-      listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-         @Override
-         public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-
-            // appending olan id to the end of the olan entry string& moving the cursor to the end
-            olanEntry.append(((MMPApplication) getApplication()).getManoeuvreCatalogue().get(
-                  position).getOLAN() + " ");
-         }
-      });
+      listView.setOnItemClickListener(this);
    }
 
 
@@ -69,6 +61,19 @@ public class BuildFlightActivity extends ActionBarActivity {
    }
 
 
+   @Override
+   public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+
+      // appending olan id to the end of the olan entry string& moving the cursor to the end
+      olanEntry.append(((MMPApplication) getApplication()).getManoeuvreCatalogue().get(
+         position).getOLAN() + " ");
+   }
+
+
+   /**
+    * listener on the build flight button
+    * @param view - view element source
+    */
    public void button_vis(View view) {
 
       if (((MMPApplication) getApplication()).buildFlight(olanEntry.getText().toString())) {

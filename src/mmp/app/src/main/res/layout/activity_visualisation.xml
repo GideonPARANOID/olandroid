@@ -35,18 +35,19 @@
 
          android:layout_width="0dp"
          android:layout_height="wrap_content"
-         android:layout_weight="30"
+         android:layout_weight="70"
          android:layout_alignParentTop="true"
          android:layout_toLeftOf="@+id/va_play" />
 
-      <CheckBox
-         android:id="@+id/checkBox"
+      <Button
+         android:id="@+id/va_play"
          android:text="@string/va_play"
          android:checked="false"
+         android:onClick="button_play"
 
          android:layout_width="0dp"
          android:layout_height="wrap_content"
-         android:layout_weight="70"
+         android:layout_weight="30"
          android:layout_toRightOf="@+id/va_seek"
          android:layout_alignBottom="@+id/va_seek"
          android:layout_alignParentRight="true"

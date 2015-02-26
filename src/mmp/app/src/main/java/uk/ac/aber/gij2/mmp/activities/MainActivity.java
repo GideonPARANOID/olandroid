@@ -50,6 +50,10 @@ public class MainActivity extends ActionBarActivity {
    }
 
 
+   /**
+    * listener on the start building a flight button
+    * @param view - view element source
+    */
    public void button_build(View view) {
       startActivity(new Intent(this, BuildFlightActivity.class));
    }

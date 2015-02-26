@@ -13,7 +13,8 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 
 
-public class SurfaceView extends GLSurfaceView {
+public class SurfaceView extends GLSurfaceView implements
+   ScaleGestureDetector.OnScaleGestureListener {
 
    private uk.ac.aber.gij2.mmp.visualisation.Renderer renderer;
 
@@ -30,29 +31,7 @@ public class SurfaceView extends GLSurfaceView {
       setRenderer(renderer);
 
       // setting up pinch listening
-      scaleGestureDetector = new ScaleGestureDetector(context, new ScaleGestureDetector.OnScaleGestureListener() {
-
-         @Override
-         public void onScaleEnd(ScaleGestureDetector detector) {
-         }
-
-         @Override
-         public boolean onScaleBegin(ScaleGestureDetector detector) {
-            return true;
-         }
-
-         @Override
-         public boolean onScale(ScaleGestureDetector detector) {
-
-            float factor = detector.getScaleFactor(), previousViewZoom = renderer.getViewZoom();
-
-            if (previousViewZoom / factor >= 0.2f) {
-               renderer.setViewZoom(previousViewZoom / ((factor * 0.1f) + 0.9f));
-            }
-
-            return false;
-         }
-      });
+      scaleGestureDetector = new ScaleGestureDetector(context, this);
    }
 
 
@@ -90,5 +69,28 @@ public class SurfaceView extends GLSurfaceView {
       }
 
       return true;
+   }
+
+
+   @Override
+   public void onScaleEnd(ScaleGestureDetector detector) {}
+
+
+   @Override
+   public boolean onScaleBegin(ScaleGestureDetector detector) {
+      return true;
+   }
+
+
+   @Override
+   public boolean onScale(ScaleGestureDetector detector) {
+
+      float factor = detector.getScaleFactor(), previousViewZoom = renderer.getViewZoom();
+
+      if (previousViewZoom / factor >= 0.2f) {
+         renderer.setViewZoom(previousViewZoom / ((factor * 0.1f) + 0.9f));
+      }
+
+      return false;
    }
 }
