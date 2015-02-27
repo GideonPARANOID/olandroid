@@ -14,6 +14,7 @@
    <string name="bfa_title">Build a flight</string>
    <string name="bfa_button_vis">Build flight</string>
    <string name="bfa_hint_olan">Enter an OLAN string</string>
+   <string name="bfa_clear_olan">Clear</string>
    <string name="bfa_toast_invalid">Invalid OLAN</string>
 
    <!-- VisualisationActivity -->

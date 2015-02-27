@@ -12,8 +12,8 @@ public class FlightAnimator implements Runnable {
 
    private float step;
    private long wait;
-
    private MMPApplication application;
+
 
    /**
     *
@@ -28,11 +28,12 @@ public class FlightAnimator implements Runnable {
       wait = (long) (1000 * step);
    }
 
+
    public void run() {
 
       try {
-         for (float i = 0; i < 1; i += step) {
-            application.setAnimationProgress(i);
+         for (float i = 0, limit = 1f / step; i < limit; i++) {
+            application.setAnimationProgress(step * i);
             Thread.sleep(wait);
          }
 

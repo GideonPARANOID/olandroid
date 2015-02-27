@@ -14,7 +14,6 @@ import uk.ac.aber.gij2.mmp.activities.MainActivity;
 
 
 public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
-
    private MainActivity mainActivity;
 
 

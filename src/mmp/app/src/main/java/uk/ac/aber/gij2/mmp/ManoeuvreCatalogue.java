@@ -47,6 +47,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
       }
    }
 
+
    @Override
    public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -86,7 +87,6 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
          }
       }
    }
-
 
 
    /**
@@ -204,7 +204,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
    /**
     * querying the manoeuvre catalogue with an index, matching the order of getOLANs
     * @param index - the olan index to retrieve
-    * @return - a manoeuvre with olan matchin the input
+    * @return - a manoeuvre with olan matching the input
     * @throws IndexOutOfBoundsException - might not be able to find the manoeuvre specified
     */
    public Manoeuvre get(int index) throws IndexOutOfBoundsException {

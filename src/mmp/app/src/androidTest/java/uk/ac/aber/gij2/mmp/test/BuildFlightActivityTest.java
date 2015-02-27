@@ -27,6 +27,28 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
    private Button visualisationButton;
    private EditText olanString;
 
+
+   private final String[] validOLANStrings = new String[] {
+      "d",
+      "d d",
+      " d d",
+      "d+",
+      "d++",
+      "+d",
+      "+++++d",
+      "+d+",
+      "+++d++"
+   }, invalidOLANStrings = new String[] {
+      "         ",
+      "dflefken",
+      "dd",
+      "ddddd",
+      "p",
+      "d+d",
+      "+d+d"
+   };
+
+
    public BuildFlightActivityTest() {
       super(BuildFlightActivity.class);
    }
@@ -47,29 +69,56 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
    }
 
 
+   /**
+    * exercises the build flight function to test the validity of olan strings
+    */
    public void testValidOLAN() {
 
+      for (final String validOLAN :validOLANStrings) {
+
+         // test we're in the right place first
+         ViewAsserts.assertOnScreen(buildFlightActvity.getWindow().getDecorView(), visualisationButton);
+
+         buildFlightActvity.runOnUiThread(new Runnable() {
+            public void run() {
+               olanString.setText(validOLAN);
+            }
+         });
+
+         TouchUtils.clickView(this, visualisationButton);
+         assertNotNull("Valid OLAN, should launch visualisation for olan " + validOLAN,
+            visualisationMonitor.waitForActivityWithTimeout(1000));
+
+         // go back to the build flight activity
+         this.sendKeys(KeyEvent.KEYCODE_BACK);
+      }
+   }
+
+
+   /**
+    * exercises the build flight function to test the invalidity of olan strings
+    */
+   public void testInvalidOLAN() {
+
       ViewAsserts.assertOnScreen(buildFlightActvity.getWindow().getDecorView(), visualisationButton);
       TouchUtils.clickView(this, visualisationButton);
 
-      // waiting for the new activity to show up
-      assertNull("Invalid OLAN, shouldn't launch visualisation",
+      assertNull("Invalid OLAN, should not launch visualisation",
          visualisationMonitor.waitForActivityWithTimeout(1000));
 
+      for (final String invalidOLAN : invalidOLANStrings) {
 
-      buildFlightActvity.runOnUiThread(new Runnable() {
-         public void run() {
-            olanString.setText("d");
-         }
-      });
+         // test we're in the right place first
+         ViewAsserts.assertOnScreen(buildFlightActvity.getWindow().getDecorView(), visualisationButton);
 
-      TouchUtils.clickView(this, visualisationButton);
-      assertNotNull("Valid OLAN, should launch visualisation",
-         visualisationMonitor.waitForActivityWithTimeout(1000));
+         buildFlightActvity.runOnUiThread(new Runnable() {
+            public void run() {
+               olanString.setText(invalidOLAN);
+            }
+         });
 
-      // go back to the build flight activity
-      this.sendKeys(KeyEvent.KEYCODE_BACK);
-
-      ViewAsserts.assertOnScreen(buildFlightActvity.getWindow().getDecorView(), visualisationButton);
+         assertNull("Invalid OLAN, should not launch visualisation for olan " + invalidOLAN,
+            visualisationMonitor.waitForActivityWithTimeout(1000));
+      }
    }
 }

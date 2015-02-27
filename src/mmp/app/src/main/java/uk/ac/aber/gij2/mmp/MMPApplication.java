@@ -71,6 +71,7 @@ public class MMPApplication extends android.app.Application {
    public void animationPlayToggle(boolean play) {
 
       if (play && !animationPlaying) {
+         animationProgress = 0;
          animationThread = new Thread(new FlightAnimator(this, animationStep));
          animationThread.start();
 

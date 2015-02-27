@@ -44,8 +44,8 @@ public class FlightManager {
       String[] figures = olan.trim().toLowerCase().split(" ");
       Manoeuvre[] manoeuvres = new Manoeuvre[figures.length];
 
+      // going through the figures
       for (int i = 0; i < figures.length; i++) {
-
          Matcher matcher = olanPattern.matcher(figures[i]);
 
          // testing if the regex holds true & that the final figure is in the catalogue
