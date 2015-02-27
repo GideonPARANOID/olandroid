@@ -15,6 +15,7 @@ public class MMPApplication extends android.app.Application {
    private FlightManager flightManager;
    private ManoeuvreCatalogue manoeuvreCatalogue;
    private float animationProgress;
+   private boolean animationPlaying;
 
 
    @Override
@@ -25,23 +26,16 @@ public class MMPApplication extends android.app.Application {
       flightManager.setManoeuvreCatalogue(manoeuvreCatalogue);
 
       animationProgress = 1;
+      animationPlaying = false;
    }
 
 
    /**
     * @param olan - string olan description of a flight
-    * @return - whether the flight was successfully built from the olan
+    * @throws InvalidOLANException - whether the flight was successfully built from the olan
     */
-   public boolean buildFlight(String olan) {
-      boolean result = false;
-
-      if (flightManager.validOLAN(olan)) {
-         flightManager.setCurrentFlight(flightManager.buildFlight(olan));
-
-         result = true;
-      }
-
-      return result;
+   public void buildFlight(String olan) throws InvalidOLANException {
+      flightManager.setCurrentFlight(flightManager.buildFlight(olan));
    }
 
 
@@ -79,5 +73,10 @@ public class MMPApplication extends android.app.Application {
       this.animationProgress = animationProgress;
 
       flightManager.getCurrentFlight().animate(animationProgress);
+   }
+
+
+   public void setAnimationPlaying(boolean playing) {
+      this.animationPlaying = playing;
    }
 }

@@ -115,7 +115,7 @@ public abstract class Shape implements Drawable {
    /**
     * @param vertices - vertices of the shape
     */
-   protected void buildVertices(float[] vertices) {
+   protected void buildVerticesBuffer(float[] vertices) {
       if (vertices == null) {
          draw = false;
 
@@ -134,7 +134,7 @@ public abstract class Shape implements Drawable {
    /**
     * @param drawOrder - order of drawing of the shape
     */
-   protected void buildDrawOrder(short[] drawOrder) {
+   protected void buildDrawOrderBuffer(short[] drawOrder) {
       this.drawOrder = drawOrder;
 
       // initialise byte buffer for the draw list, 2 bytes per short

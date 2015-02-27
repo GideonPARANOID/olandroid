@@ -16,7 +16,7 @@ public class Component extends Shape implements Drawable {
 
    private int pitch, yaw, roll;
    private float length;
-   private final float[] matrix, vertices, colourFront, colourBack;
+   private float[] matrix, vertices, colourFront, colourBack;
 
 
    /**
@@ -43,6 +43,21 @@ public class Component extends Shape implements Drawable {
 
       this.length = length;
 
+      build();
+   }
+
+
+   /**
+    * copy constructor
+    * @param component - instance of component to copy
+    */
+   public Component(Component component) {
+      this(component.pitch, component.yaw, component.roll, component.length, component.colourFront,
+         component.colourBack);
+   }
+
+
+   protected void build() {
       float x, y, z;
 
       // continuing straight lines are a different case - much easier
@@ -76,8 +91,8 @@ public class Component extends Shape implements Drawable {
          WIDTH, 0f, 0f
       };
 
-      super.buildVertices(vertices);
-      super.buildDrawOrder(new short[]{
+      super.buildVerticesBuffer(vertices);
+      super.buildDrawOrderBuffer(new short[]{
          0, 1, 2,
          0, 2, 3
       });
@@ -94,17 +109,6 @@ public class Component extends Shape implements Drawable {
       Matrix.translateM(matrix, 0, 0f, 0f, length);
    }
 
-
-   /**
-    * copy constructor
-    * @param component - instance of component to copy
-    */
-   public Component(Component component) {
-      this(component.pitch, component.yaw, component.roll, component.length, component.colourFront,
-         component.colourBack);
-   }
-
-
    public float[] getCompleteMatrix() {
       return matrix;
    }
@@ -117,10 +121,10 @@ public class Component extends Shape implements Drawable {
    public void animate(float progress) {
 
       if (progress == 0f) {
-         super.buildVertices(null);
+         super.buildVerticesBuffer(null);
 
       } else if (progress == 1f) {
-         super.buildVertices(vertices);
+         super.buildVerticesBuffer(vertices);
 
       } else {
          float[] newVertices = new float[vertices.length];
@@ -132,12 +136,18 @@ public class Component extends Shape implements Drawable {
          newVertices[8] *= progress;
          newVertices[11] *= progress;
 
-         super.buildVertices(newVertices);
+         super.buildVerticesBuffer(newVertices);
       }
    }
 
 
    public float getLength() {
       return length;
+   }
+
+
+   public void setLength(float length) {
+      this.length = length;
+      build();
    }
 }

@@ -25,14 +25,14 @@ public class Grid extends Shape implements Drawable {
       this.unit = unit;
       this.dimensions = dimensions * unit;
 
-      super.buildVertices(new float[]{
+      super.buildVerticesBuffer(new float[]{
          0, 0, 0,
          0, 0, unit,
          unit, 0, unit,
          unit, 0, 0
       });
 
-      super.buildDrawOrder(new short[]{
+      super.buildDrawOrderBuffer(new short[]{
          0, 1, 2, 3, 0
       });
 

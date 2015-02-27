@@ -82,8 +82,10 @@ public class VisualisationActivity extends ActionBarActivity implements
     * @param view - view element source
     */
    public void button_play(View view) {
-      boolean playing = animationPlay.getText().equals(R.string.va_play);
+      boolean playing = animationPlay.getText().equals(getString(R.string.va_play));
 
-      animationPlay.setText(playing ? R.string.va_stop : R.string.va_play);
+      ((MMPApplication) getApplication()).setAnimationPlaying(playing);
+
+      animationPlay.setText(getString(playing ? R.string.va_stop : R.string.va_play));
    }
 }

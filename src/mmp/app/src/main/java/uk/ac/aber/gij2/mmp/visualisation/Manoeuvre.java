@@ -152,6 +152,17 @@ public class Manoeuvre extends Shape implements Drawable {
    }
 
 
+   public void setEntryExitLengths(int entryLength, int exitLength) {
+      components[0].setLength((float) entryLength);
+      components[components.length - 1].setLength((float) exitLength);
+
+      buildComponentsCumulativeLength();
+
+      matricesCalculated = false;
+   }
+
+
+
    public float getLength() {
       return componentsCumulativeLength[componentsCumulativeLength.length - 1];
    }

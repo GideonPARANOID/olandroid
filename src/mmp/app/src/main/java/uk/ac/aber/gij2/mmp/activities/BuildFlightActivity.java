@@ -76,10 +76,11 @@ public class BuildFlightActivity extends ActionBarActivity implements
     */
    public void button_vis(View view) {
 
-      if (((MMPApplication) getApplication()).buildFlight(olanEntry.getText().toString())) {
+      try {
+         ((MMPApplication) getApplication()).buildFlight(olanEntry.getText().toString());
          startActivity(new Intent(this, VisualisationActivity.class));
 
-      } else {
+      } catch (Exception exception) {
          Toast.makeText(getApplication(), R.string.bfa_toast_invalid, Toast.LENGTH_SHORT).show();
       }
    }

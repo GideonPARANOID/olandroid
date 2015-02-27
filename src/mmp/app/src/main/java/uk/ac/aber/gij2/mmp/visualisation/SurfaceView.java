@@ -40,11 +40,9 @@ public class SurfaceView extends GLSurfaceView implements
       scaleGestureDetector.onTouchEvent(event);
 
       if (event.getPointerCount() == 1) {
-
          float currentX = event.getX(), currentY = event.getY();
 
          if (event.getAction() == MotionEvent.ACTION_MOVE) {
-
             float deltaX = currentX - previousX, deltaY = currentY - previousY;
 
             // inverting the movement on crossing the centre lines
