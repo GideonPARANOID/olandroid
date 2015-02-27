@@ -7,6 +7,7 @@ package uk.ac.aber.gij2.mmp;
 
 import android.graphics.Color;
 
+import uk.ac.aber.gij2.mmp.visualisation.FlightAnimator;
 import uk.ac.aber.gij2.mmp.visualisation.Scene;
 
 
@@ -14,8 +15,20 @@ public class MMPApplication extends android.app.Application {
 
    private FlightManager flightManager;
    private ManoeuvreCatalogue manoeuvreCatalogue;
-   private float animationProgress;
+
+   // TODO: relative to flight length
+   private float animationProgress, animationStep;
    private boolean animationPlaying;
+   private Thread animationThread;
+
+
+   public MMPApplication() {
+
+      // need to use real constructor to use final variables
+      animationProgress = 1;
+      animationPlaying = false;
+      animationStep = 1f / 100f;
+   }
 
 
    @Override
@@ -24,9 +37,6 @@ public class MMPApplication extends android.app.Application {
 
       manoeuvreCatalogue = new ManoeuvreCatalogue(this);
       flightManager.setManoeuvreCatalogue(manoeuvreCatalogue);
-
-      animationProgress = 1;
-      animationPlaying = false;
    }
 
 
@@ -49,34 +59,47 @@ public class MMPApplication extends android.app.Application {
    }
 
 
-   /**
-    * @param id - resource id of a colour to use
-    * @return - array of floats depicting a colour
-    */
-   public float[] buildColourArray(int id) {
-      int colour = getResources().getColor(id);
-      return new float[]{
-         (float) Color.red(colour) / 256f,
-         (float) Color.green(colour) / 256f,
-         (float) Color.blue(colour) / 256f,
-         (float) Color.alpha(colour) / 256f
-      };
+   public float getAnimationProgress() {
+      return animationProgress;
    }
 
 
-   public float getAnimationProgress() {
-      return animationProgress;
+   /**
+    * sets off or kills the animation thread
+    * @param play - start or stop the current animation
+    */
+   public void animationPlayToggle(boolean play) {
+
+      if (play && !animationPlaying) {
+         animationThread = new Thread(new FlightAnimator(this, animationStep));
+         animationThread.start();
+
+      } else if (!play && !animationPlaying) {
+         animationThread.interrupt();
+         animationPlaying = false;
+      }
    }
 
 
    public void setAnimationProgress(float animationProgress) {
       this.animationProgress = animationProgress;
 
+      // TODO: update seekbar somehow
       flightManager.getCurrentFlight().animate(animationProgress);
    }
 
 
-   public void setAnimationPlaying(boolean playing) {
-      this.animationPlaying = playing;
+   /**
+    * @param id - resource id of a colour to use
+    * @return - array of floats depicting a colour
+    */
+   public float[] buildColourArray(int id) {
+      int colour = getResources().getColor(id);
+      return new float[] {
+         (float) Color.red(colour) / 256f,
+         (float) Color.green(colour) / 256f,
+         (float) Color.blue(colour) / 256f,
+         (float) Color.alpha(colour) / 256f
+      };
    }
 }

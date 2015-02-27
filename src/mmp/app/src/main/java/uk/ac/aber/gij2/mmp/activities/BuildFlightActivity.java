@@ -52,7 +52,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
       // which option menu item got selected
       switch (item.getItemId()) {
-         case R.id.action_settings:
+         case R.id.menu_a_settings:
             return true;
 
          default:

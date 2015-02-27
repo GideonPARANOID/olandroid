@@ -38,10 +38,8 @@ public class MainActivity extends ActionBarActivity {
 
    @Override
    public boolean onOptionsItemSelected(MenuItem item) {
-
-      // which option menu item got selected
       switch (item.getItemId()) {
-         case R.id.action_settings:
+         case R.id.menu_a_settings:
             return true;
 
          default:

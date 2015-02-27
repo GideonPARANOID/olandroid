@@ -17,8 +17,8 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent" />
 
-   <LinearLayout
-      android:weightSum="100"
+   <SeekBar
+      android:id="@+id/va_seek"
 
       android:paddingLeft="@dimen/va_interface_padding_horizontal"
       android:paddingRight="@dimen/va_interface_padding_horizontal"
@@ -26,32 +26,6 @@
       android:paddingBottom="@dimen/va_interface_padding_vertical"
 
       android:layout_width="match_parent"
-      android:layout_height="@dimen/va_interface_height"
-      android:layout_alignParentBottom="true"
-      android:layout_centerHorizontal="true">
-
-      <SeekBar
-         android:id="@+id/va_seek"
-
-         android:layout_width="0dp"
-         android:layout_height="wrap_content"
-         android:layout_weight="70"
-         android:layout_alignParentTop="true"
-         android:layout_toLeftOf="@+id/va_play" />
-
-      <Button
-         android:id="@+id/va_play"
-         android:text="@string/va_play"
-         android:checked="false"
-         android:onClick="button_play"
-
-         android:layout_width="0dp"
-         android:layout_height="wrap_content"
-         android:layout_weight="30"
-         android:layout_toRightOf="@+id/va_seek"
-         android:layout_alignBottom="@+id/va_seek"
-         android:layout_alignParentRight="true"
-         android:layout_alignParentEnd="true"/>
-
-   </LinearLayout>
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true" />
 </RelativeLayout>

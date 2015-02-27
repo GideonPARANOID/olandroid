@@ -51,7 +51,7 @@ public class Renderer implements GLSurfaceView.Renderer {
       viewY = 45f;
       viewZoom = 1f;
 
-      refreshViewMatrix();
+      buildViewMatrix();
    }
 
 
@@ -82,7 +82,7 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       scene = ((MMPApplication) context.getApplicationContext()).getScene();
 
-      refreshViewMatrix();
+      buildViewMatrix();
    }
 
 
@@ -94,7 +94,7 @@ public class Renderer implements GLSurfaceView.Renderer {
       // projection matrix is applied to object coordinates in the draw method
       Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1f, 1000f);
 
-      refreshViewMatrix();
+      buildViewMatrix();
    }
 
 
@@ -113,7 +113,7 @@ public class Renderer implements GLSurfaceView.Renderer {
    /**
     * refreshes the view matrix, showing where the camera is
     */
-   public void refreshViewMatrix() {
+   public void buildViewMatrix() {
       float[] temp = new float[16];
 
       Matrix.translateM(viewMatrix, 0, mProjectionMatrix, 0, 0f, 0f, -20f * viewZoom);
@@ -127,7 +127,7 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    public void setViewZoom(float viewZoom) {
       this.viewZoom = viewZoom;
-      refreshViewMatrix();
+      buildViewMatrix();
    }
 
    public float getViewX() {
@@ -136,7 +136,7 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    public void setViewX(float viewX) {
       this.viewX = viewX;
-      refreshViewMatrix();
+      buildViewMatrix();
    }
 
    public float getViewY() {
@@ -145,7 +145,7 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    public void setViewY(float viewY) {
       this.viewY = viewY;
-      refreshViewMatrix();
+      buildViewMatrix();
    }
 
 
