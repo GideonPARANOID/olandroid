@@ -15,31 +15,31 @@ import java.nio.ShortBuffer;
 
 public abstract class Shape implements Drawable {
 
-
-   // TODO: consider stripping out the vertices/draworder arrays completely, leaving only buffers
-
    private FloatBuffer vertexBuffer;
    private ShortBuffer drawOrderBuffer;
 
-   private int mPositionHandle, mColourHandle, mMVPMatrixHandle;
+   private int points, mPositionHandle, mColourHandle, mMVPMatrixHandle;
 
-   private float[] vertices, colourFront, colourBack;
-   private short[] drawOrder;
+   private float[] colourFront, colourBack;
 
    // drawing options, whether things are setup & whether to fill draw or just draw lines
    protected boolean drawingSetup;
    protected static int FILL = 0, LINES = 1;
    private int drawMode;
 
-
+   // whether to draw or not, a way of skipping emptying buffers
    private boolean draw = true;
 
 
-   public Shape() {
-      drawingSetup = false;
-      drawMode = FILL;
+   protected Shape() {
+      this(FILL);
    }
 
+
+   protected Shape(int drawMode) {
+      this.drawMode = drawMode;
+      drawingSetup = false;
+   }
 
    /**
     * constructs buffers & makes references to shader program variables, needs vertex & draw orders
@@ -47,13 +47,8 @@ public abstract class Shape implements Drawable {
     */
    protected void setupDrawing() {
 
-      // assume the draw order if none is explicitly set
-      if (drawOrder == null) {
-         drawOrder = new short[vertices.length / 3];
-
-         for (int i = 0; i < drawOrder.length; i++) {
-            drawOrder[i] = (short) i;
-         }
+      if (drawOrderBuffer == null || vertexBuffer == null) {
+         throw new NullPointerException("buffers uninitialised");
       }
 
       // gets the necessary references to variables in the shader
@@ -94,16 +89,16 @@ public abstract class Shape implements Drawable {
             // painting the front (bottom)
             GLES20.glCullFace(GLES20.GL_FRONT);
             GLES20.glUniform4fv(mColourHandle, 1, colourFront, 0);
-            GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+            GLES20.glDrawElements(GLES20.GL_TRIANGLES, points, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
 
             // painting the back (top)
             GLES20.glCullFace(GLES20.GL_BACK);
             GLES20.glUniform4fv(mColourHandle, 1, colourBack, 0);
-            GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+            GLES20.glDrawElements(GLES20.GL_TRIANGLES, points, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
 
          } else {
             GLES20.glUniform4fv(mColourHandle, 1, colourFront, 0);
-            GLES20.glDrawElements(GLES20.GL_LINE_STRIP, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
+            GLES20.glDrawElements(GLES20.GL_LINE_STRIP, points, GLES20.GL_UNSIGNED_SHORT, drawOrderBuffer);
          }
 
          // disabling vertex array
@@ -122,8 +117,6 @@ public abstract class Shape implements Drawable {
       } else {
          draw = true;
 
-         this.vertices = vertices;
-
          // initialise vertex byte buffer for shape coordinates, 4 bytes per float
          vertexBuffer = ByteBuffer.allocateDirect(vertices.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
          vertexBuffer.put(vertices).position(0);
@@ -135,22 +128,18 @@ public abstract class Shape implements Drawable {
     * @param drawOrder - order of drawing of the shape
     */
    protected void buildDrawOrderBuffer(short[] drawOrder) {
-      this.drawOrder = drawOrder;
+      points = drawOrder.length;
 
       // initialise byte buffer for the draw list, 2 bytes per short
       drawOrderBuffer = ByteBuffer.allocateDirect(drawOrder.length * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
       drawOrderBuffer.put(drawOrder).position(0);
    }
 
-   public void setColourFront(float[] colourFront) {
+   protected void setColourFront(float[] colourFront) {
       this.colourFront = colourFront;
    }
 
-   public void setColourBack(float[] colourBack) {
+   protected void setColourBack(float[] colourBack) {
       this.colourBack = colourBack;
-   }
-
-   public void setDrawMode(int drawMode) {
-      this.drawMode = drawMode;
    }
 }

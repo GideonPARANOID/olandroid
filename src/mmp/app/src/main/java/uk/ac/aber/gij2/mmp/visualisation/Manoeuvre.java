@@ -9,6 +9,7 @@ import android.opengl.Matrix;
 
 
 public class Manoeuvre extends Shape implements Drawable {
+
    private Component[] components;
    private float[][] matrices;
    private float[] componentsCumulativeLength;
@@ -16,15 +17,18 @@ public class Manoeuvre extends Shape implements Drawable {
    private boolean matricesCalculated;
 
 
-   public Manoeuvre(Component[] components, String olan, String name) {
+   public Manoeuvre(Component[] components, String olan, String name) throws IndexOutOfBoundsException {
       super();
+
+      if (components.length  == 0) {
+         throw new IndexOutOfBoundsException("no components");
+      }
 
       this.components = components;
       this.olan = olan;
       this.name = name;
 
       buildComponentsCumulativeLength();
-
       matricesCalculated = false;
    }
 
@@ -33,8 +37,12 @@ public class Manoeuvre extends Shape implements Drawable {
     * copy constructor
     * @param manoeuvre - instance of manoeuvre to copy
     */
-   public Manoeuvre(Manoeuvre manoeuvre) {
+   public Manoeuvre(Manoeuvre manoeuvre) throws IndexOutOfBoundsException {
       super();
+
+      if (manoeuvre.components.length == 0) {
+         throw new IndexOutOfBoundsException("no components");
+      }
 
       // need to copy components, to prevent duplicate manoeuvres from sharing animations
       Component[] oldComponents = manoeuvre.components;
@@ -48,7 +56,6 @@ public class Manoeuvre extends Shape implements Drawable {
       this.name = manoeuvre.name;
 
       buildComponentsCumulativeLength();
-
       matricesCalculated = false;
    }
 
@@ -101,11 +108,6 @@ public class Manoeuvre extends Shape implements Drawable {
    }
 
 
-   /**
-    * modifies a manoeuvre's drawing, from none to partial to full, starting at the beginning,
-    *    taking into account the length of components
-    * @param progress - level of progress, between 0 & 1
-    */
    public void animate(float progress) {
 
       // if either fully drawn or fully not drawn
@@ -152,12 +154,15 @@ public class Manoeuvre extends Shape implements Drawable {
    }
 
 
+   /**
+    * @param entryLength - length to add to the default entry component length of 1
+    * @param exitLength - length to add to the default exit component length of 1
+    */
    public void setEntryExitLengths(int entryLength, int exitLength) {
-      components[0].setLength((float) entryLength);
-      components[components.length - 1].setLength((float) exitLength);
+      components[0].setLength(1f + (float) entryLength);
+      components[components.length - 1].setLength(1f + (float) exitLength);
 
       buildComponentsCumulativeLength();
-
       matricesCalculated = false;
    }
 

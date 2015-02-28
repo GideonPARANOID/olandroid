@@ -18,7 +18,7 @@ public class Grid extends Shape implements Drawable {
     * @param dimensions - dimensions of the whole grid in terms of grid units
     */
    public Grid(float unit, float dimensions, float[] colour) {
-      super();
+      super(Shape.LINES);
 
       super.setColourFront(colour);
 
@@ -35,8 +35,6 @@ public class Grid extends Shape implements Drawable {
       super.buildDrawOrderBuffer(new short[]{
          0, 1, 2, 3, 0
       });
-
-      super.setDrawMode(Shape.LINES);
    }
 
 
@@ -66,8 +64,7 @@ public class Grid extends Shape implements Drawable {
    }
 
 
-   public void animate(float progress) {
-   }
+   public void animate(float progress) {}
 
    public float getLength() {
       return 0f;

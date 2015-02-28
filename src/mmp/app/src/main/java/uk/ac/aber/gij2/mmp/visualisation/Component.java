@@ -7,6 +7,8 @@ package uk.ac.aber.gij2.mmp.visualisation;
 
 import android.opengl.Matrix;
 
+import java.util.Arrays;
+
 
 public class Component extends Shape implements Drawable {
 
@@ -14,20 +16,28 @@ public class Component extends Shape implements Drawable {
    public static final int ZERO = 0, MIN = -1, MAX = 1;
    private static final float ANGLE = 1f / 24f, WIDTH = 0.5f;
 
-   private int pitch, yaw, roll;
+   private int pitch, yaw, roll, rollOffset;
    private float length;
    private float[] matrix, vertices, colourFront, colourBack;
+
+
+   public Component(int pitch, int yaw, int roll, float length, float[] colourFront,
+      float[] colourBack) {
+
+      this(pitch, yaw, roll, 0, length, colourFront, colourBack);
+   }
 
 
    /**
     * @param pitch - vertical amount
     * @param yaw - horizontal amount
     * @param roll - roll amount
+    * @param rollOffset - number of roll offsets, in relation to max/min roll
     * @param length - length of the component
     * @param colourFront - argb colour for the front of the component
     * @param colourBack - argb colour for the back of the component
     */
-   public Component(int pitch, int yaw, int roll, float length, float[] colourFront,
+   public Component(int pitch, int yaw, int roll, int rollOffset, float length, float[] colourFront,
       float[] colourBack) {
 
       super();
@@ -35,15 +45,16 @@ public class Component extends Shape implements Drawable {
       this.pitch = pitch;
       this.yaw = yaw;
       this.roll = roll;
+      this.rollOffset = rollOffset;
+      this.length = length;
       this.colourFront = colourFront;
       this.colourBack = colourBack;
 
       super.setColourFront(colourFront);
       super.setColourBack(colourBack);
 
-      this.length = length;
-
-      build();
+      buildVertices();
+      buildMatrix();
    }
 
 
@@ -52,12 +63,12 @@ public class Component extends Shape implements Drawable {
     * @param component - instance of component to copy
     */
    public Component(Component component) {
-      this(component.pitch, component.yaw, component.roll, component.length, component.colourFront,
+      this(component.pitch, component.yaw, component.roll, component.rollOffset, component.length, component.colourFront,
          component.colourBack);
    }
 
 
-   protected void build() {
+   protected void buildVertices() {
       float x, y, z;
 
       // continuing straight lines are a different case - much easier
@@ -96,28 +107,32 @@ public class Component extends Shape implements Drawable {
          0, 1, 2,
          0, 2, 3
       });
+   }
 
+
+   protected void buildMatrix() {
       // building the matrix transform from the beginning of this component to the end
       matrix = new float[16];
       Matrix.setIdentityM(matrix, 0);
 
       // if all values are zero, we get a matrix of NaNs, which corrupts the matrix stack
       if (pitch != ZERO || yaw != ZERO || roll != ZERO) {
+
+         // TODO: convert into separate matrix operations for each rotation, the angle in relation
+         //    to each other will change, something like the weta directionAngle used earlier
+
          Matrix.rotateM(matrix, 0, 360f * ANGLE, (float) -pitch, (float) yaw, (float) roll);
       }
 
       Matrix.translateM(matrix, 0, 0f, 0f, length);
    }
 
+
    public float[] getCompleteMatrix() {
       return matrix;
    }
 
 
-   /**
-    * modifies a component's drawing, from none to full, starting at the beginning
-    * @param progress - level of progress, between 0 & 1
-    */
    public void animate(float progress) {
 
       if (progress == 0f) {
@@ -127,9 +142,7 @@ public class Component extends Shape implements Drawable {
          super.buildVerticesBuffer(vertices);
 
       } else {
-         float[] newVertices = new float[vertices.length];
-
-         System.arraycopy(vertices, 0, newVertices, 0, vertices.length);
+         float[] newVertices = Arrays.copyOf(vertices, vertices.length);
 
          // TODO: refine
          // extending the z distance
@@ -148,6 +161,7 @@ public class Component extends Shape implements Drawable {
 
    public void setLength(float length) {
       this.length = length;
-      build();
+      buildVertices();
+      buildMatrix();
    }
 }

@@ -6,6 +6,7 @@
 package uk.ac.aber.gij2.mmp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,8 +108,12 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
             String fullOLAN = parser.getAttributeValue(null, "olanprefix") + olan,
                name = parser.getAttributeValue(null, "name");
 
-            manoeuvres.put(fullOLAN, new Manoeuvre(parseVariantComponents(parser),
-                  fullOLAN, name));
+            try {
+               manoeuvres.put(fullOLAN, new Manoeuvre(parseVariantComponents(parser), fullOLAN, name));
+
+            } catch (IndexOutOfBoundsException exception) {
+               Log.w(this.getClass().getName(), "invalid manoeuvre");
+            }
 
             super.add("");
          }
@@ -132,10 +137,23 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
       while (parser.next() != XmlPullParser.END_TAG) {
          if (parser.getName().equals("component")) {
 
+            int rollOffset;
+
+            // TODO: remove when irrelevant
+            try {
+               rollOffset = Integer.parseInt(parser.getAttributeValue(null, "rolloffset"));
+
+            } catch (NumberFormatException exeception) {
+               rollOffset = 0;
+            }
+
+
+
             components.add(new Component(
                parseComponentStrength(parser.getAttributeValue(null, "pitch")),
                parseComponentStrength(parser.getAttributeValue(null, "yaw")),
                parseComponentStrength(parser.getAttributeValue(null, "roll")),
+               rollOffset,
                Float.parseFloat(parser.getAttributeValue(null, "length")),
                ((MMPApplication) context.getApplicationContext()).buildColourArray(
                   R.color.vis_flight_front),

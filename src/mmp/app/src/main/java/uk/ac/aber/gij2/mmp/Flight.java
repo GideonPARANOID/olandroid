@@ -12,6 +12,7 @@ import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 
 
 public class Flight implements Drawable {
+
    private Manoeuvre[] manoeuvres;
    private float[][] matrices;
    private float[] manoeuvresCumulativeLength;
@@ -78,11 +79,6 @@ public class Flight implements Drawable {
    }
 
 
-   /**
-    * modifies a flight's drawing, from none to partial to full, starting at the beginning, taking
-    *    into account the lengths of manoeuvres
-    * @param progress - level of progress, between 0 & 1
-    */
    public void animate(float progress) {
 
       // if either fully drawn or fully not drawn

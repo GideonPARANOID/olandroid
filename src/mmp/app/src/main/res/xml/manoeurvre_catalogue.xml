@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manoeuvres>
 
+   <manoeuvre olan="aaatest">
+      <variant olanprefix="" name="for testing purposes">
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="0" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="1" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="2" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="3" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="4" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="5" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="6" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="7" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="8" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="9" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="10" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="11" yaw="ZERO" length="1" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
+      </variant>
+   </manoeuvre>
+
+
    <!-- single-line elements -->
 
    <manoeuvre olan="d">
       <variant olanprefix="" name="diagonal up line">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
@@ -13,11 +33,11 @@
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
 
       <variant olanprefix="i" name="diagonal down line">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
@@ -25,13 +45,13 @@
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
    </manoeuvre>
 
    <manoeuvre olan="v">
       <variant olanprefix="" name="vertical up line">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -45,11 +65,11 @@
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
 
       <variant olanprefix="i" name="vertical down line">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -63,13 +83,13 @@
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
    </manoeuvre>
 
    <manoeuvre olan="z">
       <variant olanprefix="" name="z-figure">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -89,11 +109,11 @@
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
 
       <variant olanprefix="i" name="inverted z-figure">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -113,13 +133,13 @@
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
    </manoeuvre>
 
    <manoeuvre olan="t">
       <variant olanprefix="" name="tooth">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -140,11 +160,11 @@
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
 
       <variant olanprefix="i" name="inverted tooth">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -165,11 +185,11 @@
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
 
       <variant olanprefix="z" name="z-tooth">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -196,11 +216,11 @@
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
 
       <variant olanprefix="iz" name="inverted z-tooth">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -227,13 +247,13 @@
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
    </manoeuvre>
 
    <manoeuvre olan="k">
       <variant olanprefix="" name="shark tooth">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -254,11 +274,11 @@
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
 
       <variant olanprefix="i" name="inverted shark tooth">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -279,13 +299,13 @@
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
    </manoeuvre>
 
    <manoeuvre olan="kz">
       <variant olanprefix="" name="shark-z">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -312,11 +332,11 @@
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
 
       <variant olanprefix="i" name="inverted shark-z">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -343,13 +363,13 @@
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
    </manoeuvre>
 
    <manoeuvre olan="a">
       <variant olanprefix="" name="split-a">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
@@ -366,7 +386,7 @@
          <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="MAX" yaw="ZERO" length="1" />
 
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
    </manoeuvre>
 
@@ -375,7 +395,7 @@
 
    <manoeuvre olan="o">
       <variant olanprefix="" name="rounded loop">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
@@ -400,10 +420,10 @@
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
       <variant olanprefix="i" name="inverted rounded loop">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
@@ -428,13 +448,13 @@
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
    </manoeuvre>
 
    <manoeuvre olan="qq">
       <variant olanprefix="" name="double square loop">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -467,10 +487,10 @@
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="5" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
       <variant olanprefix="i" name="inverted double square loop">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -503,13 +523,13 @@
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="5" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
    </manoeuvre>
 
    <manoeuvre olan="qo">
       <variant olanprefix="" name="square loop">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -538,10 +558,10 @@
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="5" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
       <variant olanprefix="i" name="inverted square loop">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -570,13 +590,13 @@
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="5" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
    </manoeuvre>
 
    <manoeuvre olan="dq">
       <variant olanprefix="" name="diamond square loop">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -605,10 +625,10 @@
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MAX" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
       <variant olanprefix="i" name="inverted diamond square loop">
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="entry" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
@@ -637,7 +657,7 @@
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
          <component pitch="MIN" roll="ZERO" yaw="ZERO" length="0.2" />
-         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" type="exit" />
+         <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
    </manoeuvre>
 </manoeuvres>

@@ -8,7 +8,4 @@ package uk.ac.aber.gij2.mmp;
 
 public class InvalidOLANException extends Exception {
 
-   public InvalidOLANException() {
-      super();
-   }
 }

@@ -12,7 +12,6 @@ import android.opengl.Matrix;
 import android.util.Log;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -99,8 +98,6 @@ public class Renderer implements GLSurfaceView.Renderer {
 
 
    public void onDrawFrame(GL10 unused) {
-
-      // background
       GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
       // calculate the projection and view transformation
@@ -152,13 +149,12 @@ public class Renderer implements GLSurfaceView.Renderer {
    /**
     * utility method for debugging opengl calls, provide the name of the call just after making it
     *    if the operation is not successful, the check throws an error
-    * @param glOperation - name of the opengl call to check.
+    * @param operation - name of the opengl call to check.
     */
-   public static void checkGlError(String glOperation) {
+   public static void checkGlError(String operation) {
       int error;
       while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
-         Log.e("renderer", glOperation + ": glError " + error);
-         throw new RuntimeException(glOperation + ": glError " + error);
+         throw new RuntimeException(operation + ": glError " + error);
       }
    }
 
@@ -168,8 +164,7 @@ public class Renderer implements GLSurfaceView.Renderer {
     * @param shaderCode - string of glsl
     * @return - reference to the shader program
     */
-   public int loadShader(int type, String shaderCode){
-
+   public int loadShader(int type, String shaderCode) {
       int shader = GLES20.glCreateShader(type);
 
       // add the source code to the shader and compile it
@@ -188,8 +183,8 @@ public class Renderer implements GLSurfaceView.Renderer {
       String shaderCode = "";
 
       try {
-         InputStream inputStream = context.getResources().openRawResource(resource);
-         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+         BufferedReader reader = new BufferedReader(new InputStreamReader(
+               context.getResources().openRawResource(resource)));
 
          String read = reader.readLine();
          while (read != null) {
@@ -197,8 +192,8 @@ public class Renderer implements GLSurfaceView.Renderer {
             read = reader.readLine();
          }
 
-      } catch (Exception e) {
-         Log.d("renderer", "could not read shader: " + e.getLocalizedMessage());
+      } catch (Exception exception) {
+         Log.e(this.getClass().getName(), "could not read shader: " + exception.getMessage());
       }
 
       return shaderCode;
