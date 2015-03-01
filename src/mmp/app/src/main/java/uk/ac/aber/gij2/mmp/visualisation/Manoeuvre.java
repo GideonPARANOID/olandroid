@@ -16,11 +16,21 @@ public class Manoeuvre extends Shape implements Drawable {
    private String olan, name;
    private boolean matricesCalculated;
 
+   private float defaultEntryLength, defaultExitLength;
 
-   public Manoeuvre(Component[] components, String olan, String name) throws IndexOutOfBoundsException {
+   /**
+    *
+    * @param components - list of components which constitute the movement of the manoeuvre
+    * @param olan - olan figure for the manoeuvre
+    * @param name - name of the manoeuvre
+    * @throws IndexOutOfBoundsException - thrown if there's no components
+    */
+   public Manoeuvre(Component[] components, String olan, String name) throws
+      IndexOutOfBoundsException {
+
       super();
 
-      if (components.length  == 0) {
+      if (components.length == 0) {
          throw new IndexOutOfBoundsException("no components");
       }
 
@@ -28,13 +38,16 @@ public class Manoeuvre extends Shape implements Drawable {
       this.olan = olan;
       this.name = name;
 
+      defaultEntryLength = components[0].getLength();
+      defaultExitLength = components[components.length - 1].getLength();
+
       buildComponentsCumulativeLength();
       matricesCalculated = false;
    }
 
 
    /**
-    * copy constructor
+    * deep copy constructor (copies components too)
     * @param manoeuvre - instance of manoeuvre to copy
     */
    public Manoeuvre(Manoeuvre manoeuvre) throws IndexOutOfBoundsException {
@@ -54,6 +67,9 @@ public class Manoeuvre extends Shape implements Drawable {
 
       this.olan = manoeuvre.olan;
       this.name = manoeuvre.name;
+
+      defaultEntryLength = components[0].getLength();
+      defaultExitLength = components[components.length - 1].getLength();
 
       buildComponentsCumulativeLength();
       matricesCalculated = false;
@@ -155,17 +171,25 @@ public class Manoeuvre extends Shape implements Drawable {
 
 
    /**
-    * @param entryLength - length to add to the default entry component length of 1
-    * @param exitLength - length to add to the default exit component length of 1
+    * @param entryLength - length to add to the default entry component length
     */
-   public void setEntryExitLengths(int entryLength, int exitLength) {
-      components[0].setLength(1f + (float) entryLength);
-      components[components.length - 1].setLength(1f + (float) exitLength);
+   public void addEntryLength(int entryLength) {
+      components[0].setLength(defaultEntryLength + (float) entryLength);
 
       buildComponentsCumulativeLength();
       matricesCalculated = false;
    }
 
+
+   /**
+    * @param exitLength - length to add to the default exit component length
+    */
+   public void addExitLength(int exitLength) {
+      components[components.length - 1].setLength(defaultExitLength + (float) exitLength);
+
+      buildComponentsCumulativeLength();
+      matricesCalculated = false;
+   }
 
 
    public float getLength() {

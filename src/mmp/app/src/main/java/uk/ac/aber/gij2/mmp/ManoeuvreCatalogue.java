@@ -57,6 +57,8 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
 
       String[] olans = getOLANs();
 
+      System.out.println(java.util.Arrays.toString(olans));
+
       ((TextView) row.findViewById(R.id.ol_text_olan)).setText(olans[position]);
 
       String name = get(olans[position]).getName();
@@ -79,7 +81,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
       parser.next();
       parser.next();
 
-      parser.require(XmlPullParser.START_TAG, null, "manoeuvres");
+      parser.require(XmlPullParser.START_TAG, null, "catalogue");
 
       while (parser.next() != XmlPullParser.END_TAG) {
          if (parser.getName().equals("manoeuvre")) {
@@ -105,13 +107,15 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
          if (parser.getName().equals("variant")) {
 
             // have to get these now before the parser moves onto the components
-            String fullOLAN = parser.getAttributeValue(null, "olanprefix") + olan,
+            String fullOLAN = parser.getAttributeValue(null, "olanPrefix") + olan,
                name = parser.getAttributeValue(null, "name");
 
             try {
-               manoeuvres.put(fullOLAN, new Manoeuvre(parseVariantComponents(parser), fullOLAN, name));
+               manoeuvres.put(fullOLAN, new Manoeuvre(parseVariantComponents(parser), fullOLAN,
+                  name));
 
             } catch (IndexOutOfBoundsException exception) {
+               manoeuvres.remove(fullOLAN);
                Log.w(this.getClass().getName(), "invalid manoeuvre");
             }
 
@@ -137,23 +141,10 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
       while (parser.next() != XmlPullParser.END_TAG) {
          if (parser.getName().equals("component")) {
 
-            int rollOffset;
-
-            // TODO: remove when irrelevant
-            try {
-               rollOffset = Integer.parseInt(parser.getAttributeValue(null, "rolloffset"));
-
-            } catch (NumberFormatException exeception) {
-               rollOffset = 0;
-            }
-
-
-
             components.add(new Component(
                parseComponentStrength(parser.getAttributeValue(null, "pitch")),
                parseComponentStrength(parser.getAttributeValue(null, "yaw")),
                parseComponentStrength(parser.getAttributeValue(null, "roll")),
-               rollOffset,
                Float.parseFloat(parser.getAttributeValue(null, "length")),
                ((MMPApplication) context.getApplicationContext()).buildColourArray(
                   R.color.vis_flight_front),

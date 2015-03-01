@@ -16,28 +16,20 @@ public class Component extends Shape implements Drawable {
    public static final int ZERO = 0, MIN = -1, MAX = 1;
    private static final float ANGLE = 1f / 24f, WIDTH = 0.5f;
 
-   private int pitch, yaw, roll, rollOffset;
+   private int pitch, yaw, roll;
    private float length;
    private float[] matrix, vertices, colourFront, colourBack;
-
-
-   public Component(int pitch, int yaw, int roll, float length, float[] colourFront,
-      float[] colourBack) {
-
-      this(pitch, yaw, roll, 0, length, colourFront, colourBack);
-   }
 
 
    /**
     * @param pitch - vertical amount
     * @param yaw - horizontal amount
     * @param roll - roll amount
-    * @param rollOffset - number of roll offsets, in relation to max/min roll
     * @param length - length of the component
     * @param colourFront - argb colour for the front of the component
     * @param colourBack - argb colour for the back of the component
     */
-   public Component(int pitch, int yaw, int roll, int rollOffset, float length, float[] colourFront,
+   public Component(int pitch, int yaw, int roll, float length, float[] colourFront,
       float[] colourBack) {
 
       super();
@@ -45,7 +37,6 @@ public class Component extends Shape implements Drawable {
       this.pitch = pitch;
       this.yaw = yaw;
       this.roll = roll;
-      this.rollOffset = rollOffset;
       this.length = length;
       this.colourFront = colourFront;
       this.colourBack = colourBack;
@@ -63,8 +54,8 @@ public class Component extends Shape implements Drawable {
     * @param component - instance of component to copy
     */
    public Component(Component component) {
-      this(component.pitch, component.yaw, component.roll, component.rollOffset, component.length,
-         component.colourFront, component.colourBack);
+      this(component.pitch, component.yaw, component.roll, component.length, component.colourFront,
+         component.colourBack);
    }
 
 

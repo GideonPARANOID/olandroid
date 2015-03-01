@@ -52,8 +52,11 @@ public class FlightManager {
          if (matcher.matches() && manoeuvreCatalogue.get(matcher.group(2)) != null) {
             manoeuvres[i] = new Manoeuvre(manoeuvreCatalogue.get(matcher.group(2)));
 
-            // TODO: add proper support for minus, interpret for positive exclusively
-            manoeuvres[i].setEntryExitLengths(matcher.group(1).length(), matcher.group(3).length());
+            // TODO: add proper support for minus
+
+            // counting the pluses
+            manoeuvres[i].addEntryLength(findOccurrences("+", matcher.group(1)));
+            manoeuvres[i].addExitLength(findOccurrences("+", matcher.group(3)));
 
          } else {
             throw new InvalidOLANException();
@@ -61,6 +64,17 @@ public class FlightManager {
       }
 
       return new Flight(manoeuvres);
+   }
+
+
+   /**
+    * utility function for counting occurrences of a string in a string
+    * @param search - string to look for
+    * @param text - string to look in
+    * @return - number of occurrences
+    */
+   private int findOccurrences(String search, String text) {
+      return text.length() - text.replace(search, "").length();
    }
 
 
@@ -80,5 +94,4 @@ public class FlightManager {
    public Flight getCurrentFlight() {
       return currentFlight;
    }
-
 }
