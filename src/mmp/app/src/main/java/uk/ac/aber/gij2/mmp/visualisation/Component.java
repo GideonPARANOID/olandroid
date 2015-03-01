@@ -63,13 +63,13 @@ public class Component extends Shape implements Drawable {
     * @param component - instance of component to copy
     */
    public Component(Component component) {
-      this(component.pitch, component.yaw, component.roll, component.rollOffset, component.length, component.colourFront,
-         component.colourBack);
+      this(component.pitch, component.yaw, component.roll, component.rollOffset, component.length,
+         component.colourFront, component.colourBack);
    }
 
 
    protected void buildVertices() {
-      float x, y, z;
+      float x, y, z, xOffset = WIDTH, yOffset = 0;
 
       // continuing straight lines are a different case - much easier
       if (pitch == ZERO && yaw == ZERO) {
@@ -77,33 +77,36 @@ public class Component extends Shape implements Drawable {
          y = 0f;
          z = length;
 
-      // lines which shift direction
       } else {
-
-         // calculating the angle at which the line shifts the direction from the pitch & yaw
-         double directionAngle = Math.atan((double) pitch / (double) yaw);
+         // first & second triangles
+         double theta = ANGLE * Math.PI * 2, weta = Math.atan((double) pitch / (double) yaw);
 
          // does not like dividing by minus one, mathematically works but not programmatically
          if (yaw == MIN) {
-            directionAngle = Math.PI + directionAngle;
+            weta = Math.PI + weta;
          }
 
-         double radians = Math.PI * 2 * ANGLE;
-         x = (float) (length * Math.sin(radians) * Math.cos(directionAngle));
-         y = (float) (length * Math.sin(radians) * Math.sin(directionAngle));
-         z = (float) (length * Math.cos(radians));
+         x = (float) (length * Math.sin(theta) * Math.cos(weta));
+         y = (float) (length * Math.sin(theta) * Math.sin(weta));
+         z = (float) (length * Math.cos(theta));
+      }
+
+      // building the difference for a roll
+      if (roll != ZERO) {
+         xOffset = (float) (WIDTH * Math.cos(roll * ANGLE * Math.PI * 2f));
+         yOffset = (float) (WIDTH * Math.sin(roll * ANGLE * Math.PI * 2f));
       }
 
       vertices = new float[] {
          WIDTH, 0f, 0f,
          -WIDTH, 0f, 0f,
-         x - WIDTH, y, z,
-         x + WIDTH, y, z,
+         x - xOffset, y - yOffset, z,
+         x + xOffset, y + yOffset, z,
          WIDTH, 0f, 0f
       };
 
       super.buildVerticesBuffer(vertices);
-      super.buildDrawOrderBuffer(new short[]{
+      super.buildDrawOrderBuffer(new short[] {
          0, 1, 2,
          0, 2, 3
       });
@@ -115,13 +118,14 @@ public class Component extends Shape implements Drawable {
       matrix = new float[16];
       Matrix.setIdentityM(matrix, 0);
 
+
       // if all values are zero, we get a matrix of NaNs, which corrupts the matrix stack
       if (pitch != ZERO || yaw != ZERO || roll != ZERO) {
 
          // TODO: convert into separate matrix operations for each rotation, the angle in relation
          //    to each other will change, something like the weta directionAngle used earlier
 
-         Matrix.rotateM(matrix, 0, 360f * ANGLE, (float) -pitch, (float) yaw, (float) roll);
+         Matrix.rotateM(matrix, 0, 360f * ANGLE, (float) -pitch, (float) yaw, roll);
       }
 
       Matrix.translateM(matrix, 0, 0f, 0f, length);
