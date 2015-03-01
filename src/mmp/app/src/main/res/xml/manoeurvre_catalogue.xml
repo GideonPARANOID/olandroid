@@ -4,7 +4,6 @@
    <manoeuvre olan="aaatest">
       <variant olanprefix="" name="for testing purposes">
          <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="MAX" roll="MAX" rolloffset="0" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="MAX" rolloffset="1" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="MAX" rolloffset="2" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="MAX" rolloffset="3" yaw="ZERO" length="1" />
@@ -16,11 +15,11 @@
          <component pitch="MAX" roll="MAX" rolloffset="9" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="MAX" rolloffset="10" yaw="ZERO" length="1" />
          <component pitch="MAX" roll="MAX" rolloffset="11" yaw="ZERO" length="1" />
+         <component pitch="MAX" roll="MAX" rolloffset="12" yaw="ZERO" length="1" />
          <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
       <variant olanprefix="other" name="other">
          <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
-         <component pitch="ZERO" roll="MAX" rolloffset="0" yaw="ZERO" length="1" />
          <component pitch="ZERO" roll="MAX" rolloffset="1" yaw="ZERO" length="1" />
          <component pitch="ZERO" roll="MAX" rolloffset="2" yaw="ZERO" length="1" />
          <component pitch="ZERO" roll="MAX" rolloffset="3" yaw="ZERO" length="1" />
@@ -32,6 +31,7 @@
          <component pitch="ZERO" roll="MAX" rolloffset="9" yaw="ZERO" length="1" />
          <component pitch="ZERO" roll="MAX" rolloffset="10" yaw="ZERO" length="1" />
          <component pitch="ZERO" roll="MAX" rolloffset="11" yaw="ZERO" length="1" />
+         <component pitch="ZERO" roll="MAX" rolloffset="12" yaw="ZERO" length="1" />
          <component pitch="ZERO" roll="ZERO" yaw="ZERO" length="1" />
       </variant>
    </manoeuvre>

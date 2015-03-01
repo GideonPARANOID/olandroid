@@ -78,16 +78,16 @@ public class Component extends Shape implements Drawable {
          z = length;
 
       } else {
-         // first & second triangles
-         double theta = ANGLE * Math.PI * 2, weta = Math.atan((double) pitch / (double) yaw);
+         // first & second triangles of euler
+         double theta = ANGLE * Math.PI * 2, phi = Math.atan((double) pitch / (double) yaw);
 
          // does not like dividing by minus one, mathematically works but not programmatically
          if (yaw == MIN) {
-            weta = Math.PI + weta;
+            phi = Math.PI + phi;
          }
 
-         x = (float) (length * Math.sin(theta) * Math.cos(weta));
-         y = (float) (length * Math.sin(theta) * Math.sin(weta));
+         x = (float) (length * Math.sin(theta) * Math.cos(phi));
+         y = (float) (length * Math.sin(theta) * Math.sin(phi));
          z = (float) (length * Math.cos(theta));
       }
 
@@ -114,19 +114,33 @@ public class Component extends Shape implements Drawable {
 
 
    protected void buildMatrix() {
-      // building the matrix transform from the beginning of this component to the end
+      float[] mPitch = new float[16], mYaw = new float[16], mRoll = new float[16],
+         mTemp = new float[16];
+
+      // matrix library uses degrees instead of radians, heaven knows why
+      float factor = 360f * ANGLE;
+
       matrix = new float[16];
       Matrix.setIdentityM(matrix, 0);
+      Matrix.setIdentityM(mPitch, 0);
+      Matrix.setIdentityM(mYaw, 0);
+      Matrix.setIdentityM(mRoll, 0);
 
-
-      // if all values are zero, we get a matrix of NaNs, which corrupts the matrix stack
-      if (pitch != ZERO || yaw != ZERO || roll != ZERO) {
-
-         // TODO: convert into separate matrix operations for each rotation, the angle in relation
-         //    to each other will change, something like the weta directionAngle used earlier
-
-         Matrix.rotateM(matrix, 0, 360f * ANGLE, (float) -pitch, (float) yaw, roll);
+      if (pitch != ZERO) {
+         Matrix.setRotateM(mPitch, 0, factor, (float) -pitch, 0f, 0f);
       }
+
+      if (yaw != ZERO) {
+         Matrix.setRotateM(mYaw, 0, factor, 0f, (float) yaw, 0f);
+      }
+
+      if (roll != ZERO) {
+         Matrix.setRotateM(mRoll, 0, factor, 0f, 0f, (float) roll);
+      }
+
+      // combining the euler
+      Matrix.multiplyMM(mTemp, 0, mPitch, 0, mYaw, 0);
+      Matrix.multiplyMM(matrix, 0, mTemp, 0, mRoll, 0);
 
       Matrix.translateM(matrix, 0, 0f, 0f, length);
    }
