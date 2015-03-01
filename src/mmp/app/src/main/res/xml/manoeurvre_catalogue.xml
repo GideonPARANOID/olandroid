@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <catalogue>
 
+   <!--
+      a manoeuvre has an associated olan figure, & (usually) several variants, each with a prefix
+      which is prepended to the manoeuvre's olan string (the default one has no olan prefix).
+      variants have names to describe them, & consist of a list of components.
+
+      components are the rudimentary building blocks of flights. they are small pieces of flight
+      which an aircraft can do, using the three axes of rotation available to them - pitch, roll &
+      yaw. components are added sequentially to create manoeuvres.
+
+      increments are 1 / 24th a circle (15 degrees or pi radians / 12). max denotes positive, min
+      negative & zero none. max pitch is up, max roll is right-down and max yaw is right
+   -->
+
    <!-- single-line elements -->
 
    <manoeuvre olan="d">
