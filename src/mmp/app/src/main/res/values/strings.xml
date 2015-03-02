@@ -27,6 +27,6 @@
 
    <!-- preferences -->
    <string name="p_category_visualisation">Visualisation</string>
-   <string name="p_colour_theme">Theme</string>
-   <string name="p_color_theme_summary">Colour scheme for the visualisation</string>
+   <string name="p_ct_title">Theme</string>
+   <string name="p_ct_summary">Colour scheme for the visualisation</string>
 </resources>

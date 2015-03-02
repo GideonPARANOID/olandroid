@@ -8,8 +8,8 @@ android {
         applicationId "uk.ac.aber.gij2.mmp"
         minSdkVersion 11
         targetSdkVersion 21
-        versionCode 5
-        versionName "1.3"
+        versionCode 6
+        versionName "1.31"
     }
     buildTypes {
         release {

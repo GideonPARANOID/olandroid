@@ -6,13 +6,16 @@
    <color name="app_secondary">#ff000080</color>
 
    <color name="vis_primary">#ff800000</color>
-   <color name="vis_background">#ffffffff</color>
-   <color name="vis_grid">#ffbbbbbb</color>
 
    <color name="vis_flight_front_0">#ff186b00</color>
    <color name="vis_flight_back_0">#ff7ec0ee</color>
-   <color name="vis_flight_front_1">#ffff0000</color>
-   <color name="vis_flight_back_1">#ff000000</color>
+   <color name="vis_background_0">#ffffffff</color>
+   <color name="vis_grid_0">#ffbbbbbb</color>
+
+   <color name="vis_flight_back_1">#ffff6722</color>
+   <color name="vis_flight_front_1">#ffff03e8</color>
+   <color name="vis_background_1">#ff000000</color>
+   <color name="vis_grid_1">#ff8823bb</color>
 
    <color name="black">#ff000000</color>
    <color name="white">#ffffffff</color>

@@ -69,8 +69,8 @@ public class Renderer implements GLSurfaceView.Renderer {
       GLES20.glAttachShader(program, fragmentShader);
       GLES20.glLinkProgram(program);
 
-      float[] colour  = ((MMPApplication) context.getApplicationContext()).buildColourArray(
-         R.color.vis_background);
+      float[] colour  = ((MMPApplication) context.getApplicationContext()).getCurrentColourTheme(
+         R.array.ct_background);
 
       GLES20.glClearColor(colour[0], colour[1], colour[2], colour[3]);
 
@@ -92,6 +92,12 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       // projection matrix is applied to object coordinates in the draw method
       Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1f, 1000f);
+
+      // refreshig colours
+      float[] colour  = ((MMPApplication) context.getApplicationContext()).getCurrentColourTheme(
+         R.array.ct_background);
+
+      GLES20.glClearColor(colour[0], colour[1], colour[2], colour[3]);
 
       buildViewMatrix();
    }
@@ -154,7 +160,7 @@ public class Renderer implements GLSurfaceView.Renderer {
    public static void checkGlError(String operation) {
       int error;
       while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
-         throw new RuntimeException(operation + ": glError " + error);
+         throw new RuntimeException(operation + ": gl error " + error);
       }
    }
 

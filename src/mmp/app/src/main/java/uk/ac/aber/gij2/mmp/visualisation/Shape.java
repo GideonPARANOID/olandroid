@@ -135,11 +135,11 @@ public abstract class Shape implements Drawable {
       drawOrderBuffer.put(drawOrder).position(0);
    }
 
-   protected void setColourFront(float[] colourFront) {
+   public void setColourFront(float[] colourFront) {
       this.colourFront = colourFront;
    }
 
-   protected void setColourBack(float[] colourBack) {
+   public void setColourBack(float[] colourBack) {
       this.colourBack = colourBack;
    }
 }

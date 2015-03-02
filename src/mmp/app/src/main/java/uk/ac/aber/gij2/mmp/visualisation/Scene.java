@@ -7,8 +7,6 @@ package uk.ac.aber.gij2.mmp.visualisation;
 
 import android.content.Context;
 
-import java.util.ArrayList;
-
 import uk.ac.aber.gij2.mmp.Flight;
 import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.R;
@@ -16,26 +14,12 @@ import uk.ac.aber.gij2.mmp.R;
 
 public class Scene {
 
-   private ArrayList<Drawable> sceneGraph;
-   private Context context;
-
+   private Grid grid;
+   private Flight flight;
 
    public Scene(Context context) {
-      sceneGraph = new ArrayList<>();
-      this.context = context;
-      sceneGraph.add(new Grid(5, 10,
-         ((MMPApplication) context.getApplicationContext()).buildColourArray(R.color.vis_grid)));
-   }
-
-
-   /**
-    * @param flight - the current flight
-    */
-   public void setFlight(Flight flight) {
-      sceneGraph = new ArrayList<>();
-      sceneGraph.add(new Grid(5, 10,
-         ((MMPApplication) context.getApplicationContext()).buildColourArray(R.color.vis_grid)));
-      sceneGraph.add(flight);
+      grid = new Grid(5, 10,
+         ((MMPApplication) context.getApplicationContext()).getCurrentColourTheme(R.array.ct_grid));
    }
 
 
@@ -44,16 +28,30 @@ public class Scene {
     * @param initialMatrix - the initial matrix to start drawing from
     */
    public void draw(float[] initialMatrix) {
-
-      for (Drawable item : sceneGraph) {
-         item.draw(initialMatrix);
-      }
+      grid.draw(initialMatrix);
+      flight.draw(initialMatrix);
    }
 
 
    public void animate(float completion) {
+      flight.animate(completion);
+   }
 
-      // flight is always at index 1, TODO: refine
-      ((Flight) sceneGraph.get(1)).animate(completion);
+
+   public Flight getFlight() {
+      return flight;
+   }
+
+   public void setFlight(Flight flight) {
+      this.flight = flight;
+   }
+
+   public Grid getGrid() {
+      return grid;
+   }
+
+   public void setGrid(Grid grid) {
+      this.grid = grid;
    }
 }
+

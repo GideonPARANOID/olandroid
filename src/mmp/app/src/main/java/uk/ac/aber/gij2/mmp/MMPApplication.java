@@ -13,10 +13,12 @@ import uk.ac.aber.gij2.mmp.visualisation.FlightAnimator;
 import uk.ac.aber.gij2.mmp.visualisation.Scene;
 
 
-public class MMPApplication extends android.app.Application {
+public class MMPApplication extends android.app.Application implements
+   SharedPreferences.OnSharedPreferenceChangeListener{
 
    private SharedPreferences preferences;
 
+   private Scene scene;
    private FlightManager flightManager;
    private ManoeuvreCatalogue manoeuvreCatalogue;
 
@@ -37,10 +39,11 @@ public class MMPApplication extends android.app.Application {
    @Override
    public void onCreate() {
       preferences = PreferenceManager.getDefaultSharedPreferences(this);
+      preferences.registerOnSharedPreferenceChangeListener(this);
 
-      flightManager = new FlightManager(this);
+      scene = new Scene(this);
       manoeuvreCatalogue = new ManoeuvreCatalogue(this);
-      flightManager.setManoeuvreCatalogue(manoeuvreCatalogue);
+      flightManager = new FlightManager(manoeuvreCatalogue);
    }
 
 
@@ -48,13 +51,14 @@ public class MMPApplication extends android.app.Application {
     * @param olan - string olan description of a flight
     * @throws InvalidOLANException - whether the flight was successfully built from the olan
     */
-   public void buildFlight(String olan) throws InvalidOLANException {
-      flightManager.setCurrentFlight(flightManager.buildFlight(olan));
+   public void buildAndSetFlight(String olan) throws InvalidOLANException {
+      scene.setFlight(flightManager.buildFlight(olan));
+      updateColourTheme();
    }
 
 
    public Scene getScene() {
-      return flightManager.getScene();
+      return scene;
    }
 
 
@@ -90,38 +94,7 @@ public class MMPApplication extends android.app.Application {
       this.animationProgress = animationProgress;
 
       // TODO: update seekbar somehow
-      flightManager.getCurrentFlight().animate(animationProgress);
-   }
-
-
-   /**
-    * @param id - resource id of a colour to use
-    * @return - array of floats depicting a colour
-    */
-   public float[] buildColourArray(int id) {
-      int colour = getResources().getColor(id);
-      return new float[] {
-         (float) Color.red(colour) / 256f,
-         (float) Color.green(colour) / 256f,
-         (float) Color.blue(colour) / 256f,
-         (float) Color.alpha(colour) / 256f
-      };
-   }
-
-
-   /**
-    * @param index - index of resource list of a colour to use
-    * @param listId - id of list of colours to look in
-    * @return - array of floats depicting a colour
-    */
-   public float[] buildColourArray(int index, int listId) {
-      int colour = getResources().obtainTypedArray(listId).getColor(index, 0);
-      return new float[] {
-         (float) Color.red(colour) / 256f,
-         (float) Color.green(colour) / 256f,
-         (float) Color.blue(colour) / 256f,
-         (float) Color.alpha(colour) / 256f
-      };
+      scene.animate(animationProgress);
    }
 
 
@@ -129,18 +102,38 @@ public class MMPApplication extends android.app.Application {
     * updates the colour theme for the current flight
     */
    public void updateColourTheme() {
-      flightManager.getCurrentFlight().setColourFront(getCurrentColourTheme(
-         R.array.p_colour_theme_front));
-      flightManager.getCurrentFlight().setColourBack(getCurrentColourTheme(
-         R.array.p_colour_theme_back));
+      if (scene.getFlight() != null) {
+         scene.getFlight().setColourFront(getCurrentColourTheme(R.array.ct_front));
+         scene.getFlight().setColourBack(getCurrentColourTheme(R.array.ct_back));
+      }
+
+      scene.getGrid().setColourFront(getCurrentColourTheme(R.array.ct_grid));
+      scene.getGrid().setColourBack(getCurrentColourTheme(R.array.ct_grid));
    }
 
 
    /**
     * @param listId - id of list of colours to look in
-    * @return - array of floats representing a colour
+    * @return - array of floats representing a colour, rgba designed for use with opengl
     */
    public float[] getCurrentColourTheme(int listId) {
-      return buildColourArray(Integer.parseInt(preferences.getString("p_colour_theme", "0")), listId);
+
+      int colour = getResources().obtainTypedArray(listId).getColor(
+         Integer.parseInt(preferences.getString("p_ct", "0")), 0);
+
+      return new float[] {
+         (float) Color.red(colour) / 256f,
+         (float) Color.green(colour) / 256f,
+         (float) Color.blue(colour) / 256f,
+         (float) Color.alpha(colour) / 256f
+      };
+   }
+
+
+   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+      switch (key) {
+         case "p_ct":
+            updateColourTheme();
+      }
    }
 }

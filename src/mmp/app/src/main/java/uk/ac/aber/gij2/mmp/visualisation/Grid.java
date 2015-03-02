@@ -21,6 +21,7 @@ public class Grid extends Shape implements Drawable {
       super(Shape.LINES);
 
       super.setColourFront(colour);
+      super.setColourBack(colour);
 
       this.unit = unit;
       this.dimensions = dimensions * unit;

@@ -8,7 +8,7 @@ package uk.ac.aber.gij2.mmp.visualisation;
 import android.opengl.Matrix;
 
 
-public class Manoeuvre extends Shape implements Drawable {
+public class Manoeuvre implements Drawable {
 
    private Component[] components;
    private float[][] matrices;
@@ -206,7 +206,6 @@ public class Manoeuvre extends Shape implements Drawable {
    }
 
 
-   @Override
    public void setColourBack(float[] colourBack) {
       for (int i = 0; i < components.length; i++) {
          components[i].setColourBack(colourBack);
@@ -214,7 +213,6 @@ public class Manoeuvre extends Shape implements Drawable {
    }
 
 
-   @Override
    public void setColourFront(float[] colourFront) {
       for (int i = 0; i < components.length; i++) {
          components[i].setColourFront(colourFront);

@@ -5,26 +5,22 @@
 
 package uk.ac.aber.gij2.mmp;
 
-import android.content.Context;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
-import uk.ac.aber.gij2.mmp.visualisation.Scene;
 
 
 public class FlightManager {
 
    private ManoeuvreCatalogue manoeuvreCatalogue;
-   private Scene scene;
-   private Flight currentFlight;
    private final String olanRegex = "([\\+,-]*)(\\w*)([\\+,-]*)";
    private final Pattern olanPattern;
 
 
-   public FlightManager(Context context) {
-      scene = new Scene(context);
+   public FlightManager(ManoeuvreCatalogue manoeuvreCatalogue) {
+      this.manoeuvreCatalogue = manoeuvreCatalogue;
+
       olanPattern = Pattern.compile(olanRegex);
    }
 
@@ -75,23 +71,5 @@ public class FlightManager {
     */
    private int findOccurrences(String search, String text) {
       return text.length() - text.replace(search, "").length();
-   }
-
-
-   public void setCurrentFlight(Flight currentFlight) {
-      this.currentFlight = currentFlight;
-      scene.setFlight(currentFlight);
-   }
-
-   public void setManoeuvreCatalogue(ManoeuvreCatalogue manoeuvreCatalogue) {
-      this.manoeuvreCatalogue = manoeuvreCatalogue;
-   }
-
-   public Scene getScene() {
-      return scene;
-   }
-
-   public Flight getCurrentFlight() {
-      return currentFlight;
    }
 }

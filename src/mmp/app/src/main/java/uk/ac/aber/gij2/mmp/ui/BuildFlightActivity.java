@@ -78,7 +78,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
    public void button_vis(View view) {
 
       try {
-         ((MMPApplication) getApplication()).buildFlight(olanEntry.getText().toString());
+         ((MMPApplication) getApplication()).buildAndSetFlight(olanEntry.getText().toString());
          startActivity(new Intent(this, VisualisationActivity.class));
 
       } catch (Exception exception) {

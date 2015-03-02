@@ -145,9 +145,9 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
                parseComponentStrength(parser.getAttributeValue(null, "roll")),
                Float.parseFloat(parser.getAttributeValue(null, "length")),
                ((MMPApplication) context.getApplicationContext()).getCurrentColourTheme(
-                  R.array.p_colour_theme_front),
+                  R.array.ct_front),
                ((MMPApplication) context.getApplicationContext()).getCurrentColourTheme(
-                  R.array.p_colour_theme_back)));
+                  R.array.ct_back)));
 
             // skipping content
             skip(parser);
