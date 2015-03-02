@@ -1,7 +1,7 @@
 <LinearLayout
    xmlns:android="http://schemas.android.com/apk/res/android"
    xmlns:tools="http://schemas.android.com/tools"
-   tools:context="uk.ac.aber.gij2.mmp.activities.MainActivity"
+   tools:context="uk.ac.aber.gij2.mmp.ui.MainActivity"
 
    android:id="@+id/ol_row"
 
@@ -21,7 +21,7 @@
       style="@style/AppTheme"
 
       android:layout_width="0dp"
-      android:layout_weight="50"
+      android:layout_weight="30"
       android:layout_height="30dp" />
 
    <TextView
@@ -29,6 +29,6 @@
       style="@style/AppTheme"
 
       android:layout_width="0dp"
-      android:layout_weight="50"
+      android:layout_weight="70"
       android:layout_height="30dp" />
 </LinearLayout>

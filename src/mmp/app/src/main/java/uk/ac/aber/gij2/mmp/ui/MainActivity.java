@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.activities;
+package uk.ac.aber.gij2.mmp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,6 +40,7 @@ public class MainActivity extends ActionBarActivity {
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
          case R.id.menu_a_settings:
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
 
          default:

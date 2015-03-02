@@ -15,8 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import uk.ac.aber.gij2.mmp.R;
-import uk.ac.aber.gij2.mmp.activities.BuildFlightActivity;
-import uk.ac.aber.gij2.mmp.activities.VisualisationActivity;
+import uk.ac.aber.gij2.mmp.ui.BuildFlightActivity;
+import uk.ac.aber.gij2.mmp.ui.VisualisationActivity;
 
 
 public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<BuildFlightActivity> {

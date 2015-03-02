@@ -27,7 +27,7 @@ import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 public class ManoeuvreCatalogue extends ArrayAdapter<String> {
 
    // we want a predictable iteration order
-   private LinkedHashMap<String, Manoeuvre> manoeuvres;
+   private LinkedHashMap<String, Manoeuvre> catalogue;
    private Context context;
 
 
@@ -38,13 +38,13 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
       super(context, R.layout.list_olan);
 
       this.context = context;
-      manoeuvres = new LinkedHashMap<>();
+      catalogue = new LinkedHashMap<>();
 
       try {
          parseManoeuvres();
 
       } catch (XmlPullParserException | IOException exception) {
-         System.err.println(exception.getMessage());
+         Log.d(this.getClass().getName(), exception.getMessage());
       }
    }
 
@@ -56,8 +56,6 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
          Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_olan, parent, false);
 
       String[] olans = getOLANs();
-
-      System.out.println(java.util.Arrays.toString(olans));
 
       ((TextView) row.findViewById(R.id.ol_text_olan)).setText(olans[position]);
 
@@ -111,11 +109,11 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
                name = parser.getAttributeValue(null, "name");
 
             try {
-               manoeuvres.put(fullOLAN, new Manoeuvre(parseVariantComponents(parser), fullOLAN,
+               catalogue.put(fullOLAN, new Manoeuvre(parseVariantComponents(parser), fullOLAN,
                   name));
 
             } catch (IndexOutOfBoundsException exception) {
-               manoeuvres.remove(fullOLAN);
+               catalogue.remove(fullOLAN);
                Log.w(this.getClass().getName(), "invalid manoeuvre");
             }
 
@@ -146,10 +144,10 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
                parseComponentStrength(parser.getAttributeValue(null, "yaw")),
                parseComponentStrength(parser.getAttributeValue(null, "roll")),
                Float.parseFloat(parser.getAttributeValue(null, "length")),
-               ((MMPApplication) context.getApplicationContext()).buildColourArray(
-                  R.color.vis_flight_front),
-               ((MMPApplication) context.getApplicationContext()).buildColourArray(
-                  R.color.vis_flight_back)));
+               ((MMPApplication) context.getApplicationContext()).getCurrentColourTheme(
+                  R.array.p_colour_theme_front),
+               ((MMPApplication) context.getApplicationContext()).getCurrentColourTheme(
+                  R.array.p_colour_theme_back)));
 
             // skipping content
             skip(parser);
@@ -206,7 +204,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
     * @throws NullPointerException - might not be able to find the manoeuvre specified
     */
    public Manoeuvre get(String key) throws NullPointerException {
-      return manoeuvres.get(key);
+      return catalogue.get(key);
    }
 
 
@@ -217,7 +215,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
     * @throws IndexOutOfBoundsException - might not be able to find the manoeuvre specified
     */
    public Manoeuvre get(int index) throws IndexOutOfBoundsException {
-      return manoeuvres.get(getOLANs()[index]);
+      return catalogue.get(getOLANs()[index]);
    }
 
 
@@ -225,7 +223,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
     * @return - an array of olan figures available in this catalogue, always in the same order
     */
    public String[] getOLANs() {
-      ArrayList<String> ids = new ArrayList<>(manoeuvres.keySet());
+      ArrayList<String> ids = new ArrayList<>(catalogue.keySet());
       return ids.toArray(new String[ids.size()]);
    }
 }

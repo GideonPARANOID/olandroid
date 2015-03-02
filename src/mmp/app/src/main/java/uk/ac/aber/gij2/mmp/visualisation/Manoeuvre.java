@@ -204,4 +204,20 @@ public class Manoeuvre extends Shape implements Drawable {
    public String getName() {
       return name;
    }
+
+
+   @Override
+   public void setColourBack(float[] colourBack) {
+      for (int i = 0; i < components.length; i++) {
+         components[i].setColourBack(colourBack);
+      }
+   }
+
+
+   @Override
+   public void setColourFront(float[] colourFront) {
+      for (int i = 0; i < components.length; i++) {
+         components[i].setColourFront(colourFront);
+      }
+   }
 }

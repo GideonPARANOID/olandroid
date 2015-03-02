@@ -3,8 +3,9 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.activities;
+package uk.ac.aber.gij2.mmp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -45,6 +46,7 @@ public class VisualisationActivity extends ActionBarActivity implements
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
          case R.id.menu_a_settings:
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
 
          case R.id.menu_va_play:

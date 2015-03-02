@@ -8,8 +8,11 @@
    <color name="vis_primary">#ff800000</color>
    <color name="vis_background">#ffffffff</color>
    <color name="vis_grid">#ffbbbbbb</color>
-   <color name="vis_flight_front">#ff186b00</color>
-   <color name="vis_flight_back">#ff7ec0ee</color>
+
+   <color name="vis_flight_front_0">#ff186b00</color>
+   <color name="vis_flight_back_0">#ff7ec0ee</color>
+   <color name="vis_flight_front_1">#ffff0000</color>
+   <color name="vis_flight_back_1">#ff000000</color>
 
    <color name="black">#ff000000</color>
    <color name="white">#ffffffff</color>

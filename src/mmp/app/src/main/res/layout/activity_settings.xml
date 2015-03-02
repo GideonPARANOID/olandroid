@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   tools:context="uk.ac.aber.gij2.mmp.ui.SettingsActivity"
+
+   android:orientation="vertical"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent">
+
+   <fragment
+      android:id="@+id/sa_fragment_settings"
+      android:name="uk.ac.aber.gij2.mmp.ui.SettingsFragment"
+
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+</LinearLayout>

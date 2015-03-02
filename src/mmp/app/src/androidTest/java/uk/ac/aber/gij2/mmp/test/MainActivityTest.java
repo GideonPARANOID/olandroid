@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import uk.ac.aber.gij2.mmp.R;
-import uk.ac.aber.gij2.mmp.activities.BuildFlightActivity;
-import uk.ac.aber.gij2.mmp.activities.MainActivity;
+import uk.ac.aber.gij2.mmp.ui.BuildFlightActivity;
+import uk.ac.aber.gij2.mmp.ui.MainActivity;
 
 
 public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {

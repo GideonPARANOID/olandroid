@@ -5,13 +5,17 @@
 
 package uk.ac.aber.gij2.mmp;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 
 import uk.ac.aber.gij2.mmp.visualisation.FlightAnimator;
 import uk.ac.aber.gij2.mmp.visualisation.Scene;
 
 
 public class MMPApplication extends android.app.Application {
+
+   private SharedPreferences preferences;
 
    private FlightManager flightManager;
    private ManoeuvreCatalogue manoeuvreCatalogue;
@@ -23,7 +27,6 @@ public class MMPApplication extends android.app.Application {
 
 
    public MMPApplication() {
-
       // need to use real constructor to use final variables
       animationProgress = 1;
       animationPlaying = false;
@@ -33,8 +36,9 @@ public class MMPApplication extends android.app.Application {
 
    @Override
    public void onCreate() {
-      flightManager = new FlightManager(this);
+      preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+      flightManager = new FlightManager(this);
       manoeuvreCatalogue = new ManoeuvreCatalogue(this);
       flightManager.setManoeuvreCatalogue(manoeuvreCatalogue);
    }
@@ -102,5 +106,41 @@ public class MMPApplication extends android.app.Application {
          (float) Color.blue(colour) / 256f,
          (float) Color.alpha(colour) / 256f
       };
+   }
+
+
+   /**
+    * @param index - index of resource list of a colour to use
+    * @param listId - id of list of colours to look in
+    * @return - array of floats depicting a colour
+    */
+   public float[] buildColourArray(int index, int listId) {
+      int colour = getResources().obtainTypedArray(listId).getColor(index, 0);
+      return new float[] {
+         (float) Color.red(colour) / 256f,
+         (float) Color.green(colour) / 256f,
+         (float) Color.blue(colour) / 256f,
+         (float) Color.alpha(colour) / 256f
+      };
+   }
+
+
+   /**
+    * updates the colour theme for the current flight
+    */
+   public void updateColourTheme() {
+      flightManager.getCurrentFlight().setColourFront(getCurrentColourTheme(
+         R.array.p_colour_theme_front));
+      flightManager.getCurrentFlight().setColourBack(getCurrentColourTheme(
+         R.array.p_colour_theme_back));
+   }
+
+
+   /**
+    * @param listId - id of list of colours to look in
+    * @return - array of floats representing a colour
+    */
+   public float[] getCurrentColourTheme(int listId) {
+      return buildColourArray(Integer.parseInt(preferences.getString("p_colour_theme", "0")), listId);
    }
 }

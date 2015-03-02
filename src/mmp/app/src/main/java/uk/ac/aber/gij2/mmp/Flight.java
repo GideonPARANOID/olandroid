@@ -128,4 +128,19 @@ public class Flight implements Drawable {
    public float getLength() {
       return manoeuvresCumulativeLength[manoeuvresCumulativeLength.length - 1];
    }
+
+
+
+   public void setColourBack(float[] colourBack) {
+      for (int i = 0; i < manoeuvres.length; i++) {
+         manoeuvres[i].setColourBack(colourBack);
+      }
+   }
+
+
+   public void setColourFront(float[] colourFront) {
+      for (int i = 0; i < manoeuvres.length; i++) {
+         manoeuvres[i].setColourFront(colourFront);
+      }
+   }
 }

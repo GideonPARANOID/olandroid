@@ -1,7 +1,7 @@
 <LinearLayout
    xmlns:android="http://schemas.android.com/apk/res/android"
    xmlns:tools="http://schemas.android.com/tools"
-   tools:context="uk.ac.aber.gij2.mmp.activities.MainActivity"
+   tools:context="uk.ac.aber.gij2.mmp.ui.MainActivity"
 
    android:orientation="vertical"
    android:paddingLeft="@dimen/a_margin_horizontal"

@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.activities;
+package uk.ac.aber.gij2.mmp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -53,6 +53,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
       // which option menu item got selected
       switch (item.getItemId()) {
          case R.id.menu_a_settings:
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
 
          default:
