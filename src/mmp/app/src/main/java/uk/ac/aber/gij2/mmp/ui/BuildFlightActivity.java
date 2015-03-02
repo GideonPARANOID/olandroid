@@ -52,6 +52,9 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
       // which option menu item got selected
       switch (item.getItemId()) {
+         case R.id.menu_a_help:
+            return true;
+
          case R.id.menu_a_settings:
             startActivity(new Intent(this, SettingsActivity.class));
             return true;

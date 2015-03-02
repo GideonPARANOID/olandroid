@@ -93,7 +93,7 @@ public class MMPApplication extends android.app.Application implements
    public void setAnimationProgress(float animationProgress) {
       this.animationProgress = animationProgress;
 
-      // TODO: update seekbar somehow
+      // TODO: update seekbar somehow, & update the icon/title of button
       scene.animate(animationProgress);
    }
 

@@ -45,6 +45,9 @@ public class VisualisationActivity extends ActionBarActivity implements
    @Override
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
+         case R.id.menu_a_help:
+            return true;
+
          case R.id.menu_a_settings:
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
@@ -54,6 +57,7 @@ public class VisualisationActivity extends ActionBarActivity implements
 
             ((MMPApplication) getApplication()).animationPlayToggle(playing);
             item.setTitle(playing ? R.string.va_stop : R.string.va_play);
+            item.setIcon(playing ? R.drawable.ic_action_stop : R.drawable.ic_action_play);
             return true;
 
          default:

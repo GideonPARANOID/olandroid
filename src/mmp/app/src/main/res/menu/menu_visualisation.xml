@@ -7,11 +7,19 @@
    <item
       android:id="@+id/menu_va_play"
       android:title="@string/va_play"
+      android:icon="@drawable/ic_action_play"
+      app:showAsAction="ifRoom" />
+
+   <item
+      android:id="@+id/menu_a_help"
+      android:title="@string/a_help"
+      android:icon="@drawable/ic_action_help"
       app:showAsAction="ifRoom" />
 
    <item
       android:id="@+id/menu_a_settings"
       android:title="@string/a_settings"
+      android:icon="@drawable/ic_action_overflow"
       android:orderInCategory="100"
-      app:showAsAction="never" />
+      app:showAsAction="ifRoom" />
 </menu>

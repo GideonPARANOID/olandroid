@@ -93,7 +93,7 @@ public class Renderer implements GLSurfaceView.Renderer {
       // projection matrix is applied to object coordinates in the draw method
       Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1f, 1000f);
 
-      // refreshig colours
+      // refreshing colours
       float[] colour  = ((MMPApplication) context.getApplicationContext()).getCurrentColourTheme(
          R.array.ct_background);
 
