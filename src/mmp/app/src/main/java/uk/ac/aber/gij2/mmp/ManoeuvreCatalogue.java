@@ -58,10 +58,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
       String[] olans = getOLANs();
 
       ((TextView) row.findViewById(R.id.ol_text_olan)).setText(olans[position]);
-
-      String name = get(olans[position]).getName();
-      ((TextView) row.findViewById(R.id.ol_text_name)).setText(name.substring(0, 1).toUpperCase()
-         + name.substring(1));
+      ((TextView) row.findViewById(R.id.ol_text_name)).setText(get(olans[position]).getName());
 
       return row;
    }
