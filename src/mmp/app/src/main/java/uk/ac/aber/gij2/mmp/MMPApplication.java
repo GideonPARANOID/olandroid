@@ -24,14 +24,13 @@ public class MMPApplication extends android.app.Application implements
 
    // TODO: relative to flight length
    private float animationProgress, animationStep;
-   private boolean animationPlaying;
    private Thread animationThread;
+   private FlightAnimator animator;
 
 
    public MMPApplication() {
       // need to use real constructor to use final variables
-      animationProgress = 1;
-      animationPlaying = false;
+      animationProgress = 1f;
       animationStep = 1f / 100f;
    }
 
@@ -78,23 +77,48 @@ public class MMPApplication extends android.app.Application implements
     */
    public void animationPlayToggle(boolean play) {
 
-      if (play && !animationPlaying) {
-         animationProgress = 0;
-         animationThread = new Thread(new FlightAnimator(this, animationStep));
+      if (play && animationProgress == 1f) {
+         animationProgress = 0f;
+
+         animator = new FlightAnimator(this, animationStep);
+         animationThread = new Thread(animator);
          animationThread.start();
 
-      } else if (!play && !animationPlaying) {
-         animationThread.interrupt();
-         animationPlaying = false;
+      } else if (play && animationProgress >= 0f && animationProgress < 1f) {
+         animator = new FlightAnimator(this, animationStep);
+         animationThread = new Thread(animator);
+         animationThread.start();
+
+
+      } else if (!play) {
+         animator.terminate();
+
+         try {
+            animationThread.join();
+         } catch (InterruptedException exception) {
+            System.err.println(exception.getMessage());
+         }
       }
    }
 
 
+   /**
+    * setting the degree to which the animation has progressed
+    * @param animationProgress - number for the animation progress, bounded between 0 & 1
+    */
    public void setAnimationProgress(float animationProgress) {
-      this.animationProgress = animationProgress;
+      if (animationProgress > 1f) {
+         this.animationProgress = 1f;
+
+      } else if (animationProgress < 0f) {
+         this.animationProgress = 0f;
+
+      } else {
+         this.animationProgress = animationProgress;
+      }
 
       // TODO: update seekbar somehow, & update the icon/title of button
-      scene.animate(animationProgress);
+      scene.animate(this.animationProgress);
    }
 
 

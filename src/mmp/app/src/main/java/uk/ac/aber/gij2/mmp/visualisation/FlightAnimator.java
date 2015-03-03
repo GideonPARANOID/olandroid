@@ -10,6 +10,7 @@ import uk.ac.aber.gij2.mmp.MMPApplication;
 
 public class FlightAnimator implements Runnable {
 
+   private boolean running;
    private float step;
    private long wait;
    private MMPApplication application;
@@ -30,9 +31,12 @@ public class FlightAnimator implements Runnable {
 
 
    public void run() {
+      running = true;
 
       try {
-         for (float i = 0, limit = 1f / step; i < limit; i++) {
+         for (float i = application.getAnimationProgress() / step, limit = 1f / step;
+            i <= limit && running; i++) {
+
             application.setAnimationProgress(step * i);
             Thread.sleep(wait);
          }
@@ -40,5 +44,9 @@ public class FlightAnimator implements Runnable {
       } catch (InterruptedException exception) {
          exception.printStackTrace();
       }
+   }
+
+   public void terminate() {
+      running = false;
    }
 }
