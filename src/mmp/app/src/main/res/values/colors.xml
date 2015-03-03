@@ -5,9 +5,6 @@
    <color name="app_primary">#ff800000</color>
    <color name="app_secondary">#ff000080</color>
 
-   <!-- TODO: work out a way of getting this transparent & working on lollipop -->
-   <color name="vis_primary">#ff800000</color>
-
    <color name="vis_flight_front_0">#ff186b00</color>
    <color name="vis_flight_back_0">#ff7ec0ee</color>
    <color name="vis_background_0">#ffffffff</color>

@@ -47,12 +47,8 @@ public class VisualisationActivity extends ActionBarActivity implements
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
          case R.id.menu_a_help:
-            new AlertDialog.Builder(this).setTitle(R.string.a_help).setMessage(
+            new AlertDialog.Builder(this).setTitle(R.string.app_help).setMessage(
                R.string.va_help_message).create().show();
-            return true;
-
-         case R.id.menu_a_settings:
-            startActivity(new Intent(this, SettingsActivity.class));
             return true;
 
          case R.id.menu_va_play:
@@ -61,6 +57,10 @@ public class VisualisationActivity extends ActionBarActivity implements
             ((MMPApplication) getApplication()).animationPlayToggle(playing);
             item.setTitle(playing ? R.string.va_stop : R.string.va_play);
             item.setIcon(playing ? R.drawable.ic_action_stop : R.drawable.ic_action_play);
+            return true;
+
+         case R.id.menu_a_settings:
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
 
          default:
