@@ -8,7 +8,8 @@
    <string name="ma_title">Home</string>
    <string name="ma_intro_title">Welcome to MMP</string>
    <string name="ma_intro_text">{PLACEHOLDER}</string>
-   <string name="ma_intro_link"><a href="http://github.com/gideonparanoid/mmp">Visit project on GitHub</a></string>
+   <string name="ma_intro_link"><a href="http://github.com/gideonparanoid/mmp">Visit project on
+      GitHub</a></string>
    <string name="ma_button_build">Start building a flight</string>
 
    <!-- build flight activity -->
@@ -17,11 +18,17 @@
    <string name="bfa_hint_olan">Enter an OLAN string</string>
    <string name="bfa_clear_olan">Clear</string>
    <string name="bfa_toast_invalid">Invalid OLAN</string>
+   <string name="bfa_help_message">Build a flight using an OLAN string. Browse manoeuvres in the
+      catalogue below &#38; tap to add them to the current flight, or type them directly into the
+      form. OLAN figures can have &#8216;+&#8217; before/after them to extend their entry &#38;
+      exit paths.</string>
 
    <!-- visualisation activity -->
    <string name="va_title">Visualisation</string>
    <string name="va_play">Play</string>
    <string name="va_stop">Stop</string>
+   <string name="va_help_message">Tap &#38; drag to rotate around the flight. Pinch to zoom in
+      &#38; out.</string>
 
    <!-- settings activity -->
    <string name="sa_title">Settings</string>

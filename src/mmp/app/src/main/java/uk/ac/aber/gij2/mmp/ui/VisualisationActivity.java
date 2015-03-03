@@ -5,6 +5,7 @@
 
 package uk.ac.aber.gij2.mmp.ui;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -46,6 +47,8 @@ public class VisualisationActivity extends ActionBarActivity implements
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
          case R.id.menu_a_help:
+            new AlertDialog.Builder(this).setTitle(R.string.a_help).setMessage(
+               R.string.va_help_message).create().show();
             return true;
 
          case R.id.menu_a_settings:

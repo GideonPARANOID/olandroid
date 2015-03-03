@@ -5,6 +5,7 @@
 
 package uk.ac.aber.gij2.mmp.ui;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -53,6 +54,8 @@ public class BuildFlightActivity extends ActionBarActivity implements
       // which option menu item got selected
       switch (item.getItemId()) {
          case R.id.menu_a_help:
+            new AlertDialog.Builder(this).setTitle(R.string.a_help).setMessage(
+               R.string.bfa_help_message).create().show();
             return true;
 
          case R.id.menu_a_settings:
