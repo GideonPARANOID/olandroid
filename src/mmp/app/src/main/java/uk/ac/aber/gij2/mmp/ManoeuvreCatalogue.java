@@ -7,11 +7,6 @@ package uk.ac.aber.gij2.mmp;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -24,7 +19,7 @@ import uk.ac.aber.gij2.mmp.visualisation.Component;
 import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 
 
-public class ManoeuvreCatalogue extends ArrayAdapter<String> {
+public class ManoeuvreCatalogue {
 
    // we want a predictable iteration order
    private LinkedHashMap<String, Manoeuvre> catalogue;
@@ -36,7 +31,6 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
     * @param context - the context relevant for getting the xml
     */
    public ManoeuvreCatalogue(Context context) {
-      super(context, R.layout.list_olan);
 
       this.context = context;
       catalogue = new LinkedHashMap<>();
@@ -47,21 +41,6 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
       } catch (XmlPullParserException | IOException exception) {
          Log.d(this.getClass().getName(), exception.getMessage());
       }
-   }
-
-
-   @Override
-   public View getView(int position, View convertView, ViewGroup parent) {
-
-      View row = ((LayoutInflater) context.getSystemService(
-         Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_olan, parent, false);
-
-      String[] olans = getOLANs();
-
-      ((TextView) row.findViewById(R.id.ol_text_olan)).setText(olans[position]);
-      ((TextView) row.findViewById(R.id.ol_text_name)).setText(get(olans[position]).getName());
-
-      return row;
    }
 
 
@@ -153,8 +132,6 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
                catalogue.remove(fullOLAN);
                Log.w(this.getClass().getName(), "invalid manoeuvre");
             }
-
-            super.add("");
          }
       }
    }
@@ -262,6 +239,24 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
    public String[] getOLANs() {
       ArrayList<String> ids = new ArrayList<>(catalogue.keySet());
       return ids.toArray(new String[ids.size()]);
+   }
+
+
+   /**
+    * @param category - the category to get the olans from
+    * @return - an array of olan figures available in this catalogue & category, always in the same
+    *    order
+    */
+   public String[] getOLANs(String category) {
+      ArrayList<String> ids = new ArrayList<>(catalogue.keySet()),inCategory = new ArrayList<>();
+
+     for (int i = 0; i < ids.size(); i++) {
+         if (catalogue.get(ids.get(i)).getCategory().equals(category)) {
+            inCategory.add(catalogue.get(ids.get(i)).getOLAN());
+         }
+      }
+
+      return inCategory.toArray(new String[inCategory.size()]);
    }
 
 

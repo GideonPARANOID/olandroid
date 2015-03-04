@@ -6,15 +6,21 @@
 package uk.ac.aber.gij2.mmp.ui;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import uk.ac.aber.gij2.mmp.MMPApplication;
@@ -34,9 +40,58 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
       olanEntry = (EditText) findViewById(R.id.bfa_edittext_olan);
 
+      final Spinner spinner = (Spinner) findViewById(R.id.bfa_spinner_category);
+
+      spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+            ((MMPApplication) getApplication()).getManoeuvreCatalogue().getCategories()));
+
+
+      // TODO: complete
+      spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+         @Override
+         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position,
+            long id) {
+
+            String category = ((MMPApplication)getApplication()).getManoeuvreCatalogue()
+               .getCategories()[position];
+
+            System.out.println(java.util.Arrays.toString(((MMPApplication) getApplication())
+               .getManoeuvreCatalogue().getOLANs(category)));
+         }
+
+         @Override
+         public void onNothingSelected(AdapterView<?> parentView) {
+         }
+
+      });
+
+
       final ListView listView = (ListView) findViewById(R.id.bfa_manoeuvre_list);
 
-      listView.setAdapter(((MMPApplication) getApplication()).getManoeuvreCatalogue());
+
+      // TODO: think about removing default
+      listView.setAdapter(new ArrayAdapter<String>(this, R.layout.list_olan,
+            ((MMPApplication) getApplication()).getManoeuvreCatalogue().getOLANs()) {
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+               MMPApplication context = ((MMPApplication) getApplication());
+
+               View row = ((LayoutInflater) context.getSystemService(
+                  Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_olan, parent, false);
+
+               String[] olans = context.getManoeuvreCatalogue().getOLANs();
+
+               ((TextView) row.findViewById(R.id.ol_text_olan)).setText(olans[position]);
+               ((TextView) row.findViewById(R.id.ol_text_name)).setText(
+                  context.getManoeuvreCatalogue().get(olans[position]).getName());
+
+               return row;
+            }
+      });
+
       listView.setOnItemClickListener(this);
    }
 

@@ -32,6 +32,14 @@
       android:layout_height="wrap_content"
       android:layout_gravity="center_horizontal" />
 
+   <Spinner
+      android:id="@+id/bfa_spinner_category"
+
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      </Spinner>
+
    <ListView
       android:id="@+id/bfa_manoeuvre_list"
 
