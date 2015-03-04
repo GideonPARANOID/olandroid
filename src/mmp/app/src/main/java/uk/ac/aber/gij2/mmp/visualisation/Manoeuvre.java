@@ -13,7 +13,7 @@ public class Manoeuvre implements Drawable {
    private Component[] components;
    private float[][] matrices;
    private float[] componentsCumulativeLength;
-   private String olan, name;
+   private String olan, name, category;
    private boolean matricesCalculated;
 
    private float defaultEntryLength, defaultExitLength;
@@ -25,7 +25,7 @@ public class Manoeuvre implements Drawable {
     * @param name - name of the manoeuvre
     * @throws IndexOutOfBoundsException - thrown if there's no components
     */
-   public Manoeuvre(Component[] components, String olan, String name) throws
+   public Manoeuvre(Component[] components, String olan, String name, String category) throws
       IndexOutOfBoundsException {
 
       super();
@@ -37,6 +37,7 @@ public class Manoeuvre implements Drawable {
       this.components = components;
       this.olan = olan;
       this.name = name;
+      this.category = category;
 
       defaultEntryLength = components[0].getLength();
       defaultExitLength = components[components.length - 1].getLength();
@@ -67,6 +68,7 @@ public class Manoeuvre implements Drawable {
 
       this.olan = manoeuvre.olan;
       this.name = manoeuvre.name;
+      this.category = manoeuvre.category;
 
       defaultEntryLength = components[0].getLength();
       defaultExitLength = components[components.length - 1].getLength();
@@ -203,6 +205,10 @@ public class Manoeuvre implements Drawable {
 
    public String getName() {
       return name;
+   }
+
+   public String getCategory() {
+      return category;
    }
 
 

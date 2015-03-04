@@ -28,6 +28,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
 
    // we want a predictable iteration order
    private LinkedHashMap<String, Manoeuvre> catalogue;
+   private String[] categories;
    private Context context;
 
 
@@ -41,7 +42,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
       catalogue = new LinkedHashMap<>();
 
       try {
-         parseManoeuvres();
+         parseCategories();
 
       } catch (XmlPullParserException | IOException exception) {
          Log.d(this.getClass().getName(), exception.getMessage());
@@ -65,11 +66,14 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
 
 
    /**
-    * parses the xml manoeuvre catalogue into the linked hash map
+    * parses the xml manoeuvre catalogue's categories into the catalogue
     * @throws XmlPullParserException
     * @throws IOException
     */
-   protected void parseManoeuvres() throws XmlPullParserException, IOException {
+   protected void parseCategories() throws XmlPullParserException, IOException {
+
+      ArrayList<String> categoriesTemp = new ArrayList<>();
+
       XmlPullParser parser = context.getResources().getXml(R.xml.manoeurvre_catalogue);
 
       // skipping over the first two element - xml declarations & top level container.
@@ -79,12 +83,48 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
       parser.require(XmlPullParser.START_TAG, null, "catalogue");
 
       while (parser.next() != XmlPullParser.END_TAG) {
+         if (parser.getName().equals("category")) {
+
+            String category = parser.getAttributeValue(null, "name");
+
+            boolean inList = false;
+            for (int i = 0; i < categoriesTemp.size() && !inList; i++) {
+               if (categoriesTemp.get(i).equals(category)) {
+                  inList = true;
+               }
+            }
+
+            if (!inList) {
+               categoriesTemp.add(category);
+            }
+
+            parseManoeuvres(parser, category);
+         }
+      }
+
+      categories = categoriesTemp.toArray(new String[categoriesTemp.size()]);
+   }
+
+
+   /**
+    * parses the xml manoeuvre catalogue category's manoeuvres into the catalogue
+    * @throws XmlPullParserException
+    * @throws IOException
+    */
+   protected void parseManoeuvres(XmlPullParser parser, String category) throws
+      XmlPullParserException, IOException {
+
+      parser.require(XmlPullParser.START_TAG, null, "category");
+
+      while (parser.next() != XmlPullParser.END_TAG) {
          if (parser.getName().equals("manoeuvre")) {
 
-            parseManoeuvreVariants(parser, parser.getAttributeValue(null, "olan"));
+            parseManoeuvreVariants(parser, parser.getAttributeValue(null, "olan"), category);
          }
       }
    }
+
+
 
 
    /**
@@ -93,7 +133,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
     * @throws XmlPullParserException
     * @throws IOException
     */
-   protected void parseManoeuvreVariants(XmlPullParser parser, String olan) throws
+   protected void parseManoeuvreVariants(XmlPullParser parser, String olan, String category) throws
       XmlPullParserException, IOException {
 
       parser.require(XmlPullParser.START_TAG, null, "manoeuvre");
@@ -107,7 +147,7 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
 
             try {
                catalogue.put(fullOLAN, new Manoeuvre(parseVariantComponents(parser), fullOLAN,
-                  name));
+                  name, category));
 
             } catch (IndexOutOfBoundsException exception) {
                catalogue.remove(fullOLAN);
@@ -222,5 +262,13 @@ public class ManoeuvreCatalogue extends ArrayAdapter<String> {
    public String[] getOLANs() {
       ArrayList<String> ids = new ArrayList<>(catalogue.keySet());
       return ids.toArray(new String[ids.size()]);
+   }
+
+
+   /**
+    * @return - an array of categories of manoeuvres found in the catalogue
+    */
+   public String[] getCategories() {
+      return categories;
    }
 }
