@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import uk.ac.aber.gij2.mmp.MMPApplication;
+import uk.ac.aber.gij2.mmp.ManoeuvreCatalogue;
 import uk.ac.aber.gij2.mmp.R;
 
 
@@ -45,54 +46,49 @@ public class BuildFlightActivity extends ActionBarActivity implements
       spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
             ((MMPApplication) getApplication()).getManoeuvreCatalogue().getCategories()));
 
-
-      // TODO: complete
+      // on changing the spinner
       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-         @Override
-         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position,
-            long id) {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItem,
+               int position, long id) {
 
-            String category = ((MMPApplication)getApplication()).getManoeuvreCatalogue()
-               .getCategories()[position];
+               final String category = ((MMPApplication)getApplication()).getManoeuvreCatalogue()
+                  .getCategories()[position];
 
-            System.out.println(java.util.Arrays.toString(((MMPApplication) getApplication())
-               .getManoeuvreCatalogue().getOLANs(category)));
-         }
-
-         @Override
-         public void onNothingSelected(AdapterView<?> parentView) {
-         }
-
-      });
+               final ListView listView = (ListView) findViewById(R.id.bfa_manoeuvre_list);
 
 
-      final ListView listView = (ListView) findViewById(R.id.bfa_manoeuvre_list);
+               // setup the listview on changing the category
+               listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                     R.layout.list_olan, ((MMPApplication) getApplication()).getManoeuvreCatalogue()
+                     .getOLANs(category)) {
 
+                     @Override
+                     public View getView(int position, View convertView, ViewGroup parent) {
 
-      // TODO: think about removing default
-      listView.setAdapter(new ArrayAdapter<String>(this, R.layout.list_olan,
-            ((MMPApplication) getApplication()).getManoeuvreCatalogue().getOLANs()) {
+                        MMPApplication context = ((MMPApplication) getApplication());
+
+                        View row = ((LayoutInflater) context.getSystemService(
+                           Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_olan, parent,
+                           false);
+
+                        String[] olans = context.getManoeuvreCatalogue().getOLANs(category);
+
+                        ((TextView) row.findViewById(R.id.ol_text_olan)).setText(olans[position]);
+                        ((TextView) row.findViewById(R.id.ol_text_name)).setText(
+                           context.getManoeuvreCatalogue().get(olans[position]).getName());
+
+                        return row;
+                     }
+               });
+            }
 
             @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-
-               MMPApplication context = ((MMPApplication) getApplication());
-
-               View row = ((LayoutInflater) context.getSystemService(
-                  Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_olan, parent, false);
-
-               String[] olans = context.getManoeuvreCatalogue().getOLANs();
-
-               ((TextView) row.findViewById(R.id.ol_text_olan)).setText(olans[position]);
-               ((TextView) row.findViewById(R.id.ol_text_name)).setText(
-                  context.getManoeuvreCatalogue().get(olans[position]).getName());
-
-               return row;
-            }
+            public void onNothingSelected(AdapterView<?> parentView) {}
       });
 
-      listView.setOnItemClickListener(this);
+      ((ListView) findViewById(R.id.bfa_manoeuvre_list)).setOnItemClickListener(this);
    }
 
 
@@ -125,10 +121,11 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
    @Override
    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+      ManoeuvreCatalogue catalogue = ((MMPApplication) getApplication()).getManoeuvreCatalogue();
 
-      // appending olan id to the end of the olan entry string& moving the cursor to the end
-      olanEntry.append(((MMPApplication) getApplication()).getManoeuvreCatalogue().get(
-         position).getOLAN() + " ");
+      // finding the category, then finding the manoeuvre in that category, then the olan
+      olanEntry.append(catalogue.get(catalogue.getOLANs((String) ((Spinner) findViewById(
+         R.id.bfa_spinner_category)).getSelectedItem())[position]).getOLAN() + " ");
    }
 
 
