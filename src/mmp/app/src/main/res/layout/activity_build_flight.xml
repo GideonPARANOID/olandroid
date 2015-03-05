@@ -35,6 +35,8 @@
    <Spinner
       android:id="@+id/bfa_spinner_category"
 
+      android:padding="10dp"
+
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_gravity="center_horizontal" />
