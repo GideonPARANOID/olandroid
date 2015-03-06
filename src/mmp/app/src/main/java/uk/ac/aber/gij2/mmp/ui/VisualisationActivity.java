@@ -13,12 +13,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SeekBar;
 
+import java.util.Observable;
+import java.util.Observer;
+
+import uk.ac.aber.gij2.mmp.AnimationManager;
 import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.R;
 
 
-public class VisualisationActivity extends ActionBarActivity implements
+public class VisualisationActivity extends ActionBarActivity implements Observer,
    SeekBar.OnSeekBarChangeListener {
+
+   private AnimationManager animationManager;
+   private SeekBar animationSeek;
 
 
    @Override
@@ -26,10 +33,14 @@ public class VisualisationActivity extends ActionBarActivity implements
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_visualisation);
 
-      SeekBar animationSeek = ((SeekBar) findViewById(R.id.va_seek));
+      // animation listening
+      animationManager = ((MMPApplication) getApplication()).getAnimationManager();
+      animationManager.addObserver(this);
+
+      animationSeek = ((SeekBar) findViewById(R.id.va_seek));
 
       // resetting animation & seek
-      ((MMPApplication) getApplication()).setAnimationProgress(1f);
+      animationManager.setAnimationProgress(1f);
       animationSeek.setProgress(100);
 
       animationSeek.setOnSeekBarChangeListener(this);
@@ -39,7 +50,10 @@ public class VisualisationActivity extends ActionBarActivity implements
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
       getMenuInflater().inflate(R.menu.menu_visualisation, menu);
-      return true;
+
+      menu.findItem(R.id.menu_va_play).setIcon(R.drawable.ic_action_play);
+
+      return super.onCreateOptionsMenu(menu);
    }
 
 
@@ -54,7 +68,7 @@ public class VisualisationActivity extends ActionBarActivity implements
          case R.id.menu_va_play:
             boolean playing = item.getTitle().equals(getString(R.string.va_play));
 
-            ((MMPApplication) getApplication()).animationPlayToggle(playing);
+            animationManager.animationPlayToggle(playing);
             item.setTitle(playing ? R.string.va_stop : R.string.va_play);
             item.setIcon(playing ? R.drawable.ic_action_stop : R.drawable.ic_action_play);
             return true;
@@ -73,7 +87,7 @@ public class VisualisationActivity extends ActionBarActivity implements
    @Override
    public void onProgressChanged(SeekBar seekBar, int progress, boolean human) {
       if (human) {
-         ((MMPApplication) getApplication()).setAnimationProgress((float) progress / 100f);
+         animationManager.setAnimationProgress((float) progress / 100f);
       }
    }
 
@@ -86,4 +100,15 @@ public class VisualisationActivity extends ActionBarActivity implements
    // seekbar
    @Override
    public void onStartTrackingTouch(SeekBar seekBar) {}
+
+
+   // animation
+   @Override
+   public void update(Observable observable, Object data) {
+      animationSeek.setProgress((int) (100f * animationManager.getAnimationProgress()));
+
+      if (animationManager.getAnimationProgress() == 1f) {
+         invalidateOptionsMenu();
+      }
+   }
 }

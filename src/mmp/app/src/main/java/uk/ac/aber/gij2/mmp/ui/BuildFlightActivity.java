@@ -95,7 +95,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
       getMenuInflater().inflate(R.menu.menu_build_flight, menu);
-      return true;
+      return super.onCreateOptionsMenu(menu);
    }
 
 
