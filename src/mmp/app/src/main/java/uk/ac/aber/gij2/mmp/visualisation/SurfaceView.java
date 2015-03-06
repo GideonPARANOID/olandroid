@@ -23,7 +23,8 @@ public class SurfaceView extends GLSurfaceView implements
 
 
    public SurfaceView(Context context, AttributeSet attributes) {
-       super(context);
+      super(context);
+      super.setEGLConfigChooser(8 , 8, 8, 8, 16, 0);
 
       renderer = new uk.ac.aber.gij2.mmp.visualisation.Renderer(context);
 

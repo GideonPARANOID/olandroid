@@ -18,6 +18,7 @@
    <EditText
       android:id="@+id/bfa_edittext_olan"
       android:hint="@string/bfa_hint_olan"
+      android:inputType="textNoSuggestions"
 
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
