@@ -5,7 +5,6 @@
 
 package uk.ac.aber.gij2.mmp.ui;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +25,7 @@ import android.widget.Toast;
 import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.ManoeuvreCatalogue;
 import uk.ac.aber.gij2.mmp.R;
+import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 
 
 public class BuildFlightActivity extends ActionBarActivity implements
@@ -53,31 +53,27 @@ public class BuildFlightActivity extends ActionBarActivity implements
             public void onItemSelected(AdapterView<?> parentView, View selectedItem,
                int position, long id) {
 
-               final String category = ((MMPApplication)getApplication()).getManoeuvreCatalogue()
-                  .getCategories()[position];
-
                final ListView listView = (ListView) findViewById(R.id.bfa_manoeuvre_list);
+               final ManoeuvreCatalogue manoeuvreCatalogue = ((MMPApplication) getApplication())
+                  .getManoeuvreCatalogue();
 
 
                // setup the listview on changing the category
-               listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
-                     R.layout.list_olan, ((MMPApplication) getApplication()).getManoeuvreCatalogue()
-                     .getOLANs(category)) {
+               listView.setAdapter(new ArrayAdapter<Manoeuvre>(getApplicationContext(),
+                     R.layout.list_manoeuvres, manoeuvreCatalogue.getManoeuvres(
+                     manoeuvreCatalogue.getCategories()[position])) {
 
                      @Override
                      public View getView(int position, View convertView, ViewGroup parent) {
 
-                        MMPApplication context = ((MMPApplication) getApplication());
+                        View row = ((LayoutInflater) getSystemService(
+                           Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_manoeuvres,
+                           parent, false);
 
-                        View row = ((LayoutInflater) context.getSystemService(
-                           Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_olan, parent,
-                           false);
-
-                        String[] olans = context.getManoeuvreCatalogue().getOLANs(category);
-
-                        ((TextView) row.findViewById(R.id.ol_text_olan)).setText(olans[position]);
-                        ((TextView) row.findViewById(R.id.ol_text_name)).setText(
-                           context.getManoeuvreCatalogue().get(olans[position]).getName());
+                        ((TextView) row.findViewById(R.id.lm_text_olan)).setText(
+                           getItem(position).getOLAN());
+                        ((TextView) row.findViewById(R.id.lm_text_name)).setText(
+                           getItem(position).getName());
 
                         return row;
                      }
@@ -101,12 +97,9 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
    @Override
    public boolean onOptionsItemSelected(MenuItem item) {
-
-      // which option menu item got selected
       switch (item.getItemId()) {
          case R.id.menu_a_help:
-            new AlertDialog.Builder(this).setTitle(R.string.app_help).setMessage(
-               R.string.bfa_help_message).create().show();
+            new HelpDialogFragment(R.string.bfa_help).show(getFragmentManager(), "help");
             return true;
 
          case R.id.menu_a_settings:
@@ -121,11 +114,11 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
    @Override
    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-      ManoeuvreCatalogue catalogue = ((MMPApplication) getApplication()).getManoeuvreCatalogue();
 
-      // finding the category, then finding the manoeuvre in that category, then the olan
-      olanEntry.append(catalogue.get(catalogue.getOLANs((String) ((Spinner) findViewById(
-         R.id.bfa_spinner_category)).getSelectedItem())[position]).getOLAN() + " ");
+      // finding the manoeuvre in the catalogue, getting its olan & adding to the current string
+      olanEntry.append(((MMPApplication) getApplication()).getManoeuvreCatalogue().getManoeuvres(
+         (String) ((Spinner) findViewById(R.id.bfa_spinner_category)).getSelectedItem())[position]
+         .getOLAN() + " ");
    }
 
 

@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.visualisation;
+package uk.ac.aber.gij2.mmp.ui;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
@@ -40,31 +40,40 @@ public class SurfaceView extends GLSurfaceView implements
    public boolean onTouchEvent(@NonNull MotionEvent event) {
       scaleGestureDetector.onTouchEvent(event);
 
-      if (event.getPointerCount() == 1) {
-         float currentX = event.getX(), currentY = event.getY();
 
-         if (event.getAction() == MotionEvent.ACTION_MOVE) {
-            float deltaX = currentX - previousX, deltaY = currentY - previousY;
+      if (event.getAction() == MotionEvent.ACTION_MOVE) {
+         switch (event.getPointerCount()) {
 
-            // inverting the movement on crossing the centre lines
-            if (currentY > getHeight() / 2) {
-               deltaX *= -1;
-            }
+            case 1:
+               float currentX = event.getX(), currentY = event.getY(),
+                  deltaX = currentX - previousX, deltaY = currentY - previousY;
 
-            if (currentX > getWidth() / 2) {
-               deltaY *= -1;
-            }
+               // inverting the movement on crossing the centre lines
+               if (currentY > getHeight() / 2) {
+                  deltaX = -deltaX;
+               }
 
-            renderer.setViewX(renderer.getViewX() + (deltaX * 0.5f));
+               if (currentX > getWidth() / 2) {
+                  deltaY = -deltaY;
+               }
 
-            float resultY = renderer.getViewY() + (deltaY * 0.5f);
-            if (resultY >= 0 && resultY <= 90) {
-               renderer.setViewY(resultY);
-            }
+               renderer.setViewX(renderer.getViewX() + (deltaX * 0.5f));
+
+               float resultY = renderer.getViewY() + (deltaY * 0.5f);
+               if (resultY >= 0 && resultY <= 90) {
+                  renderer.setViewY(resultY);
+               }
+
+               previousX = currentX;
+               previousY = currentY;
+               break;
+
+            case 2:
+
+
+               System.out.println(event.getX() + " " + event.getY());
+               break;
          }
-
-         previousX = currentX;
-         previousY = currentY;
       }
 
       return true;

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
    <!-- all -->
-   <string name="app_name">MMP</string>
-   <string name="app_help">Help</string>
-   <string name="app_settings">Settings</string>
+   <string name="a_name">MMP</string>
+   <string name="a_help">Help</string>
+   <string name="a_settings">Settings</string>
+   <string name="a_dialog_accept">Yes</string>
+   <string name="a_dialog_cancel">Cancel</string>
 
    <!-- main activity -->
    <string name="ma_title">Home</string>
@@ -11,7 +13,12 @@
    <string name="ma_intro_text">{PLACEHOLDER}</string>
    <string name="ma_intro_link"><a href="http://github.com/gideonparanoid/mmp">Visit project on
       GitHub</a></string>
-   <string name="ma_button_build">Start building a flight</string>
+   <string name="ma_button_flight_manager">Start building a flight</string>
+
+   <!-- flight manager activity -->
+   <string name="fma_title">Flight manager</string>
+   <string name="fma_new">New flight</string>
+   <string name="fma_help">Help</string>
 
    <!-- build flight activity -->
    <string name="bfa_title">Build a flight</string>
@@ -19,7 +26,7 @@
    <string name="bfa_hint_olan">Enter an OLAN string</string>
    <string name="bfa_clear_olan">Clear</string>
    <string name="bfa_toast_invalid">Invalid OLAN</string>
-   <string name="bfa_help_message">Build a flight using an OLAN string. Browse manoeuvres in the
+   <string name="bfa_help">Build a flight using an OLAN string. Browse manoeuvres in the
       catalogue below &#38; tap to add them to the current flight, or type them directly into the
       form. OLAN figures can have &#8216;+&#8217; before/after them to extend their entry &#38;
       exit paths.</string>
@@ -28,8 +35,10 @@
    <string name="va_title">Visualisation</string>
    <string name="va_play">Play</string>
    <string name="va_stop">Stop</string>
-   <string name="va_help_message">Tap &#38; drag to rotate around the flight. Pinch to zoom in
+   <string name="va_save">Save</string>
+   <string name="va_help">Tap &#38; drag to rotate around the flight. Pinch to zoom in
       &#38; out.</string>
+   <string name="va_new_flight_title">Enter a name for the flight</string>
 
    <!-- settings activity -->
    <string name="sa_title">Settings</string>

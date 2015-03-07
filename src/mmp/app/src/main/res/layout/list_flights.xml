@@ -1,9 +1,9 @@
 <LinearLayout
    xmlns:android="http://schemas.android.com/apk/res/android"
    xmlns:tools="http://schemas.android.com/tools"
-   tools:context="uk.ac.aber.gij2.mmp.ui.MainActivity"
+   tools:context="uk.ac.aber.gij2.mmp.ui.FlightManagerActivity"
 
-   android:id="@+id/ol_row"
+   android:id="@+id/lf_row"
 
    android:orientation="horizontal"
    android:weightSum="100"
@@ -16,7 +16,7 @@
    android:layout_height="match_parent" >
 
    <TextView
-      android:id="@+id/ol_text_olan"
+      android:id="@+id/lf_text_name"
       android:clickable="true"
       style="@style/AppTheme"
 
@@ -25,7 +25,7 @@
       android:layout_height="30dp" />
 
    <TextView
-      android:id="@+id/ol_text_name"
+      android:id="@+id/lf_text_olan"
       style="@style/AppTheme"
 
       android:layout_width="0dp"

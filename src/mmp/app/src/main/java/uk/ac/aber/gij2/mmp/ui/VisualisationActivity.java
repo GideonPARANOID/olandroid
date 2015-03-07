@@ -5,7 +5,6 @@
 
 package uk.ac.aber.gij2.mmp.ui;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -51,7 +50,8 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
    public boolean onCreateOptionsMenu(Menu menu) {
       getMenuInflater().inflate(R.menu.menu_visualisation, menu);
 
-      menu.findItem(R.id.menu_va_play).setIcon(R.drawable.ic_action_play);
+      menu.findItem(R.id.menu_va_play).setIcon(R.drawable.ic_action_play).setTitle(
+         R.string.va_play);
 
       return super.onCreateOptionsMenu(menu);
    }
@@ -60,17 +60,20 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
    @Override
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
-         case R.id.menu_a_help:
-            new AlertDialog.Builder(this).setTitle(R.string.app_help).setMessage(
-               R.string.va_help_message).create().show();
-            return true;
-
          case R.id.menu_va_play:
             boolean playing = item.getTitle().equals(getString(R.string.va_play));
 
             animationManager.animationPlayToggle(playing);
             item.setTitle(playing ? R.string.va_stop : R.string.va_play);
             item.setIcon(playing ? R.drawable.ic_action_stop : R.drawable.ic_action_play);
+            return true;
+
+         case R.id.menu_va_save:
+            new FlightTitleDialogFragment().show(getFragmentManager(), "flight_title");
+            return true;
+
+         case R.id.menu_a_help:
+            new HelpDialogFragment(R.string.va_help).show(getFragmentManager(), "help");
             return true;
 
          case R.id.menu_a_settings:

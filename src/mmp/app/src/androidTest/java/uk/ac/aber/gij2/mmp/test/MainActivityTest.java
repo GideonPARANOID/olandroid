@@ -36,7 +36,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
          BuildFlightActivity.class.getName(), null, false);
 
       // find a button & press it
-      Button buildFlightButton = (Button) mainActivity.findViewById(R.id.ma_button_build);
+      Button buildFlightButton = (Button) mainActivity.findViewById(R.id.ma_button_flight_manager);
 
       ViewAsserts.assertOnScreen(mainActivity.getWindow().getDecorView(), buildFlightButton);
 

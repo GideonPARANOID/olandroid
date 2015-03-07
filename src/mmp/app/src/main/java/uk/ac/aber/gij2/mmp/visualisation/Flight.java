@@ -3,12 +3,9 @@
  * @author gideon mw jones
  */
 
-package uk.ac.aber.gij2.mmp;
+package uk.ac.aber.gij2.mmp.visualisation;
 
 import android.opengl.Matrix;
-
-import uk.ac.aber.gij2.mmp.visualisation.Drawable;
-import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 
 
 public class Flight implements Drawable {
@@ -16,6 +13,8 @@ public class Flight implements Drawable {
    private Manoeuvre[] manoeuvres;
    private float[][] matrices;
    private float[] manoeuvresCumulativeLength;
+
+   private String name;
 
 
    public Flight(Manoeuvre[] manoeuvres) {
@@ -142,5 +141,14 @@ public class Flight implements Drawable {
       for (int i = 0; i < manoeuvres.length; i++) {
          manoeuvres[i].setColourFront(colourFront);
       }
+   }
+
+
+   public String getName() {
+      return name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
    }
 }

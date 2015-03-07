@@ -7,7 +7,6 @@ package uk.ac.aber.gij2.mmp.visualisation;
 
 import android.content.Context;
 
-import uk.ac.aber.gij2.mmp.Flight;
 import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.R;
 

@@ -10,10 +10,7 @@
    android:paddingBottom="@dimen/a_margin_vertical"
 
    android:layout_width="match_parent"
-   android:layout_height="match_parent"
-   android:layout_toRightOf="@+id/ma_intro_title"
-   android:layout_toEndOf="@+id/ma_intro_title"
-   android:layout_alignParentTop="true">
+   android:layout_height="match_parent">
 
    <TextView
       android:id="@+id/ma_intro_title"
@@ -43,12 +40,11 @@
       android:layout_gravity="center_horizontal"/>
 
    <Button
-      android:id="@+id/ma_button_build"
-      android:text="@string/ma_button_build"
-      android:onClick="button_build"
+      android:id="@+id/ma_button_flight_manager"
+      android:text="@string/ma_button_flight_manager"
+      android:onClick="button_flight_manager"
 
       android:layout_gravity="center_horizontal"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content" />
 </LinearLayout>
-

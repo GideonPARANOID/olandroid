@@ -31,7 +31,7 @@ public class MMPApplication extends Application implements
 
       scene = new Scene(this);
       manoeuvreCatalogue = new ManoeuvreCatalogue(this);
-      flightManager = new FlightManager(manoeuvreCatalogue);
+      flightManager = new FlightManager(this, manoeuvreCatalogue);
       animationManager = new AnimationManager(scene);
    }
 
@@ -93,6 +93,11 @@ public class MMPApplication extends Application implements
 
    public ManoeuvreCatalogue getManoeuvreCatalogue() {
       return manoeuvreCatalogue;
+   }
+
+
+   public FlightManager getFlightManager() {
+      return flightManager;
    }
 
 

@@ -11,7 +11,7 @@
    android:layout_width="match_parent"
    android:layout_height="match_parent">
 
-   <uk.ac.aber.gij2.mmp.visualisation.SurfaceView
+   <uk.ac.aber.gij2.mmp.ui.SurfaceView
       android:id="@+id/va_visualisation"
 
       android:layout_width="match_parent"

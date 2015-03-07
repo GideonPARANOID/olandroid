@@ -223,40 +223,22 @@ public class ManoeuvreCatalogue {
 
 
    /**
-    * querying the manoeuvre catalogue with an index, matching the order of getOLANs
-    * @param index - the olan index to retrieve
-    * @return - a manoeuvre with olan matching the input
-    * @throws IndexOutOfBoundsException - might not be able to find the manoeuvre specified
+    * querying the manoeuvre catalogue with a category
+    * @param category - the category to look for
+    * @return - an array of manoeuvres in that category
+    * @throws NullPointerException - if the category isn't valid
     */
-   public Manoeuvre get(int index) throws IndexOutOfBoundsException {
-      return catalogue.get(getOLANs()[index]);
-   }
-
-
-   /**
-    * @return - an array of olan figures available in this catalogue, always in the same order
-    */
-   public String[] getOLANs() {
+   public Manoeuvre[] getManoeuvres(String category) throws NullPointerException {
       ArrayList<String> ids = new ArrayList<>(catalogue.keySet());
-      return ids.toArray(new String[ids.size()]);
-   }
-
-
-   /**
-    * @param category - the category to get the olans from
-    * @return - an array of olan figures available in this catalogue & category, always in the same
-    *    order
-    */
-   public String[] getOLANs(String category) {
-      ArrayList<String> ids = new ArrayList<>(catalogue.keySet()),inCategory = new ArrayList<>();
+      ArrayList<Manoeuvre> inCategory = new ArrayList<>();
 
      for (int i = 0; i < ids.size(); i++) {
          if (catalogue.get(ids.get(i)).getCategory().equals(category)) {
-            inCategory.add(catalogue.get(ids.get(i)).getOLAN());
+            inCategory.add(catalogue.get(ids.get(i)));
          }
       }
 
-      return inCategory.toArray(new String[inCategory.size()]);
+      return inCategory.toArray(new Manoeuvre[inCategory.size()]);
    }
 
 
