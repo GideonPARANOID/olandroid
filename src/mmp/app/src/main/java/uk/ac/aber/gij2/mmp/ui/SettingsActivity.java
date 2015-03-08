@@ -31,10 +31,9 @@ public class SettingsActivity extends ActionBarActivity {
 
             // overrides parent (there is none) to send to previous activity
             finish();
-            return true;
-
-         default:
-            return super.onOptionsItemSelected(item);
+            break;
       }
+
+      return super.onOptionsItemSelected(item);
    }
 }

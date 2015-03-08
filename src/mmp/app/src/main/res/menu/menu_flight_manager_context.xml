@@ -1,0 +1,21 @@
+<menu
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   tools:context="uk.ac.aber.gij2.mmp.ui.BuildFlightActivity">
+
+   <item
+      android:id="@+id/menu_fma_c_load"
+      android:title="@string/fma_c_load"
+      app:showAsAction="ifRoom" />
+
+   <item
+      android:id="@+id/menu_fma_c_rename"
+      android:title="@string/fma_c_rename"
+      app:showAsAction="ifRoom" />
+
+   <item
+      android:id="@+id/menu_fma_c_delete"
+      android:title="@string/fma_c_delete"
+      app:showAsAction="ifRoom" />
+</menu>

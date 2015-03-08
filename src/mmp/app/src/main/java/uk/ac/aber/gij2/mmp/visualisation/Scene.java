@@ -28,7 +28,10 @@ public class Scene {
     */
    public void draw(float[] initialMatrix) {
       grid.draw(initialMatrix);
-      flight.draw(initialMatrix);
+
+      if (flight != null) {
+         flight.draw(initialMatrix);
+      }
    }
 
 

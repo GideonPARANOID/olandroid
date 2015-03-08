@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import uk.ac.aber.gij2.mmp.InvalidOLANException;
 import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.ManoeuvreCatalogue;
 import uk.ac.aber.gij2.mmp.R;
@@ -53,30 +54,30 @@ public class BuildFlightActivity extends ActionBarActivity implements
             public void onItemSelected(AdapterView<?> parentView, View selectedItem,
                int position, long id) {
 
-               final ListView listView = (ListView) findViewById(R.id.bfa_manoeuvre_list);
+               final ListView listManoeuvres = (ListView) findViewById(R.id.bfa_manoeuvre_list);
                final ManoeuvreCatalogue manoeuvreCatalogue = ((MMPApplication) getApplication())
                   .getManoeuvreCatalogue();
 
 
                // setup the listview on changing the category
-               listView.setAdapter(new ArrayAdapter<Manoeuvre>(getApplicationContext(),
-                     R.layout.list_manoeuvres, manoeuvreCatalogue.getManoeuvres(
-                     manoeuvreCatalogue.getCategories()[position])) {
+               listManoeuvres.setAdapter(new ArrayAdapter<Manoeuvre>(getApplicationContext(),
+                  R.layout.list_manoeuvres, manoeuvreCatalogue.getManoeuvres(
+                  manoeuvreCatalogue.getCategories()[position])) {
 
-                     @Override
-                     public View getView(int position, View convertView, ViewGroup parent) {
+                  @Override
+                  public View getView(int position, View convertView, ViewGroup parent) {
 
-                        View row = ((LayoutInflater) getSystemService(
-                           Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_manoeuvres,
-                           parent, false);
+                     View row = ((LayoutInflater) getSystemService(
+                        Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_manoeuvres,
+                        parent, false);
 
-                        ((TextView) row.findViewById(R.id.lm_text_olan)).setText(
-                           getItem(position).getOLAN());
-                        ((TextView) row.findViewById(R.id.lm_text_name)).setText(
-                           getItem(position).getName());
+                     ((TextView) row.findViewById(R.id.lm_text_olan)).setText(
+                        getItem(position).getOLAN());
+                     ((TextView) row.findViewById(R.id.lm_text_name)).setText(
+                        getItem(position).getName());
 
-                        return row;
-                     }
+                     return row;
+                  }
                });
             }
 
@@ -100,15 +101,14 @@ public class BuildFlightActivity extends ActionBarActivity implements
       switch (item.getItemId()) {
          case R.id.menu_a_help:
             new HelpDialogFragment(R.string.bfa_help).show(getFragmentManager(), "help");
-            return true;
+            break;
 
          case R.id.menu_a_settings:
             startActivity(new Intent(this, SettingsActivity.class));
-            return true;
-
-         default:
-            return super.onOptionsItemSelected(item);
+            break;
       }
+
+      return super.onOptionsItemSelected(item);
    }
 
 
@@ -132,7 +132,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
          ((MMPApplication) getApplication()).buildAndSetFlight(olanEntry.getText().toString());
          startActivity(new Intent(this, VisualisationActivity.class));
 
-      } catch (Exception exception) {
+      } catch (InvalidOLANException exception) {
          Toast.makeText(getApplication(), R.string.bfa_toast_invalid, Toast.LENGTH_SHORT).show();
       }
    }

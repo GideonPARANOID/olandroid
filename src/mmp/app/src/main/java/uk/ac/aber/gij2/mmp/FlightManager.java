@@ -137,15 +137,41 @@ public class FlightManager {
 
 
    /**
-    * saves the current flight in the scene
-    * @param name - the name for the flight
+    * gives a newName to the current flight in the scene & saves it
+    * @param newName - the name for the flight
+    * @throws Exception - if there's another flight with the name already taken
     */
-   public void saveCurrentFlight(String name) {
+   public void saveCurrentFlight(String newName) throws Exception {
+
+      String currentFlightName = ((MMPApplication) context.getApplicationContext()).getScene()
+         .getFlight().getName();
+
+      // there might not be a name yet
+      currentFlightName = currentFlightName == null ? "" : currentFlightName;
+
+      // if we're not modifying the current flight, check there's no name clash
+      if (!currentFlightName.equals(newName)) {
+         for (Flight flight : flights) {
+            if (flight.getName().equals(newName)) {
+               throw new Exception();
+            }
+         }
+      }
+
       Flight flight = ((MMPApplication) context).getScene().getFlight();
-      flight.setName(name);
+      flight.setName(newName);
 
       addFlight(flight);
 
+      saveFlights();
+      loadFlights();
+   }
+
+
+   /**
+    * saves the flights to the file
+    */
+   public void saveFlights() {
       File file = new File(context.getFilesDir(), FILENAME);
 
       try {
@@ -162,9 +188,6 @@ public class FlightManager {
       } catch (IOException exception) {
          exception.printStackTrace();
       }
-
-      // keeping things synchronised
-      loadFlights();
    }
 
 
@@ -195,7 +218,6 @@ public class FlightManager {
 
 
    /**
-    *
     * @param title - title for a flight
     * @param olan - olan for a flight
     * @return - a new flight
@@ -215,5 +237,14 @@ public class FlightManager {
 
    public Flight[] getFlights() {
       return flights.toArray(new Flight[flights.size()]);
+   }
+
+
+   public void deleteFlight(Flight flight) {
+      flights.remove(flight);
+
+      Log.d(this.getClass().getName(), "removed flight " + flight.getName());
+
+      saveFlights();
    }
 }

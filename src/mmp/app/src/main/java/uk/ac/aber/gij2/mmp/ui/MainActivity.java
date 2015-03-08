@@ -41,11 +41,10 @@ public class MainActivity extends ActionBarActivity {
       switch (item.getItemId()) {
          case R.id.menu_a_settings:
             startActivity(new Intent(this, SettingsActivity.class));
-            return true;
-
-         default:
-            return super.onOptionsItemSelected(item);
+            break;
       }
+
+      return super.onOptionsItemSelected(item);
    }
 
 

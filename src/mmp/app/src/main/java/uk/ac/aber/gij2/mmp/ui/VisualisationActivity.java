@@ -66,23 +66,22 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
             animationManager.animationPlayToggle(playing);
             item.setTitle(playing ? R.string.va_stop : R.string.va_play);
             item.setIcon(playing ? R.drawable.ic_action_stop : R.drawable.ic_action_play);
-            return true;
+            break;
 
          case R.id.menu_va_save:
             new FlightTitleDialogFragment().show(getFragmentManager(), "flight_title");
-            return true;
+            break;
 
          case R.id.menu_a_help:
             new HelpDialogFragment(R.string.va_help).show(getFragmentManager(), "help");
-            return true;
+            break;
 
          case R.id.menu_a_settings:
             startActivity(new Intent(this, SettingsActivity.class));
-            return true;
-
-         default:
-            return super.onOptionsItemSelected(item);
+            break;
       }
+
+      return super.onOptionsItemSelected(item);
    }
 
 
