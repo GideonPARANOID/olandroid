@@ -26,22 +26,18 @@ import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
 
 public class FlightManager {
 
+   private final String FILENAME = "flights.txt", olanRegex = "([\\+,-]*)(\\w*)([\\+,-]*)";
+   private final Pattern olanPattern;
+
    private ManoeuvreCatalogue manoeuvreCatalogue;
    private Context context;
 
    private ArrayList<Flight> flights;
 
 
-
-   private final String FILENAME = "flights.txt", olanRegex = "([\\+,-]*)(\\w*)([\\+,-]*)";
-   private final Pattern olanPattern;
-
-
-
    public FlightManager(Context context, ManoeuvreCatalogue manoeuvreCatalogue) {
       this.context = context;
       this.manoeuvreCatalogue = manoeuvreCatalogue;
-
 
       olanPattern = Pattern.compile(olanRegex);
 
@@ -52,12 +48,12 @@ public class FlightManager {
    /**
     * @param olan - a description of a flight
     * @return - a flight defined by the olan string
-    * @throws InvalidOLANException - occurs if the passed olan is invalid
+    * @throws InvalidFlightException - occurs if the passed olan is invalid
     */
-   public Flight buildFlight(String olan) throws InvalidOLANException {
+   public Flight buildFlight(String olan) throws InvalidFlightException {
 
       if (olan == null) {
-         throw new InvalidOLANException();
+         throw new InvalidFlightException("invalid olan");
       }
 
       // leading spaces are a challenge, so get rid of them
@@ -83,7 +79,7 @@ public class FlightManager {
             manoeuvres[i].addExitLength(findOccurrences("+", matcher.group(3)));
 
          } else {
-            throw new InvalidOLANException();
+            throw new InvalidFlightException("invalid olan");
          }
       }
 
@@ -107,8 +103,6 @@ public class FlightManager {
 
       File file = new File(context.getFilesDir(), FILENAME);
 
-      Log.d(this.getClass().getName(), "file: " + context.getFilesDir().getAbsolutePath() + "/" + FILENAME);
-
       if (file.exists()) {
 
          try {
@@ -118,8 +112,7 @@ public class FlightManager {
             String line = reader.readLine(), lineAlt = reader.readLine();
             while (line != null && lineAlt != null) {
 
-
-               addFlight(parseFlight(line, lineAlt));
+               addFlight(parseFlight(line, lineAlt), false);
 
                line = reader.readLine();
                lineAlt = reader.readLine();
@@ -139,9 +132,9 @@ public class FlightManager {
    /**
     * gives a newName to the current flight in the scene & saves it
     * @param newName - the name for the flight
-    * @throws Exception - if there's another flight with the name already taken
+    * @throws InvalidFlightException - if there's another flight with the name already taken
     */
-   public void saveCurrentFlight(String newName) throws Exception {
+   public void saveCurrentFlight(String newName) throws InvalidFlightException {
 
       String currentFlightName = ((MMPApplication) context.getApplicationContext()).getScene()
          .getFlight().getName();
@@ -153,7 +146,7 @@ public class FlightManager {
       if (!currentFlightName.equals(newName)) {
          for (Flight flight : flights) {
             if (flight.getName().equals(newName)) {
-               throw new Exception();
+               throw new InvalidFlightException("name clash");
             }
          }
       }
@@ -161,7 +154,7 @@ public class FlightManager {
       Flight flight = ((MMPApplication) context).getScene().getFlight();
       flight.setName(newName);
 
-      addFlight(flight);
+      addFlight(flight, true);
 
       saveFlights();
       loadFlights();
@@ -194,26 +187,38 @@ public class FlightManager {
    /**
     * adds a new flight to the store, but only if unique
     * @param flight - new flight to add
+    * @param overwrite - whether or not it's allowed to overwrite based on names
+    * @return - whether the flight was added or not
     */
-   private void addFlight(Flight flight) {
+   private boolean addFlight(Flight flight, boolean overwrite) {
+      boolean result = true;
 
       if (flight != null) {
-         boolean add = true;
-
          for (Flight current : flights) {
-            if (flight.getOLAN().equals(current.getOLAN())
+
+            if (overwrite && (flight.getName().equals(current.getName())
+               && !flight.getOLAN().equals(current.getOLAN()))) {
+
+               flights.remove(current);
+               result = true;
+               break;
+
+            } else if (flight.getOLAN().equals(current.getOLAN())
                || flight.getName().equals(current.getName())) {
 
-               add = false;
+               result = false;
                break;
             }
          }
 
-         if (add) {
-            Log.d(this.getClass().getName(), "added flight " + flight.getName());
+         if (result) {
+            Log.d(this.getClass().getName(), "added flight " + flight.getName() + " - "
+               + flight.getOLAN());
             flights.add(flight);
          }
       }
+
+      return result;
    }
 
 
@@ -223,15 +228,17 @@ public class FlightManager {
     * @return - a new flight
     */
    private Flight parseFlight(String title, String olan) {
-      try {
-         Flight flight = buildFlight(olan);
-         flight.setName(title);
-         return flight;
+      Flight flight = null;
 
-      } catch (InvalidOLANException exception) {
-         Log.d(this.getClass().getName(), "invalid flight");
-         return null;
+      try {
+         flight = buildFlight(olan);
+         flight.setName(title);
+
+      } catch (InvalidFlightException exception) {
+         Log.d(this.getClass().getName(), exception.getMessage());
       }
+
+      return flight;
    }
 
 
@@ -243,7 +250,8 @@ public class FlightManager {
    public void deleteFlight(Flight flight) {
       flights.remove(flight);
 
-      Log.d(this.getClass().getName(), "removed flight " + flight.getName());
+      Log.d(this.getClass().getName(), "removed flight " + flight.getName() + " "
+         + flight.getOLAN());
 
       saveFlights();
    }

@@ -8,6 +8,7 @@
    <string name="a_cancel">Cancel</string>
    <string name="a_new_flight_title">Enter a name for the flight</string>
    <string name="a_new_flight_title_invalid">Invalid name</string>
+   <string name="a_new_flight_title_valid">Flight saved</string>
 
    <!-- main activity -->
    <string name="ma_title">Home</string>
@@ -20,10 +21,12 @@
    <!-- flight manager activity -->
    <string name="fma_title">Flight manager</string>
    <string name="fma_new">New flight</string>
-   <string name="fma_help">Help - temp</string>
    <string name="fma_c_load">Load</string>
+   <string name="fma_c_edit">Edit</string>
    <string name="fma_c_rename">Rename</string>
    <string name="fma_c_delete">Delete</string>
+   <string name="fma_help">Browse flights &#38; load them by tapping on them, with a long press for
+      additional operations. Build a new flight by tapping the plus in the action bar.</string>
 
    <!-- build flight activity -->
    <string name="bfa_title">Build a flight</string>
@@ -40,6 +43,7 @@
    <string name="va_title">Visualisation</string>
    <string name="va_play">Play</string>
    <string name="va_stop">Stop</string>
+   <string name="va_edit">Edit</string>
    <string name="va_save">Save</string>
    <string name="va_help">Tap &#38; drag to rotate around the flight. Pinch to zoom in
       &#38; out.</string>

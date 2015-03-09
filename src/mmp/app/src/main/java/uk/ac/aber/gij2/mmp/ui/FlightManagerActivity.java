@@ -65,6 +65,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
          case R.id.menu_fma_new:
+            ((MMPApplication) getApplication()).getScene().setFlight(null);
             startActivity(new Intent(this, BuildFlightActivity.class));
             break;
 
@@ -112,6 +113,10 @@ public class FlightManagerActivity extends ActionBarActivity implements
       switch (item.getItemId()){
          case R.id.menu_fma_c_load:
             startActivity(new Intent(this, VisualisationActivity.class));
+            break;
+
+         case R.id.menu_fma_c_edit:
+            startActivity(new Intent(this, BuildFlightActivity.class));
             break;
 
          case R.id.menu_fma_c_rename:

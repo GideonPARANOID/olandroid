@@ -38,10 +38,13 @@ public class MMPApplication extends Application implements
 
    /**
     * @param olan - string olan description of a flight
-    * @throws InvalidOLANException - whether the flight was successfully built from the olan
+    * @throws InvalidFlightException - whether the flight was successfully built from the olan
     */
-   public void buildAndSetFlight(String olan) throws InvalidOLANException {
+   public void buildAndSetFlight(String olan) throws InvalidFlightException {
+
+      String oldName = getScene().getFlight() != null ? scene.getFlight().getName() : null;
       scene.setFlight(flightManager.buildFlight(olan));
+      scene.getFlight().setName(oldName);
       updateColourTheme();
    }
 

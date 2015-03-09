@@ -22,7 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import uk.ac.aber.gij2.mmp.InvalidOLANException;
+import uk.ac.aber.gij2.mmp.InvalidFlightException;
 import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.ManoeuvreCatalogue;
 import uk.ac.aber.gij2.mmp.R;
@@ -90,6 +90,19 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
 
    @Override
+   protected void onStart() {
+      super.onStart();
+
+      MMPApplication app = (MMPApplication) getApplication();
+
+      // set the default text for editing flights
+      if (app.getScene().getFlight() != null && app.getScene().getFlight().getOLAN() != null) {
+         olanEntry.setText(app.getScene().getFlight().getOLAN());
+         olanEntry.setSelection(olanEntry.getText().length());
+      }
+   }
+
+   @Override
    public boolean onCreateOptionsMenu(Menu menu) {
       getMenuInflater().inflate(R.menu.menu_build_flight, menu);
       return super.onCreateOptionsMenu(menu);
@@ -129,10 +142,12 @@ public class BuildFlightActivity extends ActionBarActivity implements
    public void button_vis(View view) {
 
       try {
-         ((MMPApplication) getApplication()).buildAndSetFlight(olanEntry.getText().toString());
+         MMPApplication app = (MMPApplication) getApplication();
+
+         app.buildAndSetFlight(olanEntry.getText().toString());
          startActivity(new Intent(this, VisualisationActivity.class));
 
-      } catch (InvalidOLANException exception) {
+      } catch (InvalidFlightException exception) {
          Toast.makeText(getApplication(), R.string.bfa_toast_invalid, Toast.LENGTH_SHORT).show();
       }
    }

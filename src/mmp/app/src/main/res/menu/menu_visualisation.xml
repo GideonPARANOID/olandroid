@@ -11,6 +11,12 @@
       app:showAsAction="ifRoom" />
 
    <item
+      android:id="@+id/menu_va_edit"
+      android:title="@string/va_edit"
+      android:icon="@drawable/ic_action_edit"
+      app:showAsAction="ifRoom" />
+
+   <item
       android:id="@+id/menu_va_save"
       android:title="@string/va_save"
       android:icon="@drawable/ic_action_save"

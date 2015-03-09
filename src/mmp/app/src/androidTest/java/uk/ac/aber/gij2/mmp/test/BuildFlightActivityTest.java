@@ -21,11 +21,11 @@ import uk.ac.aber.gij2.mmp.ui.VisualisationActivity;
 
 public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<BuildFlightActivity> {
 
-   private Activity buildFlightActvity;
+   private Activity bfa;
    private Instrumentation.ActivityMonitor visualisationMonitor;
 
    private Button visualisationButton;
-   private EditText olanString;
+   private EditText olanEntry;
 
 
    private final String[] validOLANStrings = new String[] {
@@ -58,15 +58,26 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
    protected void setUp() throws Exception {
       super.setUp();
       setActivityInitialTouchMode(false);
-      buildFlightActvity = getActivity();
+      bfa = getActivity();
 
       // find a button & press it
-      visualisationButton = (Button) buildFlightActvity.findViewById(R.id.bfa_button_vis);
-      olanString = (EditText) buildFlightActvity.findViewById(R.id.bfa_edittext_olan);
+      visualisationButton = (Button) bfa.findViewById(R.id.bfa_button_vis);
+      olanEntry = (EditText) bfa.findViewById(R.id.bfa_edittext_olan);
 
       visualisationMonitor = getInstrumentation().addMonitor(
          VisualisationActivity.class.getName(), null, false);
    }
+
+
+   public void testBuildNewFlight() {
+
+      // test that we're in the right place first
+       ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), visualisationButton);
+
+      // starting from scratch, it should be empty
+      assertEquals("text incorrect", "", olanEntry.getText().toString());
+   }
+
 
 
    /**
@@ -77,11 +88,11 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
       for (final String validOLAN :validOLANStrings) {
 
          // test we're in the right place first
-         ViewAsserts.assertOnScreen(buildFlightActvity.getWindow().getDecorView(), visualisationButton);
+         ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), visualisationButton);
 
-         buildFlightActvity.runOnUiThread(new Runnable() {
+         bfa.runOnUiThread(new Runnable() {
             public void run() {
-               olanString.setText(validOLAN);
+               olanEntry.setText(validOLAN);
             }
          });
 
@@ -100,7 +111,8 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
     */
    public void testInvalidOLAN() {
 
-      ViewAsserts.assertOnScreen(buildFlightActvity.getWindow().getDecorView(), visualisationButton);
+      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), visualisationButton);
+
       TouchUtils.clickView(this, visualisationButton);
 
       assertNull("Invalid OLAN, should not launch visualisation",
@@ -109,11 +121,11 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
       for (final String invalidOLAN : invalidOLANStrings) {
 
          // test we're in the right place first
-         ViewAsserts.assertOnScreen(buildFlightActvity.getWindow().getDecorView(), visualisationButton);
+         ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), visualisationButton);
 
-         buildFlightActvity.runOnUiThread(new Runnable() {
+         bfa.runOnUiThread(new Runnable() {
             public void run() {
-               olanString.setText(invalidOLAN);
+               olanEntry.setText(invalidOLAN);
             }
          });
 

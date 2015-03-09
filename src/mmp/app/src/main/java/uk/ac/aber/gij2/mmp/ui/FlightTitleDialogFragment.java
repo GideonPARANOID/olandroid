@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import uk.ac.aber.gij2.mmp.InvalidFlightException;
 import uk.ac.aber.gij2.mmp.MMPApplication;
 import uk.ac.aber.gij2.mmp.R;
 
@@ -42,6 +43,14 @@ public class FlightTitleDialogFragment extends DialogFragment {
          @Override
          public void onShow(DialogInterface unused) {
 
+            final MMPApplication app = (MMPApplication) getActivity().getApplication();
+
+            // sets the default text if modifying a saved flight
+            if (app.getScene().getFlight().getName() != null) {
+               ((EditText) getDialog().findViewById(R.id.d_text_flight_title)).setText(
+                  app.getScene().getFlight().getName());
+            }
+
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new
                View.OnClickListener() {
 
@@ -49,23 +58,23 @@ public class FlightTitleDialogFragment extends DialogFragment {
                public void onClick(View view) {
 
                   try {
-                     ((MMPApplication) getActivity().getApplication()).getFlightManager()
+                     app.getFlightManager()
                         .saveCurrentFlight(((EditText) getDialog().findViewById(
                            R.id.d_text_flight_title)).getText().toString());
 
                      dialog.dismiss();
 
-                  } catch (Exception exception) {
+                      Toast.makeText(app,R.string.a_new_flight_title_valid,
+                         Toast.LENGTH_SHORT).show();
 
-                     exception.printStackTrace();
+                  } catch (InvalidFlightException exception) {
 
                      Toast.makeText(getActivity().getApplication(),
-                        R.string.a_new_flight_title_invalid, Toast.LENGTH_SHORT).show();
+                        getText(R.string.a_new_flight_title_invalid) + " " + exception.getMessage(),
+                        Toast.LENGTH_SHORT).show();
                   }
                }
-
             });
-
          }
       });
 

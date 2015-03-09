@@ -10,6 +10,11 @@
       app:showAsAction="ifRoom" />
 
    <item
+      android:id="@+id/menu_fma_c_edit"
+      android:title="@string/fma_c_edit"
+      app:showAsAction="ifRoom" />
+
+   <item
       android:id="@+id/menu_fma_c_rename"
       android:title="@string/fma_c_rename"
       app:showAsAction="ifRoom" />

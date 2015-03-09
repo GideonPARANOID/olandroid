@@ -68,6 +68,10 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
             item.setIcon(playing ? R.drawable.ic_action_stop : R.drawable.ic_action_play);
             break;
 
+         case R.id.menu_va_edit:
+            startActivity(new Intent(this, BuildFlightActivity.class));
+            break;
+
          case R.id.menu_va_save:
             new FlightTitleDialogFragment().show(getFragmentManager(), "flight_title");
             break;
