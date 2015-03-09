@@ -48,7 +48,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
       assertNotNull(fma);
 
       // checking we've really loaded properly - expected elements are there
-      ListView flightList = (ListView) fma.findViewById(R.id.fma_flight_list);
+      ListView flightList = (ListView) fma.findViewById(R.id.fma_list_flights);
 
       ViewAsserts.assertOnScreen(fma.getWindow().getDecorView(), flightList);
 

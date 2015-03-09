@@ -37,7 +37,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_flight_manager);
 
-      listFlights = (ListView) findViewById(R.id.fma_flight_list);
+      listFlights = (ListView) findViewById(R.id.fma_list_flights);
 
       refreshFlightsList();
 

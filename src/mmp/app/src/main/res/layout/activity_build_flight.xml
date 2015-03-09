@@ -43,7 +43,7 @@
       android:layout_gravity="center_horizontal" />
 
    <ListView
-      android:id="@+id/bfa_manoeuvre_list"
+      android:id="@+id/bfa_list_manoeuvres"
 
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

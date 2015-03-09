@@ -27,7 +27,6 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
    private Button visualisationButton;
    private EditText olanEntry;
 
-
    private final String[] validOLANStrings = new String[] {
       "d",
       "d d",
@@ -39,6 +38,7 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
       "+d+",
       "+++d++"
    }, invalidOLANStrings = new String[] {
+      "",
       "         ",
       "dflefken",
       "dd",
@@ -69,13 +69,26 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
    }
 
 
-   public void testBuildNewFlight() {
 
-      // test that we're in the right place first
-       ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), visualisationButton);
 
-      // starting from scratch, it should be empty
-      assertEquals("text incorrect", "", olanEntry.getText().toString());
+   public void testUI() {
+
+      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
+         R.id.bfa_intro_title));
+      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
+         R.id.bfa_edittext_olan));
+      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
+         R.id.bfa_button_vis));
+      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
+         R.id.bfa_spinner_category));
+      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
+         R.id.bfa_list_manoeuvres));
+
+      // actionbar
+      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
+         R.id.menu_a_help));
+      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
+         R.id.menu_a_settings));
    }
 
 
@@ -111,13 +124,6 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
     */
    public void testInvalidOLAN() {
 
-      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), visualisationButton);
-
-      TouchUtils.clickView(this, visualisationButton);
-
-      assertNull("Invalid OLAN, should not launch visualisation",
-         visualisationMonitor.waitForActivityWithTimeout(1000));
-
       for (final String invalidOLAN : invalidOLANStrings) {
 
          // test we're in the right place first
@@ -129,7 +135,7 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
             }
          });
 
-         assertNull("Invalid OLAN, should not launch visualisation for olan " + invalidOLAN,
+         assertNull("Invalid OLAN, should not launch visualisation for olan '" + invalidOLAN + "'",
             visualisationMonitor.waitForActivityWithTimeout(1000));
       }
    }

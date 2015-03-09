@@ -55,7 +55,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
             public void onItemSelected(AdapterView<?> parentView, View selectedItem,
                int position, long id) {
 
-               final ListView listManoeuvres = (ListView) findViewById(R.id.bfa_manoeuvre_list);
+               final ListView listManoeuvres = (ListView) findViewById(R.id.bfa_list_manoeuvres);
                final ManoeuvreCatalogue manoeuvreCatalogue = ((MMPApplication) getApplication())
                   .getManoeuvreCatalogue();
 
@@ -86,7 +86,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
             public void onNothingSelected(AdapterView<?> parentView) {}
       });
 
-      ((ListView) findViewById(R.id.bfa_manoeuvre_list)).setOnItemClickListener(this);
+      ((ListView) findViewById(R.id.bfa_list_manoeuvres)).setOnItemClickListener(this);
    }
 
 
