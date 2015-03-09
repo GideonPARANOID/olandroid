@@ -5,6 +5,7 @@
 
 package uk.ac.aber.gij2.mmp.ui;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -77,7 +78,8 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
             break;
 
          case R.id.menu_a_help:
-            new HelpDialogFragment(R.string.va_help).show(getFragmentManager(), "help");
+            new AlertDialog.Builder(this).setView(getLayoutInflater().inflate(R.layout.dialog_help,
+                  null)).setTitle(R.string.a_help).setMessage(R.string.va_help).create().show();
             break;
 
          case R.id.menu_a_settings:

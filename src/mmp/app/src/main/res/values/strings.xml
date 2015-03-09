@@ -46,7 +46,8 @@
    <string name="va_edit">Edit</string>
    <string name="va_save">Save</string>
    <string name="va_help">Tap &#38; drag to rotate around the flight. Pinch to zoom in
-      &#38; out.</string>
+      &#38; out. Use the play/pause button on the action bar to play &#38; pause the animation,
+      the progress bar at the bottom can be used to step through its progress too.</string>
 
    <!-- settings activity -->
    <string name="sa_title">Settings</string>
