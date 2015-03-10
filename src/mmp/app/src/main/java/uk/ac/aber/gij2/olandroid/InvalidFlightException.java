@@ -3,7 +3,7 @@
  * @author gideon mw jones
  */
 
-package uk.ac.aber.gij2.mmp;
+package uk.ac.aber.gij2.olandroid;
 
 
 public class InvalidFlightException extends Exception {

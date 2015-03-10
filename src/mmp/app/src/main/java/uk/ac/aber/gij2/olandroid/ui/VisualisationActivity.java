@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.ui;
+package uk.ac.aber.gij2.olandroid.ui;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -16,9 +16,9 @@ import android.widget.SeekBar;
 import java.util.Observable;
 import java.util.Observer;
 
-import uk.ac.aber.gij2.mmp.AnimationManager;
-import uk.ac.aber.gij2.mmp.MMPApplication;
-import uk.ac.aber.gij2.mmp.R;
+import uk.ac.aber.gij2.olandroid.AnimationManager;
+import uk.ac.aber.gij2.olandroid.OLANdroidApplication;
+import uk.ac.aber.gij2.olandroid.R;
 
 
 public class VisualisationActivity extends ActionBarActivity implements Observer,
@@ -34,7 +34,7 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
       setContentView(R.layout.activity_visualisation);
 
       // animation listening
-      animationManager = ((MMPApplication) getApplication()).getAnimationManager();
+      animationManager = ((OLANdroidApplication) getApplication()).getAnimationManager();
       animationManager.addObserver(this);
 
       animationSeek = ((SeekBar) findViewById(R.id.va_seek));

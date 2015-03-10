@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.ui;
+package uk.ac.aber.gij2.olandroid.ui;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
@@ -16,7 +16,7 @@ import android.view.ScaleGestureDetector;
 public class SurfaceView extends GLSurfaceView implements
    ScaleGestureDetector.OnScaleGestureListener {
 
-   private uk.ac.aber.gij2.mmp.visualisation.Renderer renderer;
+   private uk.ac.aber.gij2.olandroid.visualisation.Renderer renderer;
 
    private float previousX, previousY;
    private ScaleGestureDetector scaleGestureDetector;
@@ -26,7 +26,7 @@ public class SurfaceView extends GLSurfaceView implements
       super(context);
       super.setEGLConfigChooser(8 , 8, 8, 8, 16, 0);
 
-      renderer = new uk.ac.aber.gij2.mmp.visualisation.Renderer(context);
+      renderer = new uk.ac.aber.gij2.olandroid.visualisation.Renderer(context);
 
       setEGLContextClientVersion(2);
       setRenderer(renderer);

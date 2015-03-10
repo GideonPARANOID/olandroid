@@ -3,14 +3,14 @@
  * @author gideon mw jones
  */
 
-package uk.ac.aber.gij2.mmp.test;
+package uk.ac.aber.gij2.olandroid.test;
 
 import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 
-import uk.ac.aber.gij2.mmp.R;
-import uk.ac.aber.gij2.mmp.ui.FlightManagerActivity;
+import uk.ac.aber.gij2.olandroid.R;
+import uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity;
 
 
 public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<FlightManagerActivity> {

@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
    xmlns:android="http://schemas.android.com/apk/res/android"
    xmlns:tools="http://schemas.android.com/tools"
-   tools:context="uk.ac.aber.gij2.mmp.ui.VisualisationActivity"
+   tools:context="uk.ac.aber.gij2.olandroid.ui.VisualisationActivity"
 
    android:paddingLeft="@dimen/va_full_padding_horizontal"
    android:paddingRight="@dimen/va_full_padding_horizontal"
@@ -11,7 +12,7 @@
    android:layout_width="match_parent"
    android:layout_height="match_parent">
 
-   <uk.ac.aber.gij2.mmp.ui.SurfaceView
+   <uk.ac.aber.gij2.olandroid.ui.SurfaceView
       android:id="@+id/va_visualisation"
 
       android:layout_width="match_parent"

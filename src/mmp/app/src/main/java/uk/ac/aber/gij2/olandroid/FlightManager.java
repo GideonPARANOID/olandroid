@@ -3,7 +3,7 @@
  * @author gideon mw jones
  */
 
-package uk.ac.aber.gij2.mmp;
+package uk.ac.aber.gij2.olandroid;
 
 import android.content.Context;
 import android.util.Log;
@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import uk.ac.aber.gij2.mmp.visualisation.Flight;
-import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
+import uk.ac.aber.gij2.olandroid.visualisation.Flight;
+import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
 
 
 public class FlightManager {
@@ -136,7 +136,7 @@ public class FlightManager {
     */
    public void saveCurrentFlight(String newName) throws InvalidFlightException {
 
-      String currentFlightName = ((MMPApplication) context.getApplicationContext()).getScene()
+      String currentFlightName = ((OLANdroidApplication) context.getApplicationContext()).getScene()
          .getFlight().getName();
 
       // there might not be a name yet
@@ -151,7 +151,7 @@ public class FlightManager {
          }
       }
 
-      Flight flight = ((MMPApplication) context).getScene().getFlight();
+      Flight flight = ((OLANdroidApplication) context).getScene().getFlight();
       flight.setName(newName);
 
       addFlight(flight, true);

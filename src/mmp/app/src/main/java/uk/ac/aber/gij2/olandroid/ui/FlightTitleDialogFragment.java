@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.ui;
+package uk.ac.aber.gij2.olandroid.ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -14,9 +14,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import uk.ac.aber.gij2.mmp.InvalidFlightException;
-import uk.ac.aber.gij2.mmp.MMPApplication;
-import uk.ac.aber.gij2.mmp.R;
+import uk.ac.aber.gij2.olandroid.InvalidFlightException;
+import uk.ac.aber.gij2.olandroid.OLANdroidApplication;
+import uk.ac.aber.gij2.olandroid.R;
 
 
 public class FlightTitleDialogFragment extends DialogFragment {
@@ -43,12 +43,14 @@ public class FlightTitleDialogFragment extends DialogFragment {
          @Override
          public void onShow(DialogInterface unused) {
 
-            final MMPApplication app = (MMPApplication) getActivity().getApplication();
+            final OLANdroidApplication app = (OLANdroidApplication) getActivity().getApplication();
 
             // sets the default text if modifying a saved flight
             if (app.getScene().getFlight().getName() != null) {
-               ((EditText) getDialog().findViewById(R.id.d_text_flight_title)).setText(
-                  app.getScene().getFlight().getName());
+               EditText titleEntry = (EditText) getDialog().findViewById(R.id.d_text_flight_title);
+
+               titleEntry.setText(app.getScene().getFlight().getName());
+               titleEntry.setSelection(titleEntry.getText().length());
             }
 
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new

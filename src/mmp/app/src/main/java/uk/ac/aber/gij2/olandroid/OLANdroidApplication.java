@@ -3,17 +3,17 @@
  * @author gideon mw jones
  */
 
-package uk.ac.aber.gij2.mmp;
+package uk.ac.aber.gij2.olandroid;
 
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 
-import uk.ac.aber.gij2.mmp.visualisation.Scene;
+import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 
 
-public class MMPApplication extends Application implements
+public class OLANdroidApplication extends Application implements
    SharedPreferences.OnSharedPreferenceChangeListener{
 
    private SharedPreferences preferences;
@@ -54,12 +54,12 @@ public class MMPApplication extends Application implements
     */
    public void updateColourTheme() {
       if (scene.getFlight() != null) {
-         scene.getFlight().setColourFront(getCurrentColourTheme(R.array.ct_front));
-         scene.getFlight().setColourBack(getCurrentColourTheme(R.array.ct_back));
+         scene.getFlight().setColourFront(getCurrentColourTheme(R.array.colour_theme_front));
+         scene.getFlight().setColourBack(getCurrentColourTheme(R.array.colour_theme_back));
       }
 
-      scene.getGrid().setColourFront(getCurrentColourTheme(R.array.ct_grid));
-      scene.getGrid().setColourBack(getCurrentColourTheme(R.array.ct_grid));
+      scene.getGrid().setColourFront(getCurrentColourTheme(R.array.colour_theme_grid));
+      scene.getGrid().setColourBack(getCurrentColourTheme(R.array.colour_theme_grid));
    }
 
 
@@ -70,7 +70,7 @@ public class MMPApplication extends Application implements
    public float[] getCurrentColourTheme(int listId) {
 
       int colour = getResources().obtainTypedArray(listId).getColor(
-         Integer.parseInt(preferences.getString("p_ct", "0")), 0);
+         Integer.parseInt(preferences.getString("p_colour_theme", "0")), 0);
 
       return new float[] {
          (float) Color.red(colour) / 256f,
@@ -81,11 +81,24 @@ public class MMPApplication extends Application implements
    }
 
 
+   @Override
    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
       switch (key) {
-         case "p_ct":
+         case "p_colour_theme":
             updateColourTheme();
+            break;
       }
+   }
+
+
+   /**
+    * checks whether it was the first launch, & if so, flip the variable
+    * @return whether it was the first launch of the application or not
+    */
+   public boolean firstLaunch() {
+      boolean result = preferences.getBoolean("p_first", true);
+      preferences.edit().putBoolean("p_first", result ? false : false).commit();
+      return result;
    }
 
 

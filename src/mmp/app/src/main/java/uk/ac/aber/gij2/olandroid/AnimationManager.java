@@ -3,11 +3,11 @@
  * @author gideon mw jones
  */
 
-package uk.ac.aber.gij2.mmp;
+package uk.ac.aber.gij2.olandroid;
 
 import java.util.Observable;
 
-import uk.ac.aber.gij2.mmp.visualisation.Scene;
+import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 
 
 public class AnimationManager extends Observable {

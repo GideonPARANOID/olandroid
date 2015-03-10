@@ -3,12 +3,12 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.ui;
+package uk.ac.aber.gij2.olandroid.ui;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
-import uk.ac.aber.gij2.mmp.R;
+import uk.ac.aber.gij2.olandroid.R;
 
 
 public class SettingsFragment extends PreferenceFragment {

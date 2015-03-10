@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
    <!-- global activity margins, as per google guidelines -->
    <dimen name="a_margin_horizontal">16dp</dimen>

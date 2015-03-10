@@ -3,7 +3,7 @@
  * @author gideon mw jones
  */
 
-package uk.ac.aber.gij2.mmp.test;
+package uk.ac.aber.gij2.olandroid.test;
 
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -14,9 +14,9 @@ import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.EditText;
 
-import uk.ac.aber.gij2.mmp.R;
-import uk.ac.aber.gij2.mmp.ui.BuildFlightActivity;
-import uk.ac.aber.gij2.mmp.ui.VisualisationActivity;
+import uk.ac.aber.gij2.olandroid.R;
+import uk.ac.aber.gij2.olandroid.ui.BuildFlightActivity;
+import uk.ac.aber.gij2.olandroid.ui.VisualisationActivity;
 
 
 public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<BuildFlightActivity> {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
    xmlns:android="http://schemas.android.com/apk/res/android"
-   package="uk.ac.aber.gij2.mmp" >
+   package="uk.ac.aber.gij2.olandroid" >
 
    <uses-sdk
       android:minSdkVersion="11"
@@ -15,59 +15,50 @@
       android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
    <application
-      android:name=".MMPApplication"
+      android:name=".OLANdroidApplication"
       android:allowBackup="true"
       android:hardwareAccelerated="true"
       android:icon="@drawable/ic_launcher"
-      android:label="@string/a_name"
+      android:label="@string/a_label"
       android:theme="@style/AppTheme" >
 
       <activity
-         android:name=".ui.MainActivity"
+         android:name="uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity"
+         android:label="@string/a_label"
          android:exported="true"
-         android:label="@string/a_name"
-         android:launchMode="singleTop" >
+         android:launchMode="singleTop">
+
          <intent-filter>
             <action
                android:name="android.intent.action.MAIN" />
-
             <category
                android:name="android.intent.category.LAUNCHER" />
          </intent-filter>
       </activity>
 
       <activity
-         android:name=".ui.FlightManagerActivity"
-         android:label="@string/fma_title"
-         android:parentActivityName=".ui.MainActivity">
-         <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".ui.MainActivity" />
-      </activity>
-
-      <activity
-         android:name=".ui.BuildFlightActivity"
-         android:label="@string/bfa_title"
-         android:parentActivityName=".ui.FlightManagerActivity"
+         android:name="uk.ac.aber.gij2.olandroid.ui.BuildFlightActivity"
+         android:label="@string/bfa_label"
+         android:parentActivityName="uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity"
          android:windowSoftInputMode="stateUnchanged" >
          <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".ui.FlightManagerActivity" />
+            android:value="uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity" />
       </activity>
 
       <activity
-         android:name=".ui.VisualisationActivity"
-         android:label="@string/va_title"
-         android:parentActivityName=".ui.BuildFlightActivity"
+         android:name="uk.ac.aber.gij2.olandroid.ui.VisualisationActivity"
+         android:label="@string/va_label"
+         android:parentActivityName="uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity"
          android:theme="@style/VisualisationTheme" >
          <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".ui.BuildFlightActivity" />
+            android:value="uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity" />
       </activity>
 
       <activity
-         android:name="uk.ac.aber.gij2.mmp.ui.SettingsActivity"
-         android:label="@string/sa_title" >
+         android:name="uk.ac.aber.gij2.olandroid.ui.SettingsActivity"
+         android:label="@string/sa_label" >
       </activity>
    </application>
 </manifest>

@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.ui;
+package uk.ac.aber.gij2.olandroid.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -21,9 +21,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import uk.ac.aber.gij2.mmp.MMPApplication;
-import uk.ac.aber.gij2.mmp.R;
-import uk.ac.aber.gij2.mmp.visualisation.Flight;
+import uk.ac.aber.gij2.olandroid.OLANdroidApplication;
+import uk.ac.aber.gij2.olandroid.R;
+import uk.ac.aber.gij2.olandroid.visualisation.Flight;
 
 
 public class FlightManagerActivity extends ActionBarActivity implements
@@ -36,6 +36,12 @@ public class FlightManagerActivity extends ActionBarActivity implements
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_flight_manager);
+
+      // if this is the first launch, show the help
+      if (((OLANdroidApplication) getApplication()).firstLaunch()) {
+         new AlertDialog.Builder(this).setView(getLayoutInflater().inflate(R.layout.dialog_help,
+            null)).setTitle(R.string.a_first).setMessage(R.string.a_first_message).create().show();
+      }
 
       listFlights = (ListView) findViewById(R.id.fma_list_flights);
 
@@ -50,6 +56,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
    protected void onStart() {
       super.onStart();
 
+      refreshFlightsList();
       // refreshing the list to reflect any changes
       ((ArrayAdapter) listFlights.getAdapter()).notifyDataSetChanged();
    }
@@ -66,7 +73,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
          case R.id.menu_fma_new:
-            ((MMPApplication) getApplication()).getScene().setFlight(null);
+            ((OLANdroidApplication) getApplication()).getScene().setFlight(null);
             startActivity(new Intent(this, BuildFlightActivity.class));
             break;
 
@@ -87,7 +94,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
    @Override
    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
-      MMPApplication app = (MMPApplication) getApplication();
+      OLANdroidApplication app = (OLANdroidApplication) getApplication();
       app.getScene().setFlight(app.getFlightManager().getFlights()[position]);
 
       startActivity(new Intent(this, VisualisationActivity.class));
@@ -106,7 +113,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
    @Override
    public boolean onContextItemSelected(MenuItem item) {
 
-      MMPApplication app = (MMPApplication) getApplication();
+      OLANdroidApplication app = (OLANdroidApplication) getApplication();
 
       // setting the flight the context menu is for to be the current flight
       app.getScene().setFlight((Flight) listFlights.getAdapter().getItem(
@@ -123,6 +130,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
 
          case R.id.menu_fma_c_rename:
             new FlightTitleDialogFragment().show(getFragmentManager(), "flight_title");
+            refreshFlightsList();
             break;
 
          case R.id.menu_fma_c_delete:
@@ -144,7 +152,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
    public void refreshFlightsList() {
             // setup the listview for the loaded flights
       listFlights.setAdapter(new ArrayAdapter<Flight>(getApplication(),
-         R.layout.list_flights, ((MMPApplication) getApplication()).getFlightManager()
+         R.layout.list_flights, ((OLANdroidApplication) getApplication()).getFlightManager()
          .getFlights()) {
 
          @Override

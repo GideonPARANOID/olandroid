@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-   <string-array name="p_ct_titles">
+   <string-array name="p_colour_theme_titles">
       <item>Sky &amp; grass</item>
-      <item>Eighties cyber-garish</item>
+      <item>Tron</item>
    </string-array>
 
 
    <!-- lookup table indices -->
-   <string-array name="p_ct_values">
+   <string-array name="p_colour_theme_values">
       <item>0</item>
       <item>1</item>
    </string-array>
 
 
    <!-- lookup tables for colour themes -->
-   <array name="ct_front">
+   <array name="colour_theme_front">
       <item>@color/vis_flight_front_0</item>
       <item>@color/vis_flight_front_1</item>
    </array>
 
-   <array name="ct_back">
+   <array name="colour_theme_back">
       <item>@color/vis_flight_back_0</item>
       <item>@color/vis_flight_back_1</item>
    </array>
 
-   <array name="ct_background">
+   <array name="colour_theme_background">
       <item>@color/vis_background_0</item>
       <item>@color/vis_background_1</item>
    </array>
 
-   <array name="ct_grid">
+   <array name="colour_theme_grid">
       <item>@color/vis_grid_0</item>
       <item>@color/vis_grid_1</item>
    </array>

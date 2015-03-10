@@ -6,11 +6,11 @@
       android:title="@string/p_category_visualisation">
 
       <ListPreference
-         android:key="p_ct"
+         android:key="p_colour_theme"
          android:title="@string/p_ct_title"
-         android:summary="@string/p_ct_summary"
-         android:entries="@array/p_ct_titles"
-         android:entryValues="@array/p_ct_values"
+         android:summary="@string/p_colour_theme_summary"
+         android:entries="@array/p_colour_theme_titles"
+         android:entryValues="@array/p_colour_theme_values"
          android:defaultValue="0" />
    </PreferenceCategory>
 </PreferenceScreen>

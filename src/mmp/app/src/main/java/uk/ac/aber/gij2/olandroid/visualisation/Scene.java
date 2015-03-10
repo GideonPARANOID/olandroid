@@ -3,12 +3,12 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.visualisation;
+package uk.ac.aber.gij2.olandroid.visualisation;
 
 import android.content.Context;
 
-import uk.ac.aber.gij2.mmp.MMPApplication;
-import uk.ac.aber.gij2.mmp.R;
+import uk.ac.aber.gij2.olandroid.OLANdroidApplication;
+import uk.ac.aber.gij2.olandroid.R;
 
 
 public class Scene {
@@ -18,7 +18,7 @@ public class Scene {
 
    public Scene(Context context) {
       grid = new Grid(5, 10,
-         ((MMPApplication) context.getApplicationContext()).getCurrentColourTheme(R.array.ct_grid));
+         ((OLANdroidApplication) context.getApplicationContext()).getCurrentColourTheme(R.array.colour_theme_grid));
    }
 
 

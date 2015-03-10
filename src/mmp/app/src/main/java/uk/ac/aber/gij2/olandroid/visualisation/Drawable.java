@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.visualisation;
+package uk.ac.aber.gij2.olandroid.visualisation;
 
 
 public interface Drawable {

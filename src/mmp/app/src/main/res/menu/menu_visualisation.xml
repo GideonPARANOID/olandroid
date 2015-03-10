@@ -1,8 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu
    xmlns:android="http://schemas.android.com/apk/res/android"
    xmlns:app="http://schemas.android.com/apk/res-auto"
    xmlns:tools="http://schemas.android.com/tools"
-   tools:context="uk.ac.aber.gij2.mmp.ui.VisualisationActivity">
+   tools:context="uk.ac.aber.gij2.olandroid.ui.VisualisationActivity">
 
    <item
       android:id="@+id/menu_va_play"
@@ -11,15 +12,15 @@
       app:showAsAction="ifRoom" />
 
    <item
-      android:id="@+id/menu_va_edit"
-      android:title="@string/va_edit"
-      android:icon="@drawable/ic_action_edit"
-      app:showAsAction="ifRoom" />
-
-   <item
       android:id="@+id/menu_va_save"
       android:title="@string/va_save"
       android:icon="@drawable/ic_action_save"
+      app:showAsAction="ifRoom" />
+
+   <item
+      android:id="@+id/menu_va_edit"
+      android:title="@string/va_edit"
+      android:icon="@drawable/ic_action_edit"
       app:showAsAction="ifRoom" />
 
    <item
@@ -31,7 +32,7 @@
    <item
       android:id="@+id/menu_a_settings"
       android:title="@string/a_settings"
-      android:icon="@drawable/ic_action_overflow"
+      android:icon="@drawable/ic_action_settings"
       android:orderInCategory="100"
       app:showAsAction="ifRoom" />
 </menu>

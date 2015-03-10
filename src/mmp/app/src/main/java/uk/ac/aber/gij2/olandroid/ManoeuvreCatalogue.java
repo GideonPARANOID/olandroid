@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp;
+package uk.ac.aber.gij2.olandroid;
 
 import android.content.Context;
 import android.util.Log;
@@ -15,8 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-import uk.ac.aber.gij2.mmp.visualisation.Component;
-import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
+import uk.ac.aber.gij2.olandroid.visualisation.Component;
+import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
 
 
 public class ManoeuvreCatalogue {
@@ -158,10 +158,10 @@ public class ManoeuvreCatalogue {
                parseComponentStrength(parser.getAttributeValue(null, "yaw")),
                parseComponentStrength(parser.getAttributeValue(null, "roll")),
                Float.parseFloat(parser.getAttributeValue(null, "length")),
-               ((MMPApplication) context.getApplicationContext()).getCurrentColourTheme(
-                  R.array.ct_front),
-               ((MMPApplication) context.getApplicationContext()).getCurrentColourTheme(
-                  R.array.ct_back)));
+               ((OLANdroidApplication) context.getApplicationContext()).getCurrentColourTheme(
+                  R.array.colour_theme_front),
+               ((OLANdroidApplication) context.getApplicationContext()).getCurrentColourTheme(
+                  R.array.colour_theme_back)));
 
             // skipping content
             skip(parser);

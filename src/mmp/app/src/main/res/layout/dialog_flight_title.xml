@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
    xmlns:android="http://schemas.android.com/apk/res/android"
    xmlns:tools="http://schemas.android.com/tools"
-   tools:context="uk.ac.aber.gij2.mmp.ui.FlightTitleDialogFragment"
+   tools:context="uk.ac.aber.gij2.olandroid.ui.FlightTitleDialogFragment"
 
    android:orientation="vertical"
    android:paddingLeft="@dimen/a_margin_horizontal"

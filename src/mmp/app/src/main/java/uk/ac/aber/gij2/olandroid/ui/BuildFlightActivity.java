@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.ui;
+package uk.ac.aber.gij2.olandroid.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -23,11 +23,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import uk.ac.aber.gij2.mmp.InvalidFlightException;
-import uk.ac.aber.gij2.mmp.MMPApplication;
-import uk.ac.aber.gij2.mmp.ManoeuvreCatalogue;
-import uk.ac.aber.gij2.mmp.R;
-import uk.ac.aber.gij2.mmp.visualisation.Manoeuvre;
+import uk.ac.aber.gij2.olandroid.InvalidFlightException;
+import uk.ac.aber.gij2.olandroid.OLANdroidApplication;
+import uk.ac.aber.gij2.olandroid.ManoeuvreCatalogue;
+import uk.ac.aber.gij2.olandroid.R;
+import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
 
 
 public class BuildFlightActivity extends ActionBarActivity implements
@@ -46,7 +46,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
       final Spinner spinner = (Spinner) findViewById(R.id.bfa_spinner_category);
 
       spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-            ((MMPApplication) getApplication()).getManoeuvreCatalogue().getCategories()));
+            ((OLANdroidApplication) getApplication()).getManoeuvreCatalogue().getCategories()));
 
       // on changing the spinner
       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -56,7 +56,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
                int position, long id) {
 
                final ListView listManoeuvres = (ListView) findViewById(R.id.bfa_list_manoeuvres);
-               final ManoeuvreCatalogue manoeuvreCatalogue = ((MMPApplication) getApplication())
+               final ManoeuvreCatalogue manoeuvreCatalogue = ((OLANdroidApplication) getApplication())
                   .getManoeuvreCatalogue();
 
 
@@ -94,7 +94,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
    protected void onStart() {
       super.onStart();
 
-      MMPApplication app = (MMPApplication) getApplication();
+      OLANdroidApplication app = (OLANdroidApplication) getApplication();
 
       // set the default text for editing flights
       if (app.getScene().getFlight() != null && app.getScene().getFlight().getOLAN() != null) {
@@ -131,7 +131,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
       // finding the manoeuvre in the catalogue, getting its olan & adding to the current string
-      olanEntry.append(((MMPApplication) getApplication()).getManoeuvreCatalogue().getManoeuvres(
+      olanEntry.append(((OLANdroidApplication) getApplication()).getManoeuvreCatalogue().getManoeuvres(
          (String) ((Spinner) findViewById(R.id.bfa_spinner_category)).getSelectedItem())[position]
          .getOLAN() + " ");
    }
@@ -144,7 +144,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
    public void button_vis(View view) {
 
       try {
-         MMPApplication app = (MMPApplication) getApplication();
+         OLANdroidApplication app = (OLANdroidApplication) getApplication();
 
          app.buildAndSetFlight(olanEntry.getText().toString());
          startActivity(new Intent(this, VisualisationActivity.class));

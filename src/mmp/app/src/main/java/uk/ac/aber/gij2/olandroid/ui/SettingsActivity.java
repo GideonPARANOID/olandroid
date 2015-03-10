@@ -3,13 +3,13 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.mmp.ui;
+package uk.ac.aber.gij2.olandroid.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
-import uk.ac.aber.gij2.mmp.R;
+import uk.ac.aber.gij2.olandroid.R;
 
 
 public class SettingsActivity extends ActionBarActivity {
