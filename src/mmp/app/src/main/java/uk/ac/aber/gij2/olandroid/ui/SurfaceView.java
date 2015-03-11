@@ -40,35 +40,30 @@ public class SurfaceView extends GLSurfaceView implements
    public boolean onTouchEvent(@NonNull MotionEvent event) {
 //      scaleGestureDetector.onTouchEvent(event);
 
-      final float SCALE = 0.25f;
+      // TODO: think about scaling in correspondence to the view (screen) size
+      final float ROTATION_SCALE = 0.25f, TRANSLATION_SCALE = 0.125f;
 
       if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+         // if starting a new swipe, reset the start to prevent skipping
          previousX = event.getX();
          previousY = event.getY();
 
       } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-
-         float currentX = event.getX(),
-            currentY = event.getY(),
-            deltaX = currentX - previousX,
-            deltaY = currentY - previousY;
-
-         System.out.println(deltaX + "   " + deltaY);
-
          switch (event.getPointerCount()) {
             case 1:
-               renderer.viewRotationYDelta(deltaX * SCALE);
-               renderer.viewRotationXDelta(-deltaY * SCALE);
+               renderer.viewRotationYDelta((event.getX() - previousX) * ROTATION_SCALE);
+               renderer.viewRotationXDelta((event.getY() - previousY) * ROTATION_SCALE);
                break;
 
             case 2:
-               renderer.viewTranslationZDelta(deltaX * SCALE);
-               renderer.viewTranslationXDelta(-deltaY * SCALE);
+               renderer.viewTranslationZDelta((event.getX() - previousX) * TRANSLATION_SCALE);
+               renderer.viewTranslationXDelta((event.getY() - previousY) * TRANSLATION_SCALE);
                break;
          }
 
-         previousX = currentX;
-         previousY = currentY;
+         previousX = event.getX();
+         previousY = event.getY();
       }
 
       return true;
