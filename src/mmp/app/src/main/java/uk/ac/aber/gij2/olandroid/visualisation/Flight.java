@@ -42,7 +42,7 @@ public class Flight implements Drawable {
 
       calculateMatrices(initialMatrix);
 
-       for (int i = 0; i < manoeuvres.length; i++) {
+      for (int i = 0; i < manoeuvres.length; i++) {
          manoeuvres[i].draw(matrices[i]);
       }
    }
@@ -82,8 +82,8 @@ public class Flight implements Drawable {
 
       // if either fully drawn or fully not drawn
       if (progress == 0f || progress == 1f) {
-         for (int i = 0; i < manoeuvres.length; i++) {
-            manoeuvres[i].animate(progress);
+         for (Manoeuvre manoeuvre : manoeuvres) {
+            manoeuvre.animate(progress);
          }
 
       } else {
@@ -131,15 +131,15 @@ public class Flight implements Drawable {
 
 
    public void setColourBack(float[] colourBack) {
-      for (int i = 0; i < manoeuvres.length; i++) {
-         manoeuvres[i].setColourBack(colourBack);
+      for (Manoeuvre manoeuvre : manoeuvres) {
+         manoeuvre.setColourBack(colourBack);
       }
    }
 
 
    public void setColourFront(float[] colourFront) {
-      for (int i = 0; i < manoeuvres.length; i++) {
-         manoeuvres[i].setColourFront(colourFront);
+      for (Manoeuvre manoeuvre : manoeuvres) {
+         manoeuvre.setColourFront(colourFront);
       }
    }
 

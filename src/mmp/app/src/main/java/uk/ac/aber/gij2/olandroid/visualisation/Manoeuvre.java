@@ -14,7 +14,6 @@ public class Manoeuvre implements Drawable {
    private float[][] matrices;
    private float[] componentsCumulativeLength;
    private String olan, name, category;
-   private boolean matricesCalculated;
 
    private float defaultEntryLength, defaultExitLength;
 
@@ -43,7 +42,6 @@ public class Manoeuvre implements Drawable {
       defaultExitLength = components[components.length - 1].getLength();
 
       buildComponentsCumulativeLength();
-      matricesCalculated = false;
    }
 
 
@@ -74,16 +72,11 @@ public class Manoeuvre implements Drawable {
       defaultExitLength = components[components.length - 1].getLength();
 
       buildComponentsCumulativeLength();
-      matricesCalculated = false;
    }
 
 
    public void draw(float[] initialMatrix) {
-
-      // setting up relies on an initial draw matrix, so have to do it in the draw loop
-      if (!matricesCalculated) {
-         calculateMatrices(initialMatrix);
-      }
+      calculateMatrices(initialMatrix);
 
       for (int i = 0; i < components.length; i++) {
          components[i].draw(matrices[i]);
@@ -130,8 +123,8 @@ public class Manoeuvre implements Drawable {
 
       // if either fully drawn or fully not drawn
       if (progress == 0f || progress == 1f) {
-         for (int i = 0; i < components.length; i++) {
-            components[i].animate(progress);
+         for (Component component : components) {
+            component.animate(progress);
          }
 
       } else {
@@ -179,7 +172,6 @@ public class Manoeuvre implements Drawable {
       components[0].setLength(defaultEntryLength + (float) entryLength);
 
       buildComponentsCumulativeLength();
-      matricesCalculated = false;
    }
 
 
@@ -190,7 +182,6 @@ public class Manoeuvre implements Drawable {
       components[components.length - 1].setLength(defaultExitLength + (float) exitLength);
 
       buildComponentsCumulativeLength();
-      matricesCalculated = false;
    }
 
 
@@ -213,15 +204,15 @@ public class Manoeuvre implements Drawable {
 
 
    public void setColourBack(float[] colourBack) {
-      for (int i = 0; i < components.length; i++) {
-         components[i].setColourBack(colourBack);
+      for (Component component : components) {
+         component.setColourBack(colourBack);
       }
    }
 
 
    public void setColourFront(float[] colourFront) {
-      for (int i = 0; i < components.length; i++) {
-         components[i].setColourFront(colourFront);
+      for (Component component : components) {
+         component.setColourFront(colourFront);
       }
    }
 }

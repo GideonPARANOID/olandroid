@@ -13,8 +13,8 @@ import android.preference.PreferenceManager;
 import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 
 
-public class OLANdroidApplication extends Application implements
-   SharedPreferences.OnSharedPreferenceChangeListener{
+public class OLANdroid extends Application implements
+   SharedPreferences.OnSharedPreferenceChangeListener {
 
    private SharedPreferences preferences;
 

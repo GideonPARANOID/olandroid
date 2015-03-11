@@ -158,9 +158,9 @@ public class ManoeuvreCatalogue {
                parseComponentStrength(parser.getAttributeValue(null, "yaw")),
                parseComponentStrength(parser.getAttributeValue(null, "roll")),
                Float.parseFloat(parser.getAttributeValue(null, "length")),
-               ((OLANdroidApplication) context.getApplicationContext()).getCurrentColourTheme(
+               ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
                   R.array.colour_theme_front),
-               ((OLANdroidApplication) context.getApplicationContext()).getCurrentColourTheme(
+               ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
                   R.array.colour_theme_back)));
 
             // skipping content

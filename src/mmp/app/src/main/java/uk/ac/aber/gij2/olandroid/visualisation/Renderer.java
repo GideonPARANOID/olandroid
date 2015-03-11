@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import uk.ac.aber.gij2.olandroid.OLANdroidApplication;
+import uk.ac.aber.gij2.olandroid.OLANdroid;
 import uk.ac.aber.gij2.olandroid.R;
 
 
@@ -69,7 +69,7 @@ public class Renderer implements GLSurfaceView.Renderer {
       GLES20.glAttachShader(program, fragmentShader);
       GLES20.glLinkProgram(program);
 
-      float[] colour  = ((OLANdroidApplication) context.getApplicationContext()).getCurrentColourTheme(
+      float[] colour  = ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
          R.array.colour_theme_background);
 
       GLES20.glClearColor(colour[0], colour[1], colour[2], colour[3]);
@@ -79,7 +79,7 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       Matrix.setIdentityM(mViewMatrix, 0);
 
-      scene = ((OLANdroidApplication) context.getApplicationContext()).getScene();
+      scene = ((OLANdroid) context.getApplicationContext()).getScene();
 
       buildViewMatrix();
    }
@@ -94,7 +94,7 @@ public class Renderer implements GLSurfaceView.Renderer {
       Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1f, 1000f);
 
       // refreshing colours
-      float[] colour  = ((OLANdroidApplication) context.getApplicationContext()).getCurrentColourTheme(
+      float[] colour  = ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
          R.array.colour_theme_background);
 
       GLES20.glClearColor(colour[0], colour[1], colour[2], colour[3]);

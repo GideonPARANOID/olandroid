@@ -24,7 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import uk.ac.aber.gij2.olandroid.InvalidFlightException;
-import uk.ac.aber.gij2.olandroid.OLANdroidApplication;
+import uk.ac.aber.gij2.olandroid.OLANdroid;
 import uk.ac.aber.gij2.olandroid.ManoeuvreCatalogue;
 import uk.ac.aber.gij2.olandroid.R;
 import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
@@ -46,7 +46,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
       final Spinner spinner = (Spinner) findViewById(R.id.bfa_spinner_category);
 
       spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-            ((OLANdroidApplication) getApplication()).getManoeuvreCatalogue().getCategories()));
+            ((OLANdroid) getApplication()).getManoeuvreCatalogue().getCategories()));
 
       // on changing the spinner
       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -56,7 +56,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
                int position, long id) {
 
                final ListView listManoeuvres = (ListView) findViewById(R.id.bfa_list_manoeuvres);
-               final ManoeuvreCatalogue manoeuvreCatalogue = ((OLANdroidApplication) getApplication())
+               final ManoeuvreCatalogue manoeuvreCatalogue = ((OLANdroid) getApplication())
                   .getManoeuvreCatalogue();
 
 
@@ -94,11 +94,11 @@ public class BuildFlightActivity extends ActionBarActivity implements
    protected void onStart() {
       super.onStart();
 
-      OLANdroidApplication app = (OLANdroidApplication) getApplication();
+      OLANdroid app = (OLANdroid) getApplication();
 
       // set the default text for editing flights
       if (app.getScene().getFlight() != null && app.getScene().getFlight().getOLAN() != null) {
-         olanEntry.setText(app.getScene().getFlight().getOLAN());
+         olanEntry.setText(app.getScene().getFlight().getOLAN() + " ");
          olanEntry.setSelection(olanEntry.getText().length());
       }
    }
@@ -131,7 +131,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
       // finding the manoeuvre in the catalogue, getting its olan & adding to the current string
-      olanEntry.append(((OLANdroidApplication) getApplication()).getManoeuvreCatalogue().getManoeuvres(
+      olanEntry.append(((OLANdroid) getApplication()).getManoeuvreCatalogue().getManoeuvres(
          (String) ((Spinner) findViewById(R.id.bfa_spinner_category)).getSelectedItem())[position]
          .getOLAN() + " ");
    }
@@ -144,7 +144,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
    public void button_vis(View view) {
 
       try {
-         OLANdroidApplication app = (OLANdroidApplication) getApplication();
+         OLANdroid app = (OLANdroid) getApplication();
 
          app.buildAndSetFlight(olanEntry.getText().toString());
          startActivity(new Intent(this, VisualisationActivity.class));

@@ -5,6 +5,7 @@
 
 package uk.ac.aber.gij2.olandroid.ui;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -15,7 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import uk.ac.aber.gij2.olandroid.InvalidFlightException;
-import uk.ac.aber.gij2.olandroid.OLANdroidApplication;
+import uk.ac.aber.gij2.olandroid.OLANdroid;
 import uk.ac.aber.gij2.olandroid.R;
 
 
@@ -43,7 +44,7 @@ public class FlightTitleDialogFragment extends DialogFragment {
          @Override
          public void onShow(DialogInterface unused) {
 
-            final OLANdroidApplication app = (OLANdroidApplication) getActivity().getApplication();
+            final OLANdroid app = (OLANdroid) getActivity().getApplication();
 
             // sets the default text if modifying a saved flight
             if (app.getScene().getFlight().getName() != null) {
@@ -81,5 +82,17 @@ public class FlightTitleDialogFragment extends DialogFragment {
       });
 
       return dialog;
+   }
+
+
+   @Override
+   public void onDismiss(DialogInterface dialog) {
+      super.onDismiss(dialog);
+
+      Activity activity = getActivity();
+
+      if (activity instanceof DialogInterface.OnDismissListener) {
+         ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
+      }
    }
 }

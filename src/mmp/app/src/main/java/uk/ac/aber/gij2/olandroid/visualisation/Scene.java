@@ -7,7 +7,7 @@ package uk.ac.aber.gij2.olandroid.visualisation;
 
 import android.content.Context;
 
-import uk.ac.aber.gij2.olandroid.OLANdroidApplication;
+import uk.ac.aber.gij2.olandroid.OLANdroid;
 import uk.ac.aber.gij2.olandroid.R;
 
 
@@ -18,7 +18,7 @@ public class Scene {
 
    public Scene(Context context) {
       grid = new Grid(5, 10,
-         ((OLANdroidApplication) context.getApplicationContext()).getCurrentColourTheme(R.array.colour_theme_grid));
+         ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(R.array.colour_theme_grid));
    }
 
 

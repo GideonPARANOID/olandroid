@@ -7,6 +7,7 @@ package uk.ac.aber.gij2.olandroid.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -21,15 +22,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import uk.ac.aber.gij2.olandroid.OLANdroidApplication;
+import uk.ac.aber.gij2.olandroid.OLANdroid;
 import uk.ac.aber.gij2.olandroid.R;
 import uk.ac.aber.gij2.olandroid.visualisation.Flight;
 
 
 public class FlightManagerActivity extends ActionBarActivity implements
-   AdapterView.OnItemClickListener {
+   AdapterView.OnItemClickListener, DialogInterface.OnDismissListener {
 
-   private ListView listFlights;
+   private OLANdroid app;
+   private ArrayAdapter adapter;
 
 
    @Override
@@ -37,16 +39,35 @@ public class FlightManagerActivity extends ActionBarActivity implements
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_flight_manager);
 
+      app = (OLANdroid) getApplication();
+
       // if this is the first launch, show the help
-      if (((OLANdroidApplication) getApplication()).firstLaunch()) {
+      if (app.firstLaunch()) {
          new AlertDialog.Builder(this).setView(getLayoutInflater().inflate(R.layout.dialog_help,
             null)).setTitle(R.string.a_first).setMessage(R.string.a_first_message).create().show();
       }
 
-      listFlights = (ListView) findViewById(R.id.fma_list_flights);
+      // adapter for converting flights into a listview
+      adapter = new ArrayAdapter<Flight>(app, R.layout.list_flights,
+         app.getFlightManager().getFlights()) {
 
-      refreshFlightsList();
+         @Override
+         public View getView(int position, View convertView, ViewGroup parent) {
 
+            View row = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+               .inflate(R.layout.list_flights, parent, false);
+
+            ((TextView) row.findViewById(R.id.lf_text_name)).setText(getItem(position).getName());
+            ((TextView) row.findViewById(R.id.lf_text_olan)).setText(getItem(position).getOLAN());
+
+            return row;
+         }
+      };
+
+      ListView listFlights = (ListView) findViewById(R.id.fma_list_flights);
+
+      // setup the listeners
+      listFlights.setAdapter(adapter);
       listFlights.setOnItemClickListener(this);
       registerForContextMenu(listFlights);
    }
@@ -56,9 +77,8 @@ public class FlightManagerActivity extends ActionBarActivity implements
    protected void onStart() {
       super.onStart();
 
-      refreshFlightsList();
       // refreshing the list to reflect any changes
-      ((ArrayAdapter) listFlights.getAdapter()).notifyDataSetChanged();
+      adapter.notifyDataSetChanged();
    }
 
 
@@ -73,7 +93,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
          case R.id.menu_fma_new:
-            ((OLANdroidApplication) getApplication()).getScene().setFlight(null);
+            app.getScene().setFlight(null);
             startActivity(new Intent(this, BuildFlightActivity.class));
             break;
 
@@ -94,9 +114,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
    @Override
    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
-      OLANdroidApplication app = (OLANdroidApplication) getApplication();
-      app.getScene().setFlight(app.getFlightManager().getFlights()[position]);
-
+      app.getScene().setFlight(app.getFlightManager().getFlights().get(position));
       startActivity(new Intent(this, VisualisationActivity.class));
    }
 
@@ -113,11 +131,9 @@ public class FlightManagerActivity extends ActionBarActivity implements
    @Override
    public boolean onContextItemSelected(MenuItem item) {
 
-      OLANdroidApplication app = (OLANdroidApplication) getApplication();
-
       // setting the flight the context menu is for to be the current flight
-      app.getScene().setFlight((Flight) listFlights.getAdapter().getItem(
-            ((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position));
+      app.getScene().setFlight((Flight) adapter.getItem(
+         ((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position));
 
       switch (item.getItemId()){
          case R.id.menu_fma_c_load:
@@ -130,44 +146,23 @@ public class FlightManagerActivity extends ActionBarActivity implements
 
          case R.id.menu_fma_c_rename:
             new FlightTitleDialogFragment().show(getFragmentManager(), "flight_title");
-            refreshFlightsList();
             break;
 
          case R.id.menu_fma_c_delete:
             app.getFlightManager().deleteFlight(app.getScene().getFlight());
             app.getScene().setFlight(null);
-            refreshFlightsList();
             break;
       }
 
       // updating the list
-      listFlights.invalidateViews();
-      ((ArrayAdapter) listFlights.getAdapter()).notifyDataSetChanged();
+      adapter.notifyDataSetChanged();
       return super.onContextItemSelected(item);
    }
 
 
-
-   // TODO: fix notifyingdatasetchanged so this method isn't needed
-   public void refreshFlightsList() {
-            // setup the listview for the loaded flights
-      listFlights.setAdapter(new ArrayAdapter<Flight>(getApplication(),
-         R.layout.list_flights, ((OLANdroidApplication) getApplication()).getFlightManager()
-         .getFlights()) {
-
-         @Override
-         public View getView(int position, View convertView, ViewGroup parent) {
-
-            View row = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-               .inflate(R.layout.list_flights, parent, false);
-
-            ((TextView) row.findViewById(R.id.lf_text_name)).setText(getItem(position)
-               .getName());
-            ((TextView) row.findViewById(R.id.lf_text_olan)).setText(getItem(position)
-               .getOLAN());
-
-            return row;
-         }
-      });
+   @Override
+   public void onDismiss(DialogInterface dialog) {
+      // updating things once a dialog has been dismissed
+      adapter.notifyDataSetChanged();
    }
 }

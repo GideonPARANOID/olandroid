@@ -5,7 +5,6 @@
 
 package uk.ac.aber.gij2.olandroid;
 
-import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -30,16 +29,19 @@ public class FlightManager {
    private final Pattern olanPattern;
 
    private ManoeuvreCatalogue manoeuvreCatalogue;
-   private Context context;
+   private OLANdroid app;
 
    private ArrayList<Flight> flights;
 
 
-   public FlightManager(Context context, ManoeuvreCatalogue manoeuvreCatalogue) {
-      this.context = context;
+   protected FlightManager(OLANdroid app, ManoeuvreCatalogue manoeuvreCatalogue) {
+      this.app = app;
       this.manoeuvreCatalogue = manoeuvreCatalogue;
 
       olanPattern = Pattern.compile(olanRegex);
+
+      // only ever initialise once, otherwise arrayadapters will lose reference
+      flights = new ArrayList<>();
 
       loadFlights();
    }
@@ -98,24 +100,38 @@ public class FlightManager {
    }
 
 
+   /**
+    * loads the flights from the file, parsing them & adding them
+    */
    public void loadFlights() {
-      flights = new ArrayList<>();
+      flights.clear();
 
-      File file = new File(context.getFilesDir(), FILENAME);
+      File file = new File(app.getFilesDir(), FILENAME);
 
       if (file.exists()) {
-
          try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                   new FileInputStream(file)));
 
-            String line = reader.readLine(), lineAlt = reader.readLine();
-            while (line != null && lineAlt != null) {
+            // file is formatted such that flight name & olan are on alternate lines
+            String name = reader.readLine(), olan = reader.readLine();
+            while (name != null && olan != null) {
 
-               addFlight(parseFlight(line, lineAlt), false);
+               Flight flight;
 
-               line = reader.readLine();
-               lineAlt = reader.readLine();
+               try {
+                  flight = buildFlight(olan);
+                  flight.setName(name);
+
+                  addFlight(flight, false);
+                  Log.d(this.getClass().getName(), "file r: " + name + " - " + olan);
+
+               } catch (InvalidFlightException exception) {
+                  Log.d(this.getClass().getName(), exception.getMessage());
+               }
+
+               name = reader.readLine();
+               olan = reader.readLine();
             }
 
          } catch (IOException exception) {
@@ -125,33 +141,27 @@ public class FlightManager {
       } else {
          Log.d(this.getClass().getName(), "no saved flights");
       }
-
    }
 
 
    /**
-    * gives a newName to the current flight in the scene & saves it
+    * gives a new name to the current flight in the scene & saves it
     * @param newName - the name for the flight
     * @throws InvalidFlightException - if there's another flight with the name already taken
     */
    public void saveCurrentFlight(String newName) throws InvalidFlightException {
-
-      String currentFlightName = ((OLANdroidApplication) context.getApplicationContext()).getScene()
-         .getFlight().getName();
-
-      // there might not be a name yet
-      currentFlightName = currentFlightName == null ? "" : currentFlightName;
+      String activeFlightName = app.getScene().getFlight().getName();
 
       // if we're not modifying the current flight, check there's no name clash
-      if (!currentFlightName.equals(newName)) {
-         for (Flight flight : flights) {
-            if (flight.getName().equals(newName)) {
+      if (!(activeFlightName == null ? "" : activeFlightName).equals(newName)) {
+         for (Flight current : flights) {
+            if (current.getName().equals(newName)) {
                throw new InvalidFlightException("name clash");
             }
          }
       }
 
-      Flight flight = ((OLANdroidApplication) context).getScene().getFlight();
+      Flight flight = app.getScene().getFlight();
       flight.setName(newName);
 
       addFlight(flight, true);
@@ -165,7 +175,7 @@ public class FlightManager {
     * saves the flights to the file
     */
    public void saveFlights() {
-      File file = new File(context.getFilesDir(), FILENAME);
+      File file = new File(app.getFilesDir(), FILENAME);
 
       try {
          BufferedWriter bufferedWriter= new BufferedWriter(new OutputStreamWriter(
@@ -174,6 +184,8 @@ public class FlightManager {
          // file format is two lines for each flight, first is the name, second the olan
          for (Flight current : flights) {
             bufferedWriter.write(current.getName() + "\n" + current.getOLAN() + "\n");
+            Log.d(this.getClass().getName(), "file w: " + current.getName() + " - "
+               + current.getOLAN());
          }
 
          bufferedWriter.close();
@@ -200,7 +212,6 @@ public class FlightManager {
                && !flight.getOLAN().equals(current.getOLAN()))) {
 
                flights.remove(current);
-               result = true;
                break;
 
             } else if (flight.getOLAN().equals(current.getOLAN())
@@ -212,7 +223,8 @@ public class FlightManager {
          }
 
          if (result) {
-            Log.d(this.getClass().getName(), "added flight " + flight.getName() + " - "
+
+            Log.d(this.getClass().getName(), "flight a:" + flight.getName() + " - "
                + flight.getOLAN());
             flights.add(flight);
          }
@@ -222,35 +234,18 @@ public class FlightManager {
    }
 
 
+   public ArrayList<Flight> getFlights() {
+      return flights;
+   }
+
+
    /**
-    * @param title - title for a flight
-    * @param olan - olan for a flight
-    * @return - a new flight
+    * @param flight - the flight to remove
     */
-   private Flight parseFlight(String title, String olan) {
-      Flight flight = null;
-
-      try {
-         flight = buildFlight(olan);
-         flight.setName(title);
-
-      } catch (InvalidFlightException exception) {
-         Log.d(this.getClass().getName(), exception.getMessage());
-      }
-
-      return flight;
-   }
-
-
-   public Flight[] getFlights() {
-      return flights.toArray(new Flight[flights.size()]);
-   }
-
-
    public void deleteFlight(Flight flight) {
       flights.remove(flight);
 
-      Log.d(this.getClass().getName(), "removed flight " + flight.getName() + " "
+      Log.d(this.getClass().getName(), "flight d: " + flight.getName() + " - "
          + flight.getOLAN());
 
       saveFlights();
