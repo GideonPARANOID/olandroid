@@ -38,42 +38,37 @@ public class SurfaceView extends GLSurfaceView implements
 
    @Override
    public boolean onTouchEvent(@NonNull MotionEvent event) {
-      scaleGestureDetector.onTouchEvent(event);
+//      scaleGestureDetector.onTouchEvent(event);
 
+      final float SCALE = 0.25f;
 
-      if (event.getAction() == MotionEvent.ACTION_MOVE) {
+      if (event.getAction() == MotionEvent.ACTION_DOWN) {
+         previousX = event.getX();
+         previousY = event.getY();
+
+      } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+
+         float currentX = event.getX(),
+            currentY = event.getY(),
+            deltaX = currentX - previousX,
+            deltaY = currentY - previousY;
+
+         System.out.println(deltaX + "   " + deltaY);
+
          switch (event.getPointerCount()) {
-
             case 1:
-               float currentX = event.getX(), currentY = event.getY(),
-                  deltaX = currentX - previousX, deltaY = currentY - previousY;
-
-               // inverting the movement on crossing the centre lines
-               if (currentY > getHeight() / 2) {
-                  deltaX = -deltaX;
-               }
-
-               if (currentX > getWidth() / 2) {
-                  deltaY = -deltaY;
-               }
-
-               renderer.setViewX(renderer.getViewX() + (deltaX * 0.5f));
-
-               float resultY = renderer.getViewY() + (deltaY * 0.5f);
-               if (resultY >= 0 && resultY <= 90) {
-                  renderer.setViewY(resultY);
-               }
-
-               previousX = currentX;
-               previousY = currentY;
+               renderer.viewRotationYDelta(deltaX * SCALE);
+               renderer.viewRotationXDelta(-deltaY * SCALE);
                break;
 
             case 2:
-
-
-               System.out.println(event.getX() + " " + event.getY());
+               renderer.viewTranslationZDelta(deltaX * SCALE);
+               renderer.viewTranslationXDelta(-deltaY * SCALE);
                break;
          }
+
+         previousX = currentX;
+         previousY = currentY;
       }
 
       return true;

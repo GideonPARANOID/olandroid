@@ -32,7 +32,7 @@ public class Renderer implements GLSurfaceView.Renderer {
    private Context context;
 
    // shifting around the view
-   private float viewX, viewY, viewZoom;
+   private float viewRotationY, viewRotationX, viewTranslationZ, viewTranslationX, viewZoom;
    private float[] viewMatrix = new float[16];
 
    // content
@@ -46,8 +46,10 @@ public class Renderer implements GLSurfaceView.Renderer {
       mProjectionMatrix = new float[16];
       mViewMatrix = new float[16];
 
-      viewX = 45f;
-      viewY = 45f;
+      viewRotationY = 45f;
+      viewRotationX = 45f;
+      viewTranslationZ = 0f;
+      viewTranslationX = 0f;
       viewZoom = 1f;
 
       buildViewMatrix();
@@ -117,11 +119,12 @@ public class Renderer implements GLSurfaceView.Renderer {
     * refreshes the view matrix, showing where the camera is
     */
    public void buildViewMatrix() {
-      float[] temp = new float[16];
+      float[] temp = new float[16], temp2 = new float[16];
 
       Matrix.translateM(viewMatrix, 0, mProjectionMatrix, 0, 0f, 0f, -20f * viewZoom);
-      Matrix.rotateM(temp, 0, viewMatrix, 0, viewY, 1f, 0f, 0f);
-      Matrix.rotateM(viewMatrix, 0, temp, 0, viewX, 0f, 1f, 0f);
+      Matrix.rotateM(temp, 0, viewMatrix, 0, viewRotationX, 1f, 0f, 0f);
+      Matrix.rotateM(temp2, 0, temp, 0, viewRotationY, 0f, 1f, 0f);
+      Matrix.translateM(viewMatrix, 0, temp2, 0, viewTranslationX, 0f, viewTranslationZ);
    }
 
    public float getViewZoom() {
@@ -133,21 +136,33 @@ public class Renderer implements GLSurfaceView.Renderer {
       buildViewMatrix();
    }
 
-   public float getViewX() {
-      return viewX;
-   }
 
-   public void setViewX(float viewX) {
-      this.viewX = viewX;
+   public void viewRotationYDelta(float delta) {
+      viewRotationY += delta;
       buildViewMatrix();
    }
 
-   public float getViewY() {
-      return viewY;
+
+   public void viewRotationXDelta(float delta) {
+      float test = viewRotationX + delta;
+
+      // view bounds - the floor
+      if (test >= 0 && test <= 90) {
+         viewRotationX += delta;
+         buildViewMatrix();
+      }
    }
 
-   public void setViewY(float viewY) {
-      this.viewY = viewY;
+
+   // TODO: make relational to rotation, probably want movement on x/y planes, rather than x/z ones
+
+   public void viewTranslationZDelta(float delta) {
+      viewTranslationZ += delta;
+      buildViewMatrix();
+   }
+
+   public void viewTranslationXDelta(float delta) {
+      viewTranslationX += delta;
       buildViewMatrix();
    }
 

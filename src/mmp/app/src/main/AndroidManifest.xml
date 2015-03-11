@@ -50,7 +50,7 @@
          android:name="uk.ac.aber.gij2.olandroid.ui.VisualisationActivity"
          android:label="@string/va_label"
          android:parentActivityName="uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity"
-         android:theme="@style/VisualisationTheme" >
+         android:theme="@style/AppTheme.Visualisation" >
          <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity" />
