@@ -13,8 +13,7 @@ import android.preference.PreferenceManager;
 import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 
 
-public class OLANdroid extends Application implements
-   SharedPreferences.OnSharedPreferenceChangeListener {
+public class OLANdroid extends Application implements SharedPreferences.OnSharedPreferenceChangeListener {
 
    private SharedPreferences preferences;
 
@@ -68,7 +67,6 @@ public class OLANdroid extends Application implements
     * @return - array of floats representing a colour, rgba designed for use with opengl
     */
    public float[] getCurrentColourTheme(int listId) {
-
       int colour = getResources().obtainTypedArray(listId).getColor(
          Integer.parseInt(preferences.getString("p_colour_theme", "0")), 0);
 
@@ -87,6 +85,9 @@ public class OLANdroid extends Application implements
          case "p_colour_theme":
             updateColourTheme();
             break;
+         case "p_controls_scheme":
+
+            break;
       }
    }
 
@@ -95,10 +96,15 @@ public class OLANdroid extends Application implements
     * checks whether it was the first launch, & if so, flip the variable
     * @return whether it was the first launch of the application or not
     */
-   public boolean firstLaunch() {
-      boolean result = preferences.getBoolean("p_first", true);
-      preferences.edit().putBoolean("p_first", result ? false : false).commit();
+   public boolean getIsFirstLaunch() {
+      boolean result = preferences.getBoolean("p_first_launch", true);
+      preferences.edit().putBoolean("p_first_launch", result ? false : false).commit();
       return result;
+   }
+
+
+   public int getControlScheme() {
+      return Integer.parseInt(preferences.getString("p_control_scheme", "0"));
    }
 
 

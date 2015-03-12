@@ -48,6 +48,12 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
 
 
    @Override
+   protected void onStart() {
+      super.onStart();
+      ((SurfaceView) findViewById(R.id.va_visualisation)).onStart();
+   }
+
+   @Override
    public boolean onCreateOptionsMenu(Menu menu) {
       getMenuInflater().inflate(R.menu.menu_visualisation, menu);
 

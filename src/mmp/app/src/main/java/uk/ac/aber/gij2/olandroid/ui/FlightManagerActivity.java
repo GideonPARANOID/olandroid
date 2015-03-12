@@ -42,7 +42,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
       app = (OLANdroid) getApplication();
 
       // if this is the first launch, show the help
-      if (app.firstLaunch()) {
+      if (app.getIsFirstLaunch()) {
          new AlertDialog.Builder(this).setView(getLayoutInflater().inflate(R.layout.dialog_help,
             null)).setTitle(R.string.a_first).setMessage(R.string.a_first_message).create().show();
       }

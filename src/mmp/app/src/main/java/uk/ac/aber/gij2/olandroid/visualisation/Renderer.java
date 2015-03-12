@@ -143,6 +143,15 @@ public class Renderer implements GLSurfaceView.Renderer {
    }
 
 
+   public float getViewRotationY() {
+      return viewRotationY;
+   }
+
+   public void setViewRotationY(float viewRotationY) {
+      this.viewRotationY = viewRotationY;
+      buildViewMatrix();
+   }
+
    public void viewRotationXDelta(float delta) {
       float test = viewRotationX + delta;
 
@@ -154,15 +163,21 @@ public class Renderer implements GLSurfaceView.Renderer {
    }
 
 
+
+
+
+
+
    // TODO: make relational to rotation, probably want movement on x/y planes, rather than x/z ones
 
    public void viewTranslationZDelta(float delta) {
-      viewTranslationZ += delta;
+      viewTranslationZ += Math.cos(viewRotationX) * delta;
       buildViewMatrix();
    }
 
    public void viewTranslationXDelta(float delta) {
-      viewTranslationX += delta;
+      viewTranslationX += Math.sin(viewRotationX) * delta;
+//      viewTranslationX += delta;
       buildViewMatrix();
    }
 

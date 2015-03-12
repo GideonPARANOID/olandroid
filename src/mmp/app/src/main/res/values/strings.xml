@@ -49,6 +49,8 @@
 
    <!-- preferences -->
    <string name="p_category_visualisation">Visualisation</string>
-   <string name="p_ct_title">Theme</string>
+   <string name="p_colour_theme_title">Theme</string>
    <string name="p_colour_theme_summary">Colour scheme for the visualisation</string>
+   <string name="p_control_scheme_title">Control schemes</string>
+   <string name="p_control_scheme_summary">How to interact with the visualisation</string>
 </resources>

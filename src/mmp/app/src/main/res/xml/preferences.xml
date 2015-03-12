@@ -7,10 +7,18 @@
 
       <ListPreference
          android:key="p_colour_theme"
-         android:title="@string/p_ct_title"
+         android:title="@string/p_colour_theme_title"
          android:summary="@string/p_colour_theme_summary"
          android:entries="@array/p_colour_theme_titles"
          android:entryValues="@array/p_colour_theme_values"
+         android:defaultValue="0" />
+
+      <ListPreference
+         android:key="p_control_scheme"
+         android:title="@string/p_control_scheme_title"
+         android:summary="@string/p_control_scheme_summary"
+         android:entries="@array/p_control_scheme_titles"
+         android:entryValues="@array/p_control_scheme_values"
          android:defaultValue="0" />
    </PreferenceCategory>
 </PreferenceScreen>
