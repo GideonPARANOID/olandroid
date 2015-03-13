@@ -92,28 +92,32 @@ public class SurfaceView extends GLSurfaceView {
             if (controlScheme == TWO_FINGER_ROTATE) {
                switch (event.getPointerCount()) {
                   case 1:
-                     break;
-                  case 2:
+                     Touch delta = current0.delta(previous0);
 
+                     renderer.viewParallelTranslationDelta(delta.y * TRANSLATION_SCALE);
+                     renderer.viewHorizontalTranslationDelta(delta.x * TRANSLATION_SCALE);
+                     break;
+
+                  case 2:
                      Touch current1 = new Touch(event.getX(1), event.getY(1));
 
                      // zooming
                      float zoomFactor = current0.euclidean(current1) / euclidean,
                         previousZoom = renderer.getViewZoom();
 
-                     if (previousZoom / zoomFactor >= 0.2f) {
+                     if (previousZoom / zoomFactor >= 0.2f && previousZoom / zoomFactor < 30) {
                         renderer.setViewZoom(previousZoom / ((zoomFactor * 0.01f) + 0.99f));
                      }
 
                      // rotating, change as degrees
-                     float delta = (float) (((
+                     float angleDelta = (float) (((
                         Math.atan(current0.gradient(current1))
                            - Math.atan(previous0.gradient(previous1)))
                         / (2f * Math.PI)) * 360f);
 
                      // don't want huge changes (happens due to tan's occasional infiniteness)
                      renderer.viewRotationYDelta(
-                        delta > 90 || delta < -90 ? 0f : delta * ROTATION_SCALE);
+                        angleDelta > 90 || angleDelta < -90 ? 0f : angleDelta * ROTATION_SCALE);
 
                      previous1 = current1;
                      break;
@@ -127,13 +131,13 @@ public class SurfaceView extends GLSurfaceView {
 
                switch (event.getPointerCount()) {
                   case 1:
-                     renderer.viewRotationYDelta(delta.x * ROTATION_SCALE);
-                     renderer.viewRotationXDelta(-delta.y * ROTATION_SCALE);
+                     renderer.viewRotationYDelta(delta.x * ROTATION_SCALE * .1f);
+                     renderer.viewRotationXDelta(-delta.y * ROTATION_SCALE * .1f);
                      break;
 
                   case 2:
-                     renderer.viewTranslationZDelta(delta.x * TRANSLATION_SCALE);
-                     renderer.viewTranslationXDelta(-delta.y * TRANSLATION_SCALE);
+                     renderer.viewParallelTranslationDelta(delta.y * TRANSLATION_SCALE);
+                     renderer.viewHorizontalTranslationDelta(delta.x * TRANSLATION_SCALE);
                      break;
                }
             }

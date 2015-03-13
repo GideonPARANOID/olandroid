@@ -33,7 +33,7 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    // shifting around the view
    private float viewRotationY, viewRotationX, viewTranslationZ, viewTranslationX, viewZoom;
-   private float[] viewMatrix = new float[16];
+   private float[] viewMatrix;
 
    // content
    private Scene scene;
@@ -51,6 +51,8 @@ public class Renderer implements GLSurfaceView.Renderer {
       viewTranslationZ = 0f;
       viewTranslationX = 0f;
       viewZoom = 1f;
+
+      viewMatrix = new float[16];
 
       buildViewMatrix();
    }
@@ -107,10 +109,6 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    public void onDrawFrame(GL10 unused) {
       GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
-
-      // calculate the projection and view transformation
-      Matrix.multiplyMM(mMVPMatrix, 0, viewMatrix, 0, mViewMatrix, 0);
-
       scene.draw(mMVPMatrix);
    }
 
@@ -125,6 +123,8 @@ public class Renderer implements GLSurfaceView.Renderer {
       Matrix.rotateM(temp, 0, viewMatrix, 0, viewRotationX, 1f, 0f, 0f);
       Matrix.rotateM(temp2, 0, temp, 0, viewRotationY, 0f, 1f, 0f);
       Matrix.translateM(viewMatrix, 0, temp2, 0, viewTranslationX, 0f, viewTranslationZ);
+
+      Matrix.multiplyMM(mMVPMatrix, 0, viewMatrix, 0, mViewMatrix, 0);
    }
 
    public float getViewZoom() {
@@ -139,6 +139,11 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    public void viewRotationYDelta(float delta) {
       viewRotationY += delta;
+
+      if (viewRotationY > 360f) {
+         viewRotationY -= 360f;
+      }
+
       buildViewMatrix();
    }
 
@@ -163,22 +168,15 @@ public class Renderer implements GLSurfaceView.Renderer {
    }
 
 
-
-
-
-
-
-   // TODO: make relational to rotation, probably want movement on x/y planes, rather than x/z ones
-
-   public void viewTranslationZDelta(float delta) {
-      viewTranslationZ += Math.cos(viewRotationX) * delta;
+   public void viewParallelTranslationDelta(float delta) {
+      viewTranslationZ -= Math.cos((viewRotationY / 360f) * Math.PI * 2) * delta;
+      viewTranslationX += Math.sin((viewRotationY / 360f) * Math.PI * 2) * delta;
       buildViewMatrix();
    }
 
-   public void viewTranslationXDelta(float delta) {
-      viewTranslationX += Math.sin(viewRotationX) * delta;
-//      viewTranslationX += delta;
-      buildViewMatrix();
+
+   public void viewHorizontalTranslationDelta(float delta) {
+      // TODO: implement
    }
 
 
