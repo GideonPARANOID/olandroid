@@ -61,7 +61,7 @@ public class SurfaceView extends GLSurfaceView {
       super.onLayout(changed, left, top, right, bottom);
 
       // TODO: fine tune
-      ROTATION_SCALE = (float) getWidth() / 1000f;
+      ROTATION_SCALE = (float) getWidth() / 500f;
       TRANSLATION_SCALE = 0.125f;
    }
 
@@ -131,8 +131,8 @@ public class SurfaceView extends GLSurfaceView {
 
                switch (event.getPointerCount()) {
                   case 1:
-                     renderer.viewRotationYDelta(delta.x * ROTATION_SCALE * .1f);
-                     renderer.viewRotationXDelta(-delta.y * ROTATION_SCALE * .1f);
+                     renderer.viewRotationYDelta(delta.x * ROTATION_SCALE);
+                     renderer.viewRotationXDelta(-delta.y * ROTATION_SCALE);
                      break;
 
                   case 2:

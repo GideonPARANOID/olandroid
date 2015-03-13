@@ -9,7 +9,7 @@
       android:id="@+id/menu_fma_new"
       android:title="@string/fma_new"
       android:icon="@drawable/ic_action_new"
-      app:showAsAction="ifRoom" />
+      app:showAsAction="always" />
 
    <item
       android:id="@+id/menu_a_help"

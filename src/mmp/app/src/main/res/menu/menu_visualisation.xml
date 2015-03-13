@@ -9,19 +9,19 @@
       android:id="@+id/menu_va_play"
       android:title="@string/va_play"
       android:icon="@drawable/ic_action_play"
-      app:showAsAction="ifRoom" />
+      app:showAsAction="always" />
 
    <item
       android:id="@+id/menu_va_save"
       android:title="@string/va_save"
       android:icon="@drawable/ic_action_save"
-      app:showAsAction="ifRoom" />
+      app:showAsAction="always" />
 
    <item
       android:id="@+id/menu_va_edit"
       android:title="@string/va_edit"
       android:icon="@drawable/ic_action_edit"
-      app:showAsAction="ifRoom" />
+      app:showAsAction="always" />
 
    <item
       android:id="@+id/menu_a_help"
