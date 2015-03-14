@@ -12,15 +12,20 @@ import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 
 public class AnimationManager extends Observable {
 
-   // TODO: make relative to flight length
-   private float animationProgress, animationStep;
+   private float animationProgress, animationStep, animationSpeed;
    private Thread animationThread;
    private FlightAnimator animator;
 
    private Scene scene;
 
 
-   public AnimationManager(Scene scene) {
+   /**
+    * @param scene - scene to find things to draw in
+    * @param animationSpeed - a factor by which to animate
+    */
+   public AnimationManager(Scene scene, float animationSpeed) {
+      this.animationSpeed = animationSpeed;
+
       // need to use real constructor to use final variables
       animationProgress = 1f;
       animationStep = 1f / 100f;
@@ -38,12 +43,14 @@ public class AnimationManager extends Observable {
       if (play && animationProgress == 1f) {
          animationProgress = 0f;
 
-         animator = new FlightAnimator(animationStep);
+         animator = new FlightAnimator(animationStep, scene.getFlight().getLength(),
+            animationSpeed);
          animationThread = new Thread(animator);
          animationThread.start();
 
       } else if (play && animationProgress >= 0f && animationProgress < 1f) {
-         animator = new FlightAnimator(animationStep);
+         animator = new FlightAnimator(animationStep, scene.getFlight().getLength(),
+            animationSpeed);
          animationThread = new Thread(animator);
          animationThread.start();
 
@@ -53,6 +60,7 @@ public class AnimationManager extends Observable {
 
          try {
             animationThread.join();
+            animationThread = null;
          } catch (InterruptedException exception) {
             System.err.println(exception.getMessage());
          }
@@ -87,6 +95,11 @@ public class AnimationManager extends Observable {
    }
 
 
+
+   public void setAnimationSpeed(float animationSpeed) {
+      this.animationSpeed = animationSpeed;
+   }
+
    /**
     * animation class
     */
@@ -98,21 +111,27 @@ public class AnimationManager extends Observable {
 
 
       /**
+       * all three parameters play a role in how the speed at which the flight is animated
        * @param step - how much to iterate by, ties to the length of the animation too
+       * @param length - how long the flight is
+       * @param factor - scaling factor for the animation speed
        */
-      public FlightAnimator(float step) {
+      public FlightAnimator(float step, float length, float factor) {
          super();
 
-         this.step = step;
+         this.step = (step / length) * factor * 10;
          wait = (long) (1000 * step);
       }
 
 
+      /**
+       * actual drawing loop
+       */
       public void run() {
          running = true;
 
          try {
-            for (float i = getAnimationProgress() / step, limit = 1f / step;
+            for (float i = getAnimationProgress() / step, limit = (1f / step) + 1;
                i <= limit && running; i++) {
 
                setAnimationProgress(step * i);

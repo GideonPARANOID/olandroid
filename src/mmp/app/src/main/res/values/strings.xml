@@ -40,9 +40,11 @@
    <string name="va_stop">Stop</string>
    <string name="va_edit">Edit</string>
    <string name="va_save">Save</string>
-   <string name="va_help">Tap &#38; drag to rotate around the flight. Pinch to zoom in
-      &#38; out. Use the play/pause button on the action bar to play &#38; pause the animation,
-      the progress bar at the bottom can be used to step through its progress too.</string>
+   <string name="va_help">(One or two finger) tap &#38; drag to rotate around the flight. Pinch to
+      zoom in &#38; out. Use the play/pause button on the action bar to play &#38; pause the
+      animation, the progress bar at the bottom can be used to step through its progress too. The
+      control scheme &#38; animation speed can changed in the settings menu.
+   </string>
 
    <!-- settings activity -->
    <string name="sa_label">Settings</string>
@@ -53,4 +55,6 @@
    <string name="p_colour_theme_summary">Colour scheme for the visualisation</string>
    <string name="p_control_scheme_title">Control schemes</string>
    <string name="p_control_scheme_summary">How to interact with the visualisation</string>
+   <string name="p_play_speed_title">Animation speed</string>
+   <string name="p_play_speed_summary">How fast the animation plays</string>
 </resources>

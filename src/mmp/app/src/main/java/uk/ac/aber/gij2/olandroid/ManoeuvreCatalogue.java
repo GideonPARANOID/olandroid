@@ -104,8 +104,6 @@ public class ManoeuvreCatalogue {
    }
 
 
-
-
    /**
     * @param parser - the parsing application for the xml
     * @param olan - the olan name of the top manoeuvre

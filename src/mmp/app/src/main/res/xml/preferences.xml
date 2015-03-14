@@ -20,5 +20,13 @@
          android:entries="@array/p_control_scheme_titles"
          android:entryValues="@array/p_control_scheme_values"
          android:defaultValue="0" />
+
+      <ListPreference
+         android:key="p_play_speed"
+         android:title="@string/p_play_speed_title"
+         android:summary="@string/p_play_speed_summary"
+         android:entries="@array/p_play_speed_titles"
+         android:entryValues="@array/p_play_speed_values"
+         android:defaultValue="0" />
    </PreferenceCategory>
 </PreferenceScreen>

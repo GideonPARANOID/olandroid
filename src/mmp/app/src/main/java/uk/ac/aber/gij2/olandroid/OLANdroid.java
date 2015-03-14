@@ -13,7 +13,8 @@ import android.preference.PreferenceManager;
 import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 
 
-public class OLANdroid extends Application implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class OLANdroid extends Application implements
+   SharedPreferences.OnSharedPreferenceChangeListener {
 
    private SharedPreferences preferences;
 
@@ -31,7 +32,8 @@ public class OLANdroid extends Application implements SharedPreferences.OnShared
       scene = new Scene(this);
       manoeuvreCatalogue = new ManoeuvreCatalogue(this);
       flightManager = new FlightManager(this, manoeuvreCatalogue);
-      animationManager = new AnimationManager(scene);
+      animationManager = new AnimationManager(scene, Float.parseFloat(
+            preferences.getString("p_play_speed", "1")));
    }
 
 
@@ -85,8 +87,13 @@ public class OLANdroid extends Application implements SharedPreferences.OnShared
          case "p_colour_theme":
             updateColourTheme();
             break;
-         case "p_controls_scheme":
 
+         case "p_controls_scheme":
+            break;
+
+         case "p_play_speed":
+            animationManager.setAnimationSpeed(Float.parseFloat(
+                  preferences.getString("p_play_speed", "1")));
             break;
       }
    }
