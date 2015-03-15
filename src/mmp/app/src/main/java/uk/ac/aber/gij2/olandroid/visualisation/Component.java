@@ -7,8 +7,6 @@ package uk.ac.aber.gij2.olandroid.visualisation;
 
 import android.opengl.Matrix;
 
-import java.util.Arrays;
-
 
 public class Component extends Shape implements Drawable {
 
@@ -59,16 +57,13 @@ public class Component extends Shape implements Drawable {
    }
 
 
+   /**
+    * builds the vertices array for a buffer
+    */
    protected void buildVertices() {
-      float x, y, z, xOffset = WIDTH, yOffset = 0;
+      float x = 0f, y = 0f, z = length, xOffset = WIDTH, yOffset = 0, zOffset = 0;
 
-      // continuing straight lines are a different case - much easier
-      if (pitch == ZERO && yaw == ZERO) {
-         x = 0f;
-         y = 0f;
-         z = length;
-
-      } else {
+      if (pitch != ZERO || yaw != ZERO) {
          // first & second triangles of euler
          double theta = ANGLE * Math.PI * 2, phi = Math.atan((double) pitch / (double) yaw);
 
@@ -88,12 +83,15 @@ public class Component extends Shape implements Drawable {
          yOffset = (float) (WIDTH * Math.sin(roll * ANGLE * Math.PI * 2f));
       }
 
+      if (yaw != ZERO) {
+         zOffset = (float) -(WIDTH * Math.sin(yaw * ANGLE * Math.PI * 2f));
+      }
+
       vertices = new float[] {
          WIDTH, 0f, 0f,
          -WIDTH, 0f, 0f,
-         x - xOffset, y - yOffset, z,
-         x + xOffset, y + yOffset, z,
-         WIDTH, 0f, 0f
+         x - xOffset, y - yOffset, z - zOffset,
+         x + xOffset, y + yOffset, z + zOffset
       };
 
       super.buildVerticesBuffer(vertices);
@@ -104,6 +102,9 @@ public class Component extends Shape implements Drawable {
    }
 
 
+   /**
+    * builds the matrix which describes the transform from the beginning of the component to its end
+    */
    protected void buildMatrix() {
       float[] mPitch = new float[16], mYaw = new float[16], mRoll = new float[16],
          mTemp = new float[16];
@@ -132,7 +133,6 @@ public class Component extends Shape implements Drawable {
       // combining the euler
       Matrix.multiplyMM(mTemp, 0, mPitch, 0, mYaw, 0);
       Matrix.multiplyMM(matrix, 0, mTemp, 0, mRoll, 0);
-
       Matrix.translateM(matrix, 0, 0f, 0f, length);
    }
 
@@ -143,7 +143,6 @@ public class Component extends Shape implements Drawable {
 
 
    public void animate(float progress) {
-
       if (progress == 0f) {
          super.buildVerticesBuffer(null);
 
@@ -151,14 +150,13 @@ public class Component extends Shape implements Drawable {
          super.buildVerticesBuffer(vertices);
 
       } else {
-         float[] newVertices = Arrays.copyOf(vertices, vertices.length);
-
-         // TODO: refine
-         // extending the z distance
-         newVertices[8] *= progress;
-         newVertices[11] *= progress;
-
-         super.buildVerticesBuffer(newVertices);
+         // extending the y & z distance (not x, as that's width)
+         super.buildVerticesBuffer(new float[] {
+            WIDTH, 0f, 0f,
+            -WIDTH, 0f, 0f,
+            vertices[6], vertices[7] * progress, vertices[8] * progress,
+            vertices[9], vertices[10] * progress, vertices[11] * progress
+         });
       }
    }
 

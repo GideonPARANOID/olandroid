@@ -23,6 +23,42 @@
       </manoeuvre>
    </category-->
 
+   <category name="Test manoeuvres">
+      <manoeuvre olan="test1">
+         <variant olanPrefix="" name="Test 1">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1" />
+         </variant>
+      </manoeuvre>
+
+   </category>
+
    <category name="Single line element figures">
       <manoeuvre olan="d">
          <variant olanPrefix="" name="Diagonal up line">
