@@ -14,6 +14,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import uk.ac.aber.gij2.olandroid.visualisation.Component;
 import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
@@ -51,7 +52,7 @@ public class ManoeuvreCatalogue {
     */
    protected void parseCategories() throws XmlPullParserException, IOException {
 
-      ArrayList<String> categoriesTemp = new ArrayList<>();
+      List<String> categoriesTemp = new ArrayList<>();
 
       XmlPullParser parser = context.getResources().getXml(R.xml.manoeurvre_catalogue);
 
@@ -115,58 +116,53 @@ public class ManoeuvreCatalogue {
 
       parser.require(XmlPullParser.START_TAG, null, "manoeuvre");
 
+      // looping through variants
       while (parser.next() != XmlPullParser.END_TAG) {
          if (parser.getName().equals("variant")) {
 
-            // have to get these now before the parser moves onto the components
+            // variables for the manoeuvre
             String fullOLAN = parser.getAttributeValue(null, "olanPrefix") + olan,
                name = parser.getAttributeValue(null, "name");
 
-            try {
-               catalogue.put(fullOLAN, new Manoeuvre(parseVariantComponents(parser), fullOLAN,
-                  name, category));
+            List<Component> components = new ArrayList<>();
+            List<Integer> variable1Indices = new ArrayList<>(), variable2Indices = new ArrayList<>();
 
-            } catch (IndexOutOfBoundsException exception) {
-               catalogue.remove(fullOLAN);
-               Log.w(this.getClass().getName(), "invalid manoeuvre");
+            parser.require(XmlPullParser.START_TAG, null, "variant");
+
+            // looping through components
+            for (int i = 0; parser.next() != XmlPullParser.END_TAG; i++) {
+               if (parser.getName().equals("component")) {
+
+                  components.add(new Component(
+                     parseComponentStrength(parser.getAttributeValue(null, "pitch")),
+                     parseComponentStrength(parser.getAttributeValue(null, "yaw")),
+                     parseComponentStrength(parser.getAttributeValue(null, "roll")),
+                     Float.parseFloat(parser.getAttributeValue(null, "length")),
+                     ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
+                        R.array.colour_theme_front),
+                     ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
+                        R.array.colour_theme_back)));
+
+                  // building the variable groups
+                  int variable = Integer.parseInt(parser.getAttributeValue(null, "variable"));
+                  if (variable == 1) {
+                     variable1Indices.add(i);
+
+                  } else if (variable == 2) {
+                     variable2Indices.add(i);
+                  }
+
+                  // skipping content
+                  skip(parser);
+               }
             }
+
+            // assembling the manoeuvre
+            catalogue.put(fullOLAN, new Manoeuvre(
+               components.toArray(new Component[components.size()]), fullOLAN, name, category,
+               integerListToPrimitive(variable1Indices), integerListToPrimitive(variable2Indices)));
          }
       }
-   }
-
-
-   /**
-    * @param parser - the parsing application for the xml
-    * @return - a list of components parsed from the xml
-    * @throws XmlPullParserException
-    * @throws IOException
-    */
-   protected Component[] parseVariantComponents(XmlPullParser parser) throws XmlPullParserException,
-      IOException {
-
-      ArrayList<Component> components = new ArrayList<>();
-
-      parser.require(XmlPullParser.START_TAG, null, "variant");
-
-      while (parser.next() != XmlPullParser.END_TAG) {
-         if (parser.getName().equals("component")) {
-
-            components.add(new Component(
-               parseComponentStrength(parser.getAttributeValue(null, "pitch")),
-               parseComponentStrength(parser.getAttributeValue(null, "yaw")),
-               parseComponentStrength(parser.getAttributeValue(null, "roll")),
-               Float.parseFloat(parser.getAttributeValue(null, "length")),
-               ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
-                  R.array.colour_theme_front),
-               ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
-                  R.array.colour_theme_back)));
-
-            // skipping content
-            skip(parser);
-         }
-      }
-
-      return components.toArray(new Component[components.size()]);
    }
 
 
@@ -210,6 +206,20 @@ public class ManoeuvreCatalogue {
 
 
    /**
+    * small helper function
+    * @param list - a list (of type integer) to convert
+    * @return - the list as an array of ints
+    */
+   private int[] integerListToPrimitive(List<Integer> list) {
+      int[] primitive = new int[list.size()];
+      for (int i = 0; i < primitive.length; i++) {
+         primitive[i] = list.get(i);
+      }
+      return primitive;
+   }
+
+
+   /**
     * querying the manoeuvre catalogue with a key
     * @param key - the olan key to look for
     * @return - a manoeuvre with olan matching the input
@@ -227,8 +237,8 @@ public class ManoeuvreCatalogue {
     * @throws NullPointerException - if the category isn't valid
     */
    public Manoeuvre[] getManoeuvres(String category) throws NullPointerException {
-      ArrayList<String> ids = new ArrayList<>(catalogue.keySet());
-      ArrayList<Manoeuvre> inCategory = new ArrayList<>();
+      List<String> ids = new ArrayList<>(catalogue.keySet());
+      List<Manoeuvre> inCategory = new ArrayList<>();
 
      for (int i = 0; i < ids.size(); i++) {
          if (catalogue.get(ids.get(i)).getCategory().equals(category)) {

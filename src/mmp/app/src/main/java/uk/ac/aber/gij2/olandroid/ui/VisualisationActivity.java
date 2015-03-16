@@ -25,6 +25,7 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
    SeekBar.OnSeekBarChangeListener {
 
    private AnimationManager animationManager;
+   private MenuItem menuItemPlay;
    private SeekBar animationSeek;
 
 
@@ -53,12 +54,13 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
       ((SurfaceView) findViewById(R.id.va_visualisation)).onStart();
    }
 
+
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
       getMenuInflater().inflate(R.menu.menu_visualisation, menu);
 
-      menu.findItem(R.id.menu_va_play).setIcon(R.drawable.ic_action_play).setTitle(
-         R.string.va_play);
+      menuItemPlay = menu.findItem(R.id.menu_va_play);
+      menuItemPlay.setIcon(R.drawable.ic_action_play).setTitle(R.string.va_play);
 
       return super.onCreateOptionsMenu(menu);
    }
@@ -71,8 +73,8 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
             boolean playing = item.getTitle().equals(getString(R.string.va_play));
 
             animationManager.animationPlayToggle(playing);
-            item.setTitle(playing ? R.string.va_stop : R.string.va_play);
-            item.setIcon(playing ? R.drawable.ic_action_stop : R.drawable.ic_action_play);
+            item.setTitle(playing ? R.string.va_stop : R.string.va_play).setIcon(
+               playing ? R.drawable.ic_action_stop : R.drawable.ic_action_play);
             break;
 
          case R.id.menu_va_edit:
@@ -113,7 +115,10 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
 
    // seekbar
    @Override
-   public void onStartTrackingTouch(SeekBar seekBar) {}
+   public void onStartTrackingTouch(SeekBar seekBar) {
+      animationManager.animationPlayToggle(false);
+      menuItemPlay.setIcon(R.drawable.ic_action_play).setTitle(R.string.va_play);
+   }
 
 
    // animation

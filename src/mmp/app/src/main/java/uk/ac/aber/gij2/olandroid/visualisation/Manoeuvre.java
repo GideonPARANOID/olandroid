@@ -12,8 +12,9 @@ public class Manoeuvre implements Drawable {
 
    private Component[] components;
    private float[][] matrices;
-   private float[] componentsCumulativeLength;
+   private float[] componentsCumulativeLength, variable1DefaultLengths, variable2DefaultLengths;
    private String olan, name, category;
+   private int[] variable1Indices, variable2Indices;
 
    private float defaultEntryLength, defaultExitLength;
 
@@ -22,10 +23,13 @@ public class Manoeuvre implements Drawable {
     * @param components - list of components which constitute the movement of the manoeuvre
     * @param olan - olan figure for the manoeuvre
     * @param name - name of the manoeuvre
+    * @param category - name of the category this manoeuvre falls into
+    * @param variable1Indices - indices of components which are in the first group variable
+    * @param variable2Indices - indices of components which are in the second group variable
     * @throws IndexOutOfBoundsException - thrown if there's no components
     */
-   public Manoeuvre(Component[] components, String olan, String name, String category) throws
-      IndexOutOfBoundsException {
+   public Manoeuvre(Component[] components, String olan, String name, String category,
+      int[] variable1Indices, int[] variable2Indices) throws IndexOutOfBoundsException {
 
       super();
 
@@ -38,10 +42,14 @@ public class Manoeuvre implements Drawable {
       this.name = name;
       this.category = category;
 
+      this.variable1Indices = variable1Indices;
+      this.variable2Indices = variable2Indices;
+
       defaultEntryLength = components[0].getLength();
       defaultExitLength = components[components.length - 1].getLength();
 
       buildComponentsCumulativeLength();
+      buildVariablesDefaultLengths();
    }
 
 
@@ -57,21 +65,22 @@ public class Manoeuvre implements Drawable {
       }
 
       // need to copy components, to prevent duplicate manoeuvres from sharing animations
-      Component[] oldComponents = manoeuvre.components;
-      components = new Component[oldComponents.length];
-
-      for (int i = 0; i < components.length; i++) {
-         components[i] = new Component(oldComponents[i]);
+      this.components = new Component[manoeuvre.components.length];
+      for (int i = 0; i < this.components.length; i++) {
+         this.components[i] = new Component(manoeuvre.components[i]);
       }
 
       this.olan = manoeuvre.olan;
       this.name = manoeuvre.name;
       this.category = manoeuvre.category;
+      this.variable1Indices = manoeuvre.variable1Indices;
+      this.variable2Indices = manoeuvre.variable2Indices;
 
       defaultEntryLength = components[0].getLength();
       defaultExitLength = components[components.length - 1].getLength();
 
       buildComponentsCumulativeLength();
+      buildVariablesDefaultLengths();
    }
 
 
@@ -166,6 +175,20 @@ public class Manoeuvre implements Drawable {
    }
 
 
+   public void buildVariablesDefaultLengths() {
+      variable1DefaultLengths = new float[variable1Indices.length];
+      variable2DefaultLengths = new float[variable2Indices.length];
+
+      for (int i = 0; i < variable1Indices.length; i++) {
+         variable1DefaultLengths[i] = components[variable1Indices[i]].getLength();
+      }
+
+      for (int i = 0; i < variable2Indices.length; i++) {
+         variable2DefaultLengths[i] = components[variable2Indices[i]].getLength();
+      }
+   }
+
+
    /**
     * @param entryLength - length to add to the default entry component length
     */
@@ -185,6 +208,25 @@ public class Manoeuvre implements Drawable {
       buildComponentsCumulativeLength();
    }
 
+
+   /**
+    * @param scale - value to scale the variable's components by
+    */
+   public void scaleVariable1(float scale) {
+      for (int i = 0; i < variable1Indices.length; i++) {
+         components[variable1Indices[i]].setLength(scale * variable1DefaultLengths[i]);
+      }
+   }
+
+
+   /**
+    * @param scale - value to scale the variable's components by
+    */
+   public void scaleVariable2(float scale) {
+      for (int i = 0; i < variable2Indices.length; i++) {
+         components[variable2Indices[i]].setLength(scale * variable2DefaultLengths[i]);
+      }
+   }
 
    public float getLength() {
       return componentsCumulativeLength[componentsCumulativeLength.length - 1];

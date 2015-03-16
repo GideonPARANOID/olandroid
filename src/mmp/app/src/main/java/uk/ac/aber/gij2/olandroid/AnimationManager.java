@@ -60,10 +60,11 @@ public class AnimationManager extends Observable {
 
          try {
             animationThread.join();
-            animationThread = null;
-         } catch (InterruptedException exception) {
+         } catch (InterruptedException | NullPointerException exception) {
             System.err.println(exception.getMessage());
          }
+
+         animationThread = null;
       }
    }
 
