@@ -139,7 +139,8 @@ public class Manoeuvre implements Drawable {
 
          // scaling across the cumulative middle
          components[current].animate(1 -
-            ((componentsCumulativeLength[current] - progress) / components[current].getLength()));
+            ((componentsCumulativeLength[current] - progress) /
+               Math.abs(components[current].getLength())));
 
          current++;
 
@@ -156,11 +157,11 @@ public class Manoeuvre implements Drawable {
    public void buildComponentsCumulativeLength() {
 
       componentsCumulativeLength = new float[components.length];
-      componentsCumulativeLength[0] = components[0].getLength();
+      componentsCumulativeLength[0] = Math.abs(components[0].getLength());
 
       for (int i = 1; i < components.length; i++) {
          componentsCumulativeLength[i] = componentsCumulativeLength[i - 1] +
-            components[i].getLength();
+            Math.abs(components[i].getLength());
       }
    }
 
