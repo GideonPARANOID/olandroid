@@ -14,7 +14,7 @@
       negative &#38; zero none. max pitch is up, max roll is right-down &#38; max yaw is right.
 
       manoeuvres can be modified using the variable attribute which groups components into
-      scaleable features. zero is used to define no group.
+      scaleable features. zero is used to define no group. groups must be in sequential order
    -->
 
    <!--category name="{string}">

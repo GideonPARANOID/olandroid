@@ -125,7 +125,7 @@ public class ManoeuvreCatalogue {
                name = parser.getAttributeValue(null, "name");
 
             List<Component> components = new ArrayList<>();
-            List<Integer> variable1Indices = new ArrayList<>(), variable2Indices = new ArrayList<>();
+            List<List<Integer>> variableIndices = new ArrayList<>();
 
             parser.require(XmlPullParser.START_TAG, null, "variant");
 
@@ -145,11 +145,16 @@ public class ManoeuvreCatalogue {
 
                   // building the variable groups
                   int variable = Integer.parseInt(parser.getAttributeValue(null, "variable"));
-                  if (variable == 1) {
-                     variable1Indices.add(i);
+                  if (variable != 0) {
+                     try {
+                        variableIndices.get(variable);
 
-                  } else if (variable == 2) {
-                     variable2Indices.add(i);
+                     } catch (IndexOutOfBoundsException exception) {
+                        variableIndices.add(new ArrayList<Integer>());
+                     }
+
+                     // since we're skipping index zero in the groups
+                     variableIndices.get(variable - 1).add(i);
                   }
 
                   // skipping content
@@ -160,7 +165,7 @@ public class ManoeuvreCatalogue {
             // assembling the manoeuvre
             catalogue.put(fullOLAN, new Manoeuvre(
                components.toArray(new Component[components.size()]), fullOLAN, name, category,
-               integerListToPrimitive(variable1Indices), integerListToPrimitive(variable2Indices)));
+               integerListToPrimitive(variableIndices)));
          }
       }
    }
@@ -207,13 +212,28 @@ public class ManoeuvreCatalogue {
 
    /**
     * small helper function
-    * @param list - a list (of type integer) to convert
+    * @param list - a list of lists (of type integer) to convert
     * @return - the list as an array of ints
     */
-   private int[] integerListToPrimitive(List<Integer> list) {
-      int[] primitive = new int[list.size()];
+   private int[][] integerListToPrimitive(List<List<Integer>> list) {
+
+      // finding the longest group
+      int longest = 0;
+      for (List<Integer> group : list) {
+         if (group.size() > longest) {
+            longest = group.size();
+         }
+      }
+
+      int[][] primitive = new int[list.size()][longest];
+
       for (int i = 0; i < primitive.length; i++) {
-         primitive[i] = list.get(i);
+
+         System.out.println(list.get(i).size());
+
+         for (int j = 0; j < list.get(i).size(); j++) {
+            primitive[i][j] = list.get(i).get(j);
+         }
       }
       return primitive;
    }
