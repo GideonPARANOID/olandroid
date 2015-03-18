@@ -235,7 +235,18 @@ public class Manoeuvre implements Drawable {
 
 
    public String getOLAN() {
-      return olan;
+
+      String entryPlus = "";
+      for (int i = 0; i < components[0].getLength() - defaultEntryLength; i++) {
+         entryPlus += "+";
+      }
+
+      String exitPlus = "";
+      for (int i = 0; i < components[components.length - 1].getLength() - defaultExitLength; i++) {
+         exitPlus += "+";
+      }
+
+      return entryPlus + olan + exitPlus;
    }
 
    public String getName() {
