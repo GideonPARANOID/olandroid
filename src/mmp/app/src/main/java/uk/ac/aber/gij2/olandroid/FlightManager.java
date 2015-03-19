@@ -25,7 +25,8 @@ import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
 
 public class FlightManager {
 
-   private final String FILENAME = "flights.txt", olanRegex = "([\\+,-]*)([`]*)(\\w*)([\\+,-]*)";
+   private final String FILENAME = "flights.txt", olanRegex =
+      "([\\+,-]*)([`]*)(\\w*)([`]*)([\\+,-]*)";
    private final Pattern olanPattern;
 
    private ManoeuvreCatalogue manoeuvreCatalogue;
@@ -76,9 +77,21 @@ public class FlightManager {
 
             // TODO: add proper support for minus
 
+            // sorting the variable group scaling
+            float variable0Length = findOccurrences("`", matcher.group(2)),
+               variable1Length = findOccurrences("`", matcher.group(4));
+
+            if (variable0Length > 0f) {
+               manoeuvres[i].scaleVariable(0, variable0Length + 1f);
+            }
+
+            if (variable1Length > 0f) {
+               manoeuvres[i].scaleVariable(1, variable1Length + 1f);
+            }
+
             // counting the pluses
             manoeuvres[i].addEntryLength(findOccurrences("+", matcher.group(1)));
-            manoeuvres[i].addExitLength(findOccurrences("+", matcher.group(4)));
+            manoeuvres[i].addExitLength(findOccurrences("+", matcher.group(5)));
 
          } else {
             throw new InvalidFlightException("invalid olan");

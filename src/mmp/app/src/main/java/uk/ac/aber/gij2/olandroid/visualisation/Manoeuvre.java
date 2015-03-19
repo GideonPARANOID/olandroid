@@ -6,6 +6,7 @@
 package uk.ac.aber.gij2.olandroid.visualisation;
 
 import android.opengl.Matrix;
+import android.util.Log;
 
 
 public class Manoeuvre implements Drawable {
@@ -16,7 +17,7 @@ public class Manoeuvre implements Drawable {
    private String olan, name, category;
 
    private int[][] variableIndices;
-   private float[][] variableDefaultLengths;
+   private float[] variableScales;
    private float defaultEntryLength, defaultExitLength;
 
    /**
@@ -44,11 +45,14 @@ public class Manoeuvre implements Drawable {
 
       this.variableIndices = variableIndices;
 
+      variableScales = new float[] {
+         1f, 1f
+      };
+
       defaultEntryLength = components[0].getLength();
       defaultExitLength = components[components.length - 1].getLength();
 
       buildComponentsCumulativeLength();
-      buildVariablesDefaultLengths();
    }
 
 
@@ -72,13 +76,17 @@ public class Manoeuvre implements Drawable {
       this.olan = manoeuvre.olan;
       this.name = manoeuvre.name;
       this.category = manoeuvre.category;
+
       this.variableIndices = manoeuvre.variableIndices;
+
+      variableScales = new float[] {
+         1f, 1f
+      };
 
       defaultEntryLength = components[0].getLength();
       defaultExitLength = components[components.length - 1].getLength();
 
       buildComponentsCumulativeLength();
-      buildVariablesDefaultLengths();
    }
 
 
@@ -162,39 +170,12 @@ public class Manoeuvre implements Drawable {
     * builds the list of cumulative lengths of components
     */
    public void buildComponentsCumulativeLength() {
-
       componentsCumulativeLength = new float[components.length];
       componentsCumulativeLength[0] = Math.abs(components[0].getLength());
 
       for (int i = 1; i < components.length; i++) {
          componentsCumulativeLength[i] = componentsCumulativeLength[i - 1] +
             Math.abs(components[i].getLength());
-      }
-   }
-
-
-   public void buildVariablesDefaultLengths() {
-
-            // finding the longest group
-      int longest = 0;
-      for (int[] group : variableIndices) {
-         if (group.length > longest) {
-            longest = group.length;
-         }
-      }
-
-      variableDefaultLengths = new float[variableIndices.length][longest];
-
-      for (int i = 0; i < variableIndices.length; i++) {
-         for (int j = 0; j < variableIndices[i].length; j++) {
-
-            // 2d arrays all have to be the same length, break out of we're on effectively null
-            if (j > 0 && variableIndices[i][j] == 0) {
-               break;
-            }
-
-            variableDefaultLengths[i][j] = components[variableIndices[i][j]].getLength();
-         }
       }
    }
 
@@ -220,33 +201,61 @@ public class Manoeuvre implements Drawable {
 
 
    /**
+    * @param variableIndex - index of the variable group
     * @param scale - value to scale the variable's components by
     */
    public void scaleVariable(int variableIndex, float scale) {
-      for (int i = 0; i < variableIndices[variableIndex].length; i++) {
-         components[variableIndices[variableIndex][i]].setLength(
-            scale * variableDefaultLengths[variableIndex][i]);
+      try {
+         for (int i = 0; i < variableIndices[variableIndex].length; i++) {
+
+            // TODO fix actual scaling
+
+            // unscaling & rescaling with the new one
+            components[variableIndices[variableIndex][i]].setLength((
+               components[variableIndices[variableIndex][i]].getLength() /
+                  variableScales[variableIndex]) * scale);
+         }
+      } catch (ArrayIndexOutOfBoundsException exception) {
+         Log.d(this.getClass().getName(), "scale variable error - may not support variable");
+         // manoeuvre may not support group variable
       }
+
+      variableScales[variableIndex] = scale;
    }
+
+
+   /**
+    * @return - olan string including modifiers
+    */
+   public String getOLAN() {
+      String entryLength = "", exitLength = "", variable0Length = "", variable1Length = "";
+
+      for (int i = 0; i < components[0].getLength() - defaultEntryLength; i++) {
+         entryLength += "+";
+      }
+
+      for (int i = 0; i < components[components.length - 1].getLength() - defaultExitLength; i++) {
+         exitLength += "+";
+      }
+
+      if (variableIndices.length > 0) {
+         for (int i = 1; i < variableScales[0]; i++) {
+            variable0Length += "`";
+         }
+
+         if (variableIndices.length > 1) {
+            for (int i = 1; i < variableScales[1]; i++) {
+               variable1Length += "`";
+            }
+         }
+      }
+
+      return entryLength + variable0Length + olan + variable1Length + exitLength;
+   }
+
 
    public float getLength() {
       return componentsCumulativeLength[componentsCumulativeLength.length - 1];
-   }
-
-
-   public String getOLAN() {
-
-      String entryPlus = "";
-      for (int i = 0; i < components[0].getLength() - defaultEntryLength; i++) {
-         entryPlus += "+";
-      }
-
-      String exitPlus = "";
-      for (int i = 0; i < components[components.length - 1].getLength() - defaultExitLength; i++) {
-         exitPlus += "+";
-      }
-
-      return entryPlus + olan + exitPlus;
    }
 
    public String getName() {
@@ -256,7 +265,6 @@ public class Manoeuvre implements Drawable {
    public String getCategory() {
       return category;
    }
-
 
    public void setColourBack(float[] colourBack) {
       for (Component component : components) {
