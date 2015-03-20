@@ -77,10 +77,13 @@ public class Manoeuvre implements Drawable {
       this.name = manoeuvre.name;
       this.category = manoeuvre.category;
 
+      // doesn't need to be copied - won't change
       this.variableIndices = manoeuvre.variableIndices;
 
-      variableScales = new float[] {
-         1f, 1f
+      // needs to be copied
+      this.variableScales = new float[] {
+         manoeuvre.variableScales[0],
+         manoeuvre.variableScales[1]
       };
 
       defaultEntryLength = components[0].getLength();
@@ -208,12 +211,11 @@ public class Manoeuvre implements Drawable {
       try {
          for (int i = 0; i < variableIndices[variableIndex].length; i++) {
 
-            // TODO fix actual scaling
-
             // unscaling & rescaling with the new one
             components[variableIndices[variableIndex][i]].setLength((
                components[variableIndices[variableIndex][i]].getLength() /
                   variableScales[variableIndex]) * scale);
+
          }
       } catch (ArrayIndexOutOfBoundsException exception) {
          Log.d(this.getClass().getName(), "scale variable error - may not support variable");
@@ -238,13 +240,14 @@ public class Manoeuvre implements Drawable {
          exitLength += "+";
       }
 
+      // if only one group, it's the pre one
       if (variableIndices.length > 0) {
-         for (int i = 1; i < variableScales[0]; i++) {
+         for (int i = 1; i < (1 / variableScales[0]); i++) {
             variable0Length += "`";
          }
 
          if (variableIndices.length > 1) {
-            for (int i = 1; i < variableScales[1]; i++) {
+            for (int i = 1; i < (1 / variableScales[1]); i++) {
                variable1Length += "`";
             }
          }

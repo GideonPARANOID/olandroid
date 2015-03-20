@@ -49,7 +49,7 @@
             <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />

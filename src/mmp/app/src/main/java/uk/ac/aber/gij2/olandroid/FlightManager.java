@@ -82,11 +82,11 @@ public class FlightManager {
                variable1Length = findOccurrences("`", matcher.group(4));
 
             if (variable0Length > 0f) {
-               manoeuvres[i].scaleVariable(0, variable0Length + 1f);
+               manoeuvres[i].scaleVariable(0, 1 / (variable0Length + 1f));
             }
 
             if (variable1Length > 0f) {
-               manoeuvres[i].scaleVariable(1, variable1Length + 1f);
+               manoeuvres[i].scaleVariable(1, 1 / (variable1Length + 1f));
             }
 
             // counting the pluses
