@@ -142,7 +142,6 @@ public class BuildFlightActivity extends ActionBarActivity implements
     * @param view - view element source
     */
    public void button_vis(View view) {
-
       try {
          OLANdroid app = (OLANdroid) getApplication();
 
@@ -152,5 +151,14 @@ public class BuildFlightActivity extends ActionBarActivity implements
       } catch (InvalidFlightException exception) {
          Toast.makeText(getApplication(), R.string.bfa_toast_invalid, Toast.LENGTH_SHORT).show();
       }
+   }
+
+
+   public void button_plus(View view) {
+      olanEntry.append(getText(R.string.bfa_button_plus));
+   }
+
+   public void button_backtick(View view) {
+      olanEntry.append(getText(R.string.bfa_button_backtick));
    }
 }

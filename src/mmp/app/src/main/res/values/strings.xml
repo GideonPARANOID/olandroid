@@ -26,6 +26,8 @@
    <!-- build flight activity -->
    <string name="bfa_label">Build flight</string>
    <string name="bfa_button_vis">Build flight</string>
+   <string name="bfa_button_plus">+</string>
+   <string name="bfa_button_backtick">`</string>
    <string name="bfa_hint_olan">Enter an OLAN string</string>
    <string name="bfa_clear_olan">Clear</string>
    <string name="bfa_toast_invalid">Invalid OLAN</string>

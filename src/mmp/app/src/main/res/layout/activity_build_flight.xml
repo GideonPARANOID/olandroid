@@ -25,14 +25,43 @@
       android:layout_height="wrap_content"
       android:layout_gravity="center_horizontal" />
 
-   <Button
-      android:id="@+id/bfa_button_vis"
-      android:text="@string/bfa_button_vis"
-      android:onClick="button_vis"
+   <LinearLayout
+      android:orientation="horizontal"
+      android:weightSum="100"
 
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal" />
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" >
+
+      <Button
+         android:id="@+id/bfa_button_vis"
+         android:text="@string/bfa_button_vis"
+         android:onClick="button_vis"
+
+         android:layout_width="0dp"
+         android:layout_weight="70"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_horizontal" />
+
+      <Button
+         android:id="@+id/bfa_button_plus"
+         android:text="@string/bfa_button_plus"
+         android:onClick="button_plus"
+
+         android:layout_width="0dp"
+         android:layout_weight="15"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_horizontal" />
+
+      <Button
+         android:id="@+id/bfa_button_backtick"
+         android:text="@string/bfa_button_backtick"
+         android:onClick="button_backtick"
+
+         android:layout_width="0dp"
+         android:layout_weight="15"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_horizontal" />
+   </LinearLayout>
 
    <Spinner
       android:id="@+id/bfa_spinner_category"
