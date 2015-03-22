@@ -5,6 +5,8 @@
 
 package uk.ac.aber.gij2.olandroid;
 
+import android.util.Log;
+
 import java.util.Observable;
 
 import uk.ac.aber.gij2.olandroid.visualisation.Scene;
@@ -56,12 +58,12 @@ public class AnimationManager extends Observable {
 
 
       } else if (!play) {
-         animator.terminate();
-
          try {
+            animator.terminate();
             animationThread.join();
+
          } catch (InterruptedException | NullPointerException exception) {
-            System.err.println(exception.getMessage());
+            Log.e(this.getClass().getName(), "trouble animation thread thread");
          }
 
          animationThread = null;

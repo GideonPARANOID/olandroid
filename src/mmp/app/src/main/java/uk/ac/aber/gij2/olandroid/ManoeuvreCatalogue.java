@@ -234,9 +234,6 @@ public class ManoeuvreCatalogue {
       int[][] primitive = new int[list.size()][longest];
 
       for (int i = 0; i < primitive.length; i++) {
-
-         System.out.println(list.get(i).size());
-
          for (int j = 0; j < list.get(i).size(); j++) {
             primitive[i][j] = list.get(i).get(j);
          }
