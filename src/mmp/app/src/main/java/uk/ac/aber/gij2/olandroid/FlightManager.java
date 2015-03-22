@@ -78,15 +78,15 @@ public class FlightManager {
             // TODO: add proper support for minus
 
             // sorting the variable group scaling
-            float variable0Length = findOccurrences("`", matcher.group(2)),
-               variable1Length = findOccurrences("`", matcher.group(4));
+            float group0Length = findOccurrences("`", matcher.group(2)),
+               group1Length = findOccurrences("`", matcher.group(4));
 
-            if (variable0Length > 0f) {
-               manoeuvres[i].scaleVariable(0, 1 / (variable0Length + 1f));
+            if (group0Length > 0f) {
+               manoeuvres[i].scaleGroup(0, 1 / (group0Length + 1f));
             }
 
-            if (variable1Length > 0f) {
-               manoeuvres[i].scaleVariable(1, 1 / (variable1Length + 1f));
+            if (group1Length > 0f) {
+               manoeuvres[i].scaleGroup(1, 1 / (group1Length + 1f));
             }
 
             // counting the pluses

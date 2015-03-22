@@ -125,7 +125,7 @@ public class ManoeuvreCatalogue {
                name = parser.getAttributeValue(null, "name");
 
             List<Component> components = new ArrayList<>();
-            List<List<Integer>> variableIndices = new ArrayList<>();
+            List<List<Integer>> groupIndices = new ArrayList<>();
 
             parser.require(XmlPullParser.START_TAG, null, "variant");
 
@@ -144,22 +144,22 @@ public class ManoeuvreCatalogue {
                         R.array.colour_theme_back)));
 
                   // building the variable groups
-                  int variable = Integer.parseInt(parser.getAttributeValue(null, "variable"));
-                  if (variable != 0) {
+                  int group = Integer.parseInt(parser.getAttributeValue(null, "group"));
+                  if (group != 0) {
 
-                     if (!(variable == 2 && variableIndices.size() < 2)) {
+                     if (!(group == 2 && groupIndices.size() < 2)) {
                         // TODO: add support for manoeuvres only using variable group 2, not 1
 
 
                         try {
-                           variableIndices.get(variable);
+                           groupIndices.get(group);
 
                         } catch (IndexOutOfBoundsException exception) {
-                           variableIndices.add(new ArrayList<Integer>());
+                           groupIndices.add(new ArrayList<Integer>());
                         }
 
                         // since we're skipping index zero in the groups
-                        variableIndices.get(variable - 1).add(i);
+                        groupIndices.get(group - 1).add(i);
                      }
                   }
 
@@ -171,7 +171,7 @@ public class ManoeuvreCatalogue {
             // assembling the manoeuvre
             catalogue.put(fullOLAN, new Manoeuvre(
                components.toArray(new Component[components.size()]), fullOLAN, name, category,
-               integerListToPrimitive(variableIndices)));
+               integerListToPrimitive(groupIndices)));
          }
       }
    }

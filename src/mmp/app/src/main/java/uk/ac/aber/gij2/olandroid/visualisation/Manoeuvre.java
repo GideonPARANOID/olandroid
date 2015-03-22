@@ -16,8 +16,8 @@ public class Manoeuvre implements Drawable {
    private float[] componentsCumulativeLength;
    private String olan, name, category;
 
-   private int[][] variableIndices;
-   private float[] variableScales;
+   private int[][] groupIndices;
+   private float[] groupScales;
    private float defaultEntryLength, defaultExitLength;
 
    /**
@@ -26,11 +26,11 @@ public class Manoeuvre implements Drawable {
     * @param olan - olan figure for the manoeuvre
     * @param name - name of the manoeuvre
     * @param category - name of the category this manoeuvre falls into
-    * @param variableIndices - groups of indices of components which are scaleable
+    * @param groupIndices - groups of indices of components which are scaleable
     * @throws IndexOutOfBoundsException - thrown if there's no components
     */
    public Manoeuvre(Component[] components, String olan, String name, String category,
-      int[][] variableIndices) throws IndexOutOfBoundsException {
+      int[][] groupIndices) throws IndexOutOfBoundsException {
 
       super();
 
@@ -43,9 +43,9 @@ public class Manoeuvre implements Drawable {
       this.name = name;
       this.category = category;
 
-      this.variableIndices = variableIndices;
+      this.groupIndices = groupIndices;
 
-      variableScales = new float[] {
+      groupScales = new float[] {
          1f, 1f
       };
 
@@ -78,12 +78,12 @@ public class Manoeuvre implements Drawable {
       this.category = manoeuvre.category;
 
       // doesn't need to be copied - won't change
-      this.variableIndices = manoeuvre.variableIndices;
+      this.groupIndices = manoeuvre.groupIndices;
 
       // needs to be copied
-      this.variableScales = new float[] {
-         manoeuvre.variableScales[0],
-         manoeuvre.variableScales[1]
+      this.groupScales = new float[] {
+         manoeuvre.groupScales[0],
+         manoeuvre.groupScales[1]
       };
 
       defaultEntryLength = components[0].getLength();
@@ -204,17 +204,17 @@ public class Manoeuvre implements Drawable {
 
 
    /**
-    * @param variableIndex - index of the variable group
+    * @param groupIndex - index of the variable group
     * @param scale - value to scale the variable's components by
     */
-   public void scaleVariable(int variableIndex, float scale) {
+   public void scaleGroup(int groupIndex, float scale) {
       try {
-         for (int i = 0; i < variableIndices[variableIndex].length; i++) {
+         for (int i = 0; i < groupIndices[groupIndex].length; i++) {
 
             // unscaling & rescaling with the new one
-            components[variableIndices[variableIndex][i]].setLength((
-               components[variableIndices[variableIndex][i]].getLength() /
-                  variableScales[variableIndex]) * scale);
+            components[groupIndices[groupIndex][i]].setLength((
+               components[groupIndices[groupIndex][i]].getLength() /
+                  groupScales[groupIndex]) * scale);
 
          }
       } catch (ArrayIndexOutOfBoundsException exception) {
@@ -222,7 +222,7 @@ public class Manoeuvre implements Drawable {
          // manoeuvre may not support group variable
       }
 
-      variableScales[variableIndex] = scale;
+      groupScales[groupIndex] = scale;
    }
 
 
@@ -241,13 +241,13 @@ public class Manoeuvre implements Drawable {
       }
 
       // if only one group, it's the pre one
-      if (variableIndices.length > 0) {
-         for (int i = 1; i < (1 / variableScales[0]); i++) {
+      if (groupIndices.length > 0) {
+         for (int i = 1; i < (1 / groupScales[0]); i++) {
             variable0Length += "`";
          }
 
-         if (variableIndices.length > 1) {
-            for (int i = 1; i < (1 / variableScales[1]); i++) {
+         if (groupIndices.length > 1) {
+            for (int i = 1; i < (1 / groupScales[1]); i++) {
                variable1Length += "`";
             }
          }
