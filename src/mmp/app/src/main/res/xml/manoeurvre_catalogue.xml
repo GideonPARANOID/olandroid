@@ -69,7 +69,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -80,7 +80,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -97,7 +97,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -114,7 +114,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -137,7 +137,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -160,7 +160,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -180,7 +180,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -190,7 +190,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -204,7 +204,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -214,7 +214,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -224,16 +224,6 @@
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
          <variant olanPrefix="z" name="Z-tooth">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -244,7 +234,17 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -254,16 +254,6 @@
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
          <variant olanPrefix="iz" name="Inverted Z-tooth">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -274,7 +264,17 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -294,7 +294,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -304,7 +304,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -318,7 +318,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -328,7 +328,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -345,7 +345,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -355,7 +355,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -375,7 +375,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -385,7 +385,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -400,8 +400,8 @@
       </manoeuvre>
 
       <manoeuvre olan="a">
-         <variant olanPrefix="" name="Immelman turn/half loop split-A">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+         <variant olanPrefix="" name="Immelman turn">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -424,10 +424,10 @@
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="2" />
          </variant>
-         <variant olanPrefix="i" name="Inverse Immelman turn/half loop split-A">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+         <variant olanPrefix="i" name="Inverted Immelman turn">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="1" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
@@ -452,7 +452,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="2" />
          </variant>
       </manoeuvre>
    </category>
@@ -486,7 +486,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="2" />
          </variant>
          <variant olanPrefix="i" name="Inverted rounded loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -514,7 +514,75 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="2" />
+         </variant>
+         <variant olanPrefix="r" name="Reverse rounded loop">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="1" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="2" />
+         </variant>
+         <variant olanPrefix="ir" name="Inverted reverse rounded loop">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="1" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="2" />
          </variant>
       </manoeuvre>
 
@@ -596,6 +664,7 @@
       <manoeuvre olan="qo">
          <variant olanPrefix="" name="Square loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -609,7 +678,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -623,11 +692,12 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
          <variant olanPrefix="i" name="Inverted square loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -641,7 +711,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -655,7 +725,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
       </manoeuvre>
@@ -666,7 +736,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -680,7 +750,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -698,7 +768,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -712,7 +782,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -732,7 +802,7 @@
    <category name="Loop/line combinations">
       <manoeuvre olan="c">
          <variant olanPrefix="" name="Half cuban">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="12"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="12"   variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -748,65 +818,65 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
-         <variant olanPrefix="i" name="Inverse half cuban">
+         <variant olanPrefix="i" name="Inverted half cuban">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="12"   variable="1" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="12"  variable="0" />
          </variant>
          <variant olanPrefix="r" name="Reverse half cuban">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
@@ -834,7 +904,42 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="12"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="12"  variable="2" />
+         </variant>
+         <variant olanPrefix="ir" name="Inverted reverse half cuban">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="12"  variable="2" />
          </variant>
       </manoeuvre>
 
@@ -844,7 +949,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4.2"  variable="1" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
@@ -875,7 +980,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -886,7 +991,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4.2"  variable="1" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
@@ -917,7 +1022,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -927,7 +1032,7 @@
 
       <manoeuvre olan="p">
          <variant olanPrefix="" name="P-loop">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -946,7 +1051,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -956,7 +1061,7 @@
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
           <variant olanPrefix="i" name="Inverted P-loop">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -975,7 +1080,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -992,7 +1097,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1011,13 +1116,42 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
+         </variant>
+         <variant olanPrefix="ir" name="Inverted reverse P-loop">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="1" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
          </variant>
       </manoeuvre>
 
       <manoeuvre olan="q">
          <variant olanPrefix="" name="Q-loop">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1039,10 +1173,39 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+         </variant>
+         <variant olanPrefix="i" name="Inverted Q-loop">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
          <variant olanPrefix="r" name="Reverse Q-loop">
@@ -1050,7 +1213,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1072,39 +1235,158 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
+         </variant>
+         <variant olanPrefix="ir" name="Inverted reverse Q-loop">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="1" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
          </variant>
       </manoeuvre>
 
       <manoeuvre olan="y">
          <variant olanPrefix="" name="Keyhole/Y-loop">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="1" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    variable="0" />
+         </variant>
+         <variant olanPrefix="i" name="Inverted keyhole/Y-loop">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="1" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    variable="0" />
+         </variant>
+         <variant olanPrefix="r" name="Reverse keyhole/Y-loop">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+         </variant>
+         <variant olanPrefix="ir" name="Inverted reverse keyhole/Y-loop">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
       </manoeuvre>
@@ -1114,7 +1396,7 @@
    <category name="Double loops">
       <manoeuvre olan="cc">
          <variant olanPrefix="" name="Full cuban">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="16"   variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="16"   variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1149,14 +1431,14 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="10"   variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="10"   variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
          <variant olanPrefix="i" name="Inverted full cuban">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="16"   variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="16"   variable="1" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1191,7 +1473,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="10"   variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="10"   variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1202,7 +1484,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="10"   variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="10"   variable="1" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1237,14 +1519,14 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="16"   variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="16"   variable="2" />
          </variant>
          <variant olanPrefix="ir" name="Inverted reverse full cuban">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="10"   variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="10"   variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1279,7 +1561,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="16"   variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="16"   variable="2" />
          </variant>
       </manoeuvre>
    </category>
@@ -1295,7 +1577,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1308,7 +1590,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1316,36 +1598,6 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"  variable="0" />
-         </variant>
-         <variant olanPrefix="p" name="Push humpty">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
          <variant olanPrefix="i" name="Inverted humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1355,7 +1607,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1368,13 +1620,43 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+         </variant>
+         <variant olanPrefix="p" name="Push humpty">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
          <variant olanPrefix="ip" name="Inverted push humpty">
@@ -1385,7 +1667,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1398,7 +1680,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1415,7 +1697,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="2"    variable="1" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1440,13 +1722,55 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="2" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+         </variant>
+         <variant olanPrefix="ipb" name="Inverted double push humpty">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="2"    variable="1" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
       </manoeuvre>
@@ -1457,7 +1781,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="9"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="9"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1470,55 +1794,19 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="3"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-         </variant>
-         <variant olanPrefix="r" name="Reverse sausage/diagonal humpty bump">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="3"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="9"    variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="2" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="3"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1560,12 +1848,48 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
+         <variant olanPrefix="r" name="Reverse sausage/diagonal humpty bump">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="3"    variable="1" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="9"    variable="2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+         </variant>
          <variant olanPrefix="ir" name="Inverted reverse sausage/diagonal humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="3"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="3"    variable="1" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  variable="0" />
@@ -1590,7 +1914,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="9"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="9"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1610,7 +1934,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1630,44 +1954,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-         </variant>
-         <variant olanPrefix="p" name="Push N-figure">
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1684,7 +1971,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1704,6 +1991,33 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+         </variant>
+         <variant olanPrefix="p" name="Push N-figure">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1711,6 +2025,16 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
          </variant>
          <variant olanPrefix="ip" name="Inverted push N-figure">
@@ -1721,7 +2045,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1741,7 +2065,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1758,7 +2082,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1778,7 +2102,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1789,7 +2113,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1809,7 +2133,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1823,7 +2147,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="1" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1861,7 +2185,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1872,7 +2196,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="1" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
@@ -1910,7 +2234,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
-            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    variable="2" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  variable="0" />
@@ -1923,6 +2247,34 @@
    <category name="Oddball figures">
       <manoeuvre olan="mm">
          <variant olanPrefix="" name="Double Immelman S-figure">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
+         </variant>
+         <variant olanPrefix="i" name="Inverted double Immelman S-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    variable="0" />

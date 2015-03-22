@@ -146,15 +146,21 @@ public class ManoeuvreCatalogue {
                   // building the variable groups
                   int variable = Integer.parseInt(parser.getAttributeValue(null, "variable"));
                   if (variable != 0) {
-                     try {
-                        variableIndices.get(variable);
 
-                     } catch (IndexOutOfBoundsException exception) {
-                        variableIndices.add(new ArrayList<Integer>());
+                     if (!(variable == 2 && variableIndices.size() < 2)) {
+                        // TODO: add support for manoeuvres only using variable group 2, not 1
+
+
+                        try {
+                           variableIndices.get(variable);
+
+                        } catch (IndexOutOfBoundsException exception) {
+                           variableIndices.add(new ArrayList<Integer>());
+                        }
+
+                        // since we're skipping index zero in the groups
+                        variableIndices.get(variable - 1).add(i);
                      }
-
-                     // since we're skipping index zero in the groups
-                     variableIndices.get(variable - 1).add(i);
                   }
 
                   // skipping content
