@@ -43,7 +43,6 @@ public class AnimationManager extends Observable {
     * @param play - start or stop the current animation
     */
    public void animationPlayToggle(boolean play) {
-
       if (play && progress == 1f) {
          progress = 0f;
 
@@ -106,6 +105,8 @@ public class AnimationManager extends Observable {
 
    public void setStyle(int style) {
       this.style = style;
+
+      scene.getFlight().setStyle(style);
    }
 
 

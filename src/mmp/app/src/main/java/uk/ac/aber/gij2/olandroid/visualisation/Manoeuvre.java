@@ -7,6 +7,8 @@ package uk.ac.aber.gij2.olandroid.visualisation;
 
 import android.opengl.Matrix;
 
+import uk.ac.aber.gij2.olandroid.ui.Util;
+
 
 public class Manoeuvre implements Drawable {
 
@@ -18,7 +20,7 @@ public class Manoeuvre implements Drawable {
    private String olan, name, category;
    private int[] groupIndicesPre, groupIndicesPost;
    private float groupScalePre, groupScalePost;
-   private int lengthPre, lengthPost;
+   private int style, lengthPre, lengthPost;
 
 
    /**
@@ -86,8 +88,10 @@ public class Manoeuvre implements Drawable {
       this.groupScalePre = manoeuvre.groupScalePre;
       this.groupScalePost = manoeuvre.groupScalePost;
 
-      lengthPre = manoeuvre.lengthPre;
-      lengthPost = manoeuvre.lengthPost;
+      this.style = manoeuvre.style;
+
+      this.lengthPre = manoeuvre.lengthPre;
+      this.lengthPost = manoeuvre.lengthPost;
 
       buildComponentsCumulativeLength();
    }
@@ -237,27 +241,10 @@ public class Manoeuvre implements Drawable {
     * @return - olan string including modifiers
     */
    public String getOLAN() {
-      String modifierLengthEntry = "", modifierLengthExit = "", modifierGroupPre = "",
-         modifierGroupPost = "";
-
-      for (int i = 0; i < lengthPre; i++) {
-         modifierLengthEntry += "+";
-      }
-
-      for (int i = 0; i < lengthPost; i++) {
-         modifierLengthExit += "+";
-      }
-
-      // if only one group, it's the pre one
-      for (int i = 1; i < (1 / groupScalePre); i++) {
-         modifierGroupPre += "`";
-      }
-
-      for (int i = 1; i < (1 / groupScalePost); i++) {
-         modifierGroupPost += "`";
-      }
-
-      return modifierLengthEntry + modifierGroupPre + olan + modifierGroupPost + modifierLengthExit;
+      return Util.multiplyString(lengthPre, "+")
+         + Util.multiplyString((int) ((1 / groupScalePre) - 1), "`") + olan
+         + Util.multiplyString((int) ((1 / groupScalePost) - 1), "`")
+         + Util.multiplyString(lengthPost, "+");
    }
 
 
@@ -283,5 +270,9 @@ public class Manoeuvre implements Drawable {
       for (Component component : components) {
          component.setColourFront(colourFront);
       }
+   }
+
+   public void setStyle(int style) {
+      this.style = style;
    }
 }

@@ -15,6 +15,7 @@ public class Flight implements Drawable {
    private float[] manoeuvresCumulativeLength;
 
    private String name;
+   private int style;
 
 
    public Flight(Manoeuvre[] manoeuvres) {
@@ -28,13 +29,12 @@ public class Flight implements Drawable {
     * @return - olan description of flight
     */
    public String getOLAN() {
+      StringBuilder result = new StringBuilder();
 
-      String olan = "";
       for (Manoeuvre manoeuvre : manoeuvres) {
-         olan += " " + manoeuvre.getOLAN();
+         result.append(manoeuvre.getOLAN()).append(' ');
       }
-
-      return olan;
+      return result.toString().trim();
    }
 
 
@@ -150,5 +150,13 @@ public class Flight implements Drawable {
 
    public void setName(String name) {
       this.name = name;
+   }
+
+   public void setStyle(int style) {
+      this.style = style;
+
+      for (Manoeuvre manoeuvre : manoeuvres) {
+         manoeuvre.setStyle(style);
+      }
    }
 }

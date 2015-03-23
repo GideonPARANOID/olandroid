@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import uk.ac.aber.gij2.olandroid.ui.Util;
 import uk.ac.aber.gij2.olandroid.visualisation.Flight;
 import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
 
@@ -78,8 +79,8 @@ public class FlightManager {
             // TODO: add proper support for minus
 
             // sorting the variable group scaling
-            float groupLengthPre = findOccurrences("`", matcher.group(2)),
-               groupLengthPost = findOccurrences("`", matcher.group(4));
+            float groupLengthPre = Util.findOccurrences("`", matcher.group(2)),
+               groupLengthPost = Util.findOccurrences("`", matcher.group(4));
 
             if (groupLengthPre > 0f) {
                manoeuvres[i].scaleGroup(Manoeuvre.GROUP_PRE, 1 / (groupLengthPre + 1f));
@@ -90,8 +91,8 @@ public class FlightManager {
             }
 
             // counting the pluses
-            manoeuvres[i].addLengthPre(findOccurrences("+", matcher.group(1)));
-            manoeuvres[i].addLengthPost(findOccurrences("+", matcher.group(5)));
+            manoeuvres[i].addLengthPre(Util.findOccurrences("+", matcher.group(1)));
+            manoeuvres[i].addLengthPost(Util.findOccurrences("+", matcher.group(5)));
 
          } else {
             throw new InvalidFlightException("invalid olan");
@@ -99,17 +100,6 @@ public class FlightManager {
       }
 
       return new Flight(manoeuvres);
-   }
-
-
-   /**
-    * utility function for counting occurrences of a string in a string
-    * @param search - string to look for
-    * @param text - string to look in
-    * @return - number of occurrences
-    */
-   private int findOccurrences(String search, String text) {
-      return text.length() - text.replace(search, "").length();
    }
 
 

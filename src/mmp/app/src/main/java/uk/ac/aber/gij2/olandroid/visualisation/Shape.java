@@ -23,8 +23,8 @@ public abstract class Shape implements Drawable {
    private float[] colourFront, colourBack;
 
    // drawing options, whether things are setup & whether to fill draw or just draw lines
-   protected boolean drawingSetup;
    protected static int FILL = 0, LINES = 1;
+   protected boolean drawingSetup;
    private int drawMode;
 
    // whether to draw or not, a way of skipping emptying buffers
@@ -32,7 +32,7 @@ public abstract class Shape implements Drawable {
 
 
    protected Shape() {
-      this(FILL);
+      this(Shape.FILL);
    }
 
 
@@ -85,7 +85,7 @@ public abstract class Shape implements Drawable {
          GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mvpMatrix, 0);
          Renderer.checkGlError("glUniformMatrix4fv");
 
-         if (drawMode == FILL) {
+         if (drawMode == Shape.FILL) {
             // painting the front (bottom)
             GLES20.glCullFace(GLES20.GL_FRONT);
             GLES20.glUniform4fv(mColourHandle, 1, colourFront, 0);

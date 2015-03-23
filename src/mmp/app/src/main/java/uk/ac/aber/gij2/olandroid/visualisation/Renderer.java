@@ -11,14 +11,14 @@ import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.util.Log;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.IOException;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import uk.ac.aber.gij2.olandroid.OLANdroid;
 import uk.ac.aber.gij2.olandroid.R;
+import uk.ac.aber.gij2.olandroid.ui.Util;
 
 
 public class Renderer implements GLSurfaceView.Renderer {
@@ -61,12 +61,17 @@ public class Renderer implements GLSurfaceView.Renderer {
    public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 
       // shader loading & compilation
-      int vertexShader = loadShader(
-            GLES20.GL_VERTEX_SHADER,
-            loadShaderCode(R.raw.vertex)),
-         fragmentShader = loadShader(
-            GLES20.GL_FRAGMENT_SHADER,
-            loadShaderCode(R.raw.fragment));
+      int vertexShader = 0, fragmentShader = 0;
+
+      try {
+         vertexShader = loadShader(GLES20.GL_VERTEX_SHADER,
+            Util.inputStreamToString(context.getResources().openRawResource(R.raw.vertex)));
+         fragmentShader = loadShader(GLES20.GL_FRAGMENT_SHADER,
+            Util.inputStreamToString(context.getResources().openRawResource(R.raw.fragment)));
+
+      } catch (IOException exception) {
+         Log.e(this.getClass().getName(), "error loading shader code");
+      }
 
       program = GLES20.glCreateProgram();
       GLES20.glAttachShader(program, vertexShader);
@@ -181,19 +186,6 @@ public class Renderer implements GLSurfaceView.Renderer {
 
 
    /**
-    * utility method for debugging opengl calls, provide the name of the call just after making it
-    *    if the operation is not successful, the check throws an error
-    * @param operation - name of the opengl call to check.
-    */
-   public static void checkGlError(String operation) {
-      int error;
-      while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
-         throw new RuntimeException(operation + ": gl error " + error);
-      }
-   }
-
-
-   /**
     * @param type - GLES20.GL_VERTEX_SHADER or GLES20.GL_FRAGMENT_SHADER
     * @param shaderCode - string of glsl
     * @return - reference to the shader program
@@ -210,26 +202,14 @@ public class Renderer implements GLSurfaceView.Renderer {
 
 
    /**
-    * @param resource - id for finding a resource file
-    * @return - shader code string
+    * utility method for debugging opengl calls, provide the name of the call just after making it
+    *    if the operation is not successful, the check throws an error
+    * @param operation - name of the opengl call to check.
     */
-   public String loadShaderCode(int resource) {
-      String shaderCode = "";
-
-      try {
-         BufferedReader reader = new BufferedReader(new InputStreamReader(
-               context.getResources().openRawResource(resource)));
-
-         String read = reader.readLine();
-         while (read != null) {
-            shaderCode += read + "\n";
-            read = reader.readLine();
-         }
-
-      } catch (Exception exception) {
-         Log.e(this.getClass().getName(), "could not read shader: " + exception.getMessage());
+   public static void checkGlError(String operation) {
+      int error;
+      while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
+         throw new RuntimeException(operation + ": gl error " + error);
       }
-
-      return shaderCode;
    }
 }
