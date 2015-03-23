@@ -90,8 +90,8 @@ public class FlightManager {
             }
 
             // counting the pluses
-            manoeuvres[i].addEntryLength(findOccurrences("+", matcher.group(1)));
-            manoeuvres[i].addExitLength(findOccurrences("+", matcher.group(5)));
+            manoeuvres[i].addLengthPre(findOccurrences("+", matcher.group(1)));
+            manoeuvres[i].addLengthPost(findOccurrences("+", matcher.group(5)));
 
          } else {
             throw new InvalidFlightException("invalid olan");

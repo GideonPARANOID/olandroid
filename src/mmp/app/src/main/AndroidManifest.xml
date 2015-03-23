@@ -58,7 +58,7 @@
 
       <activity
          android:name="uk.ac.aber.gij2.olandroid.ui.SettingsActivity"
-         android:label="@string/sa_label" >
+         android:label="@string/p_label" >
       </activity>
    </application>
 </manifest>

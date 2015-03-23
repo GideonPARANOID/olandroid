@@ -41,7 +41,7 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
       animationSeek = ((SeekBar) findViewById(R.id.va_seek));
 
       // resetting animation & seek
-      animationManager.setAnimationProgress(1f);
+      animationManager.setProgress(1f);
       animationSeek.setProgress(100);
 
       animationSeek.setOnSeekBarChangeListener(this);
@@ -103,7 +103,7 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
    @Override
    public void onProgressChanged(SeekBar seekBar, int progress, boolean human) {
       if (human) {
-         animationManager.setAnimationProgress((float) progress / 100f);
+         animationManager.setProgress((float) progress / 100f);
       }
    }
 
@@ -124,9 +124,9 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
    // animation
    @Override
    public void update(Observable observable, Object data) {
-      animationSeek.setProgress((int) (100f * animationManager.getAnimationProgress()));
+      animationSeek.setProgress((int) (100f * animationManager.getProgress()));
 
-      if (animationManager.getAnimationProgress() == 1f) {
+      if (animationManager.getProgress() == 1f) {
          invalidateOptionsMenu();
       }
    }

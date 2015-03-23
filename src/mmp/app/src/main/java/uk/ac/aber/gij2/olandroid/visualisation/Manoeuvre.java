@@ -10,29 +10,28 @@ import android.opengl.Matrix;
 
 public class Manoeuvre implements Drawable {
 
+   public static final int GROUP_PRE = 0, GROUP_POST = 1, GROUP_NONE = 2;
+
    private Component[] components;
    private float[][] matrices;
    private float[] componentsCumulativeLength;
    private String olan, name, category;
-
    private int[] groupIndicesPre, groupIndicesPost;
    private float groupScalePre, groupScalePost;
-   private float defaultEntryLength, defaultExitLength;
+   private int lengthPre, lengthPost;
 
-   public static final int GROUP_PRE = 0, GROUP_POST = 1, GROUP_NONE = 2;
 
    /**
-    *
     * @param components - list of components which constitute the movement of the manoeuvre
     * @param olan - olan figure for the manoeuvre
     * @param name - name of the manoeuvre
     * @param category - name of the category this manoeuvre falls into
-    * @param groupIndicesPre - first group of indices of components which are scaleable
-    * @param groupIndicesPost - second group of indices of components which are scaleable
+    * @param groupIndicesPre - first group of indices of components which are scalable
+    * @param groupIndicesPost - second group of indices of components which are scalable
     * @throws IndexOutOfBoundsException - thrown if there's no components
     */
    public Manoeuvre(Component[] components, String olan, String name, String category,
-                    int[] groupIndicesPre, int[] groupIndicesPost) throws IndexOutOfBoundsException {
+      int[] groupIndicesPre, int[] groupIndicesPost) throws IndexOutOfBoundsException {
 
       super();
 
@@ -51,8 +50,8 @@ public class Manoeuvre implements Drawable {
       groupScalePre = 1f;
       groupScalePost = 1f;
 
-      defaultEntryLength = components[0].getLength();
-      defaultExitLength = components[components.length - 1].getLength();
+      lengthPre = 0;
+      lengthPost = 0;
 
       buildComponentsCumulativeLength();
    }
@@ -87,8 +86,8 @@ public class Manoeuvre implements Drawable {
       this.groupScalePre = manoeuvre.groupScalePre;
       this.groupScalePost = manoeuvre.groupScalePost;
 
-      defaultEntryLength = components[0].getLength();
-      defaultExitLength = components[components.length - 1].getLength();
+      lengthPre = manoeuvre.lengthPre;
+      lengthPost = manoeuvre.lengthPost;
 
       buildComponentsCumulativeLength();
    }
@@ -185,21 +184,22 @@ public class Manoeuvre implements Drawable {
 
 
    /**
-    * @param entryLength - length to add to the default entry component length
+    * @param extra - length to add to the default entry component length
     */
-   public void addEntryLength(int entryLength) {
-      components[0].setLength(defaultEntryLength + (float) entryLength);
-
+   public void addLengthPre(int extra) {
+      components[0].setLength(components[0].getLength() - this.lengthPre + extra);
+      this.lengthPre = extra;
       buildComponentsCumulativeLength();
    }
 
 
    /**
-    * @param exitLength - length to add to the default exit component length
+    * @param extra - length to add to the default exit component length
     */
-   public void addExitLength(int exitLength) {
-      components[components.length - 1].setLength(defaultExitLength + (float) exitLength);
-
+   public void addLengthPost(int extra) {
+      components[components.length - 1].setLength(
+         components[components.length - 1].getLength() - this.lengthPost + extra);
+      this.lengthPost = extra;
       buildComponentsCumulativeLength();
    }
 
@@ -240,11 +240,11 @@ public class Manoeuvre implements Drawable {
       String modifierLengthEntry = "", modifierLengthExit = "", modifierGroupPre = "",
          modifierGroupPost = "";
 
-      for (int i = 0; i < components[0].getLength() - defaultEntryLength; i++) {
+      for (int i = 0; i < lengthPre; i++) {
          modifierLengthEntry += "+";
       }
 
-      for (int i = 0; i < components[components.length - 1].getLength() - defaultExitLength; i++) {
+      for (int i = 0; i < lengthPost; i++) {
          modifierLengthExit += "+";
       }
 

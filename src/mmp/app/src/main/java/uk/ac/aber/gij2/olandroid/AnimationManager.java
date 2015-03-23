@@ -14,25 +14,27 @@ import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 
 public class AnimationManager extends Observable {
 
-   private float animationProgress, animationStep, animationSpeed;
-   private Thread animationThread;
-   private FlightAnimator animator;
+   public static final int STYLE_ONE = 0, STYLE_TWO = 1;
 
+   private float progress, step, speed;
+   private Thread animationThread;
+   private AnimationRunner animator;
    private Scene scene;
+   private int style;
 
 
    /**
     * @param scene - scene to find things to draw in
-    * @param animationSpeed - a factor by which to animate
+    * @param speed - a factor by which to animate
     */
-   public AnimationManager(Scene scene, float animationSpeed) {
-      this.animationSpeed = animationSpeed;
+   public AnimationManager(Scene scene, float speed, int style) {
+      this.speed = speed;
+      this.scene = scene;
+      this.style = style;
 
       // need to use real constructor to use final variables
-      animationProgress = 1f;
-      animationStep = 1f / 100f;
-
-      this.scene = scene;
+      progress = 1f;
+      step = 1f / 100f;
    }
 
 
@@ -42,20 +44,17 @@ public class AnimationManager extends Observable {
     */
    public void animationPlayToggle(boolean play) {
 
-      if (play && animationProgress == 1f) {
-         animationProgress = 0f;
+      if (play && progress == 1f) {
+         progress = 0f;
 
-         animator = new FlightAnimator(animationStep, scene.getFlight().getLength(),
-            animationSpeed);
+         animator = new AnimationRunner(step, scene.getFlight().getLength(), speed);
          animationThread = new Thread(animator);
          animationThread.start();
 
-      } else if (play && animationProgress >= 0f && animationProgress < 1f) {
-         animator = new FlightAnimator(animationStep, scene.getFlight().getLength(),
-            animationSpeed);
+      } else if (play && progress >= 0f && progress < 1f) {
+         animator = new AnimationRunner(step, scene.getFlight().getLength(), speed);
          animationThread = new Thread(animator);
          animationThread.start();
-
 
       } else if (!play) {
          try {
@@ -63,7 +62,7 @@ public class AnimationManager extends Observable {
             animationThread.join();
 
          } catch (InterruptedException | NullPointerException exception) {
-            Log.e(this.getClass().getName(), "trouble animation thread thread");
+            Log.e(this.getClass().getName(), "trouble with ending the animation thread");
          }
 
          animationThread = null;
@@ -73,40 +72,47 @@ public class AnimationManager extends Observable {
 
    /**
     * setting the degree to which the animation has progressed
-    * @param animationProgress - number for the animation progress, bounded between 0 & 1
+    * @param progress - number for the animation progress, bounded between 0 & 1
     */
-   public void setAnimationProgress(float animationProgress) {
-      if (animationProgress > 1f) {
-         this.animationProgress = 1f;
+   public void setProgress(float progress) {
+      if (progress > 1f) {
+         this.progress = 1f;
 
-      } else if (animationProgress < 0f) {
-         this.animationProgress = 0f;
+      } else if (progress < 0f) {
+         this.progress = 0f;
 
       } else {
-         this.animationProgress = animationProgress;
+         this.progress = progress;
       }
 
       setChanged();
       notifyObservers();
 
-      scene.animate(this.animationProgress);
+      scene.animate(this.progress);
    }
 
 
-   public float getAnimationProgress() {
-      return animationProgress;
+   public float getProgress() {
+      return progress;
    }
 
-
-
-   public void setAnimationSpeed(float animationSpeed) {
-      this.animationSpeed = animationSpeed;
+   public void setSpeed(float speed) {
+      this.speed = speed;
    }
+
+   public int getStyle() {
+      return style;
+   }
+
+   public void setStyle(int style) {
+      this.style = style;
+   }
+
 
    /**
-    * animation class
+    * loops through the animation
     */
-   private class FlightAnimator implements Runnable {
+   private class AnimationRunner implements Runnable {
 
       private boolean running;
       private float step;
@@ -119,7 +125,7 @@ public class AnimationManager extends Observable {
        * @param length - how long the flight is
        * @param factor - scaling factor for the animation speed
        */
-      public FlightAnimator(float step, float length, float factor) {
+      public AnimationRunner(float step, float length, float factor) {
          super();
 
          this.step = (step / length) * factor * 10;
@@ -134,10 +140,10 @@ public class AnimationManager extends Observable {
          running = true;
 
          try {
-            for (float i = getAnimationProgress() / step, limit = (1f / step) + 1;
-               i <= limit && running; i++) {
+            for (float i = getProgress() / step, limit = (1f / step) + 1; i <= limit && running;
+               i++) {
 
-               setAnimationProgress(step * i);
+               setProgress(step * i);
                Thread.sleep(wait);
             }
 

@@ -32,8 +32,9 @@ public class OLANdroid extends Application implements
       scene = new Scene(this);
       manoeuvreCatalogue = new ManoeuvreCatalogue(this);
       flightManager = new FlightManager(this, manoeuvreCatalogue);
-      animationManager = new AnimationManager(scene, Float.parseFloat(
-            preferences.getString("p_play_speed", "1")));
+      animationManager = new AnimationManager(scene,
+         Float.parseFloat(preferences.getString("p_animation_speed", "1")),
+         Integer.parseInt(preferences.getString("p_animation_mode", "0")));
    }
 
 
@@ -91,10 +92,14 @@ public class OLANdroid extends Application implements
          case "p_controls_scheme":
             break;
 
-         case "p_play_speed":
-            animationManager.setAnimationSpeed(Float.parseFloat(
-                  preferences.getString("p_play_speed", "1")));
+         case "p_animation_speed":
+            animationManager.setSpeed(Float.parseFloat(
+               preferences.getString("p_animation_speed", "1")));
             break;
+
+         case "p_animation_mode":
+            animationManager.setStyle(Integer.parseInt(
+               preferences.getString("p_animation_mode", "0")));
       }
    }
 

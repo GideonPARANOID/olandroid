@@ -33,8 +33,8 @@
    <string name="bfa_toast_invalid">Invalid OLAN</string>
    <string name="bfa_help">Build a flight using an OLAN string. Browse manoeuvres in the
       catalogue below &#38; tap to add them to the current flight, or type them directly into the
-      form. OLAN figures can have &#8216;+&#8217; before/after them to extend their entry &#38;
-      exit paths.</string>
+      form. Some OLAN figures support modifiers &#38; can have &#8216;+/`&#8217; before &#38;/or
+      after them to extend their entry &#38; exit paths/scale parts of the manoeuvre.</string>
 
    <!-- visualisation activity -->
    <string name="va_label">&#160;</string>
@@ -48,15 +48,15 @@
       control scheme &#38; animation speed can changed in the settings menu.
    </string>
 
-   <!-- settings activity -->
-   <string name="sa_label">Settings</string>
-
    <!-- preferences -->
+   <string name="p_label">Preferences</string>
    <string name="p_category_visualisation">Visualisation</string>
    <string name="p_colour_theme_title">Theme</string>
    <string name="p_colour_theme_summary">Colour scheme for the visualisation</string>
    <string name="p_control_scheme_title">Control schemes</string>
    <string name="p_control_scheme_summary">How to interact with the visualisation</string>
-   <string name="p_play_speed_title">Animation speed</string>
-   <string name="p_play_speed_summary">How fast the animation plays</string>
+   <string name="p_animation_speed_title">Animation speed</string>
+   <string name="p_animation_speed_summary">How fast the animation plays</string>
+   <string name="p_animation_style_title">Animation style</string>
+   <string name="p_animation_style_summary">The way the animation looks</string>
 </resources>

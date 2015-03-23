@@ -12,8 +12,8 @@ public class Component extends Shape implements Drawable {
 
    // bounds for movement
    public static final int ZERO = 0, MIN = -1, MAX = 1;
-   private static final float ANGLE = 1f / 24f, WIDTH = 0.5f;
 
+   private final float ANGLE = 1f / 24f, WIDTH = 0.5f;
    private int pitch, yaw, roll;
    private float length;
    private float[] matrix, vertices, colourFront, colourBack;

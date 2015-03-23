@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
    <string-array name="p_colour_theme_titles">
       <item>Sky &amp; grass</item>
       <item>Tron</item>
    </string-array>
-
 
    <!-- lookup table indices -->
    <string-array name="p_colour_theme_values">
       <item>0</item>
       <item>1</item>
    </string-array>
-
 
    <!-- lookup tables for colour themes -->
    <array name="colour_theme_front">
@@ -35,20 +32,21 @@
       <item>@color/vis_grid_1</item>
    </array>
 
+
    <!-- lookup tables for control schemes -->
    <string-array name="p_control_scheme_titles">
       <item>Two finger rotate, one finger translate</item>
       <item>One finger rotate, two finger translate</item>
    </string-array>
 
-   <!-- lookup table indices -->
    <string-array name="p_control_scheme_values">
       <item>0</item>
       <item>1</item>
    </string-array>
 
-    <!-- lookup tables for play speed -->
-   <string-array name="p_play_speed_titles">
+
+    <!-- lookup tables for animation speed -->
+   <string-array name="p_animation_speed_titles">
       <item>Slowest</item>
       <item>Slower</item>
       <item>Normal</item>
@@ -56,8 +54,7 @@
       <item>Fastest</item>
    </string-array>
 
-   <!-- lookup table indices -->
-   <string-array name="p_play_speed_values">
+   <string-array name="p_animation_speed_values">
       <item>0.25</item>
       <item>0.5</item>
       <item>1</item>
@@ -66,4 +63,14 @@
    </string-array>
 
 
+    <!-- lookup tables for animation modes -->
+   <string-array name="p_animation_style_titles">
+      <item>Draw flown path</item>
+      <item>Draw trailing wing</item>
+   </string-array>
+
+   <string-array name="p_animation_style_values">
+      <item>0</item>
+      <item>1</item>
+   </string-array>
 </resources>

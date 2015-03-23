@@ -22,11 +22,19 @@
          android:defaultValue="0" />
 
       <ListPreference
-         android:key="p_play_speed"
-         android:title="@string/p_play_speed_title"
-         android:summary="@string/p_play_speed_summary"
-         android:entries="@array/p_play_speed_titles"
-         android:entryValues="@array/p_play_speed_values"
+         android:key="p_animation_speed"
+         android:title="@string/p_animation_speed_title"
+         android:summary="@string/p_animation_speed_summary"
+         android:entries="@array/p_animation_speed_titles"
+         android:entryValues="@array/p_animation_speed_values"
+         android:defaultValue="1" />
+
+      <ListPreference
+         android:key="p_animation_style"
+         android:title="@string/p_animation_style_title"
+         android:summary="@string/p_animation_style_summary"
+         android:entries="@array/p_animation_style_titles"
+         android:entryValues="@array/p_animation_style_values"
          android:defaultValue="0" />
    </PreferenceCategory>
 </PreferenceScreen>
