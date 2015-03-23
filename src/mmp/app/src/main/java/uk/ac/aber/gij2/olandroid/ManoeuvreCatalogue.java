@@ -125,7 +125,7 @@ public class ManoeuvreCatalogue {
                name = parser.getAttributeValue(null, "name");
 
             List<Component> components = new ArrayList<>();
-            List<List<Integer>> groupIndices = new ArrayList<>();
+            List<Integer> groupIndicesPre = new ArrayList<>(), groupIndicesPost = new ArrayList<>();
 
             parser.require(XmlPullParser.START_TAG, null, "variant");
 
@@ -144,23 +144,13 @@ public class ManoeuvreCatalogue {
                         R.array.colour_theme_back)));
 
                   // building the variable groups
-                  int group = Integer.parseInt(parser.getAttributeValue(null, "group"));
-                  if (group != 0) {
-
-                     if (!(group == 2 && groupIndices.size() < 2)) {
-                        // TODO: add support for manoeuvres only using variable group 2, not 1
-
-
-                        try {
-                           groupIndices.get(group);
-
-                        } catch (IndexOutOfBoundsException exception) {
-                           groupIndices.add(new ArrayList<Integer>());
-                        }
-
-                        // since we're skipping index zero in the groups
-                        groupIndices.get(group - 1).add(i);
-                     }
+                  switch (parseManoeuvreGroup(parser.getAttributeValue(null, "group"))) {
+                     case Manoeuvre.GROUP_PRE:
+                        groupIndicesPre.add(i);
+                        break;
+                     case Manoeuvre.GROUP_POST:
+                        groupIndicesPost.add(i);
+                        break;
                   }
 
                   // skipping content
@@ -171,7 +161,7 @@ public class ManoeuvreCatalogue {
             // assembling the manoeuvre
             catalogue.put(fullOLAN, new Manoeuvre(
                components.toArray(new Component[components.size()]), fullOLAN, name, category,
-               integerListToPrimitive(groupIndices)));
+               integerListToPrimitive(groupIndicesPre), integerListToPrimitive(groupIndicesPost)));
          }
       }
    }
@@ -182,7 +172,6 @@ public class ManoeuvreCatalogue {
     * @return - Component.MAX, Component.ZERO, Component.MIN
     */
    protected int parseComponentStrength(String strength) {
-
       switch (strength) {
          case "MAX":
             return Component.MAX;
@@ -190,8 +179,21 @@ public class ManoeuvreCatalogue {
             return Component.ZERO;
          case "MIN":
             return Component.MIN;
+         default:
+            return Component.ZERO;
       }
-      return Component.ZERO;
+   }
+
+
+   protected int parseManoeuvreGroup(String group) {
+      switch (group) {
+         case "PRE":
+            return Manoeuvre.GROUP_PRE;
+         case "POST":
+            return Manoeuvre.GROUP_POST;
+         default:
+            return Manoeuvre.GROUP_NONE;
+      }
    }
 
 
@@ -221,22 +223,12 @@ public class ManoeuvreCatalogue {
     * @param list - a list of lists (of type integer) to convert
     * @return - the list as an array of ints
     */
-   private int[][] integerListToPrimitive(List<List<Integer>> list) {
+   private int[] integerListToPrimitive(List<Integer> list) {
 
-      // finding the longest group
-      int longest = 0;
-      for (List<Integer> group : list) {
-         if (group.size() > longest) {
-            longest = group.size();
-         }
-      }
-
-      int[][] primitive = new int[list.size()][longest];
+      int[] primitive = new int[list.size()];
 
       for (int i = 0; i < primitive.length; i++) {
-         for (int j = 0; j < list.get(i).size(); j++) {
-            primitive[i][j] = list.get(i).get(j);
-         }
+         primitive[i] = list.get(i);
       }
       return primitive;
    }

@@ -155,10 +155,16 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
 
    public void button_plus(View view) {
-      olanEntry.append(getText(R.string.bfa_button_plus));
+      int position = olanEntry.getSelectionStart();
+      olanEntry.setText(olanEntry.getText().insert(position,
+            getText(R.string.bfa_button_plus)));
+      olanEntry.setSelection(position + 1);
    }
 
    public void button_backtick(View view) {
-      olanEntry.append(getText(R.string.bfa_button_backtick));
+      int position = olanEntry.getSelectionStart();
+      olanEntry.setText(olanEntry.getText().insert(position,
+            getText(R.string.bfa_button_backtick)));
+      olanEntry.setSelection(position + 1);
    }
 }

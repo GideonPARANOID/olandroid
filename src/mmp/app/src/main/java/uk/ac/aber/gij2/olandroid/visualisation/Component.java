@@ -63,7 +63,7 @@ public class Component extends Shape implements Drawable {
    protected void buildVertices() {
       float x = 0f, y = 0f, z = length, xOffset = WIDTH, yOffset = 0, zOffset = 0;
 
-      if (pitch != ZERO || yaw != ZERO) {
+      if (pitch != Component.ZERO || yaw != Component.ZERO) {
          // first & second triangles of euler
          double theta = ANGLE * Math.PI * 2, phi = Math.atan((double) pitch / (double) yaw);
 
@@ -78,12 +78,12 @@ public class Component extends Shape implements Drawable {
       }
 
       // building the difference for a roll
-      if (roll != ZERO) {
+      if (roll != Component.ZERO) {
          xOffset = (float) (WIDTH * Math.cos(roll * ANGLE * Math.PI * 2f));
          yOffset = (float) (WIDTH * Math.sin(roll * ANGLE * Math.PI * 2f));
       }
 
-      if (yaw != ZERO) {
+      if (yaw != Component.ZERO) {
          zOffset = (float) -(WIDTH * Math.sin(yaw * ANGLE * Math.PI * 2f));
       }
 
@@ -118,15 +118,15 @@ public class Component extends Shape implements Drawable {
       Matrix.setIdentityM(mYaw, 0);
       Matrix.setIdentityM(mRoll, 0);
 
-      if (pitch != ZERO) {
+      if (pitch != Component.ZERO) {
          Matrix.setRotateM(mPitch, 0, factor, (float) -pitch, 0f, 0f);
       }
 
-      if (yaw != ZERO) {
+      if (yaw != Component.ZERO) {
          Matrix.setRotateM(mYaw, 0, factor, 0f, (float) yaw, 0f);
       }
 
-      if (roll != ZERO) {
+      if (roll != Component.ZERO) {
          Matrix.setRotateM(mRoll, 0, factor, 0f, 0f, (float) roll);
       }
 

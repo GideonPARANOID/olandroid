@@ -6,7 +6,6 @@
 package uk.ac.aber.gij2.olandroid.visualisation;
 
 import android.opengl.Matrix;
-import android.util.Log;
 
 
 public class Manoeuvre implements Drawable {
@@ -16,9 +15,11 @@ public class Manoeuvre implements Drawable {
    private float[] componentsCumulativeLength;
    private String olan, name, category;
 
-   private int[][] groupIndices;
-   private float[] groupScales;
+   private int[] groupIndicesPre, groupIndicesPost;
+   private float groupScalePre, groupScalePost;
    private float defaultEntryLength, defaultExitLength;
+
+   public static final int GROUP_PRE = 0, GROUP_POST = 1, GROUP_NONE = 2;
 
    /**
     *
@@ -26,11 +27,12 @@ public class Manoeuvre implements Drawable {
     * @param olan - olan figure for the manoeuvre
     * @param name - name of the manoeuvre
     * @param category - name of the category this manoeuvre falls into
-    * @param groupIndices - groups of indices of components which are scaleable
+    * @param groupIndicesPre - first group of indices of components which are scaleable
+    * @param groupIndicesPost - second group of indices of components which are scaleable
     * @throws IndexOutOfBoundsException - thrown if there's no components
     */
    public Manoeuvre(Component[] components, String olan, String name, String category,
-      int[][] groupIndices) throws IndexOutOfBoundsException {
+                    int[] groupIndicesPre, int[] groupIndicesPost) throws IndexOutOfBoundsException {
 
       super();
 
@@ -43,11 +45,11 @@ public class Manoeuvre implements Drawable {
       this.name = name;
       this.category = category;
 
-      this.groupIndices = groupIndices;
+      this.groupIndicesPre = groupIndicesPre;
+      this.groupIndicesPost = groupIndicesPost;
 
-      groupScales = new float[] {
-         1f, 1f
-      };
+      groupScalePre = 1f;
+      groupScalePost = 1f;
 
       defaultEntryLength = components[0].getLength();
       defaultExitLength = components[components.length - 1].getLength();
@@ -78,13 +80,12 @@ public class Manoeuvre implements Drawable {
       this.category = manoeuvre.category;
 
       // doesn't need to be copied - won't change
-      this.groupIndices = manoeuvre.groupIndices;
+      this.groupIndicesPre = manoeuvre.groupIndicesPre;
+      this.groupIndicesPost = manoeuvre.groupIndicesPost;
 
       // needs to be copied
-      this.groupScales = new float[] {
-         manoeuvre.groupScales[0],
-         manoeuvre.groupScales[1]
-      };
+      this.groupScalePre = manoeuvre.groupScalePre;
+      this.groupScalePost = manoeuvre.groupScalePost;
 
       defaultEntryLength = components[0].getLength();
       defaultExitLength = components[components.length - 1].getLength();
@@ -204,25 +205,31 @@ public class Manoeuvre implements Drawable {
 
 
    /**
-    * @param groupIndex - index of the variable group
+    * @param group - index of the variable group
     * @param scale - value to scale the variable's components by
     */
-   public void scaleGroup(int groupIndex, float scale) {
-      try {
-         for (int i = 0; i < groupIndices[groupIndex].length; i++) {
+   public void scaleGroup(int group, float scale) {
 
-            // unscaling & rescaling with the new one
-            components[groupIndices[groupIndex][i]].setLength((
-               components[groupIndices[groupIndex][i]].getLength() /
-                  groupScales[groupIndex]) * scale);
+      // unscaling & rescaling with the new one
+      switch (group) {
+         case Manoeuvre.GROUP_PRE:
+            for (int index : groupIndicesPre) {
+               components[index].setLength(
+                  (components[index].getLength() / groupScalePre) * scale);
+            }
 
-         }
-      } catch (ArrayIndexOutOfBoundsException exception) {
-         Log.d(this.getClass().getName(), "scale variable error - may not support variable");
-         // manoeuvre may not support group variable
+            groupScalePre = scale;
+            break;
+
+         case Manoeuvre.GROUP_POST:
+            for (int index : groupIndicesPost) {
+               components[index].setLength(
+                  (components[index].getLength() / groupScalePost) * scale);
+            }
+
+            groupScalePost = scale;
+            break;
       }
-
-      groupScales[groupIndex] = scale;
    }
 
 
@@ -230,30 +237,27 @@ public class Manoeuvre implements Drawable {
     * @return - olan string including modifiers
     */
    public String getOLAN() {
-      String entryLength = "", exitLength = "", variable0Length = "", variable1Length = "";
+      String modifierLengthEntry = "", modifierLengthExit = "", modifierGroupPre = "",
+         modifierGroupPost = "";
 
       for (int i = 0; i < components[0].getLength() - defaultEntryLength; i++) {
-         entryLength += "+";
+         modifierLengthEntry += "+";
       }
 
       for (int i = 0; i < components[components.length - 1].getLength() - defaultExitLength; i++) {
-         exitLength += "+";
+         modifierLengthExit += "+";
       }
 
       // if only one group, it's the pre one
-      if (groupIndices.length > 0) {
-         for (int i = 1; i < (1 / groupScales[0]); i++) {
-            variable0Length += "`";
-         }
-
-         if (groupIndices.length > 1) {
-            for (int i = 1; i < (1 / groupScales[1]); i++) {
-               variable1Length += "`";
-            }
-         }
+      for (int i = 1; i < (1 / groupScalePre); i++) {
+         modifierGroupPre += "`";
       }
 
-      return entryLength + variable0Length + olan + variable1Length + exitLength;
+      for (int i = 1; i < (1 / groupScalePost); i++) {
+         modifierGroupPost += "`";
+      }
+
+      return modifierLengthEntry + modifierGroupPre + olan + modifierGroupPost + modifierLengthExit;
    }
 
 
@@ -274,7 +278,6 @@ public class Manoeuvre implements Drawable {
          component.setColourBack(colourBack);
       }
    }
-
 
    public void setColourFront(float[] colourFront) {
       for (Component component : components) {
