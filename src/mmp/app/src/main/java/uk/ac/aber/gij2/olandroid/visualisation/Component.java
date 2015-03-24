@@ -161,6 +161,27 @@ public class Component extends Shape implements Drawable {
    }
 
 
+   public void animate(float progressPre, float progressPost) {
+      if (progressPre == 0f && progressPost == 0f) {
+         super.buildVerticesBuffer(null);
+
+      } else if (progressPre == 0f && progressPost == 1f) {
+         super.buildVerticesBuffer(vertices);
+
+      } else {
+
+         // extending the y & z distance (not x, as that's width)
+         super.buildVerticesBuffer(new float[] {
+            WIDTH, vertices[7] * progressPre, vertices[8] * progressPre,
+            -WIDTH, vertices[10] * progressPre, vertices[11] * progressPre,
+            vertices[6], vertices[7] * progressPost, vertices[8] * progressPost,
+            vertices[9], vertices[10] * progressPost, vertices[11] * progressPost
+         });
+      }
+   }
+
+
+
    public float getLength() {
       return length;
    }

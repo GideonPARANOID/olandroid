@@ -7,7 +7,8 @@ package uk.ac.aber.gij2.olandroid.visualisation;
 
 import android.opengl.Matrix;
 
-import uk.ac.aber.gij2.olandroid.ui.Util;
+import uk.ac.aber.gij2.olandroid.AnimationManager;
+import uk.ac.aber.gij2.olandroid.Util;
 
 
 public class Manoeuvre implements Drawable {
@@ -54,6 +55,8 @@ public class Manoeuvre implements Drawable {
 
       lengthPre = 0;
       lengthPost = 0;
+
+      style = AnimationManager.STYLE_ONE;
 
       buildComponentsCumulativeLength();
    }
@@ -142,33 +145,98 @@ public class Manoeuvre implements Drawable {
 
 
    public void animate(float progress) {
+      int current = 0;
 
-      // if either fully drawn or fully not drawn
-      if (progress == 0f || progress == 1f) {
-         for (Component component : components) {
-            component.animate(progress);
-         }
+      switch (style) {
+         case AnimationManager.STYLE_ONE:
+            // if either fully drawn or fully not drawn
+            if (progress == 0f || progress == 1f) {
+               for (Component component : components) {
+                  component.animate(progress);
+               }
 
-      } else {
-         // getting progress to be in the context of the flight length in components
-         progress *= getLength();
+            } else {
+               // getting progress to be in the context of the flight length in components
+               progress *= getLength();
 
-         int current = 0;
+               while (current < components.length && componentsCumulativeLength[current] < progress) {
+                  components[current++].animate(1f);
+               }
 
-         while (current < components.length && componentsCumulativeLength[current] < progress) {
-            components[current++].animate(1f);
-         }
+               // scaling across the cumulative middle
+               components[current].animate(1 -
+                  ((componentsCumulativeLength[current] - progress) /
+                     Math.abs(components[current].getLength())));
 
-         // scaling across the cumulative middle
-         components[current].animate(1 -
-            ((componentsCumulativeLength[current] - progress) /
-               Math.abs(components[current].getLength())));
+               current++;
 
-         current++;
+               while (current < components.length) {
+                  components[current++].animate(0f);
+               }
+            }
+            break;
 
-         while (current < components.length) {
-            components[current++].animate(0f);
-         }
+         case AnimationManager.STYLE_TWO:
+            // if either fully drawn or fully not drawn
+            if (progress == 0f || progress == 1f) {
+               for (Component component : components) {
+                  component.animate(progress);
+               }
+
+            } else {
+
+               // getting progress to be in the context of the flight length in components
+               progress *= getLength();
+
+               while (current < components.length && componentsCumulativeLength[current]  < progress) {
+                  components[current++].animate(0f);
+               }
+
+
+               // scaling component across back
+               components[current].animate(1f -
+                  ((componentsCumulativeLength[current] - progress) /
+                     Math.abs(components[current].getLength())), 1f);
+
+               current++;
+
+               // TODO: fix skipping which occurs after the wing has passed through large components
+               //    happens because current is ignoring the size of the progression through it
+
+               for (float wing = AnimationManager.WING_LENGTH; current < components.length &&
+                  wing - components[current].getLength() > 0; current++) {
+
+                  wing -= components[current].getLength();
+
+                  System.out.println(AnimationManager.WING_LENGTH + "   " + wing);
+
+                  components[current].animate(1f);
+               }
+
+
+               System.out.println(current);
+
+               if (current < components.length) {
+
+                  float mid = 1f - ((componentsCumulativeLength[current]
+                        - AnimationManager.WING_LENGTH - progress)
+                     / Math.abs(components[current].getLength()));
+
+                  // if we go off the end of the cumulative lengths, we get nasty negative scaling
+                  if (mid >= 0 && mid <= 1) {
+
+                     // scaling component across front
+                     components[current].animate(mid);
+                  }
+
+                  current++;
+
+                  while (current < components.length) {
+                     components[current++].animate(0f);
+                  }
+               }
+            }
+            break;
       }
    }
 

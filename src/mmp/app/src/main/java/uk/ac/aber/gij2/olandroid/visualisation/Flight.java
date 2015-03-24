@@ -7,6 +7,8 @@ package uk.ac.aber.gij2.olandroid.visualisation;
 
 import android.opengl.Matrix;
 
+import uk.ac.aber.gij2.olandroid.AnimationManager;
+
 
 public class Flight implements Drawable {
 
@@ -20,6 +22,9 @@ public class Flight implements Drawable {
 
    public Flight(Manoeuvre[] manoeuvres) {
       this.manoeuvres = manoeuvres;
+
+      setStyle(AnimationManager.STYLE_TWO);
+
 
       buildManoeuvresCumulativeLength();
    }
@@ -79,34 +84,69 @@ public class Flight implements Drawable {
 
 
    public void animate(float progress) {
+      int current = 0;
 
-      // if either fully drawn or fully not drawn
-      if (progress == 0f || progress == 1f) {
-         for (Manoeuvre manoeuvre : manoeuvres) {
-            manoeuvre.animate(progress);
-         }
+      switch (style) {
+         case AnimationManager.STYLE_ONE:
+            // if either fully drawn or fully not drawn
+            if (progress == 0f || progress == 1f) {
+               for (Manoeuvre manoeuvre : manoeuvres) {
+                  manoeuvre.animate(progress);
+               }
 
-      } else {
-         // getting progress to be in the context of the flight length in manoeuvres
-         progress *= getLength();
+            } else {
 
-         int current = 0;
+               // getting progress to be in the context of the flight length in manoeuvres
+               progress *= getLength();
 
-         while (current < manoeuvres.length && manoeuvresCumulativeLength[current] < progress) {
-            manoeuvres[current++].animate(1f);
-         }
+               while (current < manoeuvres.length && manoeuvresCumulativeLength[current] < progress) {
+                  manoeuvres[current++].animate(1f);
+               }
 
-         // scaling across the cumulative middle
-         manoeuvres[current].animate(1 -
-            ((manoeuvresCumulativeLength[current] - progress) / manoeuvres[current].getLength()));
+               // scaling across the cumulative middle
+               manoeuvres[current].animate(1 -
+                  ((manoeuvresCumulativeLength[current] - progress) / manoeuvres[current].getLength()));
 
-         current++;
+               current++;
 
-         while (current < manoeuvres.length) {
-            manoeuvres[current++].animate(0f);
-         }
+               while (current < manoeuvres.length) {
+                  manoeuvres[current++].animate(0f);
+               }
+            }
+            break;
+
+         case AnimationManager.STYLE_TWO:
+            if (progress == 0f || progress == 1f) {
+               for (Manoeuvre manoeuvre : manoeuvres) {
+                  manoeuvre.animate(progress);
+               }
+
+            } else {
+
+              // TODO: implement cross-manoeuvre wing
+
+
+               // getting progress to be in the context of the flight length in manoeuvres
+               progress *= getLength();
+
+               while (current < manoeuvres.length && manoeuvresCumulativeLength[current] < progress) {
+                  manoeuvres[current++].animate(1f);
+               }
+
+               // scaling across the cumulative middle
+               manoeuvres[current].animate(1 -
+                  ((manoeuvresCumulativeLength[current] - progress) / manoeuvres[current].getLength()));
+
+               current++;
+
+               while (current < manoeuvres.length) {
+                  manoeuvres[current++].animate(0f);
+               }
+            }
+            break;
       }
    }
+
 
 
    /**
@@ -154,6 +194,8 @@ public class Flight implements Drawable {
 
    public void setStyle(int style) {
       this.style = style;
+
+      System.out.println(style);
 
       for (Manoeuvre manoeuvre : manoeuvres) {
          manoeuvre.setStyle(style);

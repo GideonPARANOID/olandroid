@@ -18,7 +18,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import uk.ac.aber.gij2.olandroid.OLANdroid;
 import uk.ac.aber.gij2.olandroid.R;
-import uk.ac.aber.gij2.olandroid.ui.Util;
+import uk.ac.aber.gij2.olandroid.Util;
 
 
 public class Renderer implements GLSurfaceView.Renderer {

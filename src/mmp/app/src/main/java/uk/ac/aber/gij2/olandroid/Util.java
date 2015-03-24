@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.ui;
+package uk.ac.aber.gij2.olandroid;
 
 import java.io.BufferedReader;
 import java.io.IOException;

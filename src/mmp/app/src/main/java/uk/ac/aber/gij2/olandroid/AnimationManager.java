@@ -15,6 +15,7 @@ import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 public class AnimationManager extends Observable {
 
    public static final int STYLE_ONE = 0, STYLE_TWO = 1;
+   public static final float WING_LENGTH = 2f;
 
    private float progress, step, speed;
    private Thread animationThread;
@@ -72,8 +73,9 @@ public class AnimationManager extends Observable {
    /**
     * setting the degree to which the animation has progressed
     * @param progress - number for the animation progress, bounded between 0 & 1
+    * @throws NullPointerException - if there's no flight
     */
-   public void setProgress(float progress) {
+   public void setProgress(float progress) throws NullPointerException {
       if (progress > 1f) {
          this.progress = 1f;
 
@@ -106,7 +108,12 @@ public class AnimationManager extends Observable {
    public void setStyle(int style) {
       this.style = style;
 
-      scene.getFlight().setStyle(style);
+      try {
+         scene.getFlight().setStyle(style);
+
+      } catch (NullPointerException exception) {
+         // occurs if there's no flight yet
+      }
    }
 
 
@@ -148,8 +155,10 @@ public class AnimationManager extends Observable {
                Thread.sleep(wait);
             }
 
-         } catch (InterruptedException exception) {
-            exception.printStackTrace();
+         } catch (InterruptedException | NullPointerException exception) {
+            // occurs most often when a flight is nullified
+            running = false;
+            Log.d(this.getClass().getName(), "thread dead");
          }
       }
 

@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import uk.ac.aber.gij2.olandroid.ui.Util;
 import uk.ac.aber.gij2.olandroid.visualisation.Flight;
 import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
 

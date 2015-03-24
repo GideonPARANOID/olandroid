@@ -16,9 +16,11 @@ public class Scene {
    private Grid grid;
    private Flight flight;
 
+
    public Scene(Context context) {
       grid = new Grid(5, 10,
-         ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(R.array.colour_theme_grid));
+         ((OLANdroid) context.getApplicationContext())
+            .getCurrentColourTheme(R.array.colour_theme_grid));
    }
 
 
