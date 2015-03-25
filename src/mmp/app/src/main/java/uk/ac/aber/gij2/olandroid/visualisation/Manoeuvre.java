@@ -193,44 +193,63 @@ public class Manoeuvre implements Drawable {
                }
 
 
-               // scaling component across back
-               components[current].animate(1f -
-                  ((componentsCumulativeLength[current] - progress) /
-                     Math.abs(components[current].getLength())), 1f);
-
-               current++;
-
-               // TODO: fix skipping which occurs after the wing has passed through large components
-               //    happens because current is ignoring the size of the progression through it
-
-               for (float wing = AnimationManager.WING_LENGTH; current < components.length &&
-                  wing - components[current].getLength() > 0; current++) {
-
-                  wing -= components[current].getLength();
-
-                  System.out.println(AnimationManager.WING_LENGTH + "   " + wing);
-
-                  components[current].animate(1f);
-               }
+               float wing = componentsCumulativeLength[current] - progress;
+               float currentLength = Math.abs(components[current].getLength());
+               float start = 1f - (wing / currentLength);
+               float wingLeft = AnimationManager.WING_LENGTH;
 
 
-               System.out.println(current);
 
-               if (current < components.length) {
+               // wing will fit in this component
+               if (wing > AnimationManager.WING_LENGTH) {
 
-                  float mid = 1f - ((componentsCumulativeLength[current]
-                        - AnimationManager.WING_LENGTH - progress)
-                     / Math.abs(components[current].getLength()));
+                  // start & end of wing
+                  components[current].animate(start, start + (AnimationManager.WING_LENGTH / currentLength));
 
-                  // if we go off the end of the cumulative lengths, we get nasty negative scaling
-                  if (mid >= 0 && mid <= 1) {
 
-                     // scaling component across front
-                     components[current].animate(mid);
-                  }
+                  current++;
+               } else {
+
+                  // start of wing
+                  components[current].animate(start, 1f);
+
+                  wingLeft -= (start * currentLength);
+
+                  // scaling component across back
 
                   current++;
 
+
+                  while (current < components.length && wingLeft - components[current].getLength() > 0) {
+
+                     wingLeft -= components[current].getLength();
+
+                     components[current].animate(1f);
+
+                     current++;
+                  }
+
+                  if (current < components.length) {
+
+                     // end of wing
+                     float mid = 1f - ((componentsCumulativeLength[current]
+                        - AnimationManager.WING_LENGTH - progress)
+                        / Math.abs(components[current].getLength()));
+
+
+                     // TODO: fix this flippin' piece
+                     // if we go off the end of the cumulative lengths, we get nasty negative scaling
+                     if (mid >= 0 && mid <= 1) {
+
+                        // scaling component across front
+                        components[current].animate(mid);
+                        current++;
+                     }
+                  }
+
+               }
+
+               if (current < components.length) {
                   while (current < components.length) {
                      components[current++].animate(0f);
                   }
