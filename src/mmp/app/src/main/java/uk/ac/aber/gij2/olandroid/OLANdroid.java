@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 
+import uk.ac.aber.gij2.olandroid.visualisation.AnimationStyle;
 import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 
 
@@ -34,7 +35,8 @@ public class OLANdroid extends Application implements
       flightManager = new FlightManager(this, manoeuvreCatalogue);
       animationManager = new AnimationManager(scene,
          Float.parseFloat(preferences.getString("p_animation_speed", "1")),
-         Integer.parseInt(preferences.getString("p_animation_style", "0")));
+         Integer.parseInt(preferences.getString("p_animation_style", "0")) == 0 ?
+            AnimationStyle.ONE : AnimationStyle.TWO);
    }
 
 
@@ -99,7 +101,8 @@ public class OLANdroid extends Application implements
 
          case "p_animation_style":
             animationManager.setStyle(Integer.parseInt(
-               preferences.getString("p_animation_style", "0")));
+                  preferences.getString("p_animation_style", "0")) == 0 ?
+                  AnimationStyle.ONE : AnimationStyle.TWO);
       }
    }
 

@@ -21,7 +21,7 @@ public class Manoeuvre implements Drawable {
    private String olan, name, category;
    private int[] groupIndicesPre, groupIndicesPost;
    private float groupScalePre, groupScalePost;
-   private int style, lengthPre, lengthPost;
+   private int lengthPre, lengthPost;
 
 
    /**
@@ -56,8 +56,6 @@ public class Manoeuvre implements Drawable {
       lengthPre = 0;
       lengthPost = 0;
 
-      style = AnimationManager.STYLE_ONE;
-
       buildComponentsCumulativeLength();
    }
 
@@ -90,8 +88,6 @@ public class Manoeuvre implements Drawable {
       // needs to be copied
       this.groupScalePre = manoeuvre.groupScalePre;
       this.groupScalePost = manoeuvre.groupScalePost;
-
-      this.style = manoeuvre.style;
 
       this.lengthPre = manoeuvre.lengthPre;
       this.lengthPost = manoeuvre.lengthPost;
@@ -144,97 +140,90 @@ public class Manoeuvre implements Drawable {
    }
 
 
-   public void animate(float progress) {
-      int current = 0;
+   public void animate(float progress, AnimationStyle style) {
+      int i;
 
       switch (style) {
-         case AnimationManager.STYLE_ONE:
+         case ONE:
             // if either fully drawn or fully not drawn
             if (progress == 0f || progress == 1f) {
                for (Component component : components) {
-                  component.animate(progress);
+                  component.animate(progress, AnimationStyle.ONE);
                }
 
             } else {
                // getting progress to be in the context of the flight length in components
                progress *= getLength();
 
-               while (current < components.length && componentsCumulativeLength[current] < progress) {
-                  components[current++].animate(1f);
+               for (i = 0; i < components.length && componentsCumulativeLength[i] < progress; i++) {
+                  components[i].animate(1f, AnimationStyle.ONE);
                }
 
                // scaling across the cumulative middle
-               components[current].animate(1 -
-                  ((componentsCumulativeLength[current] - progress) /
-                     Math.abs(components[current].getLength())));
+               components[i].animate(
+                  ((components[i].getLength() - (componentsCumulativeLength[i] - progress)) /
+                     Math.abs(components[i].getLength())), AnimationStyle.ONE);
 
-               current++;
-
-               while (current < components.length) {
-                  components[current++].animate(0f);
+               for (i++; i < components.length; i++) {
+                  components[i].animate(0f, AnimationStyle.ONE);
                }
             }
             break;
 
-         case AnimationManager.STYLE_TWO:
+         case TWO:
             // if either fully drawn or fully not drawn
             if (progress == 0f || progress == 1f) {
                for (Component component : components) {
-                  component.animate(progress);
+                  component.animate(progress, AnimationStyle.TWO);
                }
 
             } else {
 
-               // getting progress to be in the context of the flight length in components
+               // TODO: fix all of the horrible bugs
+
                progress *= getLength();
 
-               while (current < components.length && componentsCumulativeLength[current]  < progress) {
-                  components[current++].animate(0f);
+               for (i = 0; i < components.length
+                  && componentsCumulativeLength[i] < progress; i++) {
+                  components[i].animate(0f, AnimationStyle.TWO);
                }
 
 
-               float wing = componentsCumulativeLength[current] - progress;
-               float currentLength = Math.abs(components[current].getLength());
-               float start = 1f - (wing / currentLength);
-               float wingLeft = AnimationManager.WING_LENGTH;
-
+               float cLength = Math.abs(components[i].getLength()),
+                  cProgress = (cLength - (componentsCumulativeLength[i] - progress)) / cLength;
 
 
                // wing will fit in this component
-               if (wing > AnimationManager.WING_LENGTH) {
+               if (componentsCumulativeLength[i] - progress > AnimationManager.WING_LENGTH) {
 
                   // start & end of wing
-                  components[current].animate(start, start + (AnimationManager.WING_LENGTH / currentLength));
+                  components[i].animate(cProgress,
+                     cProgress + (AnimationManager.WING_LENGTH / cLength), AnimationStyle.TWO);
 
-
-                  current++;
+                  i++;
                } else {
 
                   // start of wing
-                  components[current].animate(start, 1f);
+                  components[i].animate(cProgress, 1f, AnimationStyle.TWO);
 
-                  wingLeft -= (start * currentLength);
+                  float wingLeft = AnimationManager.WING_LENGTH - (cProgress * cLength);
 
                   // scaling component across back
 
-                  current++;
 
+                  for (i++; i < components.length
+                     && wingLeft - components[i].getLength() > 0; i++) {
 
-                  while (current < components.length && wingLeft - components[current].getLength() > 0) {
-
-                     wingLeft -= components[current].getLength();
-
-                     components[current].animate(1f);
-
-                     current++;
+                     wingLeft -= components[i].getLength();
+                     components[i].animate(1f, AnimationStyle.TWO);
                   }
 
-                  if (current < components.length) {
+                  if (i < components.length) {
 
                      // end of wing
-                     float mid = 1f - ((componentsCumulativeLength[current]
+                     float mid = 1f - ((componentsCumulativeLength[i]
                         - AnimationManager.WING_LENGTH - progress)
-                        / Math.abs(components[current].getLength()));
+                        / Math.abs(components[i].getLength()));
 
 
                      // TODO: fix this flippin' piece
@@ -242,18 +231,19 @@ public class Manoeuvre implements Drawable {
                      if (mid >= 0 && mid <= 1) {
 
                         // scaling component across front
-                        components[current].animate(mid);
-                        current++;
+                        components[i].animate(mid, AnimationStyle.TWO);
+                        i++;
                      }
                   }
 
                }
 
-               if (current < components.length) {
-                  while (current < components.length) {
-                     components[current++].animate(0f);
+               if (i < components.length) {
+                  for (; i < components.length; i++) {
+                     components[i].animate(0f, AnimationStyle.TWO);
                   }
                }
+
             }
             break;
       }
@@ -357,9 +347,5 @@ public class Manoeuvre implements Drawable {
       for (Component component : components) {
          component.setColourFront(colourFront);
       }
-   }
-
-   public void setStyle(int style) {
-      this.style = style;
    }
 }

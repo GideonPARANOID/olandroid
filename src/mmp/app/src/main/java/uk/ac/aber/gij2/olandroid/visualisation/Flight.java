@@ -17,14 +17,10 @@ public class Flight implements Drawable {
    private float[] manoeuvresCumulativeLength;
 
    private String name;
-   private int style;
 
 
    public Flight(Manoeuvre[] manoeuvres) {
       this.manoeuvres = manoeuvres;
-
-      setStyle(AnimationManager.STYLE_TWO);
-
 
       buildManoeuvresCumulativeLength();
    }
@@ -83,15 +79,15 @@ public class Flight implements Drawable {
    }
 
 
-   public void animate(float progress) {
-      int current = 0;
+   public void animate(float progress, AnimationStyle style) {
+      int i;
 
       switch (style) {
-         case AnimationManager.STYLE_ONE:
+         case ONE:
             // if either fully drawn or fully not drawn
             if (progress == 0f || progress == 1f) {
                for (Manoeuvre manoeuvre : manoeuvres) {
-                  manoeuvre.animate(progress);
+                  manoeuvre.animate(progress, AnimationStyle.ONE);
                }
 
             } else {
@@ -99,48 +95,58 @@ public class Flight implements Drawable {
                // getting progress to be in the context of the flight length in manoeuvres
                progress *= getLength();
 
-               while (current < manoeuvres.length && manoeuvresCumulativeLength[current] < progress) {
-                  manoeuvres[current++].animate(1f);
+               for (i = 0; i < manoeuvres.length && manoeuvresCumulativeLength[i] < progress; i++) {
+                  manoeuvres[i].animate(1f, AnimationStyle.ONE);
                }
 
                // scaling across the cumulative middle
-               manoeuvres[current].animate(1 -
-                  ((manoeuvresCumulativeLength[current] - progress) / manoeuvres[current].getLength()));
+               manoeuvres[i].animate(1 -
+                  ((manoeuvresCumulativeLength[i] - progress) / manoeuvres[i].getLength()), AnimationStyle.ONE);
 
-               current++;
-
-               while (current < manoeuvres.length) {
-                  manoeuvres[current++].animate(0f);
+               for (i++; i < manoeuvres.length; i++) {
+                  manoeuvres[i].animate(0f, AnimationStyle.ONE);
                }
             }
             break;
 
-         case AnimationManager.STYLE_TWO:
+         case TWO:
             if (progress == 0f || progress == 1f) {
                for (Manoeuvre manoeuvre : manoeuvres) {
-                  manoeuvre.animate(progress);
+                  manoeuvre.animate(progress, AnimationStyle.TWO);
                }
 
             } else {
 
-              // TODO: implement cross-manoeuvre wing
-
+               // TODO: implement cross-manoeuvre wing
 
                // getting progress to be in the context of the flight length in manoeuvres
                progress *= getLength();
 
-               while (current < manoeuvres.length && manoeuvresCumulativeLength[current] < progress) {
-                  manoeuvres[current++].animate(1f);
+               for (i = 0; i < manoeuvres.length && manoeuvresCumulativeLength[i] < progress; i++) {
+                  manoeuvres[i].animate(0f, AnimationStyle.TWO);
                }
 
+               float mLength = manoeuvres[i].getLength(),
+                  mProgress = ((mLength - (manoeuvresCumulativeLength[i] - progress))
+                     / mLength),
+                  mAnimation = (mProgress * mLength) + AnimationManager.WING_LENGTH;
+
+
                // scaling across the cumulative middle
-               manoeuvres[current].animate(1 -
-                  ((manoeuvresCumulativeLength[current] - progress) / manoeuvres[current].getLength()));
+               manoeuvres[i].animate(mProgress, AnimationStyle.TWO);
 
-               current++;
+               i++;
 
-               while (current < manoeuvres.length) {
-                  manoeuvres[current++].animate(0f);
+               // if a manoeuvre's animation spills over into the next one
+               if (mAnimation > mLength && i < manoeuvres.length) {
+                  manoeuvres[i].animate(
+                     (mAnimation - mLength - AnimationManager.WING_LENGTH)
+                        / manoeuvres[i].getLength(), AnimationStyle.TWO);
+                  i++;
+               }
+
+               for (; i < manoeuvres.length; i++) {
+                  manoeuvres[i].animate(0f, AnimationStyle.TWO);
                }
             }
             break;
@@ -190,15 +196,5 @@ public class Flight implements Drawable {
 
    public void setName(String name) {
       this.name = name;
-   }
-
-   public void setStyle(int style) {
-      this.style = style;
-
-      System.out.println(style);
-
-      for (Manoeuvre manoeuvre : manoeuvres) {
-         manoeuvre.setStyle(style);
-      }
    }
 }

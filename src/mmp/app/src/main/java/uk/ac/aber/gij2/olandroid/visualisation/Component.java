@@ -142,7 +142,7 @@ public class Component extends Shape implements Drawable {
    }
 
 
-   public void animate(float progress) {
+   public void animate(float progress, AnimationStyle style) {
       if (progress == 0f) {
          super.buildVerticesBuffer(null);
 
@@ -161,7 +161,8 @@ public class Component extends Shape implements Drawable {
    }
 
 
-   public void animate(float progressPre, float progressPost) {
+
+   public void animate(float progressPre, float progressPost, AnimationStyle style) {
       if (progressPre == 0f && progressPost == 0f) {
          super.buildVerticesBuffer(null);
 
@@ -191,5 +192,9 @@ public class Component extends Shape implements Drawable {
       this.length = length;
       buildVertices();
       buildMatrix();
+   }
+
+   public String toString() {
+      return "" + getLength();
    }
 }

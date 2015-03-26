@@ -9,26 +9,26 @@ import android.util.Log;
 
 import java.util.Observable;
 
+import uk.ac.aber.gij2.olandroid.visualisation.AnimationStyle;
 import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 
 
 public class AnimationManager extends Observable {
 
-   public static final int STYLE_ONE = 0, STYLE_TWO = 1;
    public static final float WING_LENGTH = 2f;
 
    private float progress, step, speed;
    private Thread animationThread;
    private AnimationRunner animator;
    private Scene scene;
-   private int style;
+   private AnimationStyle style;
 
 
    /**
     * @param scene - scene to find things to draw in
     * @param speed - a factor by which to animate
     */
-   public AnimationManager(Scene scene, float speed, int style) {
+   public AnimationManager(Scene scene, float speed, AnimationStyle style) {
       this.speed = speed;
       this.scene = scene;
       this.style = style;
@@ -89,7 +89,7 @@ public class AnimationManager extends Observable {
       setChanged();
       notifyObservers();
 
-      scene.animate(this.progress);
+      scene.getFlight().animate(this.progress, style);
    }
 
 
@@ -101,19 +101,12 @@ public class AnimationManager extends Observable {
       this.speed = speed;
    }
 
-   public int getStyle() {
+   public AnimationStyle getStyle() {
       return style;
    }
 
-   public void setStyle(int style) {
+   public void setStyle(AnimationStyle style) {
       this.style = style;
-
-      try {
-         scene.getFlight().setStyle(style);
-
-      } catch (NullPointerException exception) {
-         // occurs if there's no flight yet
-      }
    }
 
 

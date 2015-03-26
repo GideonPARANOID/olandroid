@@ -36,12 +36,6 @@ public class Scene {
       }
    }
 
-
-   public void animate(float completion) {
-      flight.animate(completion);
-   }
-
-
    public Flight getFlight() {
       return flight;
    }

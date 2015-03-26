@@ -23,8 +23,9 @@ public interface Drawable {
    /**
     * modifies a the resources used to draw the object
     * @param progress - how far the drawing has got, between 0 & 1
+    * @param style - the style of the animation
     */
-   public void animate(float progress);
+   public void animate(float progress, AnimationStyle style);
 
 
    /**
