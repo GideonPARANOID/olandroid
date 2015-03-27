@@ -134,9 +134,9 @@ public class ManoeuvreCatalogue {
                if (parser.getName().equals("component")) {
 
                   components.add(new Component(
-                     parseComponentStrength(parser.getAttributeValue(null, "pitch")),
-                     parseComponentStrength(parser.getAttributeValue(null, "yaw")),
-                     parseComponentStrength(parser.getAttributeValue(null, "roll")),
+                     Component.Bound.parse(parser.getAttributeValue(null, "pitch")),
+                     Component.Bound.parse(parser.getAttributeValue(null, "yaw")),
+                     Component.Bound.parse(parser.getAttributeValue(null, "roll")),
                      Float.parseFloat(parser.getAttributeValue(null, "length")),
                      ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
                         R.array.colour_theme_front),
@@ -144,11 +144,11 @@ public class ManoeuvreCatalogue {
                         R.array.colour_theme_back)));
 
                   // building the variable groups
-                  switch (parseManoeuvreGroup(parser.getAttributeValue(null, "group"))) {
-                     case Manoeuvre.GROUP_PRE:
+                  switch (Manoeuvre.Group.parse(parser.getAttributeValue(null, "group"))) {
+                     case PRE:
                         groupIndicesPre.add(i);
                         break;
-                     case Manoeuvre.GROUP_POST:
+                     case POST:
                         groupIndicesPost.add(i);
                         break;
                   }
@@ -163,36 +163,6 @@ public class ManoeuvreCatalogue {
                components.toArray(new Component[components.size()]), fullOLAN, name, category,
                integerListToPrimitive(groupIndicesPre), integerListToPrimitive(groupIndicesPost)));
          }
-      }
-   }
-
-
-   /**
-    * @param strength - the word to parse
-    * @return - Component.MAX, Component.ZERO, Component.MIN
-    */
-   protected int parseComponentStrength(String strength) {
-      switch (strength) {
-         case "MAX":
-            return Component.MAX;
-         case "ZERO":
-            return Component.ZERO;
-         case "MIN":
-            return Component.MIN;
-         default:
-            return Component.ZERO;
-      }
-   }
-
-
-   protected int parseManoeuvreGroup(String group) {
-      switch (group) {
-         case "PRE":
-            return Manoeuvre.GROUP_PRE;
-         case "POST":
-            return Manoeuvre.GROUP_POST;
-         default:
-            return Manoeuvre.GROUP_NONE;
       }
    }
 

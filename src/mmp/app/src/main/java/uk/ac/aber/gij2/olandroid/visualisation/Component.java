@@ -11,10 +11,36 @@ import android.opengl.Matrix;
 public class Component extends Shape implements Drawable {
 
    // bounds for movement
-   public static final int ZERO = 0, MIN = -1, MAX = 1;
+   public enum Bound {
+      MIN(-1), ZERO(0), MAX(1);
+
+      private final int value;
+
+      Bound(int value) {
+         this.value = value;
+      }
+
+      public int getValue() {
+         return value;
+      }
+
+      public static Bound parse(String bound) {
+         switch (bound) {
+            case "MAX":
+               return MAX;
+            case "ZERO":
+               return ZERO;
+            case "MIN":
+               return MIN;
+            default:
+               return ZERO;
+         }
+      }
+   }
+
 
    private final float ANGLE = 1f / 24f, WIDTH = 0.5f;
-   private int pitch, yaw, roll;
+   private Bound pitch, yaw, roll;
    private float length;
    private float[] matrix, vertices, colourFront, colourBack;
 
@@ -27,7 +53,7 @@ public class Component extends Shape implements Drawable {
     * @param colourFront - argb colour for the front of the component
     * @param colourBack - argb colour for the back of the component
     */
-   public Component(int pitch, int yaw, int roll, float length, float[] colourFront,
+   public Component(Bound pitch, Bound yaw, Bound roll, float length, float[] colourFront,
       float[] colourBack) {
 
       super();
@@ -63,12 +89,13 @@ public class Component extends Shape implements Drawable {
    protected void buildVertices() {
       float x = 0f, y = 0f, z = length, xOffset = WIDTH, yOffset = 0, zOffset = 0;
 
-      if (pitch != Component.ZERO || yaw != Component.ZERO) {
+      if (pitch != Bound.ZERO || yaw != Bound.ZERO) {
          // first & second triangles of euler
-         double theta = ANGLE * Math.PI * 2, phi = Math.atan((double) pitch / (double) yaw);
+         double theta = ANGLE * Math.PI * 2, phi =
+            Math.atan((double) pitch.getValue() / (double) yaw.getValue());
 
          // does not like dividing by minus one, mathematically works but not programmatically
-         if (yaw == MIN) {
+         if (yaw == Bound.MIN) {
             phi = Math.PI + phi;
          }
 
@@ -78,13 +105,13 @@ public class Component extends Shape implements Drawable {
       }
 
       // building the difference for a roll
-      if (roll != Component.ZERO) {
-         xOffset = (float) (WIDTH * Math.cos(roll * ANGLE * Math.PI * 2f));
-         yOffset = (float) (WIDTH * Math.sin(roll * ANGLE * Math.PI * 2f));
+      if (roll != Bound.ZERO) {
+         xOffset = (float) (WIDTH * Math.cos(roll.getValue() * ANGLE * Math.PI * 2f));
+         yOffset = (float) (WIDTH * Math.sin(roll.getValue() * ANGLE * Math.PI * 2f));
       }
 
-      if (yaw != Component.ZERO) {
-         zOffset = (float) -(WIDTH * Math.sin(yaw * ANGLE * Math.PI * 2f));
+      if (yaw != Bound.ZERO) {
+         zOffset = (float) -(WIDTH * Math.sin(yaw.getValue() * ANGLE * Math.PI * 2f));
       }
 
       vertices = new float[] {
@@ -118,16 +145,16 @@ public class Component extends Shape implements Drawable {
       Matrix.setIdentityM(mYaw, 0);
       Matrix.setIdentityM(mRoll, 0);
 
-      if (pitch != Component.ZERO) {
-         Matrix.setRotateM(mPitch, 0, factor, (float) -pitch, 0f, 0f);
+      if (pitch != Bound.ZERO) {
+         Matrix.setRotateM(mPitch, 0, factor, (float) -pitch.getValue(), 0f, 0f);
       }
 
-      if (yaw != Component.ZERO) {
-         Matrix.setRotateM(mYaw, 0, factor, 0f, (float) yaw, 0f);
+      if (yaw != Bound.ZERO) {
+         Matrix.setRotateM(mYaw, 0, factor, 0f, (float) yaw.getValue(), 0f);
       }
 
-      if (roll != Component.ZERO) {
-         Matrix.setRotateM(mRoll, 0, factor, 0f, 0f, (float) roll);
+      if (roll != Bound.ZERO) {
+         Matrix.setRotateM(mRoll, 0, factor, 0f, 0f, (float) roll.getValue());
       }
 
       // combining the euler

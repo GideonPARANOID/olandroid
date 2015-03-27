@@ -13,7 +13,22 @@ import uk.ac.aber.gij2.olandroid.Util;
 
 public class Manoeuvre implements Drawable {
 
-   public static final int GROUP_PRE = 0, GROUP_POST = 1, GROUP_NONE = 2;
+   public enum Group {
+      PRE, POST, NONE;
+
+      public static Group parse(String group) {
+         switch (group) {
+            case "PRE":
+               return PRE;
+            case "POST":
+               return POST;
+            case "NONE":
+               return NONE;
+            default:
+               return NONE;
+         }
+      }
+   }
 
    private Component[] components;
    private float[][] matrices;
@@ -289,11 +304,11 @@ public class Manoeuvre implements Drawable {
     * @param group - index of the variable group
     * @param scale - value to scale the variable's components by
     */
-   public void scaleGroup(int group, float scale) {
+   public void scaleGroup(Group group, float scale) {
 
       // unscaling & rescaling with the new one
       switch (group) {
-         case Manoeuvre.GROUP_PRE:
+         case PRE:
             for (int index : groupIndicesPre) {
                components[index].setLength(
                   (components[index].getLength() / groupScalePre) * scale);
@@ -302,7 +317,7 @@ public class Manoeuvre implements Drawable {
             groupScalePre = scale;
             break;
 
-         case Manoeuvre.GROUP_POST:
+         case POST:
             for (int index : groupIndicesPost) {
                components[index].setLength(
                   (components[index].getLength() / groupScalePost) * scale);

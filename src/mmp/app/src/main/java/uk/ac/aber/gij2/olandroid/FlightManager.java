@@ -82,11 +82,11 @@ public class FlightManager {
                groupLengthPost = Util.findOccurrences("`", matcher.group(4));
 
             if (groupLengthPre > 0f) {
-               manoeuvres[i].scaleGroup(Manoeuvre.GROUP_PRE, 1 / (groupLengthPre + 1f));
+               manoeuvres[i].scaleGroup(Manoeuvre.Group.PRE, 1 / (groupLengthPre + 1f));
             }
 
             if (groupLengthPost > 0f) {
-               manoeuvres[i].scaleGroup(Manoeuvre.GROUP_POST, 1 / (groupLengthPost + 1f));
+               manoeuvres[i].scaleGroup(Manoeuvre.Group.POST, 1 / (groupLengthPost + 1f));
             }
 
             // counting the pluses
