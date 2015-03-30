@@ -42,7 +42,7 @@ public class Grid extends Shape implements Drawable {
    @Override
    public void draw(float[] initialMatrix) {
       if (!super.drawingSetup) {
-         setupDrawing();
+         super.setupDrawing();
       }
 
       // using the original matrix, translates it around & drawing the grid unit

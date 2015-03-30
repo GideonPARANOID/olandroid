@@ -7,20 +7,19 @@ package uk.ac.aber.gij2.olandroid.visualisation;
 
 import android.content.Context;
 
-import uk.ac.aber.gij2.olandroid.OLANdroid;
-import uk.ac.aber.gij2.olandroid.R;
-
 
 public class Scene {
 
-   private Grid grid;
-   private Flight flight;
+   private Drawable plane, flight;
 
 
    public Scene(Context context) {
-      grid = new Grid(5, 10,
+/*
+      plane = new Grid(5, 10,
          ((OLANdroid) context.getApplicationContext())
             .getCurrentColourTheme(R.array.colour_theme_grid));
+*/
+      plane = new Ground(100, 0);
    }
 
 
@@ -29,27 +28,27 @@ public class Scene {
     * @param initialMatrix - the initial matrix to start drawing from
     */
    public void draw(float[] initialMatrix) {
-      grid.draw(initialMatrix);
+      plane.draw(initialMatrix);
 
       if (flight != null) {
          flight.draw(initialMatrix);
       }
    }
 
-   public Flight getFlight() {
+   public Drawable getFlight() {
       return flight;
    }
 
-   public void setFlight(Flight flight) {
+   public void setFlight(Drawable flight) {
       this.flight = flight;
    }
 
-   public Grid getGrid() {
-      return grid;
+   public Drawable getPlane() {
+      return plane;
    }
 
-   public void setGrid(Grid grid) {
-      this.grid = grid;
+   public void setPlane(Drawable plane) {
+      this.plane = plane;
    }
 }
 

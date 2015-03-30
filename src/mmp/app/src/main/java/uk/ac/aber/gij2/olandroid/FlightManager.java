@@ -152,7 +152,7 @@ public class FlightManager {
     * @throws InvalidFlightException - if there's another flight with the name already taken
     */
    public void saveCurrentFlight(String newName) throws InvalidFlightException {
-      String activeFlightName = app.getScene().getFlight().getName();
+      String activeFlightName = ((Flight) app.getScene().getFlight()).getName();
 
       // if we're not modifying the current flight, check there's no name clash
       if (!(activeFlightName == null ? "" : activeFlightName).equals(newName)) {
@@ -163,7 +163,7 @@ public class FlightManager {
          }
       }
 
-      Flight flight = app.getScene().getFlight();
+      Flight flight = (Flight) app.getScene().getFlight();
       flight.setName(newName);
 
       addFlight(flight, true);

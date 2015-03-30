@@ -11,6 +11,8 @@ import android.graphics.Color;
 import android.preference.PreferenceManager;
 
 import uk.ac.aber.gij2.olandroid.visualisation.AnimationStyle;
+import uk.ac.aber.gij2.olandroid.visualisation.Flight;
+import uk.ac.aber.gij2.olandroid.visualisation.Grid;
 import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 
 
@@ -37,6 +39,11 @@ public class OLANdroid extends Application implements
          Float.parseFloat(preferences.getString("p_animation_speed", "1")),
          Integer.parseInt(preferences.getString("p_animation_style", "0")) == 0 ?
             AnimationStyle.ONE : AnimationStyle.TWO);
+
+      // setting up the renderer early, with the texture catalogue
+      new uk.ac.aber.gij2.olandroid.visualisation.Renderer(this, new int[] {
+         R.drawable.grass
+      });
    }
 
 
@@ -46,9 +53,12 @@ public class OLANdroid extends Application implements
     */
    public void buildAndSetFlight(String olan) throws InvalidFlightException {
 
-      String oldName = getScene().getFlight() != null ? scene.getFlight().getName() : null;
-      scene.setFlight(flightManager.buildFlight(olan));
-      scene.getFlight().setName(oldName);
+      String oldName = getScene().getFlight() != null ?
+         ((Flight) scene.getFlight()).getName() : null;
+
+      Flight flight = flightManager.buildFlight(olan);
+      flight.setName(oldName);
+      scene.setFlight(flight);
       updateColourTheme();
    }
 
@@ -58,12 +68,16 @@ public class OLANdroid extends Application implements
     */
    public void updateColourTheme() {
       if (scene.getFlight() != null) {
-         scene.getFlight().setColourFront(getCurrentColourTheme(R.array.colour_theme_front));
-         scene.getFlight().setColourBack(getCurrentColourTheme(R.array.colour_theme_back));
+         Flight flight = (Flight) scene.getFlight();
+         flight.setColourFront(getCurrentColourTheme(R.array.colour_theme_front));
+         flight.setColourBack(getCurrentColourTheme(R.array.colour_theme_back));
       }
 
-      scene.getGrid().setColourFront(getCurrentColourTheme(R.array.colour_theme_grid));
-      scene.getGrid().setColourBack(getCurrentColourTheme(R.array.colour_theme_grid));
+      if (scene.getPlane() instanceof Grid) {
+         Grid grid = (Grid) scene.getPlane();
+         grid.setColourFront(getCurrentColourTheme(R.array.colour_theme_grid));
+         grid.setColourBack(getCurrentColourTheme(R.array.colour_theme_grid));
+      }
    }
 
 
@@ -113,7 +127,7 @@ public class OLANdroid extends Application implements
     */
    public boolean getIsFirstLaunch() {
       boolean result = preferences.getBoolean("p_first_launch", true);
-      preferences.edit().putBoolean("p_first_launch", result ? false : false).commit();
+      preferences.edit().putBoolean("p_first_launch", result ? false : false).apply();
       return result;
    }
 

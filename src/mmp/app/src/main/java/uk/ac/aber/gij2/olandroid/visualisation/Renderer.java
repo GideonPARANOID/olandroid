@@ -6,8 +6,11 @@
 package uk.ac.aber.gij2.olandroid.visualisation;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.opengl.GLUtils;
 import android.opengl.Matrix;
 import android.util.Log;
 
@@ -39,7 +42,20 @@ public class Renderer implements GLSurfaceView.Renderer {
    private Scene scene;
 
 
-   public Renderer(Context context) {
+   private int[] textureIds, textures;
+
+   private static Renderer instance;
+
+
+
+   public static Renderer getInstance() {
+      return instance;
+   }
+
+
+   public Renderer(Context context, int[] textureIds) {
+      instance = this;
+
       this.context = context;
 
       mMVPMatrix = new float[16];
@@ -52,8 +68,9 @@ public class Renderer implements GLSurfaceView.Renderer {
       viewTranslationX = 0f;
       viewZoom = 1f;
 
-      viewMatrix = new float[16];
+      this.textureIds = textureIds;
 
+      viewMatrix = new float[16];
       buildViewMatrix();
    }
 
@@ -85,6 +102,13 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       GLES20.glEnable(GLES20.GL_CULL_FACE);
       GLES20.glEnable(GLES20.GL_DEPTH_TEST);
+
+      textures = new int[textureIds.length];
+      for (int i = 0; i < textureIds.length; i++) {
+         textures[i] = loadTexture(textureIds[i]);
+      }
+
+      System.out.println(java.util.Arrays.toString(textures));
 
       Matrix.setIdentityM(mViewMatrix, 0);
 
@@ -198,6 +222,46 @@ public class Renderer implements GLSurfaceView.Renderer {
       GLES20.glCompileShader(shader);
 
       return shader;
+   }
+
+
+
+   public int loadTexture(final int resourceId) {
+      final int[] textureHandle = new int[1];
+
+      GLES20.glGenTextures(1, textureHandle, 0);
+
+      if (textureHandle[0] != 0) {
+         final BitmapFactory.Options options = new BitmapFactory.Options();
+         options.inScaled = false;   // no pre-scaling
+
+         // Read in the resource
+         final Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId, options);
+
+         // bind to the texture in opengl
+         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandle[0]);
+
+         // set filtering
+         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
+         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_NEAREST);
+
+         // load the bitmap into the bound texture
+         GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
+
+         // recycle the bitmap, since its data has been loaded into opengl
+         bitmap.recycle();
+      }
+
+      if (textureHandle[0] == 0) {
+         throw new RuntimeException("error loading texture");
+      }
+
+      return textureHandle[0];
+   }
+
+
+   public int[] getTextures() {
+      return textures;
    }
 
 

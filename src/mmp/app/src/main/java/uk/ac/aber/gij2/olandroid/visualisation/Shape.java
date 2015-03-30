@@ -22,7 +22,7 @@ public abstract class Shape implements Drawable {
 
    private FloatBuffer vertexBuffer, textureCoordsBuffer;
    private ShortBuffer drawOrderBuffer;
-   private float[] colourFront, colourBack, textureCoords;
+   private float[] colourFront, colourBack;
 
    // handles
    private int points, mPositionHandle, mColourHandle, mMVPMatrixHandle, mUseTextureHandle,
@@ -31,11 +31,16 @@ public abstract class Shape implements Drawable {
    // texture resource handle
    private int texture;
 
+   private int textureId;
+
+   private boolean useTexture;
+
+
    protected boolean drawingSetup;
-   private Style drawMode;
+   private final Style drawMode;
 
    // whether to draw or not, a way of skipping emptying buffers
-   private boolean draw = true;
+   private boolean draw;
 
 
    protected Shape() {
@@ -45,8 +50,12 @@ public abstract class Shape implements Drawable {
 
    protected Shape(Style drawMode) {
       this.drawMode = drawMode;
+      draw = true;
       drawingSetup = false;
+
+      useTexture = false;
    }
+
 
    /**
     * constructs buffers & makes references to shader program variables, needs vertex & draw orders
@@ -63,6 +72,12 @@ public abstract class Shape implements Drawable {
       mPositionHandle = GLES20.glGetAttribLocation(Renderer.program, "vPosition");
       mMVPMatrixHandle = GLES20.glGetUniformLocation(Renderer.program, "uMVPMatrix");
       mUseTextureHandle = GLES20.glGetUniformLocation(Renderer.program, "uUseTexture");
+      mTextureHandle = GLES20.glGetUniformLocation(Renderer.program, "uTexture");
+      mTextureCoordsHandle = GLES20.glGetAttribLocation(Renderer.program, "aTextureCoords");
+
+      if (useTexture) {
+         texture = Renderer.getInstance().getTextures()[textureId];
+      }
 
       Renderer.checkGlError("glGetUniformLocation");
 
@@ -83,8 +98,6 @@ public abstract class Shape implements Drawable {
       if (draw) {
          GLES20.glUseProgram(Renderer.program);
 
-         GLES20.glUniform1i(mUseTextureHandle, 0);
-
          // enabling a handle to the triangle vertices
          GLES20.glEnableVertexAttribArray(mPositionHandle);
 
@@ -97,17 +110,39 @@ public abstract class Shape implements Drawable {
 
          switch (drawMode) {
             case FILL:
-               // painting the front (bottom)
-               GLES20.glCullFace(GLES20.GL_FRONT);
-               GLES20.glUniform4fv(mColourHandle, 1, colourFront, 0);
-               GLES20.glDrawElements(GLES20.GL_TRIANGLES, points, GLES20.GL_UNSIGNED_SHORT,
-                  drawOrderBuffer);
+               if (useTexture) {
+                  GLES20.glUniform1i(mUseTextureHandle, 1);
 
-               // painting the back (top)
-               GLES20.glCullFace(GLES20.GL_BACK);
-               GLES20.glUniform4fv(mColourHandle, 1, colourBack, 0);
-               GLES20.glDrawElements(GLES20.GL_TRIANGLES, points, GLES20.GL_UNSIGNED_SHORT,
-                  drawOrderBuffer);
+                  GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
+                  GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture);
+
+                  // giving the sampler the right texture id
+                  GLES20.glUniform1i(mTextureHandle, 0);
+
+                  GLES20.glVertexAttribPointer(mTextureCoordsHandle, 2, GLES20.GL_FLOAT, false, 0,
+                     textureCoordsBuffer);
+
+                  GLES20.glEnableVertexAttribArray(mTextureCoordsHandle);
+
+                  GLES20.glDrawElements(GLES20.GL_TRIANGLES, points, GLES20.GL_UNSIGNED_SHORT,
+                     drawOrderBuffer);
+
+               } else {
+                  GLES20.glUniform1i(mUseTextureHandle, 0);
+
+                  // painting the front (bottom)
+                  GLES20.glCullFace(GLES20.GL_FRONT);
+                  GLES20.glUniform4fv(mColourHandle, 1, colourFront, 0);
+                  GLES20.glDrawElements(GLES20.GL_TRIANGLES, points, GLES20.GL_UNSIGNED_SHORT,
+                     drawOrderBuffer);
+
+                  // painting the back (top)
+                  GLES20.glCullFace(GLES20.GL_BACK);
+                  GLES20.glUniform4fv(mColourHandle, 1, colourBack, 0);
+                  GLES20.glDrawElements(GLES20.GL_TRIANGLES, points, GLES20.GL_UNSIGNED_SHORT,
+                     drawOrderBuffer);
+               }
+
                break;
 
             case LINES:
@@ -153,11 +188,29 @@ public abstract class Shape implements Drawable {
       drawOrderBuffer.put(drawOrder).position(0);
    }
 
+   /**
+    * @param textureCoords - texture coords
+    */
+   protected void buildTextureCoordsBuffer(float[] textureCoords) {
+
+      // initialise texture coordinates byte buffer for shape coordinates, 4 bytes per float
+      textureCoordsBuffer = ByteBuffer.allocateDirect(textureCoords.length * 4).order(
+         ByteOrder.nativeOrder()).asFloatBuffer();
+      textureCoordsBuffer.put(textureCoords).position(0);
+   }
+
+
    public void setColourFront(float[] colourFront) {
       this.colourFront = colourFront;
    }
 
    public void setColourBack(float[] colourBack) {
       this.colourBack = colourBack;
+   }
+
+
+   public void setTextureId(int textureId) {
+      this.textureId = textureId;
+      useTexture = true;
    }
 }

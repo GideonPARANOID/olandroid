@@ -33,7 +33,8 @@ public class SurfaceView extends GLSurfaceView {
       super(context, attributes);
       super.setEGLConfigChooser(8 , 8, 8, 8, 16, 0);
 
-      renderer = new uk.ac.aber.gij2.olandroid.visualisation.Renderer(context);
+      renderer = uk.ac.aber.gij2.olandroid.visualisation.Renderer.getInstance();
+
       setEGLContextClientVersion(2);
       setRenderer(renderer);
 

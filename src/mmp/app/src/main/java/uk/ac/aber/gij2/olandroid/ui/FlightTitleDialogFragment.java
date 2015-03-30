@@ -18,6 +18,7 @@ import android.widget.Toast;
 import uk.ac.aber.gij2.olandroid.InvalidFlightException;
 import uk.ac.aber.gij2.olandroid.OLANdroid;
 import uk.ac.aber.gij2.olandroid.R;
+import uk.ac.aber.gij2.olandroid.visualisation.Flight;
 
 
 public class FlightTitleDialogFragment extends DialogFragment {
@@ -47,10 +48,12 @@ public class FlightTitleDialogFragment extends DialogFragment {
             final OLANdroid app = (OLANdroid) getActivity().getApplication();
 
             // sets the default text if modifying a saved flight
-            if (app.getScene().getFlight().getName() != null) {
+            Flight flight = (Flight) app.getScene().getFlight();
+
+            if (flight.getName() != null) {
                EditText titleEntry = (EditText) getDialog().findViewById(R.id.d_text_flight_title);
 
-               titleEntry.setText(app.getScene().getFlight().getName());
+               titleEntry.setText(flight.getName());
                titleEntry.setSelection(titleEntry.getText().length());
             }
 

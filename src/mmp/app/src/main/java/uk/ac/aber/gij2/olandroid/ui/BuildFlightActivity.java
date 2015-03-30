@@ -27,6 +27,7 @@ import uk.ac.aber.gij2.olandroid.InvalidFlightException;
 import uk.ac.aber.gij2.olandroid.OLANdroid;
 import uk.ac.aber.gij2.olandroid.ManoeuvreCatalogue;
 import uk.ac.aber.gij2.olandroid.R;
+import uk.ac.aber.gij2.olandroid.visualisation.Flight;
 import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
 
 
@@ -97,8 +98,10 @@ public class BuildFlightActivity extends ActionBarActivity implements
       OLANdroid app = (OLANdroid) getApplication();
 
       // set the default text for editing flights
-      if (app.getScene().getFlight() != null && app.getScene().getFlight().getOLAN() != null) {
-         olanEntry.setText(app.getScene().getFlight().getOLAN() + " ");
+      Flight flight = (Flight) app.getScene().getFlight();
+
+      if (flight != null && flight.getOLAN() != null) {
+         olanEntry.setText(flight.getOLAN() + " ");
          olanEntry.setSelection(olanEntry.getText().length());
       }
    }
