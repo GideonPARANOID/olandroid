@@ -6,19 +6,19 @@
       android:title="@string/p_category_visualisation">
 
       <ListPreference
+         android:key="p_plane_style"
+         android:title="@string/p_plane_style_title"
+         android:summary="@string/p_plane_style_summary"
+         android:entries="@array/p_plane_style_titles"
+         android:entryValues="@array/p_plane_style_values"
+         android:defaultValue="0" />
+
+      <ListPreference
          android:key="p_colour_theme"
          android:title="@string/p_colour_theme_title"
          android:summary="@string/p_colour_theme_summary"
          android:entries="@array/p_colour_theme_titles"
          android:entryValues="@array/p_colour_theme_values"
-         android:defaultValue="0" />
-
-      <ListPreference
-         android:key="p_control_scheme"
-         android:title="@string/p_control_scheme_title"
-         android:summary="@string/p_control_scheme_summary"
-         android:entries="@array/p_control_scheme_titles"
-         android:entryValues="@array/p_control_scheme_values"
          android:defaultValue="0" />
 
       <ListPreference
@@ -36,5 +36,14 @@
          android:entries="@array/p_animation_style_titles"
          android:entryValues="@array/p_animation_style_values"
          android:defaultValue="0" />
+
+      <ListPreference
+         android:key="p_control_scheme"
+         android:title="@string/p_control_scheme_title"
+         android:summary="@string/p_control_scheme_summary"
+         android:entries="@array/p_control_scheme_titles"
+         android:entryValues="@array/p_control_scheme_values"
+         android:defaultValue="0" />
+
    </PreferenceCategory>
 </PreferenceScreen>

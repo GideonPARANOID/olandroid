@@ -138,9 +138,9 @@ public class ManoeuvreCatalogue {
                      Component.Bound.parse(parser.getAttributeValue(null, "yaw")),
                      Component.Bound.parse(parser.getAttributeValue(null, "roll")),
                      Float.parseFloat(parser.getAttributeValue(null, "length")),
-                     ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
+                     ((OLANdroid) context.getApplicationContext()).getColourTheme(
                         R.array.colour_theme_front),
-                     ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
+                     ((OLANdroid) context.getApplicationContext()).getColourTheme(
                         R.array.colour_theme_back)));
 
                   // building the variable groups

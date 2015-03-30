@@ -28,6 +28,9 @@ public class Renderer implements GLSurfaceView.Renderer {
 
    public static int program;
 
+   public static float DRAW_BOUNDS = 100f;
+
+
    // view & scene building tools
    private final float[] mMVPMatrix, mProjectionMatrix, mViewMatrix;
 
@@ -95,7 +98,7 @@ public class Renderer implements GLSurfaceView.Renderer {
       GLES20.glAttachShader(program, fragmentShader);
       GLES20.glLinkProgram(program);
 
-      float[] colour  = ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
+      float[] colour  = ((OLANdroid) context.getApplicationContext()).getColourTheme(
          R.array.colour_theme_background);
 
       GLES20.glClearColor(colour[0], colour[1], colour[2], colour[3]);
@@ -123,11 +126,13 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       float ratio = (float) width / height;
 
-      // projection matrix is applied to object coordinates in the draw method
-      Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1f, 1000f);
+      // projection matrix is applied to object coordinates in the draw method, view distance is
+      //    rough, two times the max draw bounds (distance from centre to corner)
+      Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1f,
+         2f * (float) Math.pow(Math.pow((double) Renderer.DRAW_BOUNDS, 2) * 2, 0.5));
 
       // refreshing colours
-      float[] colour  = ((OLANdroid) context.getApplicationContext()).getCurrentColourTheme(
+      float[] colour  = ((OLANdroid) context.getApplicationContext()).getColourTheme(
          R.array.colour_theme_background);
 
       GLES20.glClearColor(colour[0], colour[1], colour[2], colour[3]);

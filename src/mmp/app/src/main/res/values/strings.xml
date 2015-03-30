@@ -51,12 +51,14 @@
    <!-- preferences -->
    <string name="p_label">Preferences</string>
    <string name="p_category_visualisation">Visualisation</string>
-   <string name="p_colour_theme_title">Theme</string>
+   <string name="p_plane_style_title">Plane style</string>
+   <string name="p_plane_style_summary">What the reference plane looks like</string>
+   <string name="p_colour_theme_title">Colour theme</string>
    <string name="p_colour_theme_summary">Colour scheme for the visualisation</string>
-   <string name="p_control_scheme_title">Control schemes</string>
-   <string name="p_control_scheme_summary">How to interact with the visualisation</string>
    <string name="p_animation_speed_title">Animation speed</string>
    <string name="p_animation_speed_summary">How fast the animation plays</string>
    <string name="p_animation_style_title">Animation style</string>
    <string name="p_animation_style_summary">The way the animation looks</string>
+   <string name="p_control_scheme_title">Control schemes</string>
+   <string name="p_control_scheme_summary">How to interact with the visualisation</string>
 </resources>

@@ -13,6 +13,7 @@ import android.preference.PreferenceManager;
 import uk.ac.aber.gij2.olandroid.visualisation.AnimationStyle;
 import uk.ac.aber.gij2.olandroid.visualisation.Flight;
 import uk.ac.aber.gij2.olandroid.visualisation.Grid;
+import uk.ac.aber.gij2.olandroid.visualisation.Ground;
 import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 
 
@@ -32,9 +33,16 @@ public class OLANdroid extends Application implements
       preferences = PreferenceManager.getDefaultSharedPreferences(this);
       preferences.registerOnSharedPreferenceChangeListener(this);
 
-      scene = new Scene(this);
-      manoeuvreCatalogue = new ManoeuvreCatalogue(this);
+      scene = new Scene();
+
+      scene.setPlane(Integer.parseInt(preferences.getString("p_plane_style", "0")) == 0 ?
+         new Grid(5f, getColourTheme(R.array.colour_theme_grid)) :
+         new Ground(0));
+
+      manoeuvreCatalogue = new ManoeuvreCatalogue(this)
+      ;
       flightManager = new FlightManager(this, manoeuvreCatalogue);
+
       animationManager = new AnimationManager(scene,
          Float.parseFloat(preferences.getString("p_animation_speed", "1")),
          Integer.parseInt(preferences.getString("p_animation_style", "0")) == 0 ?
@@ -67,16 +75,18 @@ public class OLANdroid extends Application implements
     * updates the colour theme for the current flight
     */
    public void updateColourTheme() {
-      if (scene.getFlight() != null) {
-         Flight flight = (Flight) scene.getFlight();
-         flight.setColourFront(getCurrentColourTheme(R.array.colour_theme_front));
-         flight.setColourBack(getCurrentColourTheme(R.array.colour_theme_back));
+
+      Flight flight = (Flight) scene.getFlight();
+      if (flight != null) {
+
+         flight.setColourFront(getColourTheme(R.array.colour_theme_front));
+         flight.setColourBack(getColourTheme(R.array.colour_theme_back));
       }
 
       if (scene.getPlane() instanceof Grid) {
          Grid grid = (Grid) scene.getPlane();
-         grid.setColourFront(getCurrentColourTheme(R.array.colour_theme_grid));
-         grid.setColourBack(getCurrentColourTheme(R.array.colour_theme_grid));
+         grid.setColourFront(getColourTheme(R.array.colour_theme_grid));
+         grid.setColourBack(getColourTheme(R.array.colour_theme_grid));
       }
    }
 
@@ -85,7 +95,7 @@ public class OLANdroid extends Application implements
     * @param listId - id of list of colours to look in
     * @return - array of floats representing a colour, rgba designed for use with opengl
     */
-   public float[] getCurrentColourTheme(int listId) {
+   public float[] getColourTheme(int listId) {
       int colour = getResources().obtainTypedArray(listId).getColor(
          Integer.parseInt(preferences.getString("p_colour_theme", "0")), 0);
 
@@ -101,11 +111,14 @@ public class OLANdroid extends Application implements
    @Override
    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
       switch (key) {
-         case "p_colour_theme":
-            updateColourTheme();
+         case "p_plane_style":
+            scene.setPlane(Integer.parseInt(preferences.getString("p_plane_style", "0")) == 0 ?
+               new Grid(5f, getColourTheme(R.array.colour_theme_grid)) :
+               new Ground(0));
             break;
 
-         case "p_controls_scheme":
+         case "p_colour_theme":
+            updateColourTheme();
             break;
 
          case "p_animation_speed":
@@ -117,6 +130,10 @@ public class OLANdroid extends Application implements
             animationManager.setStyle(Integer.parseInt(
                   preferences.getString("p_animation_style", "0")) == 0 ?
                   AnimationStyle.ONE : AnimationStyle.TWO);
+
+         case "p_controls_scheme":
+            break;
+
       }
    }
 

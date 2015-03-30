@@ -5,22 +5,10 @@
 
 package uk.ac.aber.gij2.olandroid.visualisation;
 
-import android.content.Context;
-
 
 public class Scene {
 
    private Drawable plane, flight;
-
-
-   public Scene(Context context) {
-/*
-      plane = new Grid(5, 10,
-         ((OLANdroid) context.getApplicationContext())
-            .getCurrentColourTheme(R.array.colour_theme_grid));
-*/
-      plane = new Ground(100, 0);
-   }
 
 
    /**

@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+   <string-array name="p_plane_style_titles">
+      <item>Grid</item>
+      <item>Textured ground</item>
+   </string-array>
+
+    <!-- lookup table indices -->
+   <string-array name="p_plane_style_values">
+      <item>0</item>
+      <item>1</item>
+   </string-array>
+
+
    <string-array name="p_colour_theme_titles">
       <item>Sky &amp; grass</item>
       <item>Tron</item>
@@ -33,18 +45,6 @@
    </array>
 
 
-   <!-- lookup tables for control schemes -->
-   <string-array name="p_control_scheme_titles">
-      <item>Two finger rotate, one finger translate</item>
-      <item>One finger rotate, two finger translate</item>
-   </string-array>
-
-   <string-array name="p_control_scheme_values">
-      <item>0</item>
-      <item>1</item>
-   </string-array>
-
-
     <!-- lookup tables for animation speed -->
    <string-array name="p_animation_speed_titles">
       <item>Slowest</item>
@@ -73,4 +73,18 @@
       <item>0</item>
       <item>1</item>
    </string-array>
+
+
+   <!-- lookup tables for control schemes -->
+   <string-array name="p_control_scheme_titles">
+      <item>Two finger rotate, one finger translate</item>
+      <item>One finger rotate, two finger translate</item>
+   </string-array>
+
+   <string-array name="p_control_scheme_values">
+      <item>0</item>
+      <item>1</item>
+   </string-array>
+
+
 </resources>

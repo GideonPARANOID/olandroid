@@ -10,27 +10,26 @@ import android.opengl.Matrix;
 
 public class Grid extends Shape implements Drawable {
 
-   private final float unit, dimensions;
+   private final float unitSize;
 
 
    /**
-    * @param unit - size of a unit of the grid
-    * @param dimensions - dimensions of the whole grid in terms of grid units
+    * @param unitSize - size of a grid unit, ideally a factor of the renderer's draw bounds
+    * @param colour - the colour, as an array representation
     */
-   public Grid(float unit, float dimensions, float[] colour) {
+   public Grid(float unitSize, float[] colour) {
       super(Shape.Style.LINES);
+
+      this.unitSize = unitSize;
 
       super.setColourFront(colour);
       super.setColourBack(colour);
 
-      this.unit = unit;
-      this.dimensions = dimensions * unit;
-
       super.buildVerticesBuffer(new float[]{
          0, 0, 0,
-         0, 0, unit,
-         unit, 0, unit,
-         unit, 0, 0
+         0, 0, unitSize,
+         unitSize, 0, unitSize,
+         unitSize, 0, 0
       });
 
       super.buildDrawOrderBuffer(new short[]{
@@ -46,8 +45,8 @@ public class Grid extends Shape implements Drawable {
       }
 
       // using the original matrix, translates it around & drawing the grid unit
-      for (float i = -dimensions; i < dimensions; i += unit) {
-         for (float j = -dimensions; j < dimensions; j += unit) {
+      for (float limit = Renderer.DRAW_BOUNDS / 2f, i = -limit; i < limit; i += unitSize) {
+         for (float j = -limit; j < limit; j += unitSize) {
 
             float[] newMatrix = new float[16];
             Matrix.translateM(newMatrix, 0, initialMatrix, 0, i, 0f, j);

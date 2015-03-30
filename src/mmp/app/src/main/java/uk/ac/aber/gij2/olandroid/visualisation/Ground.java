@@ -10,25 +10,19 @@ import android.opengl.Matrix;
 
 public class Ground extends Shape implements Drawable {
 
-   private final float dimensions;
-
-
    /**
-    * @param dimensions - dimensions of the whole plane
     * @param textureId - textureId resource
     */
-   public Ground(int dimensions, int textureId) {
+   public Ground(int textureId) {
       super();
-
-      this.dimensions = dimensions;
 
       super.setTextureId(textureId);
 
       super.buildVerticesBuffer(new float[] {
          0, 0, 0,
-         0, 0, dimensions,
-         dimensions, 0, dimensions,
-         dimensions, 0, 0
+         0, 0, Renderer.DRAW_BOUNDS,
+         Renderer.DRAW_BOUNDS, 0, Renderer.DRAW_BOUNDS,
+         Renderer.DRAW_BOUNDS, 0, 0
       });
 
       super.buildDrawOrderBuffer(new short[] {
@@ -53,11 +47,9 @@ public class Ground extends Shape implements Drawable {
          super.setupDrawing();
       }
 
-
       float[] newMatrix = new float[16];
-      Matrix.translateM(newMatrix, 0, initialMatrix, 0, -dimensions / 2f, 0, -dimensions / 2f);
+      Matrix.translateM(newMatrix, 0, initialMatrix, 0, -Renderer.DRAW_BOUNDS / 2f, 0, -Renderer.DRAW_BOUNDS / 2f);
       super.draw(newMatrix);
-
    }
 
 

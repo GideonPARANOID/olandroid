@@ -67,7 +67,6 @@ public class SurfaceView extends GLSurfaceView {
    }
 
 
-
    @Override
    public boolean onTouchEvent(@NonNull MotionEvent event) {
       switch (event.getActionMasked()) {
