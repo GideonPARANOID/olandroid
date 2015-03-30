@@ -20,11 +20,16 @@ public abstract class Shape implements Drawable {
       FILL, LINES
    }
 
-   private FloatBuffer vertexBuffer;
+   private FloatBuffer vertexBuffer, textureCoordsBuffer;
    private ShortBuffer drawOrderBuffer;
+   private float[] colourFront, colourBack, textureCoords;
 
-   private int points, mPositionHandle, mColourHandle, mMVPMatrixHandle;
-   private float[] colourFront, colourBack;
+   // handles
+   private int points, mPositionHandle, mColourHandle, mMVPMatrixHandle, mUseTextureHandle,
+      mTextureCoordsHandle, mTextureHandle;
+
+   // texture resource handle
+   private int texture;
 
    protected boolean drawingSetup;
    private Style drawMode;
@@ -57,6 +62,7 @@ public abstract class Shape implements Drawable {
       mColourHandle = GLES20.glGetUniformLocation(Renderer.program, "vColour");
       mPositionHandle = GLES20.glGetAttribLocation(Renderer.program, "vPosition");
       mMVPMatrixHandle = GLES20.glGetUniformLocation(Renderer.program, "uMVPMatrix");
+      mUseTextureHandle = GLES20.glGetUniformLocation(Renderer.program, "uUseTexture");
 
       Renderer.checkGlError("glGetUniformLocation");
 
@@ -76,6 +82,8 @@ public abstract class Shape implements Drawable {
 
       if (draw) {
          GLES20.glUseProgram(Renderer.program);
+
+         GLES20.glUniform1i(mUseTextureHandle, 0);
 
          // enabling a handle to the triangle vertices
          GLES20.glEnableVertexAttribArray(mPositionHandle);

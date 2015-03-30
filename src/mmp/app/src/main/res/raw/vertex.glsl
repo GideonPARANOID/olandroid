@@ -4,12 +4,18 @@
 uniform mat4 uMVPMatrix;
 attribute vec4 vPosition;
 
+attribute vec2 aTextureCoordinate;
+varying vec2 vTextureCoordinate;
+
 
 void main() {
 
    // the matrix must be included as a modifier of gl_Position.
    // note that the uMVPMatrix factor *must be first* in order
    // for the matrix multiplication product to be correct.
+
+
+   vTextureCoordinate = aTextureCoordinate;
 
    gl_Position = uMVPMatrix * vPosition;
 }
