@@ -5,6 +5,7 @@
 
 package uk.ac.aber.gij2.olandroid;
 
+import android.opengl.Matrix;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -98,7 +99,28 @@ public class FlightManager {
          }
       }
 
-      return new Flight(manoeuvres);
+      return correctLowestPoint(new Flight(manoeuvres));
+   }
+
+
+   /**
+    * @param flight - flight to correct
+    * @return - a flight corrected to avoid sinking below the ground
+    * @throws InvalidFlightException - any olan problems encountered with extending the flight
+    */
+   public Flight correctLowestPoint(Flight flight) throws InvalidFlightException {
+      Flight result = flight;
+
+      float[] initialMatrix = new float[16];
+      Matrix.setIdentityM(initialMatrix, 0);
+
+      if (flight.getLowestPoint(initialMatrix) < 0) {
+         Log.d(this.getClass().getName(), "added height correction");
+         result = buildFlight(manoeuvreCatalogue.getCorrection().getOLAN()
+               + " " + flight.getOLAN());
+      }
+
+      return result;
    }
 
 
@@ -152,7 +174,7 @@ public class FlightManager {
     * @throws InvalidFlightException - if there's another flight with the name already taken
     */
    public void saveCurrentFlight(String newName) throws InvalidFlightException {
-      String activeFlightName = ((Flight) app.getScene().getFlight()).getName();
+      String activeFlightName = app.getScene().getFlight().getName();
 
       // if we're not modifying the current flight, check there's no name clash
       if (!(activeFlightName == null ? "" : activeFlightName).equals(newName)) {
@@ -163,7 +185,7 @@ public class FlightManager {
          }
       }
 
-      Flight flight = (Flight) app.getScene().getFlight();
+      Flight flight = app.getScene().getFlight();
       flight.setName(newName);
 
       addFlight(flight, true);

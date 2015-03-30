@@ -98,7 +98,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
       OLANdroid app = (OLANdroid) getApplication();
 
       // set the default text for editing flights
-      Flight flight = (Flight) app.getScene().getFlight();
+      Flight flight = app.getScene().getFlight();
 
       if (flight != null && flight.getOLAN() != null) {
          olanEntry.setText(flight.getOLAN() + " ");
@@ -145,14 +145,20 @@ public class BuildFlightActivity extends ActionBarActivity implements
     * @param view - view element source
     */
    public void button_vis(View view) {
-      try {
-         OLANdroid app = (OLANdroid) getApplication();
+      OLANdroid app = (OLANdroid) getApplication();
 
+      try {
          app.buildAndSetFlight(olanEntry.getText().toString());
+
+         // if the olan has changed in the building process, consider it corrected
+         if (!app.getScene().getFlight().getOLAN().equals(olanEntry.getText().toString().trim())) {
+            Toast.makeText(app, R.string.bfa_toast_corrected, Toast.LENGTH_SHORT).show();
+         }
+
          startActivity(new Intent(this, VisualisationActivity.class));
 
       } catch (InvalidFlightException exception) {
-         Toast.makeText(getApplication(), R.string.bfa_toast_invalid, Toast.LENGTH_SHORT).show();
+         Toast.makeText(app, R.string.bfa_toast_invalid, Toast.LENGTH_SHORT).show();
       }
    }
 

@@ -22,11 +22,12 @@ import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
 
 public class ManoeuvreCatalogue {
 
-   // we want a predictable iteration order
+   // we want a predictable iteration order for list populating
    private LinkedHashMap<String, Manoeuvre> catalogue;
    private String[] categories;
    private Context context;
 
+   private Manoeuvre correction;
 
    /**
     * @param context - the context relevant for getting the xml
@@ -122,7 +123,8 @@ public class ManoeuvreCatalogue {
 
             // variables for the manoeuvre
             String fullOLAN = parser.getAttributeValue(null, "olanPrefix") + olan,
-               name = parser.getAttributeValue(null, "name");
+               name = parser.getAttributeValue(null, "name"),
+               parsedCorrection = parser.getAttributeValue(null, "correction");
 
             List<Component> components = new ArrayList<>();
             List<Integer> groupIndicesPre = new ArrayList<>(), groupIndicesPost = new ArrayList<>();
@@ -159,9 +161,16 @@ public class ManoeuvreCatalogue {
             }
 
             // assembling the manoeuvre
-            catalogue.put(fullOLAN, new Manoeuvre(
+            Manoeuvre manoeuvre = new Manoeuvre(
                components.toArray(new Component[components.size()]), fullOLAN, name, category,
-               integerListToPrimitive(groupIndicesPre), integerListToPrimitive(groupIndicesPost)));
+               integerListToPrimitive(groupIndicesPre), integerListToPrimitive(groupIndicesPost));
+
+            catalogue.put(fullOLAN, manoeuvre);
+
+            // if the manoeuvre can be used as a correction component
+            if (parsedCorrection != null) {
+               correction = manoeuvre;
+            }
          }
       }
    }
@@ -240,5 +249,13 @@ public class ManoeuvreCatalogue {
     */
    public String[] getCategories() {
       return categories;
+   }
+
+
+   /**
+    * @return - a component which can be used for vertical correction
+    */
+   public Manoeuvre getCorrection() {
+      return correction;
    }
 }

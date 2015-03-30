@@ -39,16 +39,6 @@ public class Flight implements Drawable {
    }
 
 
-   public void draw(float[] initialMatrix) {
-
-      calculateMatrices(initialMatrix);
-
-      for (int i = 0; i < manoeuvres.length; i++) {
-         manoeuvres[i].draw(matrices[i]);
-      }
-   }
-
-
    /**
     * builds an array of matrices corresponding to the components, each relative the last component
     *    as each component is a line, its matrix defines the transform from the beginning of that
@@ -76,6 +66,38 @@ public class Flight implements Drawable {
       calculateMatrices(blank);
 
       return new float[16];
+   }
+
+
+   /**
+    * looks through the manoeuvres & finds the lowest one in the flight, from the passed matrix
+    * @param initialMatrix - matrix to build the matrix stack for manoeuvres from
+    * @return - the x translation of the lowest point in the flight
+    */
+   public float getLowestPoint(float[] initialMatrix) {
+      calculateMatrices(initialMatrix);
+
+      float result = 0;
+      for (int i = 0; i < manoeuvres.length; i++) {
+         float lowestPoint = manoeuvres[i].getLowestPoint(matrices[i]);
+
+         if (lowestPoint < result) {
+            result = lowestPoint;
+         }
+      }
+
+      return result;
+   }
+
+
+
+   public void draw(float[] initialMatrix) {
+
+      calculateMatrices(initialMatrix);
+
+      for (int i = 0; i < manoeuvres.length; i++) {
+         manoeuvres[i].draw(matrices[i]);
+      }
    }
 
 
@@ -117,8 +139,6 @@ public class Flight implements Drawable {
 
             } else {
 
-               // TODO: implement cross-manoeuvre wing
-
                // getting progress to be in the context of the flight length in manoeuvres
                progress *= getLength();
 
@@ -152,7 +172,6 @@ public class Flight implements Drawable {
             break;
       }
    }
-
 
 
    /**

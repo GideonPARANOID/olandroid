@@ -57,8 +57,20 @@ public class Util {
    }
 
 
+   /**
+    * @param matrix - opengl matrix representation of a matrix
+    * @return - a string formatted & delimited with tabs & newlines
+    */
+   public static String matrixToString(float[] matrix) {
+      StringBuilder result = new StringBuilder();
 
-
-
-
+      // opengl library's representation of matrices is with columns instead of the intuitive rows
+      for (int i = 0; i < 4; i++) {
+         for (int j = 0; i + j < matrix.length; j+= 4) {
+            result.append(String.format("%.2f", matrix[i + j])).append('\t');
+         }
+         result.append('\n');
+      }
+      return result.toString();
+   }
 }

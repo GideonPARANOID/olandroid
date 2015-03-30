@@ -39,7 +39,7 @@ public class FlightTitleDialogFragment extends DialogFragment {
 
 
       // on a new dialog box being made, setup listening on the positive button, does it this way
-      // to make sure we can validate input before its dismissed
+      //    to make sure we can validate input before its dismissed
       dialog.setOnShowListener(new DialogInterface.OnShowListener() {
 
          @Override
@@ -48,7 +48,7 @@ public class FlightTitleDialogFragment extends DialogFragment {
             final OLANdroid app = (OLANdroid) getActivity().getApplication();
 
             // sets the default text if modifying a saved flight
-            Flight flight = (Flight) app.getScene().getFlight();
+            Flight flight = app.getScene().getFlight();
 
             if (flight.getName() != null) {
                EditText titleEntry = (EditText) getDialog().findViewById(R.id.d_text_flight_title);

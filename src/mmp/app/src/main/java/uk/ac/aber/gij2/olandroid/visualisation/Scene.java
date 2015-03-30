@@ -8,7 +8,8 @@ package uk.ac.aber.gij2.olandroid.visualisation;
 
 public class Scene {
 
-   private Drawable plane, flight;
+   private Drawable plane;
+   private Flight flight;
 
 
    /**
@@ -23,11 +24,11 @@ public class Scene {
       }
    }
 
-   public Drawable getFlight() {
+   public Flight getFlight() {
       return flight;
    }
 
-   public void setFlight(Drawable flight) {
+   public void setFlight(Flight flight) {
       this.flight = flight;
    }
 

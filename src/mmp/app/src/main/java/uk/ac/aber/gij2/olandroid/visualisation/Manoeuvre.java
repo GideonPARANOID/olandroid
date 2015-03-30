@@ -111,19 +111,10 @@ public class Manoeuvre implements Drawable {
    }
 
 
-   public void draw(float[] initialMatrix) {
-      calculateMatrices(initialMatrix);
-
-      for (int i = 0; i < components.length; i++) {
-         components[i].draw(matrices[i]);
-      }
-   }
-
-
    /**
     * builds an array of matrices corresponding to the components, each relative the last component
-    * as each component is a line, its matrix defines the transform from the beginning of that
-    * line to the end, components need to be drawn starting from the end of the last line
+    *    as each component is a line, its matrix defines the transform from the beginning of that
+    *    line to the end, components need to be drawn starting from the end of the last line
     *
     * @param initialMatrix - the starting matrix
     */
@@ -152,6 +143,36 @@ public class Manoeuvre implements Drawable {
       calculateMatrices(blank);
 
       return matrices[matrices.length - 1];
+   }
+
+
+   /**
+    * looks through the components & finds the lowest one in the manoeuvre, from the passed matrix
+    * @param initialMatrix - matrix to build the matrix stack for components from
+    * @return - the x translation of the lowest point in the manoeuvre
+    */
+   public float getLowestPoint(float[] initialMatrix) {
+      float result = 0;
+
+      calculateMatrices(initialMatrix);
+
+      // far right column of a 4x4 matrix is the translation operation
+      for (float[] matrix : matrices) {
+         if (matrix[13] < result) {
+            result = matrix[13];
+         }
+      }
+
+      return result;
+   }
+
+
+   public void draw(float[] initialMatrix) {
+      calculateMatrices(initialMatrix);
+
+      for (int i = 0; i < components.length; i++) {
+         components[i].draw(matrices[i]);
+      }
    }
 
 

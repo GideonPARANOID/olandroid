@@ -31,6 +31,7 @@
    <string name="bfa_hint_olan">Enter an OLAN string</string>
    <string name="bfa_clear_olan">Clear</string>
    <string name="bfa_toast_invalid">Invalid OLAN</string>
+   <string name="bfa_toast_corrected">Flight autocorrected</string>
    <string name="bfa_help">Build a flight using an OLAN string. Browse manoeuvres in the
       catalogue below &#38; tap to add them to the current flight, or type them directly into the
       form. Some OLAN figures support modifiers &#38; can have &#8216;+/`&#8217; before &#38;/or

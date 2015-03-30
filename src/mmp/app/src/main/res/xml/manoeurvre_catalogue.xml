@@ -19,7 +19,7 @@
 
    <!--category name="{string}">
       <manoeuvre olan="{string}">
-         <variant olanPrefix="{blank,string}" name="{string}">
+         <variant olanPrefix="{blank,string}" name="{string}" correction="{x,y,z}">
             <component pitch="{MIN,ZERO,MAX}" roll="{MIN,ZERO,MAX}" yaw="{MIN,ZERO,MAX}"
                length="{float}"  group="{PRE,POST,NONE}" />
          </variant>
@@ -85,12 +85,11 @@
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
       </manoeuvre>
-
    </category>
 
    <category name="Single line element figures">
       <manoeuvre olan="d">
-         <variant olanPrefix="" name="Diagonal up line">
+         <variant olanPrefix="" name="Diagonal up line" correction="x">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />

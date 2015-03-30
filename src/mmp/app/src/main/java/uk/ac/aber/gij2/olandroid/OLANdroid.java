@@ -61,8 +61,7 @@ public class OLANdroid extends Application implements
     */
    public void buildAndSetFlight(String olan) throws InvalidFlightException {
 
-      String oldName = getScene().getFlight() != null ?
-         ((Flight) scene.getFlight()).getName() : null;
+      String oldName = getScene().getFlight() != null ? scene.getFlight().getName() : null;
 
       Flight flight = flightManager.buildFlight(olan);
       flight.setName(oldName);
@@ -76,7 +75,7 @@ public class OLANdroid extends Application implements
     */
    public void updateColourTheme() {
 
-      Flight flight = (Flight) scene.getFlight();
+      Flight flight = scene.getFlight();
       if (flight != null) {
 
          flight.setColourFront(getColourTheme(R.array.colour_theme_front));

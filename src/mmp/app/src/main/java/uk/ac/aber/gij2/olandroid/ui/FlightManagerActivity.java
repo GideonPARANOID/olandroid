@@ -149,7 +149,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
             break;
 
          case R.id.menu_fma_c_delete:
-            app.getFlightManager().deleteFlight((Flight) app.getScene().getFlight());
+            app.getFlightManager().deleteFlight(app.getScene().getFlight());
             app.getScene().setFlight(null);
             break;
       }
