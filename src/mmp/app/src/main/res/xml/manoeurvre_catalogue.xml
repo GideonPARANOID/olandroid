@@ -1946,6 +1946,166 @@
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="NONE" />
          </variant>
       </manoeuvre>
+
+      <manoeuvre olan="h">
+         <variant olanPrefix="" name="Hammerhead">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="PRE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="POST" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+         </variant>
+         <variant olanPrefix="d" name="Hammerhead with diagonal entry">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    group="PRE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="POST" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+         </variant>
+         <variant olanPrefix="dh" name="Hammerhead with diagonal entry &#38; exit">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    group="PRE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="MAX"   length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    group="POST" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+         </variant>
+      </manoeuvre>
+
+      <manoeuvre olan="ta">
+         <variant olanPrefix="" name="Tailslide">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="3"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="10"   group="NONE" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="-1"   group="NONE" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="-1"   group="NONE" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="-1"   group="NONE" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="-1"   group="NONE" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="-1"   group="NONE" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="-1"   group="NONE" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="2"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+         </variant>
+         <variant olanPrefix="i" name="Inverted tailslide">
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="3"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="10"   group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="-1"   group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="-1"   group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="-1"   group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="-1"   group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="-1"   group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="-1"   group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="2"    group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
+            <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
+         </variant>
+      </manoeuvre>
+
    </category>
 
 

@@ -224,10 +224,8 @@ public class Manoeuvre implements Drawable {
                   components[i].animate(0f, AnimationStyle.TWO);
                }
 
-
                float cLength = Math.abs(components[i].getLength()),
                   cProgress = (cLength - (componentsCumulativeLength[i] - progress)) / cLength;
-
 
                // wing will fit in this component
                if (componentsCumulativeLength[i] - progress > AnimationManager.WING_LENGTH) {
@@ -235,8 +233,8 @@ public class Manoeuvre implements Drawable {
                   // start & end of wing
                   components[i].animate(cProgress,
                      cProgress + (AnimationManager.WING_LENGTH / cLength), AnimationStyle.TWO);
-
                   i++;
+
                } else {
 
                   // start of wing
@@ -245,8 +243,6 @@ public class Manoeuvre implements Drawable {
                   float wingLeft = AnimationManager.WING_LENGTH - (cProgress * cLength);
 
                   // scaling component across back
-
-
                   for (i++; i < components.length
                      && wingLeft - components[i].getLength() > 0; i++) {
 
@@ -279,7 +275,6 @@ public class Manoeuvre implements Drawable {
                      components[i].animate(0f, AnimationStyle.TWO);
                   }
                }
-
             }
             break;
       }
