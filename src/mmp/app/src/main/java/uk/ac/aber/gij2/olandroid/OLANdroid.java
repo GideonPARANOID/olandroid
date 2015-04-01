@@ -63,7 +63,7 @@ public class OLANdroid extends Application implements
 
       String oldName = getScene().getFlight() != null ? scene.getFlight().getName() : null;
 
-      Flight flight = flightManager.buildFlight(olan);
+      Flight flight = flightManager.buildFlight(olan, getAutocorrect());
       flight.setName(oldName);
       scene.setFlight(flight);
       updateColourTheme();
@@ -110,6 +110,9 @@ public class OLANdroid extends Application implements
    @Override
    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
       switch (key) {
+         case "p_autocorrect":
+           break;
+
          case "p_plane_style":
             scene.setPlane(Integer.parseInt(preferences.getString("p_plane_style", "0")) == 0 ?
                new Grid(5f, getColourTheme(R.array.colour_theme_grid)) :
@@ -132,7 +135,6 @@ public class OLANdroid extends Application implements
 
          case "p_controls_scheme":
             break;
-
       }
    }
 
@@ -145,6 +147,12 @@ public class OLANdroid extends Application implements
       boolean result = preferences.getBoolean("p_first_launch", true);
       preferences.edit().putBoolean("p_first_launch", result ? false : false).apply();
       return result;
+   }
+
+
+   public boolean getAutocorrect() {
+      System.out.println(preferences.getBoolean("p_autocorrect", true));
+      return preferences.getBoolean("p_autocorrect", true);
    }
 
 

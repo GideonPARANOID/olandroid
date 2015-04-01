@@ -51,10 +51,11 @@ public class FlightManager {
 
    /**
     * @param olan - a description of a flight
+    * @param correct - whether or not to correct the height of the flight
     * @return - a flight defined by the olan string
     * @throws InvalidFlightException - occurs if the passed olan is invalid
     */
-   public Flight buildFlight(String olan) throws InvalidFlightException {
+   public Flight buildFlight(String olan, boolean correct) throws InvalidFlightException {
 
       if (olan == null) {
          throw new InvalidFlightException("invalid olan");
@@ -99,7 +100,7 @@ public class FlightManager {
          }
       }
 
-      return correctLowestPoint(new Flight(manoeuvres));
+      return correct ? correctLowestPoint(new Flight(manoeuvres)) : new Flight(manoeuvres);
    }
 
 
@@ -117,7 +118,7 @@ public class FlightManager {
       if (flight.getLowestPoint(initialMatrix) < 0) {
          Log.d(this.getClass().getName(), "added height correction");
          result = buildFlight(manoeuvreCatalogue.getCorrection().getOLAN()
-               + " " + flight.getOLAN());
+               + " " + flight.getOLAN(), true);
       }
 
       return result;
@@ -144,7 +145,7 @@ public class FlightManager {
                Flight flight;
 
                try {
-                  flight = buildFlight(olan);
+                  flight = buildFlight(olan, false);
                   flight.setName(name);
 
                   addFlight(flight, false);

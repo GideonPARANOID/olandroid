@@ -8,6 +8,5 @@ varying vec2 vTextureCoords;
 
 void main() {
    vTextureCoords = aTextureCoords;
-
    gl_Position = uMVPMatrix * vPosition;
 }

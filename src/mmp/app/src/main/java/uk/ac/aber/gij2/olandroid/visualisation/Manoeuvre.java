@@ -184,7 +184,7 @@ public class Manoeuvre implements Drawable {
             // if either fully drawn or fully not drawn
             if (progress == 0f || progress == 1f) {
                for (Component component : components) {
-                  component.animate(progress, AnimationStyle.ONE);
+                  component.animate(0f, progress, AnimationStyle.ONE);
                }
 
             } else {
@@ -192,7 +192,7 @@ public class Manoeuvre implements Drawable {
                progress *= getLength();
 
                for (i = 0; i < components.length && componentsCumulativeLength[i] < progress; i++) {
-                  components[i].animate(1f, AnimationStyle.ONE);
+                  components[i].animate(0f, 1f, AnimationStyle.ONE);
                }
 
                // scaling across the cumulative middle
@@ -201,7 +201,7 @@ public class Manoeuvre implements Drawable {
                      Math.abs(components[i].getLength())), AnimationStyle.ONE);
 
                for (i++; i < components.length; i++) {
-                  components[i].animate(0f, AnimationStyle.ONE);
+                  components[i].animate(0f, 0f, AnimationStyle.ONE);
                }
             }
             break;
@@ -210,7 +210,7 @@ public class Manoeuvre implements Drawable {
             // if either fully drawn or fully not drawn
             if (progress == 0f || progress == 1f) {
                for (Component component : components) {
-                  component.animate(progress, AnimationStyle.TWO);
+                  component.animate(0, progress, AnimationStyle.TWO);
                }
 
             } else {
@@ -244,10 +244,10 @@ public class Manoeuvre implements Drawable {
 
                   // scaling component across back
                   for (i++; i < components.length
-                     && wingLeft - components[i].getLength() > 0; i++) {
+                     && wingLeft - Math.abs(components[i].getLength()) > 0; i++) {
 
-                     wingLeft -= components[i].getLength();
-                     components[i].animate(1f, AnimationStyle.TWO);
+                     wingLeft -= Math.abs(components[i].getLength());
+                     components[i].animate(0f, 1f, AnimationStyle.TWO);
                   }
 
                   if (i < components.length) {
@@ -263,7 +263,7 @@ public class Manoeuvre implements Drawable {
                      if (mid >= 0 && mid <= 1) {
 
                         // scaling component across front
-                        components[i].animate(mid, AnimationStyle.TWO);
+                        components[i].animate(0f, mid, AnimationStyle.TWO);
                         i++;
                      }
                   }
@@ -272,7 +272,7 @@ public class Manoeuvre implements Drawable {
 
                if (i < components.length) {
                   for (; i < components.length; i++) {
-                     components[i].animate(0f, AnimationStyle.TWO);
+                     components[i].animate(0f, 0f, AnimationStyle.TWO);
                   }
                }
             }

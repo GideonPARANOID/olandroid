@@ -51,7 +51,10 @@
 
    <!-- preferences -->
    <string name="p_label">Preferences</string>
+   <string name="p_category_flight">Flight</string>
    <string name="p_category_visualisation">Visualisation</string>
+   <string name="p_autocorrect_title">OLAN autocorrect</string>
+   <string name="p_autocorrect_summary">Whether or not to correct the OLAN for height</string>
    <string name="p_plane_style_title">Plane style</string>
    <string name="p_plane_style_summary">What the reference plane looks like</string>
    <string name="p_colour_theme_title">Colour theme</string>

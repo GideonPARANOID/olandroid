@@ -3,6 +3,16 @@
    xmlns:android="http://schemas.android.com/apk/res/android">
 
    <PreferenceCategory
+      android:title="@string/p_category_flight">
+
+      <CheckBoxPreference
+         android:key="p_autocorrect"
+         android:title="@string/p_autocorrect_title"
+         android:summary="@string/p_autocorrect_summary"
+         android:defaultValue="true" />
+   </PreferenceCategory>
+
+   <PreferenceCategory
       android:title="@string/p_category_visualisation">
 
       <ListPreference

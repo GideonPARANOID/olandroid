@@ -170,23 +170,8 @@ public class Component extends Shape implements Drawable {
 
 
    public void animate(float progress, AnimationStyle style) {
-      if (progress == 0f) {
-         super.buildVerticesBuffer(null);
-
-      } else if (progress == 1f) {
-         super.buildVerticesBuffer(vertices);
-
-      } else {
-         // extending the y & z distance (not x, as that's width)
-         super.buildVerticesBuffer(new float[] {
-            WIDTH, 0f, 0f,
-            -WIDTH, 0f, 0f,
-            vertices[6], vertices[7] * progress, vertices[8] * progress,
-            vertices[9], vertices[10] * progress, vertices[11] * progress
-         });
-      }
+      animate(0f, progress, style);
    }
-
 
 
    public void animate(float progressPre, float progressPost, AnimationStyle style) {
@@ -197,6 +182,11 @@ public class Component extends Shape implements Drawable {
          super.buildVerticesBuffer(vertices);
 
       } else {
+
+         // correcting
+         if (length < 0) {
+            progressPost += 2;
+         }
 
          // extending the y & z distance (not x, as that's width)
          super.buildVerticesBuffer(new float[] {
