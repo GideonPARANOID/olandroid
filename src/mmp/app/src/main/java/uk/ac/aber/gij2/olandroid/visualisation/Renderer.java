@@ -128,7 +128,9 @@ public class Renderer implements GLSurfaceView.Renderer {
 
       // projection matrix is applied to object coordinates in the draw method, view distance is
       //    rough, two times the max draw bounds (distance from centre to corner)
-      Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 1f,
+      // left, right, bottom, top, near, far, defines the perspective as 2-high with a near of 1,
+      //    thus giving a field of view triangle of pi / 2 radians
+      Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1f, 1f, 1f,
          2f * (float) Math.pow(Math.pow((double) Renderer.DRAW_BOUNDS, 2) * 2, 0.5));
 
       // refreshing colours
