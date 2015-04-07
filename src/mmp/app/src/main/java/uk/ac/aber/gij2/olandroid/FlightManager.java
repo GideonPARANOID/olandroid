@@ -61,6 +61,9 @@ public class FlightManager {
          throw new InvalidFlightException("invalid olan");
       }
 
+      // getting rid of multiple spaces, so we don't break the split
+      olan = olan.replaceAll(" +", " ");
+
       // leading spaces are a challenge, so get rid of them
       if (olan.length() >= 1 && olan.substring(0, 1).equals(" ")) {
          olan = olan.substring(1);

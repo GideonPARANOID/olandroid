@@ -134,9 +134,13 @@ public class BuildFlightActivity extends ActionBarActivity implements
    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
       // finding the manoeuvre in the catalogue, getting its olan & adding to the current string
-      olanEntry.append(((OLANdroid) getApplication()).getManoeuvreCatalogue().getManoeuvres(
+      String olan = ((OLANdroid) getApplication()).getManoeuvreCatalogue().getManoeuvres(
          (String) ((Spinner) findViewById(R.id.bfa_spinner_category)).getSelectedItem())[position]
-         .getOLAN() + " ");
+            .getOLAN() + " ";
+
+      int olanPosition = olanEntry.getSelectionStart();
+      olanEntry.setText(olanEntry.getText().insert(olanPosition, olan));
+      olanEntry.setSelection(olanPosition + olan.length());
    }
 
 
