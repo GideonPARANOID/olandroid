@@ -13,6 +13,10 @@ import uk.ac.aber.gij2.olandroid.Util;
 
 public class Manoeuvre implements Drawable {
 
+   /**
+    * the group for the olan modifier, before or after
+    * also used for variable group scaling
+    */
    public enum Group {
       PRE, POST, NONE;
 
@@ -296,28 +300,29 @@ public class Manoeuvre implements Drawable {
 
 
    /**
+    * @param group - the group to add length to (before or after olan)
     * @param extra - length to add to the default entry component length
     */
-   public void addLengthPre(int extra) {
-      components[0].setLength(components[0].getLength() - this.lengthPre + extra);
-      this.lengthPre = extra;
+   public void addLength(Group group, int extra) {
+      switch (group) {
+         case PRE:
+            components[0].setLength(components[0].getLength() - this.lengthPre + extra);
+            this.lengthPre = extra;
+            break;
+
+         case POST:
+            components[components.length - 1].setLength(
+               components[components.length - 1].getLength() - this.lengthPost + extra);
+            this.lengthPost = extra;
+            break;
+      }
+
       buildComponentsCumulativeLength();
    }
 
 
    /**
-    * @param extra - length to add to the default exit component length
-    */
-   public void addLengthPost(int extra) {
-      components[components.length - 1].setLength(
-         components[components.length - 1].getLength() - this.lengthPost + extra);
-      this.lengthPost = extra;
-      buildComponentsCumulativeLength();
-   }
-
-
-   /**
-    * @param group - index of the variable group
+    * @param group - variable group
     * @param scale - value to scale the variable's components by
     */
    public void scaleGroup(Group group, float scale) {
