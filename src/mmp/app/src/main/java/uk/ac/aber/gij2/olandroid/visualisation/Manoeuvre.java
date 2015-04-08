@@ -37,7 +37,7 @@ public class Manoeuvre implements Drawable {
    private Component[] components;
    private float[][] matrices;
    private float[] componentsCumulativeLength;
-   private String olan, name, category;
+   private String olan, aresti, name, category;
    private int[] groupIndicesPre, groupIndicesPost;
    private float groupScalePre, groupScalePost, groupScaleFull;
    private int lengthPre, lengthPost;
@@ -46,14 +46,16 @@ public class Manoeuvre implements Drawable {
    /**
     * @param components - list of components which constitute the movement of the manoeuvre
     * @param olan - olan figure for the manoeuvre
+    * @param aresti - the aresti catalogue reference for the manoeuvre
     * @param name - name of the manoeuvre
     * @param category - name of the category this manoeuvre falls into
     * @param groupIndicesPre - first group of indices of components which are scalable
     * @param groupIndicesPost - second group of indices of components which are scalable
     * @throws IndexOutOfBoundsException - thrown if there's no components
     */
-   public Manoeuvre(Component[] components, String olan, String name, String category,
-      int[] groupIndicesPre, int[] groupIndicesPost) throws IndexOutOfBoundsException {
+   public Manoeuvre(Component[] components, String olan, String aresti, String name,
+      String category, int[] groupIndicesPre, int[] groupIndicesPost) throws
+         IndexOutOfBoundsException {
 
       super();
 
@@ -64,6 +66,7 @@ public class Manoeuvre implements Drawable {
       this.components = components;
       this.olan = olan;
       this.name = name;
+      this.aresti = aresti;
       this.category = category;
 
       this.groupIndicesPre = groupIndicesPre;
@@ -98,6 +101,7 @@ public class Manoeuvre implements Drawable {
       }
 
       this.olan = manoeuvre.olan;
+      this.aresti = manoeuvre.aresti;
       this.name = manoeuvre.name;
       this.category = manoeuvre.category;
 
@@ -369,9 +373,8 @@ public class Manoeuvre implements Drawable {
          + Util.multiplyString(lengthPost, "+");
    }
 
-
-   public float getLength() {
-      return componentsCumulativeLength[componentsCumulativeLength.length - 1];
+   public String getAresti() {
+      return aresti;
    }
 
    public String getName() {
@@ -380,6 +383,10 @@ public class Manoeuvre implements Drawable {
 
    public String getCategory() {
       return category;
+   }
+
+   public float getLength() {
+      return componentsCumulativeLength[componentsCumulativeLength.length - 1];
    }
 
    public void setColourBack(float[] colourBack) {

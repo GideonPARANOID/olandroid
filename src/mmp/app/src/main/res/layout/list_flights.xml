@@ -8,10 +8,10 @@
 
    android:orientation="horizontal"
    android:weightSum="100"
-   android:paddingLeft="@dimen/a_margin_horizontal"
-   android:paddingRight="@dimen/a_margin_horizontal"
-   android:paddingTop="@dimen/a_margin_vertical"
-   android:paddingBottom="@dimen/a_margin_vertical"
+   android:paddingLeft="@dimen/l_margin_horizontal"
+   android:paddingRight="@dimen/l_margin_horizontal"
+   android:paddingTop="@dimen/l_margin_vertical"
+   android:paddingBottom="@dimen/l_margin_vertical"
 
    android:layout_width="match_parent"
    android:layout_height="match_parent" >

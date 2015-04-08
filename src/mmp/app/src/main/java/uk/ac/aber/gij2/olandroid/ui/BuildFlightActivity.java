@@ -75,6 +75,8 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
                      ((TextView) row.findViewById(R.id.lm_text_olan)).setText(
                         getItem(position).getOLAN());
+                      ((TextView) row.findViewById(R.id.lm_text_aresti)).setText(
+                        getItem(position).getAresti());
                      ((TextView) row.findViewById(R.id.lm_text_name)).setText(
                         getItem(position).getName());
 

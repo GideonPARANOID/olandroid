@@ -4,6 +4,9 @@
    <dimen name="a_margin_horizontal">16dp</dimen>
    <dimen name="a_margin_vertical">16dp</dimen>
 
+   <dimen name="l_margin_horizontal">8dp</dimen>
+   <dimen name="l_margin_vertical">8dp</dimen>
+
    <dimen name="va_full_padding_horizontal">0dp</dimen>
    <dimen name="va_full_padding_vertical">0dp</dimen>
    <dimen name="va_interface_padding_horizontal">30dp</dimen>

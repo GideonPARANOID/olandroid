@@ -4,7 +4,7 @@
    <!--
       a manoeuvre has an associated olan figure, &#38; (usually) several variants, each with a
       prefix which is prepended to the manoeuvre's olan string (the default one has no olan prefix).
-      variants have names to describe them, &#38; consist of a list of components.
+      variants have aresti="" names to describe them, &#38; consist of a list of components.
 
       components are the rudimentary building blocks of flights. they are small pieces of flight
       which an aircraft can do, using the three axes of rotation available to them - pitch, roll
@@ -20,18 +20,18 @@
       correcting manoeuvres on various axes
    -->
 
-   <!--category name="{string}">
+   <!--category aresti="{string}" name="{string}">
       <manoeuvre olan="{string}">
-         <variant olanPrefix="{blank,string}" name="{string}" correction="{x,y,z}">
+         <variant olanPrefix="{blank,string}" aresti="{string}" aresti="" name="{string}" correction="{x,y,z}">
             <component pitch="{MIN,ZERO,MAX}" roll="{MIN,ZERO,MAX}" yaw="{MIN,ZERO,MAX}"
                length="{float}"  group="{PRE,POST,NONE}" />
          </variant>
       </manoeuvre>
    </category-->
 
-   <!--category name="Test manoeuvres">
+   <!--category aresti="" name="Test manoeuvres">
       <manoeuvre olan="test1">
-         <variant olanPrefix="" name="Test 1">
+         <variant olanPrefix="" aresti="" name="Test 1">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -64,7 +64,7 @@
       </manoeuvre>
 
       <manoeuvre olan="test2">
-         <variant olanPrefix="" name="Test 2">
+         <variant olanPrefix="" aresti="" name="Test 2">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -82,7 +82,7 @@
       </manoeuvre>
 
       <manoeuvre olan="test3">
-         <variant olanPrefix="" name="Test 3">
+         <variant olanPrefix="" aresti="" name="Test 3">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="10"   group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -90,9 +90,9 @@
       </manoeuvre>
    </category-->
 
-   <category name="Single line element figures">
+   <category aresti="" name="Single line element figures">
       <manoeuvre olan="d">
-         <variant olanPrefix="" name="Diagonal up line" correction="x">
+         <variant olanPrefix="" aresti="1.1.2.1 (7)" name="Diagonal up line" correction="x">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -103,7 +103,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Diagonal down line">
+         <variant olanPrefix="i" aresti="1.1.2.3 (7)" name="Diagonal down line">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -117,7 +117,7 @@
       </manoeuvre>
 
       <manoeuvre olan="v">
-         <variant olanPrefix="" name="Vertical up line">
+         <variant olanPrefix="" aresti="1.1.6.1 (10)" name="Vertical up line">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -134,7 +134,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Vertical down line">
+         <variant olanPrefix="i" aresti="1.1.6.3 (10)" name="Vertical down line">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -154,7 +154,7 @@
       </manoeuvre>
 
       <manoeuvre olan="z">
-         <variant olanPrefix="" name="Z-figure">
+         <variant olanPrefix="" aresti="1.1.8.1 (12)" name="Z-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -177,7 +177,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted Z-figure">
+         <variant olanPrefix="i" aresti="1.1.8.3 (12)" name="Inverted Z-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -203,7 +203,7 @@
       </manoeuvre>
 
       <manoeuvre olan="t">
-         <variant olanPrefix="" name="Tooth">
+         <variant olanPrefix="" aresti="1.2.1.1 (13)" name="Tooth">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -227,7 +227,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted tooth">
+         <variant olanPrefix="i" aresti="1.2.1.3 (13)" name="Inverted tooth">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -251,7 +251,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="z" name="Z-tooth">
+         <variant olanPrefix="z" aresti="1.2.9.1 (15)" name="Z-tooth">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -281,7 +281,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="iz" name="Inverted Z-tooth">
+         <variant olanPrefix="iz" aresti="1.2.9.3 (20)" name="Inverted Z-tooth">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -314,7 +314,7 @@
       </manoeuvre>
 
       <manoeuvre olan="k">
-         <variant olanPrefix="" name="Shark tooth">
+         <variant olanPrefix="" aresti="1.2.6.1 (14)" name="Shark tooth">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -338,7 +338,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted shark tooth">
+         <variant olanPrefix="i" aresti="1.2.6.3 (15)" name="Inverted shark tooth">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -365,7 +365,7 @@
       </manoeuvre>
 
       <manoeuvre olan="kz">
-         <variant olanPrefix="" name="Shark-Z">
+         <variant olanPrefix="" aresti="1.2.13.1 (16)" name="Shark-Z">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -395,7 +395,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted shark-Z">
+         <variant olanPrefix="i" aresti="1.2.13.3 (20)" name="Inverted shark-Z">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -428,7 +428,7 @@
       </manoeuvre>
 
       <manoeuvre olan="a">
-         <variant olanPrefix="" name="Immelman turn">
+         <variant olanPrefix="" aresti="7.2.2.3 (8), 9.1.3.2 (4)" name="Immelman turn">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="PRE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -454,7 +454,7 @@
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="POST" />
          </variant>
-         <variant olanPrefix="i" name="Inverted Immelman turn">
+         <variant olanPrefix="i" aresti="" name="Inverted Immelman turn">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="PRE" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="NONE" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="NONE" />
@@ -486,9 +486,9 @@
    </category>
 
 
-   <category name="Loops">
+   <category aresti="" name="Loops">
       <manoeuvre olan="o">
-         <variant olanPrefix="" name="Rounded loop">
+         <variant olanPrefix="" aresti="7.4.1.1 (10)" name="Rounded loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -516,7 +516,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="POST" />
          </variant>
-         <variant olanPrefix="i" name="Inverted rounded loop">
+         <variant olanPrefix="i" aresti="7.4.1.3 (14)" name="Inverted rounded loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -544,7 +544,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="POST" />
          </variant>
-         <variant olanPrefix="r" name="Reverse rounded loop">
+         <variant olanPrefix="r" aresti="7.4.12.1 (13), 9.1.3.2 (4)" name="Reverse rounded loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="PRE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -578,7 +578,7 @@
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="POST" />
          </variant>
-         <variant olanPrefix="ir" name="Inverted reverse rounded loop">
+         <variant olanPrefix="ir" aresti="7.4.12.3 (11), 9.1.3.2 (4)" name="Inverted reverse rounded loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="PRE" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="NONE" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="NONE" />
@@ -615,7 +615,7 @@
       </manoeuvre>
 
       <manoeuvre olan="qq">
-         <variant olanPrefix="" name="Double square loop">
+         <variant olanPrefix="" aresti="7.4.6.1 (19)" name="Double square loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -651,7 +651,7 @@
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted double square loop">
+         <variant olanPrefix="i" aresti="7.4.6.3 (24)" name="Inverted double square loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -690,7 +690,7 @@
       </manoeuvre>
 
       <manoeuvre olan="qo">
-         <variant olanPrefix="" name="Square loop">
+         <variant olanPrefix="" aresti="7.4.3.1 (14)" name="Square loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="POST" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -723,7 +723,7 @@
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="POST" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted square loop">
+         <variant olanPrefix="i" aresti="7.4.3.3 (18)" name="Inverted square loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="POST" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -759,7 +759,7 @@
       </manoeuvre>
 
       <manoeuvre olan="dq">
-         <variant olanPrefix="" name="Diamond square loop">
+         <variant olanPrefix="" aresti="7.4.5.1 (15)" name="Diamond square loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -791,7 +791,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted diamond square loop">
+         <variant olanPrefix="i" aresti="7.4.5.3 (19)" name="Inverted diamond square loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -827,9 +827,9 @@
    </category>
 
 
-   <category name="Loop/line combinations">
+   <category aresti="" name="Loop/line combinations">
       <manoeuvre olan="c">
-         <variant olanPrefix="" name="Half cuban">
+         <variant olanPrefix="" aresti="8.5.6.1 (10), 9.1.4.2 (4)" name="Half cuban">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="12"   group="PRE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -864,7 +864,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted half cuban">
+         <variant olanPrefix="i" aresti="8.5.6.3 (14), 9.1.2.2 (6)" name="Inverted half cuban">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="12"   group="PRE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -899,7 +899,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="r" name="Reverse half cuban">
+         <variant olanPrefix="r" aresti="8.5.2.1 (10), 9.1.2.2 (6)" name="Reverse half cuban">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -934,7 +934,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="12"  group="POST" />
          </variant>
-         <variant olanPrefix="ir" name="Inverted reverse half cuban">
+         <variant olanPrefix="ir" aresti="8.5.2.3 (13), 9.1.4.2 (4)" name="Inverted reverse half cuban">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -972,7 +972,7 @@
       </manoeuvre>
 
       <manoeuvre olan="g">
-         <variant olanPrefix="" name="Goldfish">
+         <variant olanPrefix="" aresti="7.3.2.1 (14), 9.1.2.2 (6)" name="Goldfish">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -1014,7 +1014,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted goldfish">
+         <variant olanPrefix="i" aresti="7.3.2.3 (17), 9.1.4.2 (4)" name="Inverted goldfish">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -1059,7 +1059,7 @@
       </manoeuvre>
 
       <manoeuvre olan="p">
-         <variant olanPrefix="" name="P-loop">
+         <variant olanPrefix="" aresti="8.6.5.1 (11)" name="P-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="PRE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -1088,7 +1088,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-          <variant olanPrefix="i" name="Inverted P-loop">
+          <variant olanPrefix="i" aresti="8.6.5.3 (16)" name="Inverted P-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="PRE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -1117,7 +1117,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="r" name="Reverse P-loop">
+         <variant olanPrefix="r" aresti="8.6.1.1 (11)" name="Reverse P-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1146,7 +1146,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="POST" />
          </variant>
-         <variant olanPrefix="ir" name="Inverted reverse P-loop">
+         <variant olanPrefix="ir" aresti="8.6.1.3 (15)" name="Inverted reverse P-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1178,7 +1178,7 @@
       </manoeuvre>
 
       <manoeuvre olan="q">
-         <variant olanPrefix="" name="Q-loop">
+         <variant olanPrefix="" aresti="8.7.5.1. (11)" name="Q-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="PRE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -1207,7 +1207,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted Q-loop">
+         <variant olanPrefix="i" aresti="8.7.5.3 (15)" name="Inverted Q-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="PRE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -1236,7 +1236,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="r" name="Reverse Q-loop">
+         <variant olanPrefix="r" aresti="8.7.1.1 (11)" name="Reverse Q-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1265,7 +1265,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="POST" />
          </variant>
-         <variant olanPrefix="ir" name="Inverted reverse Q-loop">
+         <variant olanPrefix="ir" aresti="8.7.1.3 (15)" name="Inverted reverse Q-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1297,7 +1297,7 @@
       </manoeuvre>
 
       <manoeuvre olan="y">
-         <variant olanPrefix="" name="Keyhole/Y-loop">
+         <variant olanPrefix="" aresti="8.5.9.1 (12)" name="Keyhole/Y-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1327,7 +1327,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted keyhole/Y-loop">
+         <variant olanPrefix="i" aresti="8.5.9.3 (17)" name="Inverted keyhole/Y-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1357,7 +1357,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="r" name="Reverse keyhole/Y-loop">
+         <variant olanPrefix="r" aresti="8.5.17.1 (12)" name="Reverse keyhole/Y-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1387,7 +1387,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    group="NONE" />
          </variant>
-         <variant olanPrefix="ir" name="Inverted reverse keyhole/Y-loop">
+         <variant olanPrefix="ir" aresti="8.5.17.3 (17)" name="Inverted reverse keyhole/Y-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1417,7 +1417,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    group="NONE" />
          </variant>
-         <variant olanPrefix="z" name="Z-style keyhole/Y-loop">
+         <variant olanPrefix="z" aresti="8.5.13.1 (17)" name="Z-style keyhole/Y-loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1457,9 +1457,9 @@
    </category>
 
 
-   <category name="Double loops">
+   <category aresti="" name="Double loops">
       <manoeuvre olan="cc">
-         <variant olanPrefix="" name="Full cuban">
+         <variant olanPrefix="" aresti="7.8.1.1 (20)" name="Full cuban">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="16"   group="PRE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -1501,7 +1501,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted full cuban">
+         <variant olanPrefix="i" aresti="7.8.1.3 (20)" name="Inverted full cuban">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="16"   group="PRE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -1543,7 +1543,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="r" name="Reverse full cuban">
+         <variant olanPrefix="r" aresti="7.8.5.1 (20)" name="Reverse full cuban">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1585,7 +1585,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="16"   group="POST" />
          </variant>
-         <variant olanPrefix="ir" name="Inverted reverse full cuban">
+         <variant olanPrefix="ir" aresti="7.8.5.3 (20)" name="Inverted reverse full cuban">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1631,9 +1631,9 @@
    </category>
 
 
-   <category name="Humpties, hammerheads &#38; slides">
+   <category aresti="" name="Humpties, hammerheads &#38; slides">
       <manoeuvre olan="b">
-         <variant olanPrefix="" name="Humpty bump">
+         <variant olanPrefix="" aresti="8.4.1.1 (13)" name="Humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1663,7 +1663,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"  group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted humpty bump">
+         <variant olanPrefix="i" aresti="8.4.3.3 (15)" name="Inverted humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1693,7 +1693,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="p" name="Push humpty">
+         <variant olanPrefix="p" aresti="8.4.3.1 (15)" name="Push humpty">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1723,7 +1723,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="ip" name="Inverted push humpty">
+         <variant olanPrefix="ip" aresti="8.4.1.3 (17)" name="Inverted push humpty">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1753,7 +1753,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="6"  group="NONE" />
          </variant>
-         <variant olanPrefix="pb" name="Double push humpty">
+         <variant olanPrefix="pb" aresti="8.8.6.1 (21)" name="Double push humpty">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1795,7 +1795,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="ipb" name="Inverted double push humpty">
+         <variant olanPrefix="ipb" aresti="8.8.4.3 (21)" name="Inverted double push humpty">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1840,7 +1840,7 @@
       </manoeuvre>
 
       <manoeuvre olan="db">
-         <variant olanPrefix="" name="Sausage/diagonal humpty bump">
+         <variant olanPrefix="" aresti="8.4.14.1 (12), 9.1.4.2 (4)" name="Sausage/diagonal humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1876,7 +1876,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted sausage/diagonal humpty bump">
+         <variant olanPrefix="i" aresti="8.4.14.3 (15), 9.1.2.2 (6)" name="Inverted sausage/diagonal humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1912,7 +1912,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="r" name="Reverse sausage/diagonal humpty bump">
+         <variant olanPrefix="r" aresti="8.4.15.1 (12), 9.1.2.2 (6)" name="Reverse sausage/diagonal humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="5"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1948,7 +1948,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="ir" name="Inverted reverse sausage/diagonal humpty bump">
+         <variant olanPrefix="ir" aresti="8.4.15.3 (15), 9.1.4.2 (4)" name="Inverted reverse sausage/diagonal humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -1987,7 +1987,7 @@
       </manoeuvre>
 
       <manoeuvre olan="zb">
-         <variant olanPrefix="" name="Z-style diagonal humpty bump">
+         <variant olanPrefix="" aresti="8.4.21.1 (13)" name="Z-style diagonal humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2018,7 +2018,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    group="NONE" />
          </variant>
-         <variant olanPrefix="r" name="Reverse Z-style diagonal humpty bump">
+         <variant olanPrefix="r" aresti="8.4.25.1 (15)" name="Reverse Z-style diagonal humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2051,7 +2051,7 @@
       </manoeuvre>
 
       <manoeuvre olan="bz">
-         <variant olanPrefix="" name="Diagonal humpty bump">
+         <variant olanPrefix="" aresti="8.4.5.1 (13)" name="Diagonal humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="4"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2081,7 +2081,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    group="NONE" />
          </variant>
-         <variant olanPrefix="r" name="Reverse diagonal humpty bump">
+         <variant olanPrefix="r" aresti="8.4.9.1 (15)" name="Reverse diagonal humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2114,7 +2114,7 @@
       </manoeuvre>
 
       <manoeuvre olan="h">
-         <variant olanPrefix="" name="Hammerhead">
+         <variant olanPrefix="" aresti="5.2.1.1 (17)" name="Hammerhead">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2144,7 +2144,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="d" name="Hammerhead with diagonal entry">
+         <variant olanPrefix="d" aresti="5.3.1.1 (18)" name="Hammerhead with diagonal entry">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -2175,7 +2175,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="dh" name="Hammerhead with diagonal entry &#38; exit">
+         <variant olanPrefix="dh" aresti="" name="Hammerhead with diagonal entry &#38; exit">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -2210,7 +2210,7 @@
       </manoeuvre>
 
       <manoeuvre olan="ta">
-         <variant olanPrefix="" name="Tailslide">
+         <variant olanPrefix="" aresti="6.2.1.1 (15)" name="Tailslide">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="3"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2240,7 +2240,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted tailslide">
+         <variant olanPrefix="i" aresti="6.2.2.1 (15)" name="Inverted tailslide">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="3"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2274,9 +2274,9 @@
    </category>
 
 
-   <category name="Complex three-rolling element figures">
+   <category aresti="" name="Complex three-rolling element figures">
       <manoeuvre olan="n">
-         <variant olanPrefix="" name="N-figure">
+         <variant olanPrefix="" aresti="1.3.9.1 (24)" name="N-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2313,7 +2313,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted N-figure">
+         <variant olanPrefix="i" aresti="1.3.13.3 (23)" name="Inverted N-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2350,7 +2350,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="p" name="Push N-figure">
+         <variant olanPrefix="p" aresti="1.3.13.1 (22)" name="Push N-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2387,7 +2387,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="ip" name="Inverted push N-figure">
+         <variant olanPrefix="ip" aresti="1.3.9.3 (22)" name="Inverted push N-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2427,7 +2427,7 @@
       </manoeuvre>
 
       <manoeuvre olan="w">
-         <variant olanPrefix="" name="Bowtie/X">
+         <variant olanPrefix="" aresti="1.3.5.1 (20)" name="Bowtie/X">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2458,7 +2458,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted bowtie/X">
+         <variant olanPrefix="i" aresti="1.3.5.3 (19)" name="Inverted bowtie/X">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2492,7 +2492,7 @@
       </manoeuvre>
 
       <manoeuvre olan="gg">
-         <variant olanPrefix="" name="Double goldfish/super 8">
+         <variant olanPrefix="" aresti="7.8.9.1 (23)" name="Double goldfish/super 8">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2541,7 +2541,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted double goldfish/super 8">
+         <variant olanPrefix="i" aresti="7.8.9.3 (23)" name="Inverted double goldfish/super 8">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="0.2"  group="NONE" />
@@ -2594,9 +2594,9 @@
    </category>
 
 
-   <category name="Oddball figures">
+   <category aresti="" name="Oddball figures">
       <manoeuvre olan="mm">
-         <variant olanPrefix="" name="Double Immelman S-figure">
+         <variant olanPrefix="" aresti="7.5.9.1 (12)" name="Double Immelman S-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -2624,7 +2624,7 @@
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted double Immelman S-figure">
+         <variant olanPrefix="i" aresti="7.5.9.3 (12)" name="Inverted double Immelman S-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -2655,7 +2655,7 @@
       </manoeuvre>
 
       <manoeuvre olan="oo">
-         <variant olanPrefix="" name="Double loop/8-figure">
+         <variant olanPrefix="" aresti="7.8.17.1 (22)" name="Double loop/8-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -2707,7 +2707,7 @@
             <component pitch="MAX"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
          </variant>
-         <variant olanPrefix="i" name="Inverted double loop/8-figure">
+         <variant olanPrefix="i" aresti="7.8.13.3 (22)" name="Inverted double loop/8-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="MIN"   roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -2763,9 +2763,9 @@
    </category>
 
 
-   <category name="Rolls">
+   <category aresti="" name="Rolls">
       <manoeuvre olan="1">
-         <variant olanPrefix="" name="Full roll">
+         <variant olanPrefix="" aresti="1.1.1.1 (2), 9.1.3.4 (8)" name="Full roll">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="PRE" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="PRE" />
@@ -2784,7 +2784,7 @@
       </manoeuvre>
 
       <manoeuvre olan="2">
-         <variant olanPrefix="" name="Half roll">
+         <variant olanPrefix="" aresti="1.1.1.1 (2), 9.1.3.2 (4), 9.1.3.2 (4)" name="Half roll">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="PRE" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="PRE" />
@@ -2797,7 +2797,7 @@
       </manoeuvre>
 
       <manoeuvre olan="9">
-         <variant olanPrefix="" name="Two rolls">
+         <variant olanPrefix="" aresti="1.1.1.1 (2), 9.1.3.8 (12)" name="Two rolls">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="PRE" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="PRE" />

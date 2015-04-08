@@ -123,6 +123,7 @@ public class ManoeuvreCatalogue {
 
             // variables for the manoeuvre
             String fullOLAN = parser.getAttributeValue(null, "olanPrefix") + olan,
+               aresti = parser.getAttributeValue(null, "aresti"),
                name = parser.getAttributeValue(null, "name"),
                parsedCorrection = parser.getAttributeValue(null, "correction");
 
@@ -162,8 +163,9 @@ public class ManoeuvreCatalogue {
 
             // assembling the manoeuvre
             Manoeuvre manoeuvre = new Manoeuvre(
-               components.toArray(new Component[components.size()]), fullOLAN, name, category,
-               integerListToPrimitive(groupIndicesPre), integerListToPrimitive(groupIndicesPost));
+               components.toArray(new Component[components.size()]), fullOLAN, aresti, name,
+               category, integerListToPrimitive(groupIndicesPre),
+               integerListToPrimitive(groupIndicesPost));
 
             catalogue.put(fullOLAN, manoeuvre);
 
