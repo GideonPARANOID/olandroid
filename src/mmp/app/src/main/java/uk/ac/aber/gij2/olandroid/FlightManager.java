@@ -26,9 +26,9 @@ import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
 
 public class FlightManager {
 
-   private final String FILENAME = "flights.txt", olanRegex =
-      "([\\+,-]*)([`]*)(\\w*)([`]*)([\\+,-]*)";
-   private final Pattern olanPattern;
+   private final String FILENAME = "flights.txt", figureRegex =
+      "([\\+,-]*)([`]*)(\\w*)([`]*)([\\+,-]*)", scaleRegex = "(\\d)%";
+   private final Pattern figurePattern, scalePattern;
 
    private ManoeuvreCatalogue manoeuvreCatalogue;
    private OLANdroid app;
@@ -40,7 +40,8 @@ public class FlightManager {
       this.app = app;
       this.manoeuvreCatalogue = manoeuvreCatalogue;
 
-      olanPattern = Pattern.compile(olanRegex);
+      figurePattern = Pattern.compile(figureRegex);
+      scalePattern = Pattern.compile(scaleRegex);
 
       // only ever initialise once, otherwise arrayadapters will lose reference
       flights = new ArrayList<>();
@@ -70,40 +71,60 @@ public class FlightManager {
       }
 
       String[] figures = olan.trim().toLowerCase().split(" ");
-      Manoeuvre[] manoeuvres = new Manoeuvre[figures.length];
+
+      ArrayList<Manoeuvre> manoeuvres = new ArrayList<>();
 
       // going through the figures
       for (int i = 0; i < figures.length; i++) {
-         Matcher matcher = olanPattern.matcher(figures[i]);
+         int fullScale = 1;
+
+         Matcher scaleMatcher = scalePattern.matcher(figures[i]);
+
+         // if we're dealing with a scale figure, grab the scale & move onto the next figure
+         if (scaleMatcher.matches()) {
+            fullScale = Integer.parseInt(scaleMatcher.group(1));
+            i++;
+         }
+
+         Matcher figureMatcher = figurePattern.matcher(figures[i]);
 
          // testing if the regex holds true & that the final figure is in the catalogue
-         if (matcher.matches() && manoeuvreCatalogue.get(matcher.group(3)) != null) {
-            manoeuvres[i] = new Manoeuvre(manoeuvreCatalogue.get(matcher.group(3)));
+         if (figureMatcher.matches() && manoeuvreCatalogue.get(figureMatcher.group(3)) != null) {
+            Manoeuvre manoeuvre = new Manoeuvre(manoeuvreCatalogue.get(figureMatcher.group(3)));
 
-            // TODO: add proper support for minus
+            // TODO: add proper support for full range of modifiers - minus & tilde
+
+            if (fullScale > 1) {
+               manoeuvre.scaleGroup(Manoeuvre.Group.NONE, (float) fullScale);
+            }
 
             // sorting the variable group scaling
-            float groupLengthPre = Util.findOccurrences("`", matcher.group(2)),
-               groupLengthPost = Util.findOccurrences("`", matcher.group(4));
+            float groupLengthPre = Util.findOccurrences("`", figureMatcher.group(2)),
+               groupLengthPost = Util.findOccurrences("`", figureMatcher.group(4));
 
+            // scaling is an expensive operation, so avoid it if possible
             if (groupLengthPre > 0f) {
-               manoeuvres[i].scaleGroup(Manoeuvre.Group.PRE, 1 / (groupLengthPre + 1f));
+               manoeuvre.scaleGroup(Manoeuvre.Group.PRE, 1f / (groupLengthPre + 1f));
             }
 
             if (groupLengthPost > 0f) {
-               manoeuvres[i].scaleGroup(Manoeuvre.Group.POST, 1 / (groupLengthPost + 1f));
+               manoeuvre.scaleGroup(Manoeuvre.Group.POST, 1f / (groupLengthPost + 1f));
             }
 
             // counting the pluses
-            manoeuvres[i].addLength(Manoeuvre.Group.PRE, Util.findOccurrences("+", matcher.group(1)));
-            manoeuvres[i].addLength(Manoeuvre.Group.POST, Util.findOccurrences("+", matcher.group(5)));
+            manoeuvre.addLength(Manoeuvre.Group.PRE, Util.findOccurrences("+", figureMatcher.group(1)));
+            manoeuvre.addLength(Manoeuvre.Group.POST, Util.findOccurrences("+", figureMatcher.group(5)));
+
+            manoeuvres.add(manoeuvre);
 
          } else {
             throw new InvalidFlightException("invalid olan");
          }
       }
 
-      return correct ? correctLowestPoint(new Flight(manoeuvres)) : new Flight(manoeuvres);
+      return correct ?
+         correctLowestPoint(new Flight(manoeuvres.toArray(new Manoeuvre[manoeuvres.size()]))) :
+         new Flight(manoeuvres.toArray(new Manoeuvre[manoeuvres.size()]));
    }
 
 

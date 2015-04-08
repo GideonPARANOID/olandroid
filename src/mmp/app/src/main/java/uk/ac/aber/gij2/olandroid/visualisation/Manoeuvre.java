@@ -346,6 +346,12 @@ public class Manoeuvre implements Drawable {
 
             groupScalePost = scale;
             break;
+         case NONE:
+            for (Component component : components) {
+               component.setLength(component.getLength() * scale);
+            }
+
+            break;
       }
    }
 
