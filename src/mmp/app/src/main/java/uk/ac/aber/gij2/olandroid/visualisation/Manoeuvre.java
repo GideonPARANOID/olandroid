@@ -18,7 +18,7 @@ public class Manoeuvre implements Drawable {
     * also used for variable group scaling
     */
    public enum Group {
-      PRE, POST, NONE;
+      PRE, POST, FULL;
 
       public static Group parse(String group) {
          switch (group) {
@@ -26,10 +26,10 @@ public class Manoeuvre implements Drawable {
                return PRE;
             case "POST":
                return POST;
-            case "NONE":
-               return NONE;
+            case "FULL":
+               return FULL;
             default:
-               return NONE;
+               return FULL;
          }
       }
    }
@@ -39,7 +39,7 @@ public class Manoeuvre implements Drawable {
    private float[] componentsCumulativeLength;
    private String olan, name, category;
    private int[] groupIndicesPre, groupIndicesPost;
-   private float groupScalePre, groupScalePost;
+   private float groupScalePre, groupScalePost, groupScaleFull;
    private int lengthPre, lengthPost;
 
 
@@ -71,6 +71,7 @@ public class Manoeuvre implements Drawable {
 
       groupScalePre = 1f;
       groupScalePost = 1f;
+      groupScaleFull = 1f;
 
       lengthPre = 0;
       lengthPost = 0;
@@ -107,6 +108,7 @@ public class Manoeuvre implements Drawable {
       // needs to be copied
       this.groupScalePre = manoeuvre.groupScalePre;
       this.groupScalePost = manoeuvre.groupScalePost;
+      this.groupScaleFull = manoeuvre.groupScaleFull;
 
       this.lengthPre = manoeuvre.lengthPre;
       this.lengthPost = manoeuvre.lengthPost;
@@ -346,11 +348,12 @@ public class Manoeuvre implements Drawable {
 
             groupScalePost = scale;
             break;
-         case NONE:
+         case FULL:
             for (Component component : components) {
-               component.setLength(component.getLength() * scale);
+               component.setLength((component.getLength() / groupScaleFull) * scale);
             }
 
+            groupScaleFull = scale;
             break;
       }
    }

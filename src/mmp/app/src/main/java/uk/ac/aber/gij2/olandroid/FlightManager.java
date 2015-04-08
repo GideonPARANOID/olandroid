@@ -95,7 +95,7 @@ public class FlightManager {
             // TODO: add proper support for full range of modifiers - minus & tilde
 
             if (fullScale > 1) {
-               manoeuvre.scaleGroup(Manoeuvre.Group.NONE, (float) fullScale);
+               manoeuvre.scaleGroup(Manoeuvre.Group.FULL, (float) fullScale);
             }
 
             // sorting the variable group scaling
