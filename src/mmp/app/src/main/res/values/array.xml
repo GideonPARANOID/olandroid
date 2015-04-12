@@ -65,8 +65,8 @@
 
     <!-- lookup tables for animation modes -->
    <string-array name="p_animation_style_titles">
-      <item>Draw flown path</item>
-      <item>Draw trailing wing</item>
+      <item>Flown path</item>
+      <item>Trailing wing</item>
    </string-array>
 
    <string-array name="p_animation_style_values">

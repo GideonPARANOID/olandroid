@@ -1,6 +1,6 @@
-# MMP
+# OLANdroid
 
-A tool for visual modelling acrobatic aeroplane flight. See the [development diary](https://github.com/GideonPARANOID/mmp/wiki) & [demos](https://www.youtube.com/playlist?list=PLFyZMqjrwPwacU4OqQyIyKR6jJGp6z2Kw).
+A tool for visual modelling acrobatic aeroplane flight. See the [development diary](https://github.com/GideonPARANOID/olandroid/wiki) & [demos](https://www.youtube.com/playlist?list=PLFyZMqjrwPwacU4OqQyIyKR6jJGp6z2Kw).
 
 [Google+ beta testing group](https://plus.google.com/communities/111527779897334123267).
 
@@ -8,6 +8,7 @@ A tool for visual modelling acrobatic aeroplane flight. See the [development dia
 
 * [Aresti catalogue](https://en.wikipedia.org/wiki/Aresti_Catalog).
 * [OpenAero](http://www.openaero.net/).
+* [Google+ beta testers group](https://plus.google.com/communities/111527779897334123267).
 
 ### Android
 
@@ -18,5 +19,5 @@ A tool for visual modelling acrobatic aeroplane flight. See the [development dia
 
 ### Code
 
-* [GitHub source](https://github.com/GideonPARANOID/mmp).
+* [GitHub source](https://github.com/GideonPARANOID/olandroid).
 * [BitBucket source](https://bitbucket.org/gideonparanoid/mmp).
