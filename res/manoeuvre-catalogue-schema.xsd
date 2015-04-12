@@ -1,0 +1,65 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="catalogue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="category" maxOccurs="unbounded" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>
+      a manoeuvre has an associated olan figure, &amp;#38; (usually) several variants, each with a
+      prefix which is prepended to the manoeuvre's olan string (the default one has no olan prefix).
+      variants have aresti="" names to describe them, &amp;#38; consist of a list of components.
+
+      components are the rudimentary building blocks of flights. they are small pieces of flight
+      which an aircraft can do, using the three axes of rotation available to them - pitch, roll
+      &amp;#38; yaw. components are added sequentially to create manoeuvres.
+
+      increments are 1 / 24th a circle (15 degrees or pi radians / 12). max denotes positive, min
+      negative &amp;#38; zero none. max pitch is up, max roll is right-down &amp;#38; max yaw is right.
+
+      manoeuvres can be modified using the group attribute which groups components into
+      scaleable features.
+
+      the correction attribute can be used to define manoeuvres which are suitable to be used for
+      correcting manoeuvres on various axes
+             </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="manoeuvre" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="variant" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="component" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:string" name="pitch" use="required"/>
+                                  <xs:attribute type="xs:string" name="roll" use="required"/>
+                                  <xs:attribute type="xs:string" name="yaw" use="required"/>
+                                  <xs:attribute type="xs:float" name="length" use="required"/>
+                                  <xs:attribute type="xs:string" name="group" use="required"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="olanPrefix" use="required"/>
+                        <xs:attribute type="xs:string" name="aresti" use="required"/>
+                        <xs:attribute type="xs:string" name="name" use="required"/>
+                        <xs:attribute type="xs:string" name="correction" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="olan" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="name" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -29,7 +29,7 @@
       </manoeuvre>
    </category-->
 
-   <!--category aresti="" name="Test manoeuvres">
+   <!--category name="Test manoeuvres">
       <manoeuvre olan="test1">
          <variant olanPrefix="" aresti="" name="Test 1">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -90,7 +90,7 @@
       </manoeuvre>
    </category-->
 
-   <category aresti="" name="Single line element figures">
+   <category name="Single line element figures">
       <manoeuvre olan="d">
          <variant olanPrefix="" aresti="1.1.2.1 (7)" name="Diagonal up line" correction="x">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -486,7 +486,7 @@
    </category>
 
 
-   <category aresti="" name="Loops">
+   <category name="Loops">
       <manoeuvre olan="o">
          <variant olanPrefix="" aresti="7.4.1.1 (10)" name="Rounded loop">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -827,7 +827,7 @@
    </category>
 
 
-   <category aresti="" name="Loop/line combinations">
+   <category name="Loop/line combinations">
       <manoeuvre olan="c">
          <variant olanPrefix="" aresti="8.5.6.1 (10), 9.1.4.2 (4)" name="Half cuban">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="12"   group="PRE" />
@@ -1457,7 +1457,7 @@
    </category>
 
 
-   <category aresti="" name="Double loops">
+   <category name="Double loops">
       <manoeuvre olan="cc">
          <variant olanPrefix="" aresti="7.8.1.1 (20)" name="Full cuban">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="16"   group="PRE" />
@@ -1631,7 +1631,7 @@
    </category>
 
 
-   <category aresti="" name="Humpties, hammerheads &#38; slides">
+   <category name="Humpties, hammerheads &#38; slides">
       <manoeuvre olan="b">
          <variant olanPrefix="" aresti="8.4.1.1 (13)" name="Humpty bump">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="8"    group="NONE" />
@@ -2274,7 +2274,7 @@
    </category>
 
 
-   <category aresti="" name="Complex three-rolling element figures">
+   <category name="Complex three-rolling element figures">
       <manoeuvre olan="n">
          <variant olanPrefix="" aresti="1.3.9.1 (24)" name="N-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -2594,7 +2594,7 @@
    </category>
 
 
-   <category aresti="" name="Oddball figures">
+   <category name="Oddball figures">
       <manoeuvre olan="mm">
          <variant olanPrefix="" aresti="7.5.9.1 (12)" name="Double Immelman S-figure">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
@@ -2763,7 +2763,7 @@
    </category>
 
 
-   <category aresti="" name="Rolls">
+   <category name="Rolls">
       <manoeuvre olan="1">
          <variant olanPrefix="" aresti="1.1.1.1 (2), 9.1.3.4 (8)" name="Full roll">
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="NONE" />
