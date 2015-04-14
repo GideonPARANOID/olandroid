@@ -27,9 +27,9 @@ import uk.ac.aber.gij2.olandroid.Util;
 public class Renderer implements GLSurfaceView.Renderer {
 
    public static int program;
+   public static int[] textures;
 
    public static float DRAW_BOUNDS = 100f;
-
 
    // view & scene building tools
    private final float[] mMVPMatrix, mProjectionMatrix, mViewMatrix;
@@ -45,7 +45,7 @@ public class Renderer implements GLSurfaceView.Renderer {
    private Scene scene;
 
 
-   private int[] textureIds, textures;
+   private int[] textureIds;
 
    private static Renderer instance;
 
@@ -232,7 +232,6 @@ public class Renderer implements GLSurfaceView.Renderer {
 
 
    /**
-    *
     * @param resourceId - reference to the texture resource
     * @return - a texture handle
     */
@@ -266,11 +265,6 @@ public class Renderer implements GLSurfaceView.Renderer {
       }
 
       return textureHandle[0];
-   }
-
-
-   public int[] getTextures() {
-      return textures;
    }
 
 

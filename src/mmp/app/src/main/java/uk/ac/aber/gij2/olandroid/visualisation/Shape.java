@@ -76,7 +76,7 @@ public abstract class Shape implements Drawable {
       mTextureCoordsHandle = GLES20.glGetAttribLocation(Renderer.program, "aTextureCoords");
 
       if (useTexture) {
-         texture = Renderer.getInstance().getTextures()[textureId];
+         texture = Renderer.textures[textureId];
       }
 
       Renderer.checkGlError("glGetUniformLocation");

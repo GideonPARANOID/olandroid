@@ -80,7 +80,7 @@ public class FlightManager {
 
 
       if (olan == null) {
-         throw new InvalidFlightException("invalid olan");
+         throw new InvalidFlightException("no olan");
       }
 
       // getting rid of multiple spaces, so we don't break the split
@@ -185,10 +185,8 @@ public class FlightManager {
             String name = reader.readLine(), olan = reader.readLine();
             while (name != null && olan != null) {
 
-               Flight flight;
-
                try {
-                  flight = buildFlight(olan, false);
+                  Flight flight = buildFlight(olan, false);
                   flight.setName(name);
 
                   addFlight(flight, false);
