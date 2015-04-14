@@ -26,22 +26,39 @@ import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
 
 public class FlightManager {
 
+   private static FlightManager instance;
+
    private final String FILENAME = "flights.txt", figureRegex =
       "([\\+,-]*)([`]*)(\\w*)([`]*)([\\+,-]*)", scaleRegex = "(\\d)%";
-   private final Pattern figurePattern, scalePattern;
 
    private ManoeuvreCatalogue manoeuvreCatalogue;
    private OLANdroid app;
 
+   private File file;
+
    private ArrayList<Flight> flights;
 
 
-   protected FlightManager(OLANdroid app, ManoeuvreCatalogue manoeuvreCatalogue) {
+   /**
+    * @return - instance of this class, singleton access
+    */
+   public static FlightManager getInstance() {
+      if (instance == null) {
+         instance = new FlightManager();
+      }
+
+      return instance;
+   }
+
+
+   private FlightManager() {}
+
+
+   public void initialise(OLANdroid app, ManoeuvreCatalogue manoeuvreCatalogue) {
+      file = new File(app.getFilesDir(), FILENAME);
+
       this.app = app;
       this.manoeuvreCatalogue = manoeuvreCatalogue;
-
-      figurePattern = Pattern.compile(figureRegex);
-      scalePattern = Pattern.compile(scaleRegex);
 
       // only ever initialise once, otherwise arrayadapters will lose reference
       flights = new ArrayList<>();
@@ -57,6 +74,10 @@ public class FlightManager {
     * @throws InvalidFlightException - occurs if the passed olan is invalid
     */
    public Flight buildFlight(String olan, boolean correct) throws InvalidFlightException {
+
+      Pattern figurePattern = Pattern.compile(figureRegex),
+         scalePattern = Pattern.compile(scaleRegex);
+
 
       if (olan == null) {
          throw new InvalidFlightException("invalid olan");
@@ -155,8 +176,6 @@ public class FlightManager {
    public void loadFlights() {
       flights.clear();
 
-      File file = new File(app.getFilesDir(), FILENAME);
-
       if (file.exists()) {
          try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -199,7 +218,7 @@ public class FlightManager {
     * @throws InvalidFlightException - if there's another flight with the name already taken
     */
    public void saveCurrentFlight(String newName) throws InvalidFlightException {
-      String activeFlightName = app.getScene().getFlight().getName();
+      String activeFlightName = app.getFlight().getName();
 
       // if we're not modifying the current flight, check there's no name clash
       if (!(activeFlightName == null ? "" : activeFlightName).equals(newName)) {
@@ -210,7 +229,7 @@ public class FlightManager {
          }
       }
 
-      Flight flight = app.getScene().getFlight();
+      Flight flight = app.getFlight();
       flight.setName(newName);
 
       addFlight(flight, true);
@@ -224,7 +243,6 @@ public class FlightManager {
     * saves the flights to the file
     */
    public void saveFlights() {
-      File file = new File(app.getFilesDir(), FILENAME);
 
       try {
          BufferedWriter bufferedWriter= new BufferedWriter(new OutputStreamWriter(

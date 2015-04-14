@@ -48,7 +48,7 @@ public class FlightTitleDialogFragment extends DialogFragment {
             final OLANdroid app = (OLANdroid) getActivity().getApplication();
 
             // sets the default text if modifying a saved flight
-            Flight flight = app.getScene().getFlight();
+            Flight flight = app.getFlight();
 
             if (flight.getName() != null) {
                EditText titleEntry = (EditText) getDialog().findViewById(R.id.d_text_flight_title);

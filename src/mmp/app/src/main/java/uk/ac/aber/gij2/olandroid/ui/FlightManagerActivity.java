@@ -93,7 +93,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
          case R.id.menu_fma_new:
-            app.getScene().setFlight(null);
+            app.setFlight(null);
             startActivity(new Intent(this, BuildFlightActivity.class));
             break;
 
@@ -114,7 +114,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
    @Override
    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
-      app.getScene().setFlight(app.getFlightManager().getFlights().get(position));
+      app.setFlight(app.getFlightManager().getFlights().get(position));
       startActivity(new Intent(this, VisualisationActivity.class));
    }
 
@@ -132,7 +132,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
    public boolean onContextItemSelected(MenuItem item) {
 
       // setting the flight the context menu is for to be the current flight
-      app.getScene().setFlight((Flight) adapter.getItem(
+      app.setFlight((Flight) adapter.getItem(
          ((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position));
 
       switch (item.getItemId()){
@@ -149,8 +149,8 @@ public class FlightManagerActivity extends ActionBarActivity implements
             break;
 
          case R.id.menu_fma_c_delete:
-            app.getFlightManager().deleteFlight(app.getScene().getFlight());
-            app.getScene().setFlight(null);
+            app.getFlightManager().deleteFlight(app.getFlight());
+            app.setFlight(null);
             break;
       }
 

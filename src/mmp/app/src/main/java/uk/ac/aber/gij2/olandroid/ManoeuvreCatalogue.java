@@ -22,23 +22,39 @@ import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
 
 public class ManoeuvreCatalogue {
 
+   private static ManoeuvreCatalogue instance;
+
    // we want a predictable iteration order for list populating
    private LinkedHashMap<String, Manoeuvre> catalogue;
    private String[] categories;
-   private Context context;
 
    private Manoeuvre correction;
 
+
+   /**
+    * @return - instance of this class, singleton access
+    */
+   public static ManoeuvreCatalogue getInstance() {
+      if (instance == null) {
+         instance = new ManoeuvreCatalogue();
+      }
+
+      return instance;
+   }
+
+   private ManoeuvreCatalogue() {}
+
+
    /**
     * @param context - the context relevant for getting the xml
+    * @param file - reference to the file to parse the catalogue from
     */
-   public ManoeuvreCatalogue(Context context) {
+   public void initialise(Context context, int file) {
 
-      this.context = context;
       catalogue = new LinkedHashMap<>();
 
       try {
-         parseCategories();
+         parseCategories(context, file);
 
       } catch (XmlPullParserException | IOException exception) {
          Log.d(this.getClass().getName(), exception.getMessage());
@@ -48,14 +64,17 @@ public class ManoeuvreCatalogue {
 
    /**
     * parses the xml manoeuvre catalogue's categories into the catalogue
+    * @param context - - the context relevant for getting the xml
+    * @param file - - reference to the file to parse the catalogue from
     * @throws XmlPullParserException
     * @throws IOException
     */
-   protected void parseCategories() throws XmlPullParserException, IOException {
+   protected void parseCategories(Context context, int file) throws XmlPullParserException,
+      IOException {
 
       List<String> categoriesTemp = new ArrayList<>();
 
-      XmlPullParser parser = context.getResources().getXml(R.xml.manoeurvre_catalogue);
+      XmlPullParser parser = context.getResources().getXml(file);
 
       // skipping over the first two element - xml declarations & top level container.
       parser.next();
@@ -89,6 +108,8 @@ public class ManoeuvreCatalogue {
 
    /**
     * parses the xml manoeuvre catalogue category's manoeuvres into the catalogue
+    * @param parser - the parser to use (in a relevant location)
+    * @param category - the category the manoeuvres belong to
     * @throws XmlPullParserException
     * @throws IOException
     */
@@ -136,15 +157,17 @@ public class ManoeuvreCatalogue {
             for (int i = 0; parser.next() != XmlPullParser.END_TAG; i++) {
                if (parser.getName().equals("component")) {
 
+                  float[] blank = new float[] {
+                     1f, 1f, 1f, 1f
+                  };
+
+                  // colours are null because we don't have the context at this level
                   components.add(new Component(
                      Component.Bound.parse(parser.getAttributeValue(null, "pitch")),
                      Component.Bound.parse(parser.getAttributeValue(null, "yaw")),
                      Component.Bound.parse(parser.getAttributeValue(null, "roll")),
-                     Float.parseFloat(parser.getAttributeValue(null, "length")),
-                     ((OLANdroid) context.getApplicationContext()).getColourTheme(
-                        R.array.colour_theme_front),
-                     ((OLANdroid) context.getApplicationContext()).getColourTheme(
-                        R.array.colour_theme_back)));
+                     Float.parseFloat(parser.getAttributeValue(null, "length")), blank, blank));
+
 
                   // building the variable groups
                   switch (Manoeuvre.Group.parse(parser.getAttributeValue(null, "group"))) {

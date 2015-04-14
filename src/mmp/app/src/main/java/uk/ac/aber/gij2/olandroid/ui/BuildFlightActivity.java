@@ -47,7 +47,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
       final Spinner spinner = (Spinner) findViewById(R.id.bfa_spinner_category);
 
       spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-            ((OLANdroid) getApplication()).getManoeuvreCatalogue().getCategories()));
+            ManoeuvreCatalogue.getInstance().getCategories()));
 
       // on changing the spinner
       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -57,9 +57,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
                int position, long id) {
 
                final ListView listManoeuvres = (ListView) findViewById(R.id.bfa_list_manoeuvres);
-               final ManoeuvreCatalogue manoeuvreCatalogue = ((OLANdroid) getApplication())
-                  .getManoeuvreCatalogue();
-
+               final ManoeuvreCatalogue manoeuvreCatalogue = ManoeuvreCatalogue.getInstance();
 
                // setup the listview on changing the category
                listManoeuvres.setAdapter(new ArrayAdapter<Manoeuvre>(getApplicationContext(),
@@ -100,7 +98,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
       OLANdroid app = (OLANdroid) getApplication();
 
       // set the default text for editing flights
-      Flight flight = app.getScene().getFlight();
+      Flight flight = app.getFlight();
 
       if (flight != null && flight.getOLAN() != null) {
          olanEntry.setText(flight.getOLAN() + " ");
@@ -136,7 +134,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
       // finding the manoeuvre in the catalogue, getting its olan & adding to the current string
-      String olan = ((OLANdroid) getApplication()).getManoeuvreCatalogue().getManoeuvres(
+      String olan = ManoeuvreCatalogue.getInstance().getManoeuvres(
          (String) ((Spinner) findViewById(R.id.bfa_spinner_category)).getSelectedItem())[position]
             .getOLAN() + " ";
 
@@ -157,7 +155,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
          app.buildAndSetFlight(olanEntry.getText().toString());
 
          // if the olan has changed in the building process, consider it corrected
-         if (!app.getScene().getFlight().getOLAN().equals(olanEntry.getText().toString().trim())) {
+         if (!app.getFlight().getOLAN().equals(olanEntry.getText().toString().trim())) {
             Toast.makeText(app, R.string.bfa_toast_corrected, Toast.LENGTH_SHORT).show();
          }
 

@@ -15,6 +15,8 @@ import uk.ac.aber.gij2.olandroid.visualisation.Scene;
 
 public class AnimationManager extends Observable {
 
+   private static AnimationManager instance;
+
    public static final float WING_LENGTH = 2f;
 
    private float progress, step, speed;
@@ -25,10 +27,24 @@ public class AnimationManager extends Observable {
 
 
    /**
+    * @return - instance of this class, singleton access
+    */
+   public static AnimationManager getInstance() {
+      if (instance == null) {
+         instance = new AnimationManager();
+      }
+
+      return instance;
+   }
+
+   private AnimationManager() {}
+
+
+   /**
     * @param scene - scene to find things to draw in
     * @param speed - a factor by which to animate
     */
-   public AnimationManager(Scene scene, float speed, AnimationStyle style) {
+   public void initialise(Scene scene, float speed, AnimationStyle style) {
       this.speed = speed;
       this.scene = scene;
       this.style = style;

@@ -23,7 +23,6 @@ public class OLANdroid extends Application implements
    private SharedPreferences preferences;
 
    private Scene scene;
-   private ManoeuvreCatalogue manoeuvreCatalogue;
    private FlightManager flightManager;
    private AnimationManager animationManager;
 
@@ -39,11 +38,14 @@ public class OLANdroid extends Application implements
          new Grid(5f, getColourTheme(R.array.colour_theme_grid)) :
          new Ground(0));
 
-      manoeuvreCatalogue = new ManoeuvreCatalogue(this)
-      ;
-      flightManager = new FlightManager(this, manoeuvreCatalogue);
+      ManoeuvreCatalogue manoeuvreCatalogue = ManoeuvreCatalogue.getInstance();
+      manoeuvreCatalogue.initialise(this, R.xml.manoeurvre_catalogue);
 
-      animationManager = new AnimationManager(scene,
+      flightManager = FlightManager.getInstance();
+      flightManager.initialise(this, manoeuvreCatalogue);
+
+      animationManager = AnimationManager.getInstance();
+      animationManager.initialise(scene,
          Float.parseFloat(preferences.getString("p_animation_speed", "1")),
          Integer.parseInt(preferences.getString("p_animation_style", "0")) == 0 ?
             AnimationStyle.ONE : AnimationStyle.TWO);
@@ -64,6 +66,7 @@ public class OLANdroid extends Application implements
       String oldName = getScene().getFlight() != null ? scene.getFlight().getName() : null;
 
       Flight flight = flightManager.buildFlight(olan, getAutocorrect());
+
       flight.setName(oldName);
       scene.setFlight(flight);
       updateColourTheme();
@@ -151,7 +154,6 @@ public class OLANdroid extends Application implements
 
 
    public boolean getAutocorrect() {
-      System.out.println(preferences.getBoolean("p_autocorrect", true));
       return preferences.getBoolean("p_autocorrect", true);
    }
 
@@ -161,22 +163,22 @@ public class OLANdroid extends Application implements
    }
 
 
+   public void setFlight(Flight flight) {
+      scene.setFlight(flight);
+      updateColourTheme();
+   }
+
+   public Flight getFlight() {
+      return scene.getFlight();
+   }
+
+
    public Scene getScene() {
       return scene;
    }
 
 
-   public ManoeuvreCatalogue getManoeuvreCatalogue() {
-      return manoeuvreCatalogue;
-   }
-
-
    public FlightManager getFlightManager() {
       return flightManager;
-   }
-
-
-   public AnimationManager getAnimationManager() {
-      return animationManager;
    }
 }

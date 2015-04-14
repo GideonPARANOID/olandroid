@@ -106,12 +106,11 @@ public class Renderer implements GLSurfaceView.Renderer {
       GLES20.glEnable(GLES20.GL_CULL_FACE);
       GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
+      // loading up the textures
       textures = new int[textureIds.length];
       for (int i = 0; i < textureIds.length; i++) {
          textures[i] = loadTexture(textureIds[i]);
       }
-
-      System.out.println(java.util.Arrays.toString(textures));
 
       Matrix.setIdentityM(mViewMatrix, 0);
 
@@ -232,7 +231,11 @@ public class Renderer implements GLSurfaceView.Renderer {
    }
 
 
-
+   /**
+    *
+    * @param resourceId - reference to the texture resource
+    * @return - a texture handle
+    */
    public int loadTexture(final int resourceId) {
       final int[] textureHandle = new int[1];
 
@@ -255,7 +258,6 @@ public class Renderer implements GLSurfaceView.Renderer {
          // load the bitmap into the bound texture
          GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
 
-         // recycle the bitmap, since its data has been loaded into opengl
          bitmap.recycle();
       }
 

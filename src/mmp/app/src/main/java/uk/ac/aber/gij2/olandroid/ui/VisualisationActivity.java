@@ -17,7 +17,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import uk.ac.aber.gij2.olandroid.AnimationManager;
-import uk.ac.aber.gij2.olandroid.OLANdroid;
 import uk.ac.aber.gij2.olandroid.R;
 
 
@@ -35,7 +34,7 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
       setContentView(R.layout.activity_visualisation);
 
       // animation listening
-      animationManager = ((OLANdroid) getApplication()).getAnimationManager();
+      animationManager = AnimationManager.getInstance();
       animationManager.addObserver(this);
 
       animationSeek = ((SeekBar) findViewById(R.id.va_seek));
