@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   tools:context="uk.ac.aber.gij2.olandroid.ui.BuildFlightActivity"
+
+   style="@style/SpinnerItem"
+
+   android:layout_width="fill_parent"
+   android:layout_height="30dp" />

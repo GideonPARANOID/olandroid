@@ -17,17 +17,17 @@
    android:layout_height="match_parent" >
 
    <TextView
-      android:id="@+id/lf_text_name"
+      android:id="@+id/lf_text_olan"
       android:clickable="true"
-      style="@style/AppTheme"
+      style="@style/PrimaryText"
 
       android:layout_width="0dp"
       android:layout_weight="30"
       android:layout_height="30dp" />
 
    <TextView
-      android:id="@+id/lf_text_olan"
-      style="@style/AppTheme"
+      android:id="@+id/lf_text_name"
+      style="@style/PrimaryText"
 
       android:layout_width="0dp"
       android:layout_weight="70"

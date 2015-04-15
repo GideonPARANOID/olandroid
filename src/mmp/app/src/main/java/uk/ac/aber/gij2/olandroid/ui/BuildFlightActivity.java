@@ -46,7 +46,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
       final Spinner spinner = (Spinner) findViewById(R.id.bfa_spinner_category);
 
-      spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+      spinner.setAdapter(new ArrayAdapter<>(this, R.layout.list_category,
             ManoeuvreCatalogue.getInstance().getCategories()));
 
       // on changing the spinner
@@ -61,14 +61,14 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
                // setup the listview on changing the category
                listManoeuvres.setAdapter(new ArrayAdapter<Manoeuvre>(getApplicationContext(),
-                  R.layout.list_manoeuvres, manoeuvreCatalogue.getManoeuvres(
+                  R.layout.list_manoeuvre, manoeuvreCatalogue.getManoeuvres(
                   manoeuvreCatalogue.getCategories()[position])) {
 
                   @Override
                   public View getView(int position, View convertView, ViewGroup parent) {
 
                      View row = ((LayoutInflater) getSystemService(
-                        Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_manoeuvres,
+                        Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_manoeuvre,
                         parent, false);
 
                      ((TextView) row.findViewById(R.id.lm_text_olan)).setText(

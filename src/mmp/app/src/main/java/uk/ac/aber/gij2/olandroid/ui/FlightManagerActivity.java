@@ -48,14 +48,14 @@ public class FlightManagerActivity extends ActionBarActivity implements
       }
 
       // adapter for converting flights into a listview
-      adapter = new ArrayAdapter<Flight>(app, R.layout.list_flights,
+      adapter = new ArrayAdapter<Flight>(app, R.layout.list_flight,
          app.getFlightManager().getFlights()) {
 
          @Override
          public View getView(int position, View convertView, ViewGroup parent) {
 
             View row = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-               .inflate(R.layout.list_flights, parent, false);
+               .inflate(R.layout.list_flight, parent, false);
 
             ((TextView) row.findViewById(R.id.lf_text_name)).setText(getItem(position).getName());
             ((TextView) row.findViewById(R.id.lf_text_olan)).setText(getItem(position).getOLAN());
