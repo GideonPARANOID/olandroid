@@ -58,22 +58,6 @@ public class OLANdroid extends Application implements
 
 
    /**
-    * @param olan - string olan description of a flight
-    * @throws InvalidFlightException - whether the flight was successfully built from the olan
-    */
-   public void buildAndSetFlight(String olan) throws InvalidFlightException {
-
-      String oldName = getScene().getFlight() != null ? scene.getFlight().getName() : null;
-
-      Flight flight = flightManager.buildFlight(olan, getAutocorrect());
-
-      flight.setName(oldName);
-      scene.setFlight(flight);
-      updateColourTheme();
-   }
-
-
-   /**
     * updates the colour theme for the current flight
     */
    public void updateColourTheme() {
@@ -164,6 +148,12 @@ public class OLANdroid extends Application implements
 
 
    public void setFlight(Flight flight) {
+
+      // copying the name
+      if (getFlight() != null && flight != null) {
+         flight.setName(getFlight().getName());
+      }
+
       scene.setFlight(flight);
       updateColourTheme();
    }
@@ -175,10 +165,5 @@ public class OLANdroid extends Application implements
 
    public Scene getScene() {
       return scene;
-   }
-
-
-   public FlightManager getFlightManager() {
-      return flightManager;
    }
 }

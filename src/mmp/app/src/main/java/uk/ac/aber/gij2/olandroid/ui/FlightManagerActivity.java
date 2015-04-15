@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import uk.ac.aber.gij2.olandroid.FlightManager;
 import uk.ac.aber.gij2.olandroid.OLANdroid;
 import uk.ac.aber.gij2.olandroid.R;
 import uk.ac.aber.gij2.olandroid.visualisation.Flight;
@@ -49,7 +50,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
 
       // adapter for converting flights into a listview
       adapter = new ArrayAdapter<Flight>(app, R.layout.list_flight,
-         app.getFlightManager().getFlights()) {
+         FlightManager.getInstance().getFlights()) {
 
          @Override
          public View getView(int position, View convertView, ViewGroup parent) {
@@ -114,7 +115,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
    @Override
    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
-      app.setFlight(app.getFlightManager().getFlights().get(position));
+      app.setFlight(FlightManager.getInstance().getFlights().get(position));
       startActivity(new Intent(this, VisualisationActivity.class));
    }
 
@@ -149,7 +150,7 @@ public class FlightManagerActivity extends ActionBarActivity implements
             break;
 
          case R.id.menu_fma_c_delete:
-            app.getFlightManager().deleteFlight(app.getFlight());
+            FlightManager.getInstance().deleteFlight(app.getFlight());
             app.setFlight(null);
             break;
       }

@@ -21,8 +21,12 @@
       <item name="android:activityCloseExitAnimation">@anim/activity_close_scale</item>
    </style>
 
-   <style name="PrimaryText" parent="Base.TextAppearance.AppCompat.Medium"></style>
-   <style name="SecondaryText" parent="Base.TextAppearance.AppCompat.Small"></style>
+   <style name="PrimaryText" parent="Base.TextAppearance.AppCompat.Medium">
+      <item name="android:textColor">@color/black</item>
+   </style>
+   <style name="SecondaryText" parent="Base.TextAppearance.AppCompat.Small">
+      <item name="android:textColor">@color/dark_grey</item>
+   </style>
 
    <style name="SpinnerItem" parent="Base.TextAppearance.AppCompat.Widget.DropDownItem">
       <item name="android:padding">5dp</item>
