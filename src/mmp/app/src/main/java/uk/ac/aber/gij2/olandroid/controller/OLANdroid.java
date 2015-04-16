@@ -24,12 +24,12 @@ public class OLANdroid extends Application implements
    private SharedPreferences preferences;
 
    private Scene scene;
-   private FlightManager flightManager;
    private AnimationManager animationManager;
 
 
    @Override
    public void onCreate() {
+
       preferences = PreferenceManager.getDefaultSharedPreferences(this);
       preferences.registerOnSharedPreferenceChangeListener(this);
 
@@ -39,11 +39,8 @@ public class OLANdroid extends Application implements
          new Grid(5f, getColourTheme(R.array.colour_theme_grid)) :
          new Ground(0));
 
-      ManoeuvreCatalogue manoeuvreCatalogue = ManoeuvreCatalogue.getInstance();
-      manoeuvreCatalogue.initialise(this, R.xml.manoeurvre_catalogue);
-
-      flightManager = FlightManager.getInstance();
-      flightManager.initialise(this, manoeuvreCatalogue);
+      ManoeuvreCatalogue.getInstance().initialise(this, R.xml.manoeurvre_catalogue);
+      FlightManager.getInstance().initialise(this);
 
       animationManager = AnimationManager.getInstance();
       animationManager.initialise(scene,

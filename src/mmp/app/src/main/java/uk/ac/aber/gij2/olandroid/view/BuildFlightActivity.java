@@ -23,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import uk.ac.aber.gij2.olandroid.Util;
 import uk.ac.aber.gij2.olandroid.controller.FlightManager;
 import uk.ac.aber.gij2.olandroid.InvalidFlightException;
 import uk.ac.aber.gij2.olandroid.controller.OLANdroid;
@@ -153,8 +154,8 @@ public class BuildFlightActivity extends ActionBarActivity implements
       OLANdroid app = (OLANdroid) getApplication();
 
       try {
-         app.setFlight(FlightManager.getInstance().buildFlight(olanEntry.getText().toString(),
-               app.getAutocorrect()));
+         app.setFlight(FlightManager.getInstance().buildFlight(Util.cleanText(
+               olanEntry.getText().toString()), app.getAutocorrect()));
 
          // if the olan has changed in the building process, consider it corrected
          if (!app.getFlight().getOLAN().equals(olanEntry.getText().toString().trim())) {

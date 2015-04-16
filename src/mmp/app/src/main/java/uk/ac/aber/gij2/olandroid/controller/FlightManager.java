@@ -56,11 +56,11 @@ public class FlightManager {
    private FlightManager() {}
 
 
-   public void initialise(OLANdroid app, ManoeuvreCatalogue manoeuvreCatalogue) {
+   public void initialise(OLANdroid app) {
       file = new File(app.getFilesDir(), FILENAME);
 
       this.app = app;
-      this.manoeuvreCatalogue = manoeuvreCatalogue;
+      this.manoeuvreCatalogue = ManoeuvreCatalogue.getInstance();
 
       // only ever initialise once, otherwise arrayadapters will lose reference
       flights = new ArrayList<>();

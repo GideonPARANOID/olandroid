@@ -39,6 +39,14 @@ public class Util {
 
 
    /**
+    * @param text - a string to clean
+    * @return - the input string cleaned of newlines & other such inconvenient stuff
+    */
+   public static String cleanText(String text) {
+      return text.replaceAll("[\n,\r]", " ");
+   }
+
+   /**
     * @param input - an input stream to parse
     * @return - the input stream parsed as a string
     * @throws IOException - any errors encountered during the reading
