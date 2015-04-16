@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.visualisation;
+package uk.ac.aber.gij2.olandroid.model;
 
 import android.opengl.GLES20;
 
@@ -11,6 +11,8 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
+
+import uk.ac.aber.gij2.olandroid.view.Renderer;
 
 
 public abstract class Shape implements Drawable {

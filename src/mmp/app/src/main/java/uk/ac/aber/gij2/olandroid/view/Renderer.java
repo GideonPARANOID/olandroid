@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.visualisation;
+package uk.ac.aber.gij2.olandroid.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -19,9 +19,10 @@ import java.io.IOException;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import uk.ac.aber.gij2.olandroid.OLANdroid;
+import uk.ac.aber.gij2.olandroid.controller.OLANdroid;
 import uk.ac.aber.gij2.olandroid.R;
 import uk.ac.aber.gij2.olandroid.Util;
+import uk.ac.aber.gij2.olandroid.controller.Scene;
 
 
 public class Renderer implements GLSurfaceView.Renderer {

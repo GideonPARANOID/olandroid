@@ -10,7 +10,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 
 import uk.ac.aber.gij2.olandroid.R;
-import uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity;
+import uk.ac.aber.gij2.olandroid.view.FlightManagerActivity;
 
 
 public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<FlightManagerActivity> {

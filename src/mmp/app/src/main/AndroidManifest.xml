@@ -15,7 +15,7 @@
       android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
    <application
-      android:name=".OLANdroid"
+      android:name=".controller.OLANdroid"
       android:allowBackup="true"
       android:hardwareAccelerated="true"
       android:icon="@drawable/ic_launcher"
@@ -23,7 +23,7 @@
       android:theme="@style/AppTheme" >
 
       <activity
-         android:name="uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity"
+         android:name="uk.ac.aber.gij2.olandroid.view.FlightManagerActivity"
          android:label="@string/a_label"
          android:exported="true"
          android:launchMode="singleTop">
@@ -37,27 +37,27 @@
       </activity>
 
       <activity
-         android:name="uk.ac.aber.gij2.olandroid.ui.BuildFlightActivity"
+         android:name="uk.ac.aber.gij2.olandroid.view.BuildFlightActivity"
          android:label="@string/bfa_label"
-         android:parentActivityName="uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity"
+         android:parentActivityName="uk.ac.aber.gij2.olandroid.view.FlightManagerActivity"
          android:windowSoftInputMode="stateUnchanged" >
          <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity" />
+            android:value="uk.ac.aber.gij2.olandroid.view.FlightManagerActivity" />
       </activity>
 
       <activity
-         android:name="uk.ac.aber.gij2.olandroid.ui.VisualisationActivity"
+         android:name="uk.ac.aber.gij2.olandroid.view.VisualisationActivity"
          android:label="@string/va_label"
-         android:parentActivityName="uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity"
+         android:parentActivityName="uk.ac.aber.gij2.olandroid.view.FlightManagerActivity"
          android:theme="@style/AppTheme.Visualisation" >
          <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="uk.ac.aber.gij2.olandroid.ui.FlightManagerActivity" />
+            android:value="uk.ac.aber.gij2.olandroid.view.FlightManagerActivity" />
       </activity>
 
       <activity
-         android:name="uk.ac.aber.gij2.olandroid.ui.SettingsActivity"
+         android:name="uk.ac.aber.gij2.olandroid.view.SettingsActivity"
          android:label="@string/p_label" >
       </activity>
    </application>

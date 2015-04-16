@@ -3,11 +3,12 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.visualisation;
+package uk.ac.aber.gij2.olandroid.model;
 
 import android.opengl.Matrix;
 
-import uk.ac.aber.gij2.olandroid.AnimationManager;
+import uk.ac.aber.gij2.olandroid.controller.AnimationManager;
+import uk.ac.aber.gij2.olandroid.AnimationStyle;
 import uk.ac.aber.gij2.olandroid.Util;
 
 

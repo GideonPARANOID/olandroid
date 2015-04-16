@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.ui;
+package uk.ac.aber.gij2.olandroid.view;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

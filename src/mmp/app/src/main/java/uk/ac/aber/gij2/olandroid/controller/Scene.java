@@ -3,8 +3,11 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.visualisation;
+package uk.ac.aber.gij2.olandroid.controller;
 
+
+import uk.ac.aber.gij2.olandroid.model.Drawable;
+import uk.ac.aber.gij2.olandroid.model.Flight;
 
 public class Scene {
 

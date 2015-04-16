@@ -3,18 +3,19 @@
  * @author gideon mw jones
  */
 
-package uk.ac.aber.gij2.olandroid;
+package uk.ac.aber.gij2.olandroid.controller;
 
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 
-import uk.ac.aber.gij2.olandroid.visualisation.AnimationStyle;
-import uk.ac.aber.gij2.olandroid.visualisation.Flight;
-import uk.ac.aber.gij2.olandroid.visualisation.Grid;
-import uk.ac.aber.gij2.olandroid.visualisation.Ground;
-import uk.ac.aber.gij2.olandroid.visualisation.Scene;
+import uk.ac.aber.gij2.olandroid.R;
+import uk.ac.aber.gij2.olandroid.AnimationStyle;
+import uk.ac.aber.gij2.olandroid.model.Flight;
+import uk.ac.aber.gij2.olandroid.model.Grid;
+import uk.ac.aber.gij2.olandroid.model.Ground;
+import uk.ac.aber.gij2.olandroid.view.Renderer;
 
 
 public class OLANdroid extends Application implements
@@ -51,7 +52,7 @@ public class OLANdroid extends Application implements
             AnimationStyle.ONE : AnimationStyle.TWO);
 
       // setting up the renderer early, with the texture catalogue
-      new uk.ac.aber.gij2.olandroid.visualisation.Renderer(this, new int[] {
+      new Renderer(this, new int[] {
          R.drawable.grass
       });
    }

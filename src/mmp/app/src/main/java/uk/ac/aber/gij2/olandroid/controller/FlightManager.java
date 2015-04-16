@@ -3,7 +3,7 @@
  * @author gideon mw jones
  */
 
-package uk.ac.aber.gij2.olandroid;
+package uk.ac.aber.gij2.olandroid.controller;
 
 import android.opengl.Matrix;
 import android.util.Log;
@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import uk.ac.aber.gij2.olandroid.visualisation.Flight;
-import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
+import uk.ac.aber.gij2.olandroid.InvalidFlightException;
+import uk.ac.aber.gij2.olandroid.Util;
+import uk.ac.aber.gij2.olandroid.model.Flight;
+import uk.ac.aber.gij2.olandroid.model.Manoeuvre;
 
 
 public class FlightManager {
@@ -71,7 +73,7 @@ public class FlightManager {
     * @param olan - a description of a flight
     * @param correct - whether or not to correct the height of the flight
     * @return - a flight defined by the olan string
-    * @throws InvalidFlightException - occurs if the passed olan is invalid
+    * @throws uk.ac.aber.gij2.olandroid.InvalidFlightException - occurs if the passed olan is invalid
     */
    public Flight buildFlight(String olan, boolean correct) throws InvalidFlightException {
 

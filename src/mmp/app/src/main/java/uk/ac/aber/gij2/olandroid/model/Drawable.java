@@ -3,8 +3,10 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.visualisation;
+package uk.ac.aber.gij2.olandroid.model;
 
+
+import uk.ac.aber.gij2.olandroid.AnimationStyle;
 
 public interface Drawable {
 

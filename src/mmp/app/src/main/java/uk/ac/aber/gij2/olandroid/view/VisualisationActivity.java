@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.ui;
+package uk.ac.aber.gij2.olandroid.view;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import android.widget.SeekBar;
 import java.util.Observable;
 import java.util.Observer;
 
-import uk.ac.aber.gij2.olandroid.AnimationManager;
+import uk.ac.aber.gij2.olandroid.controller.AnimationManager;
 import uk.ac.aber.gij2.olandroid.R;
 
 

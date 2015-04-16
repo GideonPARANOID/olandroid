@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.ui;
+package uk.ac.aber.gij2.olandroid.view;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
@@ -11,13 +11,13 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-import uk.ac.aber.gij2.olandroid.OLANdroid;
+import uk.ac.aber.gij2.olandroid.controller.OLANdroid;
 
 
 public class SurfaceView extends GLSurfaceView {
 
    private Context context;
-   private uk.ac.aber.gij2.olandroid.visualisation.Renderer renderer;
+   private uk.ac.aber.gij2.olandroid.view.Renderer renderer;
 
    private Touch previous0, previous1;
    private int controlScheme;
@@ -31,9 +31,9 @@ public class SurfaceView extends GLSurfaceView {
 
    public SurfaceView(Context context, AttributeSet attributes) {
       super(context, attributes);
-      super.setEGLConfigChooser(8 , 8, 8, 8, 16, 0);
+      setEGLConfigChooser(8, 8, 8, 8, 16, 0);
 
-      renderer = uk.ac.aber.gij2.olandroid.visualisation.Renderer.getInstance();
+      renderer = uk.ac.aber.gij2.olandroid.view.Renderer.getInstance();
 
       setEGLContextClientVersion(2);
       setRenderer(renderer);

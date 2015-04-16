@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid;
+package uk.ac.aber.gij2.olandroid.controller;
 
 import android.content.Context;
 import android.util.Log;
@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import uk.ac.aber.gij2.olandroid.visualisation.Component;
-import uk.ac.aber.gij2.olandroid.visualisation.Manoeuvre;
+import uk.ac.aber.gij2.olandroid.model.Component;
+import uk.ac.aber.gij2.olandroid.model.Manoeuvre;
 
 
 public class ManoeuvreCatalogue {

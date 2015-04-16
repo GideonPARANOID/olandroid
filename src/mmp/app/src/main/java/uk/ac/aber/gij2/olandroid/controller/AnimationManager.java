@@ -3,14 +3,13 @@
  * @author gideon mw jones
  */
 
-package uk.ac.aber.gij2.olandroid;
+package uk.ac.aber.gij2.olandroid.controller;
 
 import android.util.Log;
 
 import java.util.Observable;
 
-import uk.ac.aber.gij2.olandroid.visualisation.AnimationStyle;
-import uk.ac.aber.gij2.olandroid.visualisation.Scene;
+import uk.ac.aber.gij2.olandroid.AnimationStyle;
 
 
 public class AnimationManager extends Observable {

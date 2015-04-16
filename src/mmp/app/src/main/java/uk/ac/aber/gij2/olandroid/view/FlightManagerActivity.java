@@ -3,7 +3,7 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.ui;
+package uk.ac.aber.gij2.olandroid.view;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -22,10 +22,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import uk.ac.aber.gij2.olandroid.FlightManager;
-import uk.ac.aber.gij2.olandroid.OLANdroid;
+import uk.ac.aber.gij2.olandroid.controller.FlightManager;
+import uk.ac.aber.gij2.olandroid.controller.OLANdroid;
 import uk.ac.aber.gij2.olandroid.R;
-import uk.ac.aber.gij2.olandroid.visualisation.Flight;
+import uk.ac.aber.gij2.olandroid.model.Flight;
 
 
 public class FlightManagerActivity extends ActionBarActivity implements

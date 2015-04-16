@@ -3,9 +3,11 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.visualisation;
+package uk.ac.aber.gij2.olandroid.model;
 
 import android.opengl.Matrix;
+
+import uk.ac.aber.gij2.olandroid.AnimationStyle;
 
 
 public class Component extends Shape implements Drawable {
