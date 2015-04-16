@@ -3,10 +3,8 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.model;
+package uk.ac.aber.gij2.olandroid.view;
 
-
-import uk.ac.aber.gij2.olandroid.AnimationStyle;
 
 public interface Drawable {
 
@@ -24,10 +22,11 @@ public interface Drawable {
 
    /**
     * modifies a the resources used to draw the object
-    * @param progress - how far the drawing has got, between 0 & 1
+    * @param progressStart - how far the start of the drawing has got, between 0 & 1
+    * @param progressEnd - how far the end of the drawing has got, between 0 & 1
     * @param style - the style of the animation
     */
-   public void animate(float progress, AnimationStyle style);
+   public void animate(float progressStart, float progressEnd, AnimationStyle style);
 
 
    /**

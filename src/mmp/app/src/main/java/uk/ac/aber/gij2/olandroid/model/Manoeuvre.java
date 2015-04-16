@@ -7,8 +7,9 @@ package uk.ac.aber.gij2.olandroid.model;
 
 import android.opengl.Matrix;
 
+import uk.ac.aber.gij2.olandroid.view.Drawable;
 import uk.ac.aber.gij2.olandroid.controller.AnimationManager;
-import uk.ac.aber.gij2.olandroid.AnimationStyle;
+import uk.ac.aber.gij2.olandroid.view.AnimationStyle;
 import uk.ac.aber.gij2.olandroid.Util;
 
 
@@ -187,69 +188,69 @@ public class Manoeuvre implements Drawable {
    }
 
 
-   public void animate(float progress, AnimationStyle style) {
+   public void animate(float progressStart, float progressEnd, AnimationStyle style) {
       int i;
 
       switch (style) {
-         case ONE:
+         case PREVIOUS_TRAIL:
             // if either fully drawn or fully not drawn
-            if (progress == 0f || progress == 1f) {
+            if (progressEnd == 0f || progressEnd == 1f) {
                for (Component component : components) {
-                  component.animate(0f, progress, AnimationStyle.ONE);
+                  component.animate(0f, progressEnd, AnimationStyle.PREVIOUS_TRAIL);
                }
 
             } else {
                // getting progress to be in the context of the flight length in components
-               progress *= getLength();
+               progressEnd *= getLength();
 
-               for (i = 0; i < components.length && componentsCumulativeLength[i] < progress; i++) {
-                  components[i].animate(0f, 1f, AnimationStyle.ONE);
+               for (i = 0; i < components.length && componentsCumulativeLength[i] < progressEnd; i++) {
+                  components[i].animate(0f, 1f, AnimationStyle.PREVIOUS_TRAIL);
                }
 
                // scaling across the cumulative middle
                components[i].animate(
-                  ((components[i].getLength() - (componentsCumulativeLength[i] - progress)) /
-                     Math.abs(components[i].getLength())), AnimationStyle.ONE);
+                  ((components[i].getLength() - (componentsCumulativeLength[i] - progressEnd)) /
+                     Math.abs(components[i].getLength())), AnimationStyle.PREVIOUS_TRAIL);
 
                for (i++; i < components.length; i++) {
-                  components[i].animate(0f, 0f, AnimationStyle.ONE);
+                  components[i].animate(0f, 0f, AnimationStyle.PREVIOUS_TRAIL);
                }
             }
             break;
 
-         case TWO:
+         case FLYING_WING:
             // if either fully drawn or fully not drawn
-            if (progress == 0f || progress == 1f) {
+            if (progressEnd == 0f || progressEnd == 1f) {
                for (Component component : components) {
-                  component.animate(0, progress, AnimationStyle.TWO);
+                  component.animate(0, progressEnd, AnimationStyle.FLYING_WING);
                }
 
             } else {
 
                // TODO: fix all of the horrible bugs
 
-               progress *= getLength();
+               progressEnd *= getLength();
 
                for (i = 0; i < components.length
-                  && componentsCumulativeLength[i] < progress; i++) {
-                  components[i].animate(0f, AnimationStyle.TWO);
+                  && componentsCumulativeLength[i] < progressEnd; i++) {
+                  components[i].animate(0f, AnimationStyle.FLYING_WING);
                }
 
                float cLength = Math.abs(components[i].getLength()),
-                  cProgress = (cLength - (componentsCumulativeLength[i] - progress)) / cLength;
+                  cProgress = (cLength - (componentsCumulativeLength[i] - progressEnd)) / cLength;
 
                // wing will fit in this component
-               if (componentsCumulativeLength[i] - progress > AnimationManager.WING_LENGTH) {
+               if (componentsCumulativeLength[i] - progressEnd > AnimationManager.WING_LENGTH) {
 
                   // start & end of wing
                   components[i].animate(cProgress,
-                     cProgress + (AnimationManager.WING_LENGTH / cLength), AnimationStyle.TWO);
+                     cProgress + (AnimationManager.WING_LENGTH / cLength), AnimationStyle.FLYING_WING);
                   i++;
 
                } else {
 
                   // start of wing
-                  components[i].animate(cProgress, 1f, AnimationStyle.TWO);
+                  components[i].animate(cProgress, 1f, AnimationStyle.FLYING_WING);
 
                   float wingLeft = AnimationManager.WING_LENGTH - (cProgress * cLength);
 
@@ -258,14 +259,14 @@ public class Manoeuvre implements Drawable {
                      && wingLeft - Math.abs(components[i].getLength()) > 0; i++) {
 
                      wingLeft -= Math.abs(components[i].getLength());
-                     components[i].animate(0f, 1f, AnimationStyle.TWO);
+                     components[i].animate(0f, 1f, AnimationStyle.FLYING_WING);
                   }
 
                   if (i < components.length) {
 
                      // end of wing
                      float mid = 1f - ((componentsCumulativeLength[i]
-                        - AnimationManager.WING_LENGTH - progress)
+                        - AnimationManager.WING_LENGTH - progressEnd)
                         / Math.abs(components[i].getLength()));
 
 
@@ -274,7 +275,7 @@ public class Manoeuvre implements Drawable {
                      if (mid >= 0 && mid <= 1) {
 
                         // scaling component across front
-                        components[i].animate(0f, mid, AnimationStyle.TWO);
+                        components[i].animate(0f, mid, AnimationStyle.FLYING_WING);
                         i++;
                      }
                   }
@@ -283,7 +284,7 @@ public class Manoeuvre implements Drawable {
 
                if (i < components.length) {
                   for (; i < components.length; i++) {
-                     components[i].animate(0f, 0f, AnimationStyle.TWO);
+                     components[i].animate(0f, 0f, AnimationStyle.FLYING_WING);
                   }
                }
             }

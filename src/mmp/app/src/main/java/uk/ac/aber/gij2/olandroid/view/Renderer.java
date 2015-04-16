@@ -33,7 +33,7 @@ public class Renderer implements GLSurfaceView.Renderer {
    public static float DRAW_BOUNDS = 100f;
 
    // view & scene building tools
-   private final float[] mMVPMatrix, mProjectionMatrix, mViewMatrix;
+   private float[] mMVPMatrix, mProjectionMatrix, mViewMatrix;
 
    // for back referencing to the application
    private Context context;
@@ -45,21 +45,25 @@ public class Renderer implements GLSurfaceView.Renderer {
    // content
    private Scene scene;
 
-
    private int[] textureIds;
 
    private static Renderer instance;
 
 
-
    public static Renderer getInstance() {
+      if (instance == null) {
+         instance = new Renderer();
+      }
       return instance;
    }
 
 
-   public Renderer(Context context, int[] textureIds) {
-      instance = this;
+   private Renderer() {
+      super();
+   }
 
+
+   public void initialise(Context context, final int[] textureIds) {
       this.context = context;
 
       mMVPMatrix = new float[16];
@@ -99,7 +103,7 @@ public class Renderer implements GLSurfaceView.Renderer {
       GLES20.glAttachShader(program, fragmentShader);
       GLES20.glLinkProgram(program);
 
-      float[] colour  = ((OLANdroid) context.getApplicationContext()).getColourTheme(
+      float[] colour = ((OLANdroid) context.getApplicationContext()).getColourTheme(
          R.array.colour_theme_background);
 
       GLES20.glClearColor(colour[0], colour[1], colour[2], colour[3]);
@@ -246,14 +250,17 @@ public class Renderer implements GLSurfaceView.Renderer {
          options.inScaled = false;   // no pre-scaling
 
          // Read in the resource
-         final Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId, options);
+         final Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId,
+            options);
 
          // bind to the texture in opengl
          GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandle[0]);
 
          // set filtering
-         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
-         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_NEAREST);
+         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER,
+            GLES20.GL_NEAREST);
+         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER,
+            GLES20.GL_NEAREST);
 
          // load the bitmap into the bound texture
          GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);

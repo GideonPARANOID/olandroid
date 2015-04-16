@@ -6,7 +6,8 @@
 package uk.ac.aber.gij2.olandroid.controller;
 
 
-import uk.ac.aber.gij2.olandroid.model.Drawable;
+import uk.ac.aber.gij2.olandroid.view.Aircraft;
+import uk.ac.aber.gij2.olandroid.view.Drawable;
 import uk.ac.aber.gij2.olandroid.model.Flight;
 
 public class Scene {
@@ -25,6 +26,8 @@ public class Scene {
       if (flight != null) {
          flight.draw(initialMatrix);
       }
+
+      //new Aircraft(0).draw(initialMatrix);
    }
 
    public Flight getFlight() {

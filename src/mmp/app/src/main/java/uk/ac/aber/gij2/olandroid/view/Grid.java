@@ -3,12 +3,9 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid.model;
+package uk.ac.aber.gij2.olandroid.view;
 
 import android.opengl.Matrix;
-
-import uk.ac.aber.gij2.olandroid.AnimationStyle;
-import uk.ac.aber.gij2.olandroid.view.Renderer;
 
 
 public class Grid extends Shape implements Drawable {
@@ -67,7 +64,7 @@ public class Grid extends Shape implements Drawable {
    }
 
 
-   public void animate(float progress, AnimationStyle style) {}
+   public void animate(float progressStart, float progressEnd, AnimationStyle style) {}
 
    public float getLength() {
       return 0f;

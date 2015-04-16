@@ -3,9 +3,9 @@
  * @author gideon mw jones.
  */
 
-package uk.ac.aber.gij2.olandroid;
+package uk.ac.aber.gij2.olandroid.view;
 
 
 public enum AnimationStyle {
-   ONE, TWO
+   PREVIOUS_TRAIL, FLYING_WING, PLANE
 }

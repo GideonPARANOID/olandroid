@@ -7,8 +7,9 @@ package uk.ac.aber.gij2.olandroid.model;
 
 import android.opengl.Matrix;
 
+import uk.ac.aber.gij2.olandroid.view.Drawable;
 import uk.ac.aber.gij2.olandroid.controller.AnimationManager;
-import uk.ac.aber.gij2.olandroid.AnimationStyle;
+import uk.ac.aber.gij2.olandroid.view.AnimationStyle;
 
 
 public class Flight implements Drawable {
@@ -102,72 +103,72 @@ public class Flight implements Drawable {
    }
 
 
-   public void animate(float progress, AnimationStyle style) {
+   public void animate(float progressStart, float progressEnd, AnimationStyle style) {
       int i;
 
       switch (style) {
-         case ONE:
+         case PREVIOUS_TRAIL:
             // if either fully drawn or fully not drawn
-            if (progress == 0f || progress == 1f) {
+            if (progressEnd == 0f || progressEnd == 1f) {
                for (Manoeuvre manoeuvre : manoeuvres) {
-                  manoeuvre.animate(progress, AnimationStyle.ONE);
+                  manoeuvre.animate(0f, progressEnd, AnimationStyle.PREVIOUS_TRAIL);
                }
 
             } else {
 
                // getting progress to be in the context of the flight length in manoeuvres
-               progress *= getLength();
+               progressEnd *= getLength();
 
-               for (i = 0; i < manoeuvres.length && manoeuvresCumulativeLength[i] < progress; i++) {
-                  manoeuvres[i].animate(1f, AnimationStyle.ONE);
+               for (i = 0; i < manoeuvres.length && manoeuvresCumulativeLength[i] < progressEnd; i++) {
+                  manoeuvres[i].animate(0f, 1f, AnimationStyle.PREVIOUS_TRAIL);
                }
 
                // scaling across the cumulative middle
-               manoeuvres[i].animate(1 -
-                  ((manoeuvresCumulativeLength[i] - progress) / manoeuvres[i].getLength()), AnimationStyle.ONE);
+               manoeuvres[i].animate(0f, 1 -
+                  ((manoeuvresCumulativeLength[i] - progressEnd) / manoeuvres[i].getLength()), AnimationStyle.PREVIOUS_TRAIL);
 
                for (i++; i < manoeuvres.length; i++) {
-                  manoeuvres[i].animate(0f, AnimationStyle.ONE);
+                  manoeuvres[i].animate(0f, 0f, AnimationStyle.PREVIOUS_TRAIL);
                }
             }
             break;
 
-         case TWO:
-            if (progress == 0f || progress == 1f) {
+         case FLYING_WING:
+            if (progressEnd == 0f || progressEnd == 1f) {
                for (Manoeuvre manoeuvre : manoeuvres) {
-                  manoeuvre.animate(progress, AnimationStyle.TWO);
+                  manoeuvre.animate(0f, progressEnd, AnimationStyle.FLYING_WING);
                }
 
             } else {
 
                // getting progress to be in the context of the flight length in manoeuvres
-               progress *= getLength();
+               progressEnd *= getLength();
 
-               for (i = 0; i < manoeuvres.length && manoeuvresCumulativeLength[i] < progress; i++) {
-                  manoeuvres[i].animate(0f, AnimationStyle.TWO);
+               for (i = 0; i < manoeuvres.length && manoeuvresCumulativeLength[i] < progressEnd; i++) {
+                  manoeuvres[i].animate(0f, 0f, AnimationStyle.FLYING_WING);
                }
 
                float mLength = manoeuvres[i].getLength(),
-                  mProgress = ((mLength - (manoeuvresCumulativeLength[i] - progress))
+                  mProgress = ((mLength - (manoeuvresCumulativeLength[i] - progressEnd))
                      / mLength),
                   mAnimation = (mProgress * mLength) + AnimationManager.WING_LENGTH;
 
 
                // scaling across the cumulative middle
-               manoeuvres[i].animate(mProgress, AnimationStyle.TWO);
+               manoeuvres[i].animate(0f, mProgress, AnimationStyle.FLYING_WING);
 
                i++;
 
                // if a manoeuvre's animation spills over into the next one
                if (mAnimation > mLength && i < manoeuvres.length) {
-                  manoeuvres[i].animate(
+                  manoeuvres[i].animate(0f,
                      (mAnimation - mLength - AnimationManager.WING_LENGTH)
-                        / manoeuvres[i].getLength(), AnimationStyle.TWO);
+                        / manoeuvres[i].getLength(), AnimationStyle.FLYING_WING);
                   i++;
                }
 
                for (; i < manoeuvres.length; i++) {
-                  manoeuvres[i].animate(0f, AnimationStyle.TWO);
+                  manoeuvres[i].animate(0f, 0f, AnimationStyle.FLYING_WING);
                }
             }
             break;

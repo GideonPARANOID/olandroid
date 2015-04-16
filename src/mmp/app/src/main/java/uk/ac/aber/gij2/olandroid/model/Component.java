@@ -7,7 +7,9 @@ package uk.ac.aber.gij2.olandroid.model;
 
 import android.opengl.Matrix;
 
-import uk.ac.aber.gij2.olandroid.AnimationStyle;
+import uk.ac.aber.gij2.olandroid.view.AnimationStyle;
+import uk.ac.aber.gij2.olandroid.view.Drawable;
+import uk.ac.aber.gij2.olandroid.view.Shape;
 
 
 public class Component extends Shape implements Drawable {

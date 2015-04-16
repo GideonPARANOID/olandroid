@@ -11,10 +11,10 @@ import android.graphics.Color;
 import android.preference.PreferenceManager;
 
 import uk.ac.aber.gij2.olandroid.R;
-import uk.ac.aber.gij2.olandroid.AnimationStyle;
+import uk.ac.aber.gij2.olandroid.view.AnimationStyle;
 import uk.ac.aber.gij2.olandroid.model.Flight;
-import uk.ac.aber.gij2.olandroid.model.Grid;
-import uk.ac.aber.gij2.olandroid.model.Ground;
+import uk.ac.aber.gij2.olandroid.view.Grid;
+import uk.ac.aber.gij2.olandroid.view.Ground;
 import uk.ac.aber.gij2.olandroid.view.Renderer;
 
 
@@ -39,19 +39,18 @@ public class OLANdroid extends Application implements
          new Grid(5f, getColourTheme(R.array.colour_theme_grid)) :
          new Ground(0));
 
+      // singleton initialisation
       ManoeuvreCatalogue.getInstance().initialise(this, R.xml.manoeurvre_catalogue);
       FlightManager.getInstance().initialise(this);
+      Renderer.getInstance().initialise(this, new int[] {
+         R.drawable.grass
+      });
 
       animationManager = AnimationManager.getInstance();
       animationManager.initialise(scene,
          Float.parseFloat(preferences.getString("p_animation_speed", "1")),
          Integer.parseInt(preferences.getString("p_animation_style", "0")) == 0 ?
-            AnimationStyle.ONE : AnimationStyle.TWO);
-
-      // setting up the renderer early, with the texture catalogue
-      new Renderer(this, new int[] {
-         R.drawable.grass
-      });
+            AnimationStyle.PREVIOUS_TRAIL : AnimationStyle.FLYING_WING);
    }
 
 
@@ -116,7 +115,7 @@ public class OLANdroid extends Application implements
          case "p_animation_style":
             animationManager.setStyle(Integer.parseInt(
                   preferences.getString("p_animation_style", "0")) == 0 ?
-                  AnimationStyle.ONE : AnimationStyle.TWO);
+                  AnimationStyle.PREVIOUS_TRAIL : AnimationStyle.FLYING_WING);
 
          case "p_controls_scheme":
             break;

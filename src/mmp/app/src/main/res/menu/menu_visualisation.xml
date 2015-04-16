@@ -27,12 +27,12 @@
       android:id="@+id/menu_a_help"
       android:title="@string/a_help"
       android:icon="@drawable/ic_action_help"
-      app:showAsAction="ifRoom" />
+      app:showAsAction="always" />
 
    <item
       android:id="@+id/menu_a_settings"
       android:title="@string/a_settings"
       android:icon="@drawable/ic_action_settings"
       android:orderInCategory="100"
-      app:showAsAction="ifRoom" />
+      app:showAsAction="always" />
 </menu>

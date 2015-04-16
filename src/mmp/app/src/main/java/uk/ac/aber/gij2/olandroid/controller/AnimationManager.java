@@ -9,7 +9,7 @@ import android.util.Log;
 
 import java.util.Observable;
 
-import uk.ac.aber.gij2.olandroid.AnimationStyle;
+import uk.ac.aber.gij2.olandroid.view.AnimationStyle;
 
 
 public class AnimationManager extends Observable {
@@ -104,7 +104,7 @@ public class AnimationManager extends Observable {
       setChanged();
       notifyObservers();
 
-      scene.getFlight().animate(this.progress, style);
+      scene.getFlight().animate(0f, this.progress, style);
    }
 
 
