@@ -8,7 +8,6 @@ package uk.ac.aber.gij2.olandroid.view;
 
 public class Aircraft extends Shape implements Drawable {
 
-
    public Aircraft(int textureId) {
 
       float s = 2f;

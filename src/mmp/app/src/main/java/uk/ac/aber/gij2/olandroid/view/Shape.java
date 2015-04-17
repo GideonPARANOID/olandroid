@@ -59,7 +59,7 @@ public abstract class Shape implements Drawable {
 
    /**
     * constructs buffers & makes references to shader program variables, needs vertex & draw orders
-    *    set
+    *    already initialised
     */
    protected void setupDrawing() {
 
@@ -161,7 +161,7 @@ public abstract class Shape implements Drawable {
    /**
     * @param vertices - vertices of the shape
     */
-   protected void buildVerticesBuffer(float[] vertices) {
+   protected final void buildVerticesBuffer(float[] vertices) {
       if (vertices == null) {
          draw = false;
 
@@ -179,7 +179,7 @@ public abstract class Shape implements Drawable {
    /**
     * @param drawOrder - order of drawing of the shape
     */
-   protected void buildDrawOrderBuffer(short[] drawOrder) {
+   protected final void buildDrawOrderBuffer(short[] drawOrder) {
       points = drawOrder.length;
 
       // initialise byte buffer for the draw list, 2 bytes per short
@@ -191,7 +191,7 @@ public abstract class Shape implements Drawable {
    /**
     * @param textureCoords - texture coords
     */
-   protected void buildTextureCoordsBuffer(float[] textureCoords) {
+   protected final void buildTextureCoordsBuffer(float[] textureCoords) {
 
       // initialise texture coordinates byte buffer for shape coordinates, 4 bytes per float
       textureCoordsBuffer = ByteBuffer.allocateDirect(textureCoords.length * 4).order(
@@ -200,16 +200,16 @@ public abstract class Shape implements Drawable {
    }
 
 
-   public void setColourFront(float[] colourFront) {
+   public final void setColourFront(float[] colourFront) {
       this.colourFront = colourFront;
    }
 
-   public void setColourBack(float[] colourBack) {
+   public final void setColourBack(float[] colourBack) {
       this.colourBack = colourBack;
    }
 
 
-   public void setTextureId(int textureId) {
+   public final void setTextureId(int textureId) {
       this.textureId = textureId;
       useTexture = true;
    }
