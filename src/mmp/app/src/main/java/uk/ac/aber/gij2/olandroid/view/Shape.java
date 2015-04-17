@@ -24,28 +24,17 @@ public abstract class Shape implements Drawable {
    private ShortBuffer drawOrderBuffer;
    private float[] colourFront, colourBack;
 
-   // handles
-   private int points, mPositionHandle, mColourHandle, mMVPMatrixHandle, mUseTextureHandle,
-      mTextureCoordsHandle, mTextureHandle;
-
-   // texture resource handle
-   private int texture;
-
-   private int textureId;
+   // handles, including texture resource handle
+   private int points, texture, textureId, mPositionHandle, mColourHandle, mMVPMatrixHandle,
+      mUseTextureHandle, mTextureCoordsHandle, mTextureHandle;
 
    private boolean useTexture;
 
-
-   protected boolean drawingSetup;
    private final Style drawMode;
 
    // whether to draw or not, a way of skipping emptying buffers
    private boolean draw;
-
-
-   protected Shape() {
-      this(Style.FILL);
-   }
+   protected boolean drawingSetup;
 
 
    protected Shape(Style drawMode) {

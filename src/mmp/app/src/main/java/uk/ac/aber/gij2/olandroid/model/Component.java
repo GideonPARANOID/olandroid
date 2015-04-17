@@ -60,7 +60,7 @@ public class Component extends Shape implements Drawable.Flight {
    public Component(Bound pitch, Bound yaw, Bound roll, float length, float[] colourFront,
       float[] colourBack) {
 
-      super();
+      super(Style.FILL);
 
       this.pitch = pitch;
       this.yaw = yaw;

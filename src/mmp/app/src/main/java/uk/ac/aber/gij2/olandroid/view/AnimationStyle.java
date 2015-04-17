@@ -7,5 +7,5 @@ package uk.ac.aber.gij2.olandroid.view;
 
 
 public enum AnimationStyle {
-   PREVIOUS_TRAIL, FLYING_WING, PLANE
+   PREVIOUS_TRAIL, FLYING_WING, AIRCRAFT
 }

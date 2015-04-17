@@ -14,7 +14,7 @@ public class Ground extends Shape implements Drawable {
     * @param textureId - textureId resource
     */
    public Ground(int textureId) {
-      super();
+      super(Style.FILL);
 
       super.setTextureId(textureId);
 

@@ -18,7 +18,7 @@ public class Grid extends Shape implements Drawable {
     * @param colour - the colour, as an array representation
     */
    public Grid(float unitSize, float[] colour) {
-      super(Shape.Style.LINES);
+      super(Style.LINES);
 
       this.unitSize = unitSize;
 
