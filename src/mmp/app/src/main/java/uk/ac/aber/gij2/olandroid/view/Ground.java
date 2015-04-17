@@ -51,18 +51,4 @@ public class Ground extends Shape implements Drawable {
       Matrix.translateM(newMatrix, 0, initialMatrix, 0, -Renderer.DRAW_BOUNDS / 2f, 0, -Renderer.DRAW_BOUNDS / 2f);
       super.draw(newMatrix);
    }
-
-
-   public float[] getCompleteMatrix() {
-      float[] matrix = new float[16];
-      Matrix.setIdentityM(matrix, 0);
-      return matrix;
-   }
-
-
-   public void animate(float progressStart, float progressEnd, AnimationStyle style) {}
-
-   public float getLength() {
-      return 0f;
-   }
 }

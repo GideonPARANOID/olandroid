@@ -14,7 +14,7 @@
    android:paddingBottom="@dimen/l_margin_vertical"
 
    android:layout_width="match_parent"
-   android:layout_height="match_parent" >
+   android:layout_height="wrap_content" >
 
    <TextView
       android:id="@+id/lf_text_olan"
@@ -22,14 +22,14 @@
       style="@style/PrimaryText"
 
       android:layout_width="0dp"
-      android:layout_weight="30"
-      android:layout_height="30dp" />
+      android:layout_weight="70"
+      android:layout_height="wrap_content" />
 
    <TextView
       android:id="@+id/lf_text_name"
       style="@style/PrimaryText"
 
       android:layout_width="0dp"
-      android:layout_weight="70"
-      android:layout_height="30dp" />
+      android:layout_weight="30"
+      android:layout_height="wrap_content" />
 </LinearLayout>

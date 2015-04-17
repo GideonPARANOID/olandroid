@@ -55,18 +55,4 @@ public class Grid extends Shape implements Drawable {
          }
       }
    }
-
-
-   public float[] getCompleteMatrix() {
-      float[] matrix = new float[16];
-      Matrix.setIdentityM(matrix, 0);
-      return matrix;
-   }
-
-
-   public void animate(float progressStart, float progressEnd, AnimationStyle style) {}
-
-   public float getLength() {
-      return 0f;
-   }
 }

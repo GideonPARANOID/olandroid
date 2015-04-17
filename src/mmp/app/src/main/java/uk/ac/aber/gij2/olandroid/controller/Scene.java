@@ -27,7 +27,7 @@ public class Scene {
          flight.draw(initialMatrix);
       }
 
-      //new Aircraft(0).draw(initialMatrix);
+      new Aircraft(0).draw(initialMatrix);
    }
 
    public Flight getFlight() {
