@@ -164,11 +164,10 @@ public class Manoeuvre implements Drawable.Flight {
     * @return - the x translation of the lowest point in the manoeuvre
     */
    public float getLowestPoint(float[] initialMatrix) {
-      float result = 0;
-
       calculateMatrices(initialMatrix);
 
       // far right column of a 4x4 matrix is the translation operation
+      float result = 0;
       for (float[] matrix : matrices) {
          if (matrix[13] < result) {
             result = matrix[13];
@@ -208,7 +207,7 @@ public class Manoeuvre implements Drawable.Flight {
                }
 
                // scaling across the cumulative middle
-               components[i].animate(
+               components[i].animate(0f,
                   ((components[i].getLength() - (componentsCumulativeLength[i] - progressEnd)) /
                      Math.abs(components[i].getLength())), AnimationStyle.PREVIOUS_TRAIL);
 
@@ -233,7 +232,7 @@ public class Manoeuvre implements Drawable.Flight {
 
                for (i = 0; i < components.length
                   && componentsCumulativeLength[i] < progressEnd; i++) {
-                  components[i].animate(0f, AnimationStyle.FLYING_WING);
+                  components[i].animate(0f, 0f, AnimationStyle.FLYING_WING);
                }
 
                float cLength = Math.abs(components[i].getLength()),

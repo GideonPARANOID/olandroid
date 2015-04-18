@@ -173,11 +173,6 @@ public class Component extends Shape implements Drawable.Flight {
    }
 
 
-   public void animate(float progress, AnimationStyle style) {
-      animate(0f, progress, style);
-   }
-
-
    public void animate(float progressPre, float progressPost, AnimationStyle style) {
       if (progressPre == 0f && progressPost == 0f) {
          super.buildVerticesBuffer(null);
@@ -203,7 +198,6 @@ public class Component extends Shape implements Drawable.Flight {
    }
 
 
-
    public float getLength() {
       return length;
    }
@@ -213,9 +207,5 @@ public class Component extends Shape implements Drawable.Flight {
       this.length = length;
       buildVertices();
       buildMatrix();
-   }
-
-   public String toString() {
-      return "" + getLength();
    }
 }

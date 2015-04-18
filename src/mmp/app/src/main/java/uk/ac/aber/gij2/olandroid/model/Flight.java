@@ -94,7 +94,6 @@ public class Flight implements Drawable.Flight {
 
 
    public void draw(float[] initialMatrix) {
-
       calculateMatrices(initialMatrix);
 
       for (int i = 0; i < manoeuvres.length; i++) {
