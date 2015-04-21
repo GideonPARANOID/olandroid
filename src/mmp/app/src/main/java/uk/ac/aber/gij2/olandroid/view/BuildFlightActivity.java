@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,7 +35,7 @@ import uk.ac.aber.gij2.olandroid.model.Manoeuvre;
 
 
 public class BuildFlightActivity extends ActionBarActivity implements
-   AdapterView.OnItemClickListener {
+   AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
    private EditText olanEntry;
 
@@ -56,7 +57,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItem,
-               int position, long id) {
+               int position, final long id) {
 
                final ListView listManoeuvres = (ListView) findViewById(R.id.bfa_list_manoeuvres);
                final ManoeuvreCatalogue manoeuvreCatalogue = ManoeuvreCatalogue.getInstance();
@@ -75,7 +76,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
                      ((TextView) row.findViewById(R.id.lm_text_olan)).setText(
                         getItem(position).getOLAN());
-                      ((TextView) row.findViewById(R.id.lm_text_aresti)).setText(
+                     ((TextView) row.findViewById(R.id.lm_text_aresti)).setText(
                         getItem(position).getAresti());
                      ((TextView) row.findViewById(R.id.lm_text_name)).setText(
                         getItem(position).getName());
@@ -90,6 +91,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
       });
 
       ((ListView) findViewById(R.id.bfa_list_manoeuvres)).setOnItemClickListener(this);
+      ((ListView) findViewById(R.id.bfa_list_manoeuvres)).setOnItemLongClickListener(this);
    }
 
 
@@ -144,6 +146,35 @@ public class BuildFlightActivity extends ActionBarActivity implements
       olanEntry.setText(olanEntry.getText().insert(olanPosition, olan));
       olanEntry.setSelection(olanPosition + olan.length());
    }
+
+
+
+   @Override
+   public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+      View layout = getLayoutInflater().inflate(R.layout.dialog_aresti, null);
+
+      // finding the identifier of the
+
+      int image = getResources().getIdentifier("manoeuvre_" +
+         ((Manoeuvre) parent.getItemAtPosition(position)).getOLAN(),"drawable", getPackageName());
+
+      if (image > 0) {
+         ((ImageView) layout.findViewById(R.id.d_image_aresti)).setImageResource(image);
+
+      } else {
+          ((TextView) layout.findViewById(R.id.d_text_aresti)).setText(R.string.a_unavailable);
+      }
+
+
+      new AlertDialog.Builder(BuildFlightActivity.this).setView(layout)
+         .setTitle(R.string.bfa_aresti).create().show();
+
+      return true;
+   }
+
+
 
 
    /**

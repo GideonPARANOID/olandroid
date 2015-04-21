@@ -59,7 +59,10 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
       getMenuInflater().inflate(R.menu.menu_visualisation, menu);
 
       menuItemPlay = menu.findItem(R.id.menu_va_play);
-      menuItemPlay.setIcon(R.drawable.ic_action_play).setTitle(R.string.va_play);
+
+      if (menuItemPlay != null) {
+         menuItemPlay.setIcon(R.drawable.ic_action_play).setTitle(R.string.va_play);
+      }
 
       return super.onCreateOptionsMenu(menu);
    }
@@ -116,7 +119,10 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
    @Override
    public void onStartTrackingTouch(SeekBar seekBar) {
       animationManager.animationPlayToggle(false);
-      menuItemPlay.setIcon(R.drawable.ic_action_play).setTitle(R.string.va_play);
+
+      if (menuItemPlay != null) {
+         menuItemPlay.setIcon(R.drawable.ic_action_play).setTitle(R.string.va_play);
+      }
    }
 
 

@@ -28,8 +28,6 @@
          android:clickable="true"
          style="@style/PrimaryText"
 
-         android:text="text"
-
          android:layout_width="fill_parent"
          android:layout_height="wrap_content" />
 
@@ -37,8 +35,6 @@
          android:id="@+id/lm_text_aresti"
          android:clickable="true"
          style="@style/SecondaryText"
-
-                  android:text="text"
 
          android:layout_width="fill_parent"
          android:layout_height="wrap_content" />

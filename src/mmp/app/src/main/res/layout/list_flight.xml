@@ -17,19 +17,19 @@
    android:layout_height="wrap_content" >
 
    <TextView
+      android:id="@+id/lf_text_name"
+      style="@style/PrimaryText"
+
+      android:layout_width="0dp"
+      android:layout_weight="30"
+      android:layout_height="wrap_content" />
+
+   <TextView
       android:id="@+id/lf_text_olan"
       android:clickable="true"
       style="@style/PrimaryText"
 
       android:layout_width="0dp"
       android:layout_weight="70"
-      android:layout_height="wrap_content" />
-
-   <TextView
-      android:id="@+id/lf_text_name"
-      style="@style/PrimaryText"
-
-      android:layout_width="0dp"
-      android:layout_weight="30"
       android:layout_height="wrap_content" />
 </LinearLayout>

@@ -13,6 +13,7 @@
    <string name="a_first_message">Welcome to OLANdroid &#8208; a tool for modelling the acrobatic
       flights of aircraft using the OLAN notation. There\&#39;s help available for the app using the
       question mark in the action bar.</string>
+   <string name="a_unavailable">Unavailable</string>
 
    <!-- flight manager activity -->
    <string name="fma_new">New flight</string>
@@ -33,11 +34,13 @@
    <string name="bfa_toast_invalid">Invalid OLAN</string>
    <string name="bfa_toast_corrected">Flight autocorrected</string>
    <string name="bfa_help">Build a flight using an OLAN string. Browse manoeuvres in the
-      catalogue below &#38; tap to add them to the current flight, or type them directly into the
-      form. Some OLAN figures support modifiers &#38; can have &#8216;+/`&#8217; before &#38;/or
-      after them to extend their entry &#38; exit paths/scale parts of the manoeuvre. Manoeuvres
-      can be fully scaled by preceding them with a &#8216;2%&#8217; for example to scale it.
+      catalogue below &#38; tap to add them to the current flight (long tap to see their Aresti
+      diagrams), or type them directly into the text box. <br />Some OLAN figures support modifiers
+      &#38; can have &#8216;+/`&#8217; before &#38;/or after them to extend their entry &#38; exit
+      paths/scale parts of the manoeuvre. Manoeuvres can be fully scaled by preceding them with a
+      &#8216;2%&#8217; for example to scale it.
    </string>
+   <string name="bfa_aresti">Aresti diagram</string>
 
    <!-- visualisation activity -->
    <string name="va_label">&#160;</string>
