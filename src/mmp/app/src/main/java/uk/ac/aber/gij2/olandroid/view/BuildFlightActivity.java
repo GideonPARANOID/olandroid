@@ -54,7 +54,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
       olanEntry.setOnEditorActionListener(new EditText.OnEditorActionListener() {
          @Override
          public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
+            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT) {
                button_vis(olanEntry);
                return true;
             }
@@ -99,14 +99,14 @@ public class BuildFlightActivity extends ActionBarActivity implements
                   return row;
                }
             });
+
+            listManoeuvres.setOnItemClickListener(BuildFlightActivity.this);
+            listManoeuvres.setOnItemLongClickListener(BuildFlightActivity.this);
          }
 
          @Override
          public void onNothingSelected(AdapterView<?> parentView) {}
       });
-
-      ((ListView) findViewById(R.id.bfa_list_manoeuvres)).setOnItemClickListener(this);
-      ((ListView) findViewById(R.id.bfa_list_manoeuvres)).setOnItemLongClickListener(this);
    }
 
 

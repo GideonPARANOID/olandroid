@@ -211,6 +211,21 @@ public class Renderer implements GLSurfaceView.Renderer {
    public void viewParallelTranslationDelta(float delta) {
       viewTranslationZ -= Math.cos((viewRotationY / 360f) * Math.PI * 2) * delta;
       viewTranslationX += Math.sin((viewRotationY / 360f) * Math.PI * 2) * delta;
+
+      // keeping the view within the drawing bounds
+      float limit = DRAW_BOUNDS / 2f;
+      if (viewTranslationZ > limit) {
+         viewTranslationZ = limit;
+      } else if (viewTranslationZ < -limit) {
+         viewTranslationZ = -limit;
+      }
+
+      if (viewTranslationZ > limit) {
+         viewTranslationX = limit;
+      } else if (viewTranslationX < -limit) {
+         viewTranslationX = -limit;
+      }
+
       buildViewMatrix();
    }
 
