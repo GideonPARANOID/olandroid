@@ -452,6 +452,8 @@
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="NONE" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="NONE" />
             <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="NONE" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="NONE" />
+            <component pitch="ZERO"  roll="MAX"   yaw="ZERO"  length="0.4"  group="NONE" />
             <component pitch="ZERO"  roll="ZERO"  yaw="ZERO"  length="1"    group="POST" />
          </variant>
          <variant olanPrefix="i" aresti="" name="Inverted Immelman turn">
