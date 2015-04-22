@@ -11,7 +11,7 @@ import uk.ac.aber.gij2.olandroid.model.Flight;
 
 public class Scene {
 
-   private Drawable plane;
+   private Drawable ground;
    private Flight flight;
 
 
@@ -20,7 +20,7 @@ public class Scene {
     * @param initialMatrix - the initial matrix to start drawing from
     */
    public void draw(float[] initialMatrix) {
-      plane.draw(initialMatrix);
+      ground.draw(initialMatrix);
 
       if (flight != null) {
          flight.draw(initialMatrix);
@@ -37,12 +37,12 @@ public class Scene {
       this.flight = flight;
    }
 
-   public Drawable getPlane() {
-      return plane;
+   public Drawable getGround() {
+      return ground;
    }
 
-   public void setPlane(Drawable plane) {
-      this.plane = plane;
+   public void setGround(Drawable ground) {
+      this.ground = ground;
    }
 }
 

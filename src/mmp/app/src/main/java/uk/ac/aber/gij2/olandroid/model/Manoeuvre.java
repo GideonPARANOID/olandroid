@@ -13,7 +13,7 @@ import uk.ac.aber.gij2.olandroid.view.AnimationStyle;
 import uk.ac.aber.gij2.olandroid.Util;
 
 
-public class Manoeuvre implements Drawable.Flight {
+public class Manoeuvre implements Drawable.FlightPiece {
 
    /**
     * the group for the olan modifier, before or after

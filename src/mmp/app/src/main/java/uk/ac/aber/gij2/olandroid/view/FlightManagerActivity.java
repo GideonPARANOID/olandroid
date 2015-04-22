@@ -44,8 +44,17 @@ public class FlightManagerActivity extends ActionBarActivity implements
 
       // if this is the first launch, show the help
       if (app.getIsFirstLaunch()) {
-         new AlertDialog.Builder(this).setView(getLayoutInflater().inflate(R.layout.dialog_help,
-            null)).setTitle(R.string.a_first).setMessage(R.string.a_first_message).create().show();
+         AlertDialog.Builder dialog = new AlertDialog.Builder(this).setView(getLayoutInflater().inflate(R.layout.dialog_help,
+            null)).setTitle(R.string.a_first).setMessage(R.string.a_first_message);
+
+         dialog.setPositiveButton(R.string.a_dismiss, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int id) {
+               dialog.dismiss();
+            }
+         });
+
+         dialog.create().show();
       }
 
       // adapter for converting flights into a listview
@@ -99,8 +108,18 @@ public class FlightManagerActivity extends ActionBarActivity implements
             break;
 
          case R.id.menu_a_help:
-            new AlertDialog.Builder(this).setView(getLayoutInflater().inflate(R.layout.dialog_help,
-                  null)).setTitle(R.string.a_help).setMessage(R.string.fma_help).create().show();
+
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this).setView(getLayoutInflater().inflate(R.layout.dialog_help,
+               null)).setTitle(R.string.a_help).setMessage(R.string.fma_help);
+
+            dialog.setPositiveButton(R.string.a_dismiss, new DialogInterface.OnClickListener() {
+
+               public void onClick(DialogInterface dialog, int id) {
+                  dialog.dismiss();
+               }
+            });
+
+            dialog.create().show();
             break;
 
          case R.id.menu_a_settings:

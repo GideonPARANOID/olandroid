@@ -7,14 +7,17 @@ package uk.ac.aber.gij2.olandroid.view;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -47,6 +50,18 @@ public class BuildFlightActivity extends ActionBarActivity implements
 
       olanEntry = (EditText) findViewById(R.id.bfa_edittext_olan);
 
+      // listening for pressing enter in the olan entry
+      olanEntry.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+         @Override
+         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+               button_vis(olanEntry);
+               return true;
+            }
+            return false;
+         }
+      });
+
       final Spinner spinner = (Spinner) findViewById(R.id.bfa_spinner_category);
 
       spinner.setAdapter(new ArrayAdapter<>(this, R.layout.list_category,
@@ -55,39 +70,39 @@ public class BuildFlightActivity extends ActionBarActivity implements
       // on changing the spinner
       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItem,
-               int position, final long id) {
+         @Override
+         public void onItemSelected(AdapterView<?> parentView, View selectedItem,
+            int position, final long id) {
 
-               final ListView listManoeuvres = (ListView) findViewById(R.id.bfa_list_manoeuvres);
-               final ManoeuvreCatalogue manoeuvreCatalogue = ManoeuvreCatalogue.getInstance();
+            final ListView listManoeuvres = (ListView) findViewById(R.id.bfa_list_manoeuvres);
+            final ManoeuvreCatalogue manoeuvreCatalogue = ManoeuvreCatalogue.getInstance();
 
-               // setup the listview on changing the category
-               listManoeuvres.setAdapter(new ArrayAdapter<Manoeuvre>(getApplicationContext(),
-                  R.layout.list_manoeuvre, manoeuvreCatalogue.getManoeuvres(
-                  manoeuvreCatalogue.getCategories()[position])) {
+            // setup the listview on changing the category
+            listManoeuvres.setAdapter(new ArrayAdapter<Manoeuvre>(getApplicationContext(),
+               R.layout.list_manoeuvre, manoeuvreCatalogue.getManoeuvres(
+               manoeuvreCatalogue.getCategories()[position])) {
 
-                  @Override
-                  public View getView(int position, View convertView, ViewGroup parent) {
+               @Override
+               public View getView(int position, View convertView, ViewGroup parent) {
 
-                     View row = ((LayoutInflater) getSystemService(
-                        Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_manoeuvre,
-                        parent, false);
+                  View row = ((LayoutInflater) getSystemService(
+                     Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_manoeuvre,
+                     parent, false);
 
-                     ((TextView) row.findViewById(R.id.lm_text_olan)).setText(
-                        getItem(position).getOLAN());
-                     ((TextView) row.findViewById(R.id.lm_text_aresti)).setText(
-                        getItem(position).getAresti());
-                     ((TextView) row.findViewById(R.id.lm_text_name)).setText(
-                        getItem(position).getName());
+                  ((TextView) row.findViewById(R.id.lm_text_olan)).setText(
+                     getItem(position).getOLAN());
+                  ((TextView) row.findViewById(R.id.lm_text_aresti)).setText(
+                     getItem(position).getAresti());
+                  ((TextView) row.findViewById(R.id.lm_text_name)).setText(
+                     getItem(position).getName());
 
-                     return row;
-                  }
-               });
-            }
+                  return row;
+               }
+            });
+         }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {}
+         @Override
+         public void onNothingSelected(AdapterView<?> parentView) {}
       });
 
       ((ListView) findViewById(R.id.bfa_list_manoeuvres)).setOnItemClickListener(this);
@@ -110,6 +125,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
       }
    }
 
+
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
       getMenuInflater().inflate(R.menu.menu_build_flight, menu);
@@ -121,8 +137,18 @@ public class BuildFlightActivity extends ActionBarActivity implements
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
          case R.id.menu_a_help:
-            new AlertDialog.Builder(this).setView(getLayoutInflater().inflate(R.layout.dialog_help,
-                  null)).setTitle(R.string.a_help).setMessage(R.string.bfa_help).create().show();
+
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this).setView(getLayoutInflater().inflate(R.layout.dialog_help,
+               null)).setTitle(R.string.a_help).setMessage(R.string.bfa_help);
+
+            dialog.setPositiveButton(R.string.a_dismiss, new DialogInterface.OnClickListener() {
+
+               public void onClick(DialogInterface dialog, int id) {
+                  dialog.dismiss();
+               }
+            });
+
+            dialog.create().show();
             break;
 
          case R.id.menu_a_settings:
@@ -148,11 +174,8 @@ public class BuildFlightActivity extends ActionBarActivity implements
    }
 
 
-
    @Override
    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-
       View layout = getLayoutInflater().inflate(R.layout.dialog_aresti, null);
 
       // finding the identifier of the
@@ -160,6 +183,7 @@ public class BuildFlightActivity extends ActionBarActivity implements
       int image = getResources().getIdentifier("manoeuvre_" +
          ((Manoeuvre) parent.getItemAtPosition(position)).getOLAN(),"drawable", getPackageName());
 
+      // if we find an image, use it
       if (image > 0) {
          ((ImageView) layout.findViewById(R.id.d_image_aresti)).setImageResource(image);
 
@@ -167,14 +191,19 @@ public class BuildFlightActivity extends ActionBarActivity implements
           ((TextView) layout.findViewById(R.id.d_text_aresti)).setText(R.string.a_unavailable);
       }
 
+      AlertDialog.Builder dialog = new AlertDialog.Builder(this).setView(layout)
+         .setTitle(R.string.bfa_aresti);
 
-      new AlertDialog.Builder(BuildFlightActivity.this).setView(layout)
-         .setTitle(R.string.bfa_aresti).create().show();
+      dialog.setPositiveButton(R.string.a_dismiss, new DialogInterface.OnClickListener() {
 
+         public void onClick(DialogInterface dialog, int id) {
+            dialog.dismiss();
+         }
+      });
+
+      dialog.create().show();
       return true;
    }
-
-
 
 
    /**

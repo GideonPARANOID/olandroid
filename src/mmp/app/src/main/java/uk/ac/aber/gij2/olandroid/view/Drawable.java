@@ -8,7 +8,7 @@ package uk.ac.aber.gij2.olandroid.view;
 
 public interface Drawable {
 
-   public interface Flight extends Drawable {
+   public interface FlightPiece extends Drawable {
 
       /**
        * @return - length of the shapes

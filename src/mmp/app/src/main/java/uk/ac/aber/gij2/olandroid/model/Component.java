@@ -12,7 +12,7 @@ import uk.ac.aber.gij2.olandroid.view.Drawable;
 import uk.ac.aber.gij2.olandroid.view.Shape;
 
 
-public class Component extends Shape implements Drawable.Flight {
+public class Component extends Shape implements Drawable.FlightPiece {
 
    // bounds for movement
    public enum Bound {

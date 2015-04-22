@@ -13,8 +13,8 @@ import android.preference.PreferenceManager;
 import uk.ac.aber.gij2.olandroid.R;
 import uk.ac.aber.gij2.olandroid.view.AnimationStyle;
 import uk.ac.aber.gij2.olandroid.model.Flight;
+import uk.ac.aber.gij2.olandroid.view.Grass;
 import uk.ac.aber.gij2.olandroid.view.Grid;
-import uk.ac.aber.gij2.olandroid.view.Ground;
 import uk.ac.aber.gij2.olandroid.view.Renderer;
 
 
@@ -35,9 +35,9 @@ public class OLANdroid extends Application implements
 
       scene = new Scene();
 
-      scene.setPlane(Integer.parseInt(preferences.getString("p_plane_style", "0")) == 0 ?
+      scene.setGround(Integer.parseInt(preferences.getString("p_ground_style", "0")) == 0 ?
          new Grid(5f, getColourTheme(R.array.colour_theme_grid)) :
-         new Ground(0));
+         new Grass(0));
 
       // singleton initialisation
       ManoeuvreCatalogue.getInstance().initialise(this, R.xml.manoeurvre_catalogue);
@@ -66,8 +66,8 @@ public class OLANdroid extends Application implements
          flight.setColourBack(getColourTheme(R.array.colour_theme_back));
       }
 
-      if (scene.getPlane() instanceof Grid) {
-         Grid grid = (Grid) scene.getPlane();
+      if (scene.getGround() instanceof Grid) {
+         Grid grid = (Grid) scene.getGround();
          grid.setColourFront(getColourTheme(R.array.colour_theme_grid));
          grid.setColourBack(getColourTheme(R.array.colour_theme_grid));
       }
@@ -97,10 +97,10 @@ public class OLANdroid extends Application implements
          case "p_autocorrect":
            break;
 
-         case "p_plane_style":
-            scene.setPlane(Integer.parseInt(preferences.getString("p_plane_style", "0")) == 0 ?
+         case "p_ground_style":
+            scene.setGround(Integer.parseInt(preferences.getString("p_ground_style", "0")) == 0 ?
                new Grid(5f, getColourTheme(R.array.colour_theme_grid)) :
-               new Ground(0));
+               new Grass(0));
             break;
 
          case "p_colour_theme":

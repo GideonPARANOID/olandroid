@@ -12,7 +12,7 @@ import uk.ac.aber.gij2.olandroid.controller.AnimationManager;
 import uk.ac.aber.gij2.olandroid.view.AnimationStyle;
 
 
-public class Flight implements Drawable.Flight {
+public class Flight implements Drawable.FlightPiece {
 
    private Manoeuvre[] manoeuvres;
    private float[][] matrices;
@@ -90,7 +90,6 @@ public class Flight implements Drawable.Flight {
 
       return result;
    }
-
 
 
    public void draw(float[] initialMatrix) {

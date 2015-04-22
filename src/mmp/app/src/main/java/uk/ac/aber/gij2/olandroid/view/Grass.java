@@ -8,12 +8,12 @@ package uk.ac.aber.gij2.olandroid.view;
 import android.opengl.Matrix;
 
 
-public class Ground extends Shape implements Drawable {
+public class Grass extends Shape implements Drawable {
 
    /**
     * @param textureId - textureId resource
     */
-   public Ground(int textureId) {
+   public Grass(int textureId) {
       super(Style.FILL);
 
       super.setTextureId(textureId);

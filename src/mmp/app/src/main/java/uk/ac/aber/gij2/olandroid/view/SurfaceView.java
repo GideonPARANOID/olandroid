@@ -42,7 +42,7 @@ public class SurfaceView extends GLSurfaceView {
 
       controlScheme = TWO_FINGER_ROTATE;
 
-      ROTATION_SCALE = 1f;
+      ROTATION_SCALE = 0.1f;
       TRANSLATION_SCALE = 0.125f;
    }
 
@@ -117,7 +117,7 @@ public class SurfaceView extends GLSurfaceView {
 
                      // don't want huge changes (happens due to tan's occasional infiniteness)
                      renderer.viewRotationYDelta(
-                        angleDelta > 90 || angleDelta < -90 ? 0f : angleDelta * ROTATION_SCALE);
+                        angleDelta > 90 || angleDelta < -90 ? 0f : -angleDelta * ROTATION_SCALE);
 
                      previous1 = current1;
                      break;
