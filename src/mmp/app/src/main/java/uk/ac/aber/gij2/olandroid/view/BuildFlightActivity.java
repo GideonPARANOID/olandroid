@@ -53,8 +53,8 @@ public class BuildFlightActivity extends ActionBarActivity implements
       // listening for pressing enter in the olan entry
       olanEntry.setOnEditorActionListener(new EditText.OnEditorActionListener() {
          @Override
-         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT) {
+         public boolean onEditorAction(TextView view, int action, KeyEvent event) {
+            if (action == EditorInfo.IME_ACTION_DONE || action == EditorInfo.IME_ACTION_NEXT) {
                button_vis(olanEntry);
                return true;
             }
