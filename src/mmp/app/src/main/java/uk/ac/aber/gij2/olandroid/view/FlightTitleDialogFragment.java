@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import uk.ac.aber.gij2.olandroid.Util;
 import uk.ac.aber.gij2.olandroid.controller.FlightManager;
-import uk.ac.aber.gij2.olandroid.InvalidFlightException;
 import uk.ac.aber.gij2.olandroid.controller.OLANdroid;
 import uk.ac.aber.gij2.olandroid.R;
 import uk.ac.aber.gij2.olandroid.model.Flight;
@@ -65,21 +64,18 @@ public class FlightTitleDialogFragment extends DialogFragment {
                @Override
                public void onClick(View view) {
 
-                  try {
-                     FlightManager.getInstance().saveCurrentFlight(Util.cleanText(
-                           ((EditText) getDialog().findViewById(
-                              R.id.d_text_flight_title)).getText().toString()));
+                  if (FlightManager.getInstance().saveCurrentFlight(Util.cleanText(
+                        ((EditText) getDialog().findViewById(
+                           R.id.d_text_flight_title)).getText().toString()))) {
 
                      dialog.dismiss();
 
                       Toast.makeText(app,R.string.a_new_flight_title_valid,
                          Toast.LENGTH_SHORT).show();
 
-                  } catch (InvalidFlightException exception) {
-
+                  } else {
                      Toast.makeText(getActivity().getApplication(),
-                        getText(R.string.a_new_flight_title_invalid) + " " + exception.getMessage(),
-                        Toast.LENGTH_SHORT).show();
+                        getText(R.string.a_new_flight_title_invalid), Toast.LENGTH_SHORT).show();
                   }
                }
             });

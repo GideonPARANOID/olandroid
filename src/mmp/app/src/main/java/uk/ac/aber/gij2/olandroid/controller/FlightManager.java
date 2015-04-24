@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import uk.ac.aber.gij2.olandroid.InvalidFlightException;
 import uk.ac.aber.gij2.olandroid.Util;
 import uk.ac.aber.gij2.olandroid.model.Flight;
 import uk.ac.aber.gij2.olandroid.model.Manoeuvre;
@@ -73,90 +72,88 @@ public class FlightManager {
     * @param olan - a description of a flight
     * @param correct - whether or not to correct the height of the flight
     * @return - a flight defined by the olan string
-    * @throws uk.ac.aber.gij2.olandroid.InvalidFlightException - occurs if the passed olan is invalid
     */
-   public Flight buildFlight(String olan, boolean correct) throws InvalidFlightException {
+   public Flight buildFlight(String olan, boolean correct) {
+      Flight flight = null;
 
       Pattern figurePattern = Pattern.compile(figureRegex),
          scalePattern = Pattern.compile(scaleRegex);
 
 
-      if (olan == null) {
-         throw new InvalidFlightException("no olan");
-      }
+      if (olan != null) {
 
-      // getting rid of multiple spaces, so we don't break the split
-      olan = olan.replaceAll(" +", " ");
+         // getting rid of multiple spaces, so we don't break the split
+         olan = olan.replaceAll(" +", " ");
 
-      // leading spaces are a challenge, so get rid of them
-      if (olan.length() >= 1 && olan.substring(0, 1).equals(" ")) {
-         olan = olan.substring(1);
-      }
-
-      String[] figures = olan.trim().toLowerCase().split(" ");
-
-      ArrayList<Manoeuvre> manoeuvres = new ArrayList<>();
-
-      // going through the figures
-      for (int i = 0; i < figures.length; i++) {
-         int fullScale = 1;
-
-         Matcher scaleMatcher = scalePattern.matcher(figures[i]);
-
-         // if we're dealing with a scale figure, grab the scale & move onto the next figure
-         if (scaleMatcher.matches()) {
-            fullScale = Integer.parseInt(scaleMatcher.group(1));
-            i++;
+         // leading spaces are a challenge, so get rid of them
+         if (olan.length() >= 1 && olan.substring(0, 1).equals(" ")) {
+            olan = olan.substring(1);
          }
 
-         Matcher figureMatcher = figurePattern.matcher(figures[i]);
+         String[] figures = olan.trim().toLowerCase().split(" ");
 
-         // testing if the regex holds true & that the final figure is in the catalogue
-         if (figureMatcher.matches() && manoeuvreCatalogue.get(figureMatcher.group(3)) != null) {
-            Manoeuvre manoeuvre = new Manoeuvre(manoeuvreCatalogue.get(figureMatcher.group(3)));
+         ArrayList<Manoeuvre> manoeuvres = new ArrayList<>();
 
-            // TODO: add proper support for full range of modifiers - minus & tilde
+         // going through the figures
+         for (int i = 0; i < figures.length; i++) {
+            int fullScale = 1;
 
-            if (fullScale > 1) {
-               manoeuvre.scaleGroup(Manoeuvre.Group.FULL, (float) fullScale);
+            Matcher scaleMatcher = scalePattern.matcher(figures[i]);
+
+            // if we're dealing with a scale figure, grab the scale & move onto the next figure
+            if (scaleMatcher.matches()) {
+               fullScale = Integer.parseInt(scaleMatcher.group(1));
+               i++;
             }
 
-            // sorting the variable group scaling
-            float groupLengthPre = Util.findOccurrences("`", figureMatcher.group(2)),
-               groupLengthPost = Util.findOccurrences("`", figureMatcher.group(4));
+            Matcher figureMatcher = figurePattern.matcher(figures[i]);
 
-            // scaling is an expensive operation, so avoid it if possible
-            if (groupLengthPre > 0f) {
-               manoeuvre.scaleGroup(Manoeuvre.Group.PRE, 1f / (groupLengthPre + 1f));
+            // testing if the regex holds true & that the final figure is in the catalogue
+            if (figureMatcher.matches() && manoeuvreCatalogue.get(figureMatcher.group(3)) != null) {
+               Manoeuvre manoeuvre = new Manoeuvre(manoeuvreCatalogue.get(figureMatcher.group(3)));
+
+               // TODO: add proper support for full range of modifiers - minus & tilde
+
+               if (fullScale > 1) {
+                  manoeuvre.scaleGroup(Manoeuvre.Group.FULL, (float) fullScale);
+               }
+
+               // sorting the variable group scaling
+               float groupLengthPre = Util.findOccurrences("`", figureMatcher.group(2)),
+                  groupLengthPost = Util.findOccurrences("`", figureMatcher.group(4));
+
+               // scaling is an expensive operation, so avoid it if possible
+               if (groupLengthPre > 0f) {
+                  manoeuvre.scaleGroup(Manoeuvre.Group.PRE, 1f / (groupLengthPre + 1f));
+               }
+
+               if (groupLengthPost > 0f) {
+                  manoeuvre.scaleGroup(Manoeuvre.Group.POST, 1f / (groupLengthPost + 1f));
+               }
+
+               // counting the pluses
+               manoeuvre.addLength(Manoeuvre.Group.PRE, Util.findOccurrences("+", figureMatcher.group(1)));
+               manoeuvre.addLength(Manoeuvre.Group.POST, Util.findOccurrences("+", figureMatcher.group(5)));
+
+               manoeuvres.add(manoeuvre);
+
+                flight = correct ?
+                  correctLowestPoint(new Flight(manoeuvres.toArray(new Manoeuvre[manoeuvres.size()]))) :
+                  new Flight(manoeuvres.toArray(new Manoeuvre[manoeuvres.size()]));
+
             }
-
-            if (groupLengthPost > 0f) {
-               manoeuvre.scaleGroup(Manoeuvre.Group.POST, 1f / (groupLengthPost + 1f));
-            }
-
-            // counting the pluses
-            manoeuvre.addLength(Manoeuvre.Group.PRE, Util.findOccurrences("+", figureMatcher.group(1)));
-            manoeuvre.addLength(Manoeuvre.Group.POST, Util.findOccurrences("+", figureMatcher.group(5)));
-
-            manoeuvres.add(manoeuvre);
-
-         } else {
-            throw new InvalidFlightException("invalid olan");
          }
       }
 
-      return correct ?
-         correctLowestPoint(new Flight(manoeuvres.toArray(new Manoeuvre[manoeuvres.size()]))) :
-         new Flight(manoeuvres.toArray(new Manoeuvre[manoeuvres.size()]));
+      return flight;
    }
 
 
    /**
     * @param flight - flight to correct
     * @return - a flight corrected to avoid sinking below the ground
-    * @throws InvalidFlightException - any olan problems encountered with extending the flight
     */
-   public Flight correctLowestPoint(Flight flight) throws InvalidFlightException {
+   public Flight correctLowestPoint(Flight flight) {
       Flight result = flight;
 
       float[] initialMatrix = new float[16];
@@ -187,15 +184,16 @@ public class FlightManager {
             String name = reader.readLine(), olan = reader.readLine();
             while (name != null && olan != null) {
 
-               try {
-                  Flight flight = buildFlight(olan, false);
+               Flight flight = buildFlight(olan, false);
+
+               if (flight != null) {
                   flight.setName(name);
 
                   addFlight(flight, false);
                   Log.d(this.getClass().getName(), "file r: " + name + " - " + olan);
 
-               } catch (InvalidFlightException exception) {
-                  Log.d(this.getClass().getName(), exception.getMessage());
+               } else {
+                  Log.d(this.getClass().getName(), "invalid flight");
                }
 
                name = reader.readLine();
@@ -215,16 +213,15 @@ public class FlightManager {
    /**
     * gives a new name to the current flight in the scene & saves it
     * @param newName - the name for the flight
-    * @throws InvalidFlightException - if there's another flight with the name already taken
     */
-   public void saveCurrentFlight(String newName) throws InvalidFlightException {
+   public boolean saveCurrentFlight(String newName) {
       String activeFlightName = app.getFlight().getName();
 
       // if we're not modifying the current flight, check there's no name clash
       if (!(activeFlightName == null ? "" : activeFlightName).equals(newName)) {
          for (Flight current : flights) {
             if (current.getName().equals(newName)) {
-               throw new InvalidFlightException("name clash");
+               return false;
             }
          }
       }
@@ -236,6 +233,8 @@ public class FlightManager {
 
       saveFlights();
       loadFlights();
+
+      return true;
    }
 
 

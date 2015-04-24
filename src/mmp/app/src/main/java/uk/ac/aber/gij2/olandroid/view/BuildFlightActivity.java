@@ -29,7 +29,6 @@ import android.widget.Toast;
 
 import uk.ac.aber.gij2.olandroid.Util;
 import uk.ac.aber.gij2.olandroid.controller.FlightManager;
-import uk.ac.aber.gij2.olandroid.InvalidFlightException;
 import uk.ac.aber.gij2.olandroid.controller.OLANdroid;
 import uk.ac.aber.gij2.olandroid.controller.ManoeuvreCatalogue;
 import uk.ac.aber.gij2.olandroid.R;
@@ -213,9 +212,14 @@ public class BuildFlightActivity extends ActionBarActivity implements
    public void button_vis(View view) {
       OLANdroid app = (OLANdroid) getApplication();
 
-      try {
-         app.setFlight(FlightManager.getInstance().buildFlight(Util.cleanText(
-               olanEntry.getText().toString()), app.getAutocorrect()));
+      Flight flight = FlightManager.getInstance().buildFlight(Util.cleanText(
+         olanEntry.getText().toString()), app.getAutocorrect());
+
+      if (flight == null) {
+          Toast.makeText(app, R.string.bfa_toast_invalid, Toast.LENGTH_SHORT).show();
+      } else {
+
+         app.setFlight(flight);
 
          // if the olan has changed in the building process, consider it corrected
          if (!app.getFlight().getOLAN().equals(olanEntry.getText().toString().trim())) {
@@ -223,9 +227,6 @@ public class BuildFlightActivity extends ActionBarActivity implements
          }
 
          startActivity(new Intent(this, VisualisationActivity.class));
-
-      } catch (InvalidFlightException exception) {
-         Toast.makeText(app, R.string.bfa_toast_invalid, Toast.LENGTH_SHORT).show();
       }
    }
 
