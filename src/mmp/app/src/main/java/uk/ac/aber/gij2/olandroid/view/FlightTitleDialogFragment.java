@@ -65,8 +65,8 @@ public class FlightTitleDialogFragment extends DialogFragment {
                public void onClick(View view) {
 
                   if (FlightManager.getInstance().saveCurrentFlight(Util.cleanText(
-                        ((EditText) getDialog().findViewById(
-                           R.id.d_text_flight_title)).getText().toString()))) {
+                     ((EditText) getDialog().findViewById(
+                        R.id.d_text_flight_title)).getText().toString()))) {
 
                      dialog.dismiss();
 
