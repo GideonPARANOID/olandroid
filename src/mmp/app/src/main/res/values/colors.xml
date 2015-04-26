@@ -3,6 +3,7 @@
    <!-- alpha red green blue -->
 
    <color name="app_primary">#ff800000</color>
+   <color name="app_primary_dark">#ff600000</color>
    <color name="app_secondary">#ff000080</color>
 
    <color name="vis_flight_front_0">#ff186b00</color>

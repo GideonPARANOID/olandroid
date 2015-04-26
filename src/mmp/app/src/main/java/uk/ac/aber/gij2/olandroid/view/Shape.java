@@ -50,7 +50,7 @@ public abstract class Shape implements Drawable {
     * constructs buffers & makes references to shader program variables, needs vertex & draw orders
     *    already initialised
     */
-   protected void setupDrawing() {
+   protected final void setupDrawing() {
 
       if (drawOrderBuffer == null || vertexBuffer == null) {
          throw new NullPointerException("buffers uninitialised");
@@ -189,11 +189,11 @@ public abstract class Shape implements Drawable {
    }
 
 
-   public void setColourFront(float[] colourFront) {
+   public final void setColourFront(float[] colourFront) {
       this.colourFront = colourFront;
    }
 
-   public void setColourBack(float[] colourBack) {
+   public final void setColourBack(float[] colourBack) {
       this.colourBack = colourBack;
    }
 

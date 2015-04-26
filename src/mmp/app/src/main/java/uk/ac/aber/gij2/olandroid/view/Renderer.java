@@ -208,6 +208,10 @@ public class Renderer implements GLSurfaceView.Renderer {
    }
 
 
+   /**
+    * movement in the direction faced
+    * @param delta - amount of movement
+    */
    public void viewParallelTranslationDelta(float delta) {
       viewTranslationZ -= Math.cos((viewRotationY / 360f) * Math.PI * 2) * delta;
       viewTranslationX += Math.sin((viewRotationY / 360f) * Math.PI * 2) * delta;
@@ -220,7 +224,7 @@ public class Renderer implements GLSurfaceView.Renderer {
          viewTranslationZ = -limit;
       }
 
-      if (viewTranslationZ > limit) {
+      if (viewTranslationX > limit) {
          viewTranslationX = limit;
       } else if (viewTranslationX < -limit) {
          viewTranslationX = -limit;
