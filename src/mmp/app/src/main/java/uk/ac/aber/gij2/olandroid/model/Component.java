@@ -9,10 +9,9 @@ import android.opengl.Matrix;
 
 import uk.ac.aber.gij2.olandroid.view.AnimationStyle;
 import uk.ac.aber.gij2.olandroid.view.Drawable;
-import uk.ac.aber.gij2.olandroid.view.Shape;
 
 
-public class Component extends Shape implements Drawable.FlightPiece {
+public class Component implements Drawable.FlightPiece {
 
    // bounds for movement
    public enum Bound {
@@ -46,7 +45,7 @@ public class Component extends Shape implements Drawable.FlightPiece {
    private final float ANGLE = 1f / 24f, WIDTH = 0.5f;
    private Bound pitch, yaw, roll;
    private float length;
-   private float[] matrix, vertices, colourFront, colourBack;
+   private float[] matrix, vertices, cached;
 
 
    /**
@@ -54,23 +53,12 @@ public class Component extends Shape implements Drawable.FlightPiece {
     * @param yaw - horizontal amount
     * @param roll - roll amount
     * @param length - length of the component
-    * @param colourFront - argb colour for the front of the component
-    * @param colourBack - argb colour for the back of the component
     */
-   public Component(Bound pitch, Bound yaw, Bound roll, float length, float[] colourFront,
-      float[] colourBack) {
-
-      super(Style.FILL);
-
+   public Component(Bound pitch, Bound yaw, Bound roll, float length) {
       this.pitch = pitch;
       this.yaw = yaw;
       this.roll = roll;
       this.length = length;
-      this.colourFront = colourFront;
-      this.colourBack = colourBack;
-
-      super.setColourFront(colourFront);
-      super.setColourBack(colourBack);
 
       buildVertices();
       buildMatrix();
@@ -82,8 +70,7 @@ public class Component extends Shape implements Drawable.FlightPiece {
     * @param component - instance of component to copy
     */
    public Component(Component component) {
-      this(component.pitch, component.yaw, component.roll, component.length, component.colourFront,
-         component.colourBack);
+      this(component.pitch, component.yaw, component.roll, component.length);
    }
 
 
@@ -118,18 +105,14 @@ public class Component extends Shape implements Drawable.FlightPiece {
          zOffset = (float) -(WIDTH * Math.sin(yaw.getValue() * ANGLE * Math.PI * 2f));
       }
 
-      vertices = new float[] {
+      cached = new float[] {
          WIDTH, 0f, 0f,
          -WIDTH, 0f, 0f,
          x - xOffset, y - yOffset, z - zOffset,
          x + xOffset, y + yOffset, z + zOffset
       };
 
-      super.buildVerticesBuffer(vertices);
-      super.buildDrawOrderBuffer(new short[] {
-         0, 1, 2,
-         0, 2, 3
-      });
+      vertices = cached;
    }
 
 
@@ -174,13 +157,15 @@ public class Component extends Shape implements Drawable.FlightPiece {
 
 
    public void animate(float progressPre, float progressPost, AnimationStyle style) {
+
       if (progressPre == 0f && progressPost == 0f) {
-         super.buildVerticesBuffer(null);
+         vertices = new float[12];
 
       } else if (progressPre == 0f && progressPost == 1f) {
-         super.buildVerticesBuffer(vertices);
+         vertices = cached;
 
       } else {
+         vertices = cached;
 
          // correcting
          if (length < 0) {
@@ -188,14 +173,17 @@ public class Component extends Shape implements Drawable.FlightPiece {
          }
 
          // extending the y & z distance (not x, as that's width)
-         super.buildVerticesBuffer(new float[] {
+         vertices = new float[] {
             WIDTH, vertices[7] * progressPre, vertices[8] * progressPre,
             -WIDTH, vertices[10] * progressPre, vertices[11] * progressPre,
             vertices[6], vertices[7] * progressPost, vertices[8] * progressPost,
             vertices[9], vertices[10] * progressPost, vertices[11] * progressPost
-         });
+         };
       }
    }
+
+
+   public void draw(float[] initialMatrix) {}
 
 
    public float getLength() {
@@ -207,5 +195,10 @@ public class Component extends Shape implements Drawable.FlightPiece {
       this.length = length;
       buildVertices();
       buildMatrix();
+   }
+
+
+   public float[] getVertices() {
+      return vertices;
    }
 }

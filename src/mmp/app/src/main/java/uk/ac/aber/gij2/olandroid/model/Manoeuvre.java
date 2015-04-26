@@ -11,9 +11,10 @@ import uk.ac.aber.gij2.olandroid.view.Drawable;
 import uk.ac.aber.gij2.olandroid.controller.AnimationManager;
 import uk.ac.aber.gij2.olandroid.view.AnimationStyle;
 import uk.ac.aber.gij2.olandroid.Util;
+import uk.ac.aber.gij2.olandroid.view.Shape;
 
 
-public class Manoeuvre implements Drawable.FlightPiece {
+public class Manoeuvre extends Shape implements Drawable.FlightPiece {
 
    /**
     * the group for the olan modifier, before or after
@@ -38,11 +39,13 @@ public class Manoeuvre implements Drawable.FlightPiece {
 
    private Component[] components;
    private float[][] matrices;
-   private float[] componentsCumulativeLength;
+   private float[] vertices, componentsCumulativeLength;
+   private short[] drawOrder;
    private String olan, aresti, name, category;
    private int[] groupIndicesPre, groupIndicesPost;
    private float groupScalePre, groupScalePost, groupScaleFull;
    private int lengthPre, lengthPost;
+   private boolean cached;
 
 
    /**
@@ -59,7 +62,7 @@ public class Manoeuvre implements Drawable.FlightPiece {
       String category, int[] groupIndicesPre, int[] groupIndicesPost) throws
          IndexOutOfBoundsException {
 
-      super();
+      super(Style.FILL);
 
       if (components.length == 0) {
          throw new IndexOutOfBoundsException("no components");
@@ -81,6 +84,11 @@ public class Manoeuvre implements Drawable.FlightPiece {
       lengthPre = 0;
       lengthPost = 0;
 
+      vertices = new float[components.length * components[0].getVertices().length];
+      drawOrder = new short[components.length * 6];
+
+      cached = false;
+
       buildComponentsCumulativeLength();
    }
 
@@ -89,12 +97,8 @@ public class Manoeuvre implements Drawable.FlightPiece {
     * deep copy constructor (copies components too)
     * @param manoeuvre - instance of manoeuvre to copy
     */
-   public Manoeuvre(Manoeuvre manoeuvre) throws IndexOutOfBoundsException {
-      super();
-
-      if (manoeuvre.components.length == 0) {
-         throw new IndexOutOfBoundsException("no components");
-      }
+   public Manoeuvre(Manoeuvre manoeuvre) {
+      super(Style.FILL);
 
       // need to copy components, to prevent duplicate manoeuvres from sharing animations
       this.components = new Component[manoeuvre.components.length];
@@ -118,6 +122,12 @@ public class Manoeuvre implements Drawable.FlightPiece {
 
       this.lengthPre = manoeuvre.lengthPre;
       this.lengthPost = manoeuvre.lengthPost;
+
+
+      this.vertices = manoeuvre.vertices;
+      this.drawOrder = manoeuvre.drawOrder;
+
+      this.cached = manoeuvre.cached;
 
       buildComponentsCumulativeLength();
    }
@@ -178,11 +188,61 @@ public class Manoeuvre implements Drawable.FlightPiece {
    }
 
 
-   public void draw(float[] initialMatrix) {
-      calculateMatrices(initialMatrix);
+   /**
+    * constructs the vertices from the components' vertices
+    */
+   public void buildVertices() {
 
-      for (int i = 0; i < components.length; i++) {
-         components[i].draw(matrices[i]);
+      // TODO: improve, currently results in too many vertices, indices 0 & 1 are duplicates
+      for (int i = 0, drawOrderFactor = 0, verticesFactor = 0; i < components.length;
+          i++, drawOrderFactor += 6, verticesFactor += 12) {
+
+         // assembling the vertices
+         float[] verticesCurrent = components[i].getVertices();
+         for (int j = 0; j < verticesCurrent.length; j+= 3) {
+
+            float[] result = new float[4];
+
+            // cannot dump the result directly in the vertex array as it needs length 4 (for w)
+            Matrix.multiplyMV(result, 0, matrices[i], 0, new float[] {
+                  verticesCurrent[j],
+                  verticesCurrent[j + 1],
+                  verticesCurrent[j + 2],
+                  1f
+               }, 0);
+
+            vertices[verticesFactor + j] = result[0];
+            vertices[verticesFactor + j + 1] = result[1];
+            vertices[verticesFactor + j + 2] = result[2];
+
+         }
+
+         // assembling the two triangles
+         short verticesCount = (short) (i * 4);
+         drawOrder[drawOrderFactor] = verticesCount;
+         drawOrder[drawOrderFactor + 1] = (short) (verticesCount + 1);
+         drawOrder[drawOrderFactor + 2] = (short) (verticesCount + 2);
+         drawOrder[drawOrderFactor + 3] = verticesCount;
+         drawOrder[drawOrderFactor + 4] = (short) (verticesCount + 2);
+         drawOrder[drawOrderFactor + 5] = (short) (verticesCount + 3);
+      }
+
+      buildVerticesBuffer(vertices);
+      buildDrawOrderBuffer(drawOrder);
+
+      cached = true;
+   }
+
+
+   public void draw(float[] initialMatrix) {
+      if (!cached) {
+
+         buildVertices();
+         super.draw(initialMatrix);
+         calculateMatrices(initialMatrix);
+
+      } else {
+         super.draw(initialMatrix);
       }
    }
 
@@ -289,6 +349,9 @@ public class Manoeuvre implements Drawable.FlightPiece {
             }
             break;
       }
+
+      // since the components have changed, the vertices need to be rebuilt
+      cached = false;
    }
 
 
@@ -388,17 +451,5 @@ public class Manoeuvre implements Drawable.FlightPiece {
 
    public float getLength() {
       return componentsCumulativeLength[componentsCumulativeLength.length - 1];
-   }
-
-   public void setColourBack(float[] colourBack) {
-      for (Component component : components) {
-         component.setColourBack(colourBack);
-      }
-   }
-
-   public void setColourFront(float[] colourFront) {
-      for (Component component : components) {
-         component.setColourFront(colourFront);
-      }
    }
 }

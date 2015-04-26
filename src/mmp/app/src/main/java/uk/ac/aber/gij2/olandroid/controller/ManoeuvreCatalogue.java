@@ -157,16 +157,12 @@ public class ManoeuvreCatalogue {
             for (int i = 0; parser.next() != XmlPullParser.END_TAG; i++) {
                if (parser.getName().equals("component")) {
 
-                  float[] blank = new float[] {
-                     1f, 1f, 1f, 1f
-                  };
-
                   // colours are null because we don't have the context at this level
                   components.add(new Component(
                      Component.Bound.parse(parser.getAttributeValue(null, "pitch")),
                      Component.Bound.parse(parser.getAttributeValue(null, "yaw")),
                      Component.Bound.parse(parser.getAttributeValue(null, "roll")),
-                     Float.parseFloat(parser.getAttributeValue(null, "length")), blank, blank));
+                     Float.parseFloat(parser.getAttributeValue(null, "length"))));
 
 
                   // building the variable groups
