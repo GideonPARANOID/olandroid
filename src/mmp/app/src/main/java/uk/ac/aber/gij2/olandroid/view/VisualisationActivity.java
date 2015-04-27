@@ -89,7 +89,6 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
             break;
 
          case R.id.menu_a_help:
-
             AlertDialog.Builder dialog = new AlertDialog.Builder(this).setView(getLayoutInflater().inflate(R.layout.dialog_help,
                null)).setTitle(R.string.a_help).setMessage(R.string.va_help);
 
@@ -101,6 +100,10 @@ public class VisualisationActivity extends ActionBarActivity implements Observer
             });
 
             dialog.create().show();
+            break;
+
+         case R.id.menu_a_about:
+            startActivity(new Intent(this, AboutActivity.class));
             break;
 
          case R.id.menu_a_settings:

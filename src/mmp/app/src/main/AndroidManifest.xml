@@ -1,64 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-   xmlns:android="http://schemas.android.com/apk/res/android"
-   package="uk.ac.aber.gij2.olandroid" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="uk.ac.aber.gij2.olandroid" >
 
-   <uses-sdk
-      android:minSdkVersion="11"
-      android:targetSdkVersion="21" />
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="21" />
 
-   <uses-feature
-      android:glEsVersion="0x00020000"
-      android:required="true" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
-   <uses-permission
-      android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+       android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-   <application
-      android:name=".controller.OLANdroid"
-      android:allowBackup="true"
-      android:hardwareAccelerated="true"
-      android:icon="@drawable/ic_launcher"
-      android:label="@string/a_label"
-      android:theme="@style/AppTheme" >
+    <application
+        android:name=".controller.OLANdroid"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/a_label"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".view.FlightManagerActivity"
+            android:exported="true"
+            android:label="@string/a_label"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-      <activity
-         android:name="uk.ac.aber.gij2.olandroid.view.FlightManagerActivity"
-         android:label="@string/a_label"
-         android:exported="true"
-         android:launchMode="singleTop">
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.BuildFlightActivity"
+            android:label="@string/bfa_label"
+            android:parentActivityName=".view.FlightManagerActivity"
+            android:windowSoftInputMode="stateUnchanged" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="uk.ac.aber.gij2.olandroid.view.FlightManagerActivity" />
+        </activity>
+        <activity
+            android:name=".view.VisualisationActivity"
+            android:label="@string/va_label"
+            android:parentActivityName=".view.FlightManagerActivity"
+            android:theme="@style/AppTheme.Visualisation" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="uk.ac.aber.gij2.olandroid.view.FlightManagerActivity" />
+        </activity>
+        <activity
+            android:name=".view.SettingsActivity"
+            android:label="@string/p_label" >
+        </activity>
+        <activity
+            android:name=".view.AboutActivity"
+            android:label="@string/aa_label" >
+        </activity>
+    </application>
 
-         <intent-filter>
-            <action
-               android:name="android.intent.action.MAIN" />
-            <category
-               android:name="android.intent.category.LAUNCHER" />
-         </intent-filter>
-      </activity>
-
-      <activity
-         android:name="uk.ac.aber.gij2.olandroid.view.BuildFlightActivity"
-         android:label="@string/bfa_label"
-         android:parentActivityName="uk.ac.aber.gij2.olandroid.view.FlightManagerActivity"
-         android:windowSoftInputMode="stateUnchanged" >
-         <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="uk.ac.aber.gij2.olandroid.view.FlightManagerActivity" />
-      </activity>
-
-      <activity
-         android:name="uk.ac.aber.gij2.olandroid.view.VisualisationActivity"
-         android:label="@string/va_label"
-         android:parentActivityName="uk.ac.aber.gij2.olandroid.view.FlightManagerActivity"
-         android:theme="@style/AppTheme.Visualisation" >
-         <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="uk.ac.aber.gij2.olandroid.view.FlightManagerActivity" />
-      </activity>
-
-      <activity
-         android:name="uk.ac.aber.gij2.olandroid.view.SettingsActivity"
-         android:label="@string/p_label" >
-      </activity>
-   </application>
 </manifest>

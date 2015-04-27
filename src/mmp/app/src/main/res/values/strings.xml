@@ -4,7 +4,7 @@
    <string name="a_label">OLANdroid</string>
    <string name="a_help">Help</string>
    <string name="a_settings">Settings</string>
-   <string name="a_accept">Yes</string>
+   <string name="a_accept">Accept</string>
    <string name="a_cancel">Cancel</string>
    <string name="a_new_flight_title">Enter a name for the flight</string>
    <string name="a_new_flight_title_invalid">Invalid name</string>
@@ -15,6 +15,19 @@
       question mark in the action bar.</string>
    <string name="a_unavailable">Unavailable</string>
    <string name="a_dismiss">Dismiss</string>
+   <string name="a_about">About</string>
+
+   <!-- about activity -->
+   <string name="aa_label">About</string>
+   <string name="aa_content">OLANdroid is a tool for helping develop an understanding of aerobatic
+      flight through the interpretation and visualisation of them via the OLAN system (developed by
+      Michael Golan).\r\n
+      \r\n
+      Credit for the Aresti diagrams goes to <a href="http://www.openaero.net">OpenAero</a>.\r\n
+      \r\n
+      Developed by <a href="http://www.gideonjon.es">Gideon MW Jones</a> while at <a
+         href="http://www.aber.ac.uk">Aberystwyth University</a>.
+   </string>
 
    <!-- flight manager activity -->
    <string name="fma_new">New flight</string>
@@ -71,4 +84,8 @@
    <string name="p_animation_style_summary">The way the animation looks</string>
    <string name="p_control_scheme_title">Control schemes</string>
    <string name="p_control_scheme_summary">How to interact with the visualisation</string>
+   <string name="title_activity_about">AboutActivity</string>
+
+   <string name="hello_world">Hello world!</string>
+   <string name="action_settings">Settings</string>
 </resources>

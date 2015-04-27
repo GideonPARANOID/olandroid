@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   tools:context="uk.ac.aber.gij2.olandroid.view.AboutActivity"
+
+   android:orientation="vertical"
+   android:paddingLeft="@dimen/a_margin_horizontal"
+   android:paddingRight="@dimen/a_margin_horizontal"
+   android:paddingTop="@dimen/a_margin_vertical"
+   android:paddingBottom="@dimen/a_margin_vertical"
+
+   android:layout_width="match_parent"
+   android:layout_height="match_parent">
+
+
+   <TextView
+      android:id="@+id/aa_text_content"
+      android:text="@string/aa_content"
+
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
