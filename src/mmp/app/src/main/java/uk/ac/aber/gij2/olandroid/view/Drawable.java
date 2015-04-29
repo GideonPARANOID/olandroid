@@ -8,7 +8,14 @@ package uk.ac.aber.gij2.olandroid.view;
 
 public interface Drawable {
 
+   /**
+    * @param matrix - a matrix to start drawing from
+    */
+   public void draw(float[] matrix);
+
+
    public interface FlightPiece extends Drawable {
+      public final float WIDTH = 0.5f;
 
       /**
        * @return - length of the shapes
@@ -24,16 +31,11 @@ public interface Drawable {
 
       /**
        * modifies a the resources used to draw the object
+       *
        * @param progressStart - how far the start of the drawing has got, between 0 & 1
-       * @param progressEnd - how far the end of the drawing has got, between 0 & 1
-       * @param style - the style of the animation
+       * @param progressEnd   - how far the end of the drawing has got, between 0 & 1
+       * @param style         - the style of the animation
        */
       public void animate(float progressStart, float progressEnd, AnimationStyle style);
    }
-
-
-   /**
-    * @param matrix - a matrix to start drawing from
-    */
-   public void draw(float[] matrix);
 }

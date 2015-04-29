@@ -13,45 +13,15 @@ import uk.ac.aber.gij2.olandroid.view.Drawable;
 
 public class Component implements Drawable.FlightPiece {
 
-   // bounds for movement
-   public enum Bound {
-      MIN(-1), ZERO(0), MAX(1);
-
-      private final int value;
-
-      Bound(int value) {
-         this.value = value;
-      }
-
-      public int getValue() {
-         return value;
-      }
-
-      public static Bound parse(String bound) {
-         switch (bound) {
-            case "MAX":
-               return MAX;
-            case "ZERO":
-               return ZERO;
-            case "MIN":
-               return MIN;
-            default:
-               return ZERO;
-         }
-      }
-   }
-
-
-   private final float ANGLE = 1f / 24f, WIDTH = 0.5f;
+   private final float ANGLE = 1f / 24f;
    private Bound pitch, yaw, roll;
    private float length;
    private float[] matrix, vertices, cached;
 
-
    /**
-    * @param pitch - vertical amount
-    * @param yaw - horizontal amount
-    * @param roll - roll amount
+    * @param pitch  - vertical amount
+    * @param yaw    - horizontal amount
+    * @param roll   - roll amount
     * @param length - length of the component
     */
    public Component(Bound pitch, Bound yaw, Bound roll, float length) {
@@ -72,7 +42,6 @@ public class Component implements Drawable.FlightPiece {
    public Component(Component component) {
       this(component.pitch, component.yaw, component.roll, component.length);
    }
-
 
    /**
     * builds the vertices array for a buffer
@@ -105,7 +74,7 @@ public class Component implements Drawable.FlightPiece {
          zOffset = (float) -(WIDTH * Math.sin(yaw.getValue() * ANGLE * Math.PI * 2f));
       }
 
-      cached = new float[] {
+      cached = new float[]{
          WIDTH, 0f, 0f,
          -WIDTH, 0f, 0f,
          x - xOffset, y - yOffset, z - zOffset,
@@ -114,7 +83,6 @@ public class Component implements Drawable.FlightPiece {
 
       vertices = cached;
    }
-
 
    /**
     * builds the matrix which describes the transform from the beginning of the component to its end
@@ -150,11 +118,9 @@ public class Component implements Drawable.FlightPiece {
       Matrix.translateM(matrix, 0, 0f, 0f, length);
    }
 
-
    public float[] getCompleteMatrix() {
       return matrix;
    }
-
 
    public void animate(float progressPre, float progressPost, AnimationStyle style) {
 
@@ -173,7 +139,7 @@ public class Component implements Drawable.FlightPiece {
          }
 
          // extending the y & z distance (not x, as that's width)
-         vertices = new float[] {
+         vertices = new float[]{
             WIDTH, vertices[7] * progressPre, vertices[8] * progressPre,
             -WIDTH, vertices[10] * progressPre, vertices[11] * progressPre,
             vertices[6], vertices[7] * progressPost, vertices[8] * progressPost,
@@ -182,14 +148,12 @@ public class Component implements Drawable.FlightPiece {
       }
    }
 
-
-   public void draw(float[] initialMatrix) {}
-
+   public void draw(float[] initialMatrix) {
+   }
 
    public float getLength() {
       return length;
    }
-
 
    public void setLength(float length) {
       this.length = length;
@@ -197,8 +161,36 @@ public class Component implements Drawable.FlightPiece {
       buildMatrix();
    }
 
-
    public float[] getVertices() {
       return vertices;
+   }
+
+
+   // bounds for movement
+   public enum Bound {
+      MIN(-1), ZERO(0), MAX(1);
+
+      private final int value;
+
+      Bound(int value) {
+         this.value = value;
+      }
+
+      public static Bound parse(String bound) {
+         switch (bound) {
+            case "MAX":
+               return MAX;
+            case "ZERO":
+               return ZERO;
+            case "MIN":
+               return MIN;
+            default:
+               return ZERO;
+         }
+      }
+
+      public int getValue() {
+         return value;
+      }
    }
 }
