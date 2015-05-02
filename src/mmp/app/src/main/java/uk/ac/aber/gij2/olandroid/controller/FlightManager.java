@@ -268,7 +268,7 @@ public class FlightManager {
     * @param overwrite - whether or not it's allowed to overwrite based on names
     * @return - whether the flight was added or not
     */
-   private boolean addFlight(Flight flight, boolean overwrite) {
+   public  boolean addFlight(Flight flight, boolean overwrite) {
       boolean result = true;
 
       if (flight != null) {
@@ -300,7 +300,11 @@ public class FlightManager {
    }
 
 
+   /**
+    * @return - a list of flights
+    */
    public ArrayList<Flight> getFlights() {
+      // had to return an arraylist because it needs to keep the same memory address for listeners
       return flights;
    }
 
@@ -309,11 +313,27 @@ public class FlightManager {
     * @param flight - the flight to remove
     */
    public void deleteFlight(Flight flight) {
+
       flights.remove(flight);
+
+      // in case the first one isn't valid
+      for (Flight current : flights) {
+         if (current.getName().equals(flight.getName())) {
+            flights.remove(current);
+         }
+      }
 
       Log.d(this.getClass().getName(), "flight d: " + flight.getName() + " - "
          + flight.getOLAN());
 
       saveFlights();
+   }
+
+
+   /**
+    * empties the flights
+    */
+   public void clearFlights() {
+      flights.clear();
    }
 }

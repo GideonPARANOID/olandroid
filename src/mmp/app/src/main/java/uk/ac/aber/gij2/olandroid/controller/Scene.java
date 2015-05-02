@@ -25,22 +25,36 @@ public class Scene {
       if (flight != null) {
          flight.draw(initialMatrix);
       }
-
-//      new Aircraft(0).draw(initialMatrix);
    }
 
+
+   /**
+    * @return - the flight
+    */
    public Flight getFlight() {
       return flight;
    }
 
+
+   /**
+    * @param flight - the flight
+    */
    public void setFlight(Flight flight) {
       this.flight = flight;
    }
 
+
+   /**
+    * @return - the ground
+    */
    public Drawable getGround() {
       return ground;
    }
 
+
+   /**
+    * @param ground - a drawable ground object
+    */
    public void setGround(Drawable ground) {
       this.ground = ground;
    }

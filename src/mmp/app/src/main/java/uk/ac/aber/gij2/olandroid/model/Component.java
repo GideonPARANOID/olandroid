@@ -13,6 +13,35 @@ import uk.ac.aber.gij2.olandroid.view.Drawable;
 
 public class Component implements Drawable.FlightPiece {
 
+   // bounds for movement
+   public enum Bound {
+      MIN(-1), ZERO(0), MAX(1);
+
+      private final int value;
+
+      Bound(int value) {
+         this.value = value;
+      }
+
+      public static Bound parse(String bound) {
+         switch (bound) {
+            case "MAX":
+               return MAX;
+            case "ZERO":
+               return ZERO;
+            case "MIN":
+               return MIN;
+            default:
+               return ZERO;
+         }
+      }
+
+      public int getValue() {
+         return value;
+      }
+   }
+
+
    private final float ANGLE = 1f / 24f;
    private Bound pitch, yaw, roll;
    private float length;
@@ -148,49 +177,27 @@ public class Component implements Drawable.FlightPiece {
       }
    }
 
-   public void draw(float[] initialMatrix) {
-   }
+   public void draw(float[] initialMatrix) {}
 
    public float getLength() {
       return length;
    }
 
+
+   /**
+    * @param length - the length of the component, recomputes the vertices and matrix
+    */
    public void setLength(float length) {
       this.length = length;
       buildVertices();
       buildMatrix();
    }
 
+
+   /**
+    * @return - the vertices for a component
+    */
    public float[] getVertices() {
       return vertices;
-   }
-
-
-   // bounds for movement
-   public enum Bound {
-      MIN(-1), ZERO(0), MAX(1);
-
-      private final int value;
-
-      Bound(int value) {
-         this.value = value;
-      }
-
-      public static Bound parse(String bound) {
-         switch (bound) {
-            case "MAX":
-               return MAX;
-            case "ZERO":
-               return ZERO;
-            case "MIN":
-               return MIN;
-            default:
-               return ZERO;
-         }
-      }
-
-      public int getValue() {
-         return value;
-      }
    }
 }

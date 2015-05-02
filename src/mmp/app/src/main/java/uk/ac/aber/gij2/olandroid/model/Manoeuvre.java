@@ -437,14 +437,26 @@ public class Manoeuvre extends Shape implements Drawable.FlightPiece {
          + Util.multiplyString(lengthPost, "+");
    }
 
+
+   /**
+    * @return - aresti catalogue reference
+    */
    public String getAresti() {
       return aresti;
    }
 
+
+   /**
+    * @return - descriptive name of the manouevre
+    */
    public String getName() {
       return name;
    }
 
+
+   /**
+    * @return - category to which the manouevre belongs
+    */
    public String getCategory() {
       return category;
    }

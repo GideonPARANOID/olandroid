@@ -63,6 +63,10 @@ public class Renderer implements GLSurfaceView.Renderer {
    }
 
 
+   /**
+    * @param context - a context for access to file resources
+    * @param textureIds - a list of texture references
+    */
    public void initialise(Context context, final int[] textureIds) {
       this.context = context;
 
@@ -83,6 +87,7 @@ public class Renderer implements GLSurfaceView.Renderer {
    }
 
 
+   @Override
    public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 
       // shader loading & compilation
@@ -125,6 +130,7 @@ public class Renderer implements GLSurfaceView.Renderer {
    }
 
 
+   @Override
    public void onSurfaceChanged(GL10 gl, int width, int height) {
       GLES20.glViewport(0, 0, width, height);
 
@@ -147,6 +153,7 @@ public class Renderer implements GLSurfaceView.Renderer {
    }
 
 
+   @Override
    public void onDrawFrame(GL10 unused) {
       GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
       scene.draw(mMVPMatrix);
@@ -167,16 +174,27 @@ public class Renderer implements GLSurfaceView.Renderer {
       Matrix.multiplyMM(mMVPMatrix, 0, viewMatrix, 0, mViewMatrix, 0);
    }
 
+
+   /**
+    * @return - the view's zoom level
+    */
    public float getViewZoom() {
       return viewZoom;
    }
 
+
+   /**
+    * @param viewZoom - a value to set the view's zoom to
+    */
    public void setViewZoom(float viewZoom) {
       this.viewZoom = viewZoom;
       buildViewMatrix();
    }
 
 
+   /**
+    * @param delta - a change to the view rotation on the y axis
+    */
    public void viewRotationYDelta(float delta) {
       viewRotationY += delta;
 
@@ -188,15 +206,26 @@ public class Renderer implements GLSurfaceView.Renderer {
    }
 
 
+   /**
+    * @return - view rotation on the y axis
+    */
    public float getViewRotationY() {
       return viewRotationY;
    }
 
+
+   /**
+    * @param viewRotationY - a value to set the view rotation on the y axis to
+    */
    public void setViewRotationY(float viewRotationY) {
       this.viewRotationY = viewRotationY;
       buildViewMatrix();
    }
 
+
+   /**
+    * @param delta - a change to the view rotation on the x axis
+    */
    public void viewRotationXDelta(float delta) {
       float test = viewRotationX + delta;
 
@@ -231,11 +260,6 @@ public class Renderer implements GLSurfaceView.Renderer {
       }
 
       buildViewMatrix();
-   }
-
-
-   public void viewHorizontalTranslationDelta(float delta) {
-      // TODO: implement
    }
 
 

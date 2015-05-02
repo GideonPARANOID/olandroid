@@ -5,17 +5,53 @@
 
 package uk.ac.aber.gij2.olandroid.test;
 
+import android.view.View;
+import android.test.ViewAsserts;
 import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.ViewAsserts;
 
 import uk.ac.aber.gij2.olandroid.R;
+import uk.ac.aber.gij2.olandroid.controller.FlightManager;
+import uk.ac.aber.gij2.olandroid.model.Flight;
 import uk.ac.aber.gij2.olandroid.view.FlightManagerActivity;
 
 
 public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<FlightManagerActivity> {
 
    private Activity fma;
+   private FlightManager fm;
+
+   private final String[] validOLAN = new String[] {
+      "d",
+      "d d",
+      " d d",
+      "d+",
+      "d++",
+      "+d",
+      "+++++d",
+      "+d+",
+      "+++d++",
+      "%2 d",
+      "%1 d",
+      "`d",
+      "d`",
+      "d````",
+      "``d",
+      "```d``",
+      "+++``d``+"
+   }, invalidOLAN = new String[] {
+      "",
+      "         ",
+      "dflefken",
+      "dd",
+      "ddddd",
+      "f",
+      "d+d",
+      "+d+d",
+      "`d`d"
+   };
+
+
 
    public FlightManagerActivityTest() {
       super(FlightManagerActivity.class);
@@ -27,6 +63,7 @@ public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<
       super.setUp();
       setActivityInitialTouchMode(false);
       fma = getActivity();
+      fm = FlightManager.getInstance();
    }
 
 
@@ -35,15 +72,77 @@ public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<
     */
    public void testUI() {
 
-      ViewAsserts.assertOnScreen(fma.getWindow().getDecorView(), fma.findViewById(
-         R.id.fma_list_flights));
+      View view = fma.getWindow().getDecorView();
+
+      ViewAsserts.assertOnScreen(view, fma.findViewById(R.id.fma_list_flights));
 
       // action bar
-      ViewAsserts.assertOnScreen(fma.getWindow().getDecorView(), fma.findViewById(
-         R.id.menu_fma_new));
-      ViewAsserts.assertOnScreen(fma.getWindow().getDecorView(), fma.findViewById(
-         R.id.menu_a_help));
-      ViewAsserts.assertOnScreen(fma.getWindow().getDecorView(), fma.findViewById(
-         R.id.menu_a_settings));
+      ViewAsserts.assertOnScreen(view, fma.findViewById(R.id.menu_fma_new));
+      ViewAsserts.assertOnScreen(view, fma.findViewById(R.id.menu_a_help));
+      ViewAsserts.assertOnScreen(view, fma.findViewById(R.id.menu_a_settings));
+   }
+
+
+   /**
+    * tests the addition and removal of flights
+    */
+   public void testAddFlight() {
+
+      fm.clearFlights();
+      fm.saveFlights();
+
+      assertEquals(0, fm.getFlights().size());
+
+      Flight f = fm.buildFlight("id", false);
+      f.setName(" " + System.currentTimeMillis());
+
+      fm.addFlight(f, true);
+
+      assertEquals(1, fm.getFlights().size());
+
+      fm.deleteFlight(f);
+      assertEquals(0, fm.getFlights().size());
+   }
+
+
+   /**
+    * tests valid olan
+    */
+   public void testValidOLAN() {
+      for (final String olan : validOLAN) {
+         assertNotNull(fm.buildFlight(olan, false));
+      }
+   }
+
+
+   /**
+    * tests invalid olan
+    */
+   public void testInvalidOLAN() {
+      for (final String olan : invalidOLAN) {
+         assertNull(fm.buildFlight(olan, false));
+      }
+   }
+
+
+   /**
+    * tests flights are saved
+    */
+   public void testSave() {
+
+      fm.clearFlights();
+      Flight f = fm.buildFlight("id", false);
+      fm.addFlight(f, false);
+
+      assertEquals(1, fm.getFlights().size());
+
+      fm.saveFlights();
+      fm.clearFlights();
+
+      assertEquals(0, fm.getFlights().size());
+
+      fm.loadFlights();
+
+      assertEquals(1, fm.getFlights().size());
    }
 }

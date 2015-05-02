@@ -5,6 +5,7 @@
 
 package uk.ac.aber.gij2.olandroid.test;
 
+import android.view.View;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
@@ -27,7 +28,7 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
    private Button visualisationButton;
    private EditText olanEntry;
 
-   private final String[] validOLANStrings = new String[] {
+   private final String[] validOLAN = new String[] {
       "d",
       "d d",
       " d d",
@@ -36,16 +37,25 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
       "+d",
       "+++++d",
       "+d+",
-      "+++d++"
-   }, invalidOLANStrings = new String[] {
+      "+++d++",
+      "%2 d",
+      "%1 d",
+      "`d",
+      "d`",
+      "d````",
+      "``d",
+      "```d``",
+      "+++``d``+"
+   }, invalidOLAN = new String[] {
       "",
       "         ",
       "dflefken",
       "dd",
       "ddddd",
-      "p",
+      "f",
       "d+d",
-      "+d+d"
+      "+d+d",
+      "`d`d"
    };
 
 
@@ -69,26 +79,21 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
    }
 
 
-
-
+   /**
+    * testing everything is there in the ui
+    */
    public void testUI() {
 
-      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
-         R.id.bfa_intro_title));
-      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
-         R.id.bfa_edittext_olan));
-      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
-         R.id.bfa_button_vis));
-      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
-         R.id.bfa_spinner_category));
-      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
-         R.id.bfa_list_manoeuvres));
+      View view = bfa.getWindow().getDecorView();
+
+      ViewAsserts.assertOnScreen(view, bfa.findViewById(R.id.bfa_edittext_olan));
+      ViewAsserts.assertOnScreen(view, bfa.findViewById(R.id.bfa_button_vis));
+      ViewAsserts.assertOnScreen(view, bfa.findViewById(R.id.bfa_spinner_category));
+      ViewAsserts.assertOnScreen(view, bfa.findViewById(R.id.bfa_list_manoeuvres));
 
       // actionbar
-      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
-         R.id.menu_a_help));
-      ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), bfa.findViewById(
-         R.id.menu_a_settings));
+      ViewAsserts.assertOnScreen(view, bfa.findViewById(R.id.menu_a_help));
+      ViewAsserts.assertOnScreen(view, bfa.findViewById(R.id.menu_a_settings));
    }
 
 
@@ -98,20 +103,19 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
     */
    public void testValidOLAN() {
 
-      for (final String validOLAN :validOLANStrings) {
+      for (final String olan : this.validOLAN) {
 
          // test we're in the right place first
          ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), visualisationButton);
 
          bfa.runOnUiThread(new Runnable() {
             public void run() {
-               olanEntry.setText(validOLAN);
+               olanEntry.setText(olan);
             }
          });
 
          TouchUtils.clickView(this, visualisationButton);
-         assertNotNull("Valid OLAN, should launch visualisation for olan " + validOLAN,
-            visualisationMonitor.waitForActivityWithTimeout(1000));
+         assertNotNull(visualisationMonitor.waitForActivityWithTimeout(1000));
 
          // go back to the build flight activity
          this.sendKeys(KeyEvent.KEYCODE_BACK);
@@ -124,19 +128,18 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
     */
    public void testInvalidOLAN() {
 
-      for (final String invalidOLAN : invalidOLANStrings) {
+      for (final String olan : this.invalidOLAN) {
 
          // test we're in the right place first
          ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), visualisationButton);
 
          bfa.runOnUiThread(new Runnable() {
             public void run() {
-               olanEntry.setText(invalidOLAN);
+               olanEntry.setText(olan);
             }
          });
 
-         assertNull("Invalid OLAN, should not launch visualisation for olan '" + invalidOLAN + "'",
-            visualisationMonitor.waitForActivityWithTimeout(1000));
+         assertNull(visualisationMonitor.waitForActivityWithTimeout(1000));
       }
    }
 }

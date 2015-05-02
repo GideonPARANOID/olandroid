@@ -104,7 +104,11 @@ public class AnimationManager extends Observable {
       setChanged();
       notifyObservers();
 
-      scene.getFlight().animate(0f, this.progress, style);
+      try {
+         scene.getFlight().animate(0f, this.progress, style);
+      } catch (NullPointerException exception) {
+         // there might not be a flight
+      }
    }
 
 

@@ -139,11 +139,17 @@ public class OLANdroid extends Application implements
    }
 
 
+   /**
+    * @return - reference number for control schemes
+    */
    public int getControlScheme() {
       return Integer.parseInt(preferences.getString("p_control_scheme", "0"));
    }
 
 
+   /**
+    * @param flight - the flight to set on the scene to be the current flight
+    */
    public void setFlight(Flight flight) {
 
       // copying the name
@@ -155,11 +161,18 @@ public class OLANdroid extends Application implements
       updateColourTheme();
    }
 
+
+   /**
+    * @return - the current flight in the scene
+    */
    public Flight getFlight() {
       return scene.getFlight();
    }
 
 
+   /**
+    * @return - the scene
+    */
    public Scene getScene() {
       return scene;
    }

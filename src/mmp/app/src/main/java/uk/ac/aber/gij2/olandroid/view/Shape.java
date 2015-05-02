@@ -37,6 +37,9 @@ public abstract class Shape implements Drawable {
    protected boolean drawingSetup;
 
 
+   /**
+    * @param drawMode - what draw mode to use - filled or wireframe
+    */
    protected Shape(Style drawMode) {
       this.drawMode = drawMode;
       draw = true;
@@ -189,15 +192,25 @@ public abstract class Shape implements Drawable {
    }
 
 
+   /**
+    * @param colourFront - a colour array for the front of the visualisation
+    */
    public final void setColourFront(float[] colourFront) {
       this.colourFront = colourFront;
    }
 
+   /**
+    *
+    * @param colourBack - a colour array for the back of the visualisation
+    */
    public final void setColourBack(float[] colourBack) {
       this.colourBack = colourBack;
    }
 
 
+   /**
+    * @param textureId - a loaded texture resource id (from the renderer)
+    */
    public final void setTextureId(int textureId) {
       this.textureId = textureId;
       useTexture = true;

@@ -48,7 +48,7 @@ public class SurfaceView extends GLSurfaceView {
 
 
    /**
-    * every time we start the visualisation
+    * on startup of the element
     */
    public void onStart() {
       controlScheme = ((OLANdroid) context.getApplicationContext()).getControlScheme();
@@ -95,7 +95,6 @@ public class SurfaceView extends GLSurfaceView {
                      Touch delta = current0.delta(previous0);
 
                      renderer.viewParallelTranslationDelta(delta.y * TRANSLATION_SCALE);
-                     renderer.viewHorizontalTranslationDelta(delta.x * TRANSLATION_SCALE);
                      break;
 
                   case 2:
@@ -137,7 +136,6 @@ public class SurfaceView extends GLSurfaceView {
 
                   case 2:
                      renderer.viewParallelTranslationDelta(delta.y * TRANSLATION_SCALE);
-                     renderer.viewHorizontalTranslationDelta(delta.x * TRANSLATION_SCALE);
                      break;
                }
             }

@@ -21,6 +21,9 @@ public class Flight implements Drawable.FlightPiece {
    private String name;
 
 
+   /**
+    * @param manoeuvres - a list of manoeuvres
+    */
    public Flight(Manoeuvre[] manoeuvres) {
       this.manoeuvres = manoeuvres;
 
@@ -194,7 +197,9 @@ public class Flight implements Drawable.FlightPiece {
    }
 
 
-
+   /**
+    * @param colourBack - colour array for the back of the visualisation
+    */
    public void setColourBack(float[] colourBack) {
       for (Manoeuvre manoeuvre : manoeuvres) {
          manoeuvre.setColourBack(colourBack);
@@ -202,6 +207,9 @@ public class Flight implements Drawable.FlightPiece {
    }
 
 
+   /**
+    * @param colourFront - colour array for the front of the visualisation
+    */
    public void setColourFront(float[] colourFront) {
       for (Manoeuvre manoeuvre : manoeuvres) {
          manoeuvre.setColourFront(colourFront);
@@ -209,10 +217,17 @@ public class Flight implements Drawable.FlightPiece {
    }
 
 
+   /**
+    * @return - the name of the flight
+    */
    public String getName() {
       return name;
    }
 
+
+   /**
+    * @param name - a new name for the flight
+    */
    public void setName(String name) {
       this.name = name;
    }
