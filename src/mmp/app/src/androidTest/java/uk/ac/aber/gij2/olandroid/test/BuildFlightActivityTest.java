@@ -5,13 +5,13 @@
 
 package uk.ac.aber.gij2.olandroid.test;
 
-import android.view.View;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
 import android.test.ViewAsserts;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -22,13 +22,7 @@ import uk.ac.aber.gij2.olandroid.view.VisualisationActivity;
 
 public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<BuildFlightActivity> {
 
-   private Activity bfa;
-   private Instrumentation.ActivityMonitor visualisationMonitor;
-
-   private Button visualisationButton;
-   private EditText olanEntry;
-
-   private final String[] validOLAN = new String[] {
+   private final String[] validOLAN = new String[]{
       "d",
       "d d",
       " d d",
@@ -46,7 +40,7 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
       "``d",
       "```d``",
       "+++``d``+"
-   }, invalidOLAN = new String[] {
+   }, invalidOLAN = new String[]{
       "",
       "         ",
       "dflefken",
@@ -57,6 +51,10 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
       "+d+d",
       "`d`d"
    };
+   private Activity bfa;
+   private Instrumentation.ActivityMonitor vaMonitor;
+   private Button visualisationButton;
+   private EditText olanEntry;
 
 
    public BuildFlightActivityTest() {
@@ -74,7 +72,7 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
       visualisationButton = (Button) bfa.findViewById(R.id.bfa_button_vis);
       olanEntry = (EditText) bfa.findViewById(R.id.bfa_edittext_olan);
 
-      visualisationMonitor = getInstrumentation().addMonitor(
+      vaMonitor = getInstrumentation().addMonitor(
          VisualisationActivity.class.getName(), null, false);
    }
 
@@ -99,11 +97,45 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
 
 
    /**
+    * tests that the plus button appends a plus
+    */
+   public void testPlusButton() {
+
+      bfa.runOnUiThread(new Runnable() {
+         public void run() {
+            olanEntry.setText("");
+         }
+      });
+
+      TouchUtils.clickView(this, bfa.findViewById(R.id.bfa_button_plus));
+
+      assertTrue(olanEntry.getText().toString().contains("+"));
+   }
+
+
+   /**
+    * tests that the backtick button appends a backtick
+    */
+   public void testBacktickButton() {
+
+      bfa.runOnUiThread(new Runnable() {
+         public void run() {
+            olanEntry.setText("");
+         }
+      });
+
+      TouchUtils.clickView(this, bfa.findViewById(R.id.bfa_button_backtick));
+
+      assertTrue(olanEntry.getText().toString().contains("`"));
+   }
+
+
+   /**
     * exercises the build flight function to test the validity of olan strings
     */
    public void testValidOLAN() {
 
-      for (final String olan : this.validOLAN) {
+      for (final String olan : validOLAN) {
 
          // test we're in the right place first
          ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), visualisationButton);
@@ -115,10 +147,10 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
          });
 
          TouchUtils.clickView(this, visualisationButton);
-         assertNotNull(visualisationMonitor.waitForActivityWithTimeout(1000));
+         assertNotNull(vaMonitor.waitForActivityWithTimeout(1000));
 
          // go back to the build flight activity
-         this.sendKeys(KeyEvent.KEYCODE_BACK);
+         sendKeys(KeyEvent.KEYCODE_BACK);
       }
    }
 
@@ -128,7 +160,7 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
     */
    public void testInvalidOLAN() {
 
-      for (final String olan : this.invalidOLAN) {
+      for (final String olan : invalidOLAN) {
 
          // test we're in the right place first
          ViewAsserts.assertOnScreen(bfa.getWindow().getDecorView(), visualisationButton);
@@ -139,7 +171,7 @@ public class BuildFlightActivityTest extends ActivityInstrumentationTestCase2<Bu
             }
          });
 
-         assertNull(visualisationMonitor.waitForActivityWithTimeout(1000));
+         assertNull(vaMonitor.waitForActivityWithTimeout(1000));
       }
    }
 }

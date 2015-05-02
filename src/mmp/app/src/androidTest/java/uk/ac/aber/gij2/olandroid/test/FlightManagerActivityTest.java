@@ -5,21 +5,22 @@
 
 package uk.ac.aber.gij2.olandroid.test;
 
-import android.view.View;
-import android.test.ViewAsserts;
 import android.app.Activity;
+import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.TouchUtils;
+import android.test.ViewAsserts;
+import android.view.KeyEvent;
+import android.view.View;
 
 import uk.ac.aber.gij2.olandroid.R;
 import uk.ac.aber.gij2.olandroid.controller.FlightManager;
 import uk.ac.aber.gij2.olandroid.model.Flight;
+import uk.ac.aber.gij2.olandroid.view.BuildFlightActivity;
 import uk.ac.aber.gij2.olandroid.view.FlightManagerActivity;
 
 
 public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<FlightManagerActivity> {
-
-   private Activity fma;
-   private FlightManager fm;
 
    private final String[] validOLAN = new String[] {
       "d",
@@ -50,7 +51,8 @@ public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<
       "+d+d",
       "`d`d"
    };
-
+   private Activity fma;
+   private FlightManager fm;
 
 
    public FlightManagerActivityTest() {
@@ -80,6 +82,22 @@ public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<
       ViewAsserts.assertOnScreen(view, fma.findViewById(R.id.menu_fma_new));
       ViewAsserts.assertOnScreen(view, fma.findViewById(R.id.menu_a_help));
       ViewAsserts.assertOnScreen(view, fma.findViewById(R.id.menu_a_settings));
+   }
+
+
+   /**
+    * tests that the new flight button takes us to the
+    */
+   public void testNewFlightButton() {
+
+      Instrumentation.ActivityMonitor bfaMonitor = getInstrumentation().addMonitor(
+         BuildFlightActivity.class.getName(), null, false);
+
+      TouchUtils.clickView(this, fma.findViewById(R.id.menu_fma_new));
+
+      assertNotNull(bfaMonitor.waitForActivityWithTimeout(1000));
+
+      sendKeys(KeyEvent.KEYCODE_BACK);
    }
 
 
