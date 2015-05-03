@@ -12,15 +12,18 @@ import android.test.TouchUtils;
 import android.test.ViewAsserts;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import uk.ac.aber.gij2.olandroid.R;
 import uk.ac.aber.gij2.olandroid.controller.FlightManager;
+import uk.ac.aber.gij2.olandroid.controller.ManoeuvreCatalogue;
 import uk.ac.aber.gij2.olandroid.model.Flight;
 import uk.ac.aber.gij2.olandroid.view.BuildFlightActivity;
 import uk.ac.aber.gij2.olandroid.view.FlightManagerActivity;
 
 
-public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<FlightManagerActivity> {
+public class FlightManagerTests extends ActivityInstrumentationTestCase2<FlightManagerActivity> {
 
    private final String[] validOLAN = new String[] {
       "d",
@@ -55,7 +58,7 @@ public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<
    private FlightManager fm;
 
 
-   public FlightManagerActivityTest() {
+   public FlightManagerTests() {
       super(FlightManagerActivity.class);
    }
 
@@ -72,7 +75,7 @@ public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<
    /**
     * testing that all the expected ui elements are there
     */
-   public void testUI() {
+   public void testBuildUI() {
 
       View view = fma.getWindow().getDecorView();
 
@@ -82,6 +85,29 @@ public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<
       ViewAsserts.assertOnScreen(view, fma.findViewById(R.id.menu_fma_new));
       ViewAsserts.assertOnScreen(view, fma.findViewById(R.id.menu_a_help));
       ViewAsserts.assertOnScreen(view, fma.findViewById(R.id.menu_a_settings));
+   }
+
+
+   /**
+    * tests the flight list is populated correctly
+    */
+   public void testFlightList() {
+      String name = "" + System.currentTimeMillis(), olan = "d";
+
+      // setup the list
+      Flight f = fm.buildFlight(olan, false);
+      f.setName(name);
+      fm.addFlight(f, false);
+
+      // refreshing the activity
+      fma.finish();
+      fma.startActivity(fma.getIntent());
+
+      View item = ((ListView) fma.findViewById(R.id.fma_list_flights)).getAdapter()
+         .getView(0, null, null);
+
+      assertEquals(name, ((TextView) item.findViewById(R.id.lf_text_name)).getText().toString());
+      assertEquals(olan, ((TextView) item.findViewById(R.id.lf_text_olan)).getText().toString());
    }
 
 
@@ -102,7 +128,7 @@ public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<
 
 
    /**
-    * tests the addition and removal of flights
+    * tests the addition of flights
     */
    public void testAddFlight() {
 
@@ -110,6 +136,22 @@ public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<
       fm.saveFlights();
 
       assertEquals(0, fm.getFlights().size());
+
+      Flight f = fm.buildFlight("id", false);
+      f.setName(" " + System.currentTimeMillis());
+
+      fm.addFlight(f, true);
+
+      assertEquals(1, fm.getFlights().size());
+   }
+
+
+   /**
+    * tests the removal of flights
+    */
+   public void testDeleteFlight() {
+      fm.clearFlights();
+      fm.saveFlights();
 
       Flight f = fm.buildFlight("id", false);
       f.setName(" " + System.currentTimeMillis());
@@ -146,7 +188,7 @@ public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<
    /**
     * tests flights are saved
     */
-   public void testSave() {
+   public void testSaveAndLoad() {
 
       fm.clearFlights();
       Flight f = fm.buildFlight("id", false);
@@ -162,5 +204,16 @@ public class FlightManagerActivityTest extends ActivityInstrumentationTestCase2<
       fm.loadFlights();
 
       assertEquals(1, fm.getFlights().size());
+   }
+
+
+   /**
+    * data dependent
+    * tests that flights are corrected properly
+    */
+   public void testNewFlightCorrection() {
+      assertEquals("id", fm.buildFlight("id", false).getOLAN());
+      assertEquals(ManoeuvreCatalogue.getInstance().getCorrection().getOLAN()
+         + " id", fm.buildFlight("id", true).getOLAN());
    }
 }
