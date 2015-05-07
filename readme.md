@@ -8,3 +8,7 @@ There's two different ways of doing this.
 
 1. Request to join the [Google+ beta testing group](https://plus.google.com/communities/111527779897334123267), which will provide a link to the application on the Play store.
 2. Transfer `rel/app-release.apk` onto an Android device, allow installs from unknown sources (it's self signed code) and install the application.
+
+## Development
+
+The project can be fairly simply imported into Android Studio. It's a Gradle project.
