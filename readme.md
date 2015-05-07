@@ -12,3 +12,12 @@ There's two different ways of doing this.
 ## Development
 
 The project can be fairly simply imported into Android Studio. It's a Gradle project.
+
+## Folder structure
+
+* `dev` - device screenshots.
+* `doc` - documentation.
+* `play` - Play store specific resources.
+* `rel` - releases.
+* `res` - general resources.
+* `src` - source code.
