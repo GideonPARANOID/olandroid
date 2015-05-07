@@ -2,22 +2,9 @@
 
 A tool for visual modelling acrobatic aeroplane flight. See the [development diary](https://github.com/GideonPARANOID/olandroid/wiki) & [demos](https://www.youtube.com/playlist?list=PLFyZMqjrwPwacU4OqQyIyKR6jJGp6z2Kw).
 
-[Google+ beta testing group](https://plus.google.com/communities/111527779897334123267).
+## Running the application
 
-## Useful links
+There's two different ways of doing this.
 
-* [Aresti catalogue](https://en.wikipedia.org/wiki/Aresti_Catalog).
-* [OpenAero](http://www.openaero.net/).
-* [Google+ beta testers group](https://plus.google.com/communities/111527779897334123267).
-
-### Android
-
-* [Android developer training](https://developer.android.com/training/index.html).
-* [OpenGL ES](https://developer.android.com/guide/topics/graphics/opengl.html).
-* [Android API documentation](https://developer.android.com/reference/packages.html).
-* [Android best practices](https://github.com/futurice/android-best-practices).
-
-### Code
-
-* [GitHub source](https://github.com/GideonPARANOID/olandroid).
-* [BitBucket source](https://bitbucket.org/gideonparanoid/mmp).
+1. Request to join the [Google+ beta testing group](https://plus.google.com/communities/111527779897334123267), which will provide a link to the application on the Play store.
+2. Transfer `rel/app-release.apk` onto an Android device, allow installs from unknown sources (it's self signed code) and install the application.
